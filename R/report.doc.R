@@ -20,7 +20,8 @@
 #' @param numbering Logical. If TRUE Output numbers are added before the title.
 #' @param anova Logical. Used to specify if the table is an anova table. By default it's not
 #' @param init.numbering Logical. If TRUE Start numbering of the output at 1, otherwise it increase the output numbering of 1 unit
-#' @param font.name Character. Passed to font function. Set the font of the output in Word
+#' @param font.name Character. Passed to \code\link{font}} function. Set the font of the output in Word
+#' @param font.size Numeric. Passed to \code\link{fontsize}} function. Set the font size of the output in Word
 #' @param page.break Logical. If TRUE it adds a page break after the output. Default to TRUE
 #' @param ... Other arguments
 #' 
@@ -388,7 +389,7 @@ report.doc <- function(table,...)
 #' @export 
 
 report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
-		init.numbering=F,numbering=T,font.name="Times",page.break=T,...)
+		init.numbering=F,numbering=T,font.name="Times",page.break=T,font.size=11,...)
 {
 	
 	
@@ -494,6 +495,7 @@ report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
 	# change font 
 	
 	ft=font(ft,fontname=font.name,part ="all")
+	ft=fontsize(ft,size=font.size,part ="all")
 	
 	# change row height
 	
@@ -547,7 +549,7 @@ report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
 
 
 report.doc.anova=function(table,title="Anova table",type.anova=3,doc=NULL,numbering=T,
-		init.numbering=F,font.name="Times",page.break=T,...)
+		init.numbering=F,font.name="Times",font.size=11,page.break=T,...)
 {
 	
 	
@@ -600,6 +602,7 @@ report.doc.anova=function(table,title="Anova table",type.anova=3,doc=NULL,number
 	# change font 
 	
 	ft=font(ft,fontname=font.name,part ="all")
+	ft=fontsize(ft,size=font.size,part ="all")
 	
 	if(!is.null(doc))
 	{	
