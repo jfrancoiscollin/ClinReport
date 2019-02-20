@@ -277,6 +277,9 @@
 #'		colspan.value="Treatment group",doc=doc)
 #'
 #'
+#' doc=report.doc(tab2,title="The same with smaller font size",
+#'		colspan.value="Treatment group",doc=doc,font.size=8)
+#' 
 #'doc=body_add_par(doc,"Corresponding graphic of output 3", style ="Normal") 
 #' 
 #'doc=body_add_gg(doc, value = gg2, style = "centered" )
