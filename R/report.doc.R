@@ -20,8 +20,8 @@
 #' @param numbering Logical. If TRUE Output numbers are added before the title.
 #' @param anova Logical. Used to specify if the table is an anova table. By default it's not
 #' @param init.numbering Logical. If TRUE Start numbering of the output at 1, otherwise it increase the output numbering of 1 unit
-#' @param font.name Character. Passed to \code\link{font}} function. Set the font of the output in Word
-#' @param font.size Numeric. Passed to \code\link{fontsize}} function. Set the font size of the output in Word
+#' @param font.name Character. Passed to \code{\link{font}} function. Set the font of the output in Word
+#' @param font.size Numeric. Passed to \code{\link{fontsize}} function. Set the font size of the output in Word
 #' @param page.break Logical. If TRUE it adds a page break after the output. Default to TRUE
 #' @param ... Other arguments
 #' 

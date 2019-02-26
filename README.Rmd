@@ -1,5 +1,6 @@
 ---
-output: github_document
+title: "ClinReport readme"
+output: html_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -9,34 +10,51 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "90%"
 )
 ```
-# ClinReport
 
-The goal of ClinReport is to give to R users the possibility to create nice statistical reporting outputs (tables and graphics) in 'Microsoft Word'. 
+The aim of ClinReport is to give to R users the possibility to create nice statistical reporting outputs (tables and graphics) in 'Microsoft Word'. 
 
 ## Installation
 
 You can install the released version of ClinReport from [CRAN](https://CRAN.R-project.org) with:
 
-``` r
+```r
 install.packages("ClinReport")
 ```
 
 
-## basic example code
-```
+## Basic example code
 
-```{r data(data)}
+```{r, include=T}
+
+library(ClinReport)
+library(magrittr)
+
+data(data)
+
+# Descriptive statistice (Numerical response and 2 explicative variables):
+
 tab1=report.quanti(data=data,y="y_numeric",
 		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",subjid="SUBJID")
 tab1
 
+# You can have the correspnding graphic:
+
 gg=plot(tab1,title="Mean response evolution as a function of time by treatment group",
  legend.label="Treatment groups",ylab="Y mean")
-
 gg
+
+```
+
+# See outpouts in HTML
+
+
+```{r, include=T}
+
+tab1.html=report.doc(tab1,title="Example of quantitative descriptive table") 
+tab1.html
 
 ```
 
