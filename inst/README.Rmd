@@ -1,6 +1,6 @@
 ---
 title: "ClinReport readme"
-output: html_document
+output: github_document
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -32,6 +32,8 @@ install.packages("ClinReport")
 library(ClinReport)
 library(magrittr)
 
+# Load data
+
 data(data)
 
 # Descriptive statistice (Numerical response and 2 explicative variables):
@@ -48,13 +50,20 @@ gg
 
 ```
 
-# See outpouts in HTML
+# Put the results in a docx document
 
 
-```{r, include=T}
+```r
 
-tab1.html=report.doc(tab1,title="Example of quantitative descriptive table") 
-tab1.html
+doc=read_docx()
+doc=report.doc(tab1,title="Example of quantitative descriptive table",doc=doc) 
+
+# See the results
+
+file=paste(tempfile(),".docx",sep="")
+print(doc, target =file)
+
+#shell.exec(file)
 
 ```
 
