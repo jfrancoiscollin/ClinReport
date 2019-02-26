@@ -31,7 +31,7 @@ report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = y,
 
 \item{subjid}{Character Indicates the column in which there is the subject Id to add the number of subjects in the column header if x1 and x2 are not null.}
 
-\item{geomean}{Logical If yes geometric mean is calculated  instead of arithmetic mean: (exp(mean(log(x),na.rm=T))) fpr x>0}
+\item{geomean}{Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=T))} fpr x>0}
 }
 \value{
 A desc object.

@@ -10,11 +10,11 @@ report.doc(table, ...)
 
 \method{report.doc}{desc}(table, title, colspan.value = NULL,
   doc = NULL, init.numbering = F, numbering = T,
-  font.name = "Times", page.break = T, ...)
+  font.name = "Times", page.break = T, font.size = 11, ...)
 
 \method{report.doc}{anova}(table, title = "Anova table",
   type.anova = 3, doc = NULL, numbering = T, init.numbering = F,
-  font.name = "Times", page.break = T, ...)
+  font.name = "Times", font.size = 11, page.break = T, ...)
 }
 \arguments{
 \item{table}{A desc object that report statistics (the results of \code{report.quanti} or \code{report.quali})}
@@ -31,9 +31,11 @@ report.doc(table, ...)
 
 \item{numbering}{Logical. If TRUE Output numbers are added before the title.}
 
-\item{font.name}{Character. Passed to font function. Set the font of the output in Word}
+\item{font.name}{Character. Passed to \code{\link{font}} function. Set the font of the output in Word}
 
 \item{page.break}{Logical. If TRUE it adds a page break after the output. Default to TRUE}
+
+\item{font.size}{Numeric. Passed to \code{\link{fontsize}} function. Set the font size of the output in Word}
 
 \item{type.anova}{Passed to \code{Anova} function from car package (see its documentation).}
 
@@ -288,6 +290,9 @@ doc=body_add_break(doc)
 doc=report.doc(tab2,title="Qualitative statistics (2 explicative variables)",
 	colspan.value="Treatment group",doc=doc)
 
+
+doc=report.doc(tab2,title="The same with smaller font size",
+	colspan.value="Treatment group",doc=doc,font.size=8)
 
 doc=body_add_par(doc,"Corresponding graphic of output 3", style ="Normal") 
 

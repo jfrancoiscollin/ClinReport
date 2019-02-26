@@ -39,8 +39,8 @@ build()
 #  readme
 ###############################################
 
-render("C:\\Users\\jfcollin\\git\\ClinReport\\README.Rmd")
-shell.exec("C:\\Users\\jfcollin\\git\\ClinReport\\README.html")
+render("C:\\Users\\jfcollin\\git\\ClinReport\\inst\\README.Rmd")
+#shell.exec("C:\\Users\\jfcollin\\git\\ClinReport\\README.html")
 
 
 
