@@ -1,7 +1,7 @@
 Package: ClinReport
 Type: Package
 Title: Statistical Reporting in Clinical Trials
-Version: 0.9.1.8
+Version: 0.9.1.9
 Date: 2019-02-27
 Author: Jean-Francois Collin
 Maintainer: Jean-Francois Collin <jfcollin@live.fr>
@@ -17,5 +17,12 @@ Imports:
 	officer, 
 	flextable (>= 0.5.1), 
 	xtable
-Suggests: lme4, nlme, car, magrittr
+Suggests: 
+    lme4,
+    nlme,
+    car,
+    magrittr,
+    knitr,
+    rmarkdown
 RoxygenNote: 6.1.1
+VignetteBuilder: knitr

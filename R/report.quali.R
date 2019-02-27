@@ -157,6 +157,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		
 		freq$output=freq$output[,-1]
 		freq$x2=NULL
+		freq$nbcol=freq$nbcol-1
 		
 		return(freq)
 		
@@ -256,7 +257,8 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		freq.tot=suppressWarnings(melt(freq.tot,measure.vars=colnames(freq.tot)[-1],
 						y.levels.label=x2.label,value.name="Total"))
 		
-		freq=data.frame(freq,Total=freq.tot[freq.tot[,2]!="Statistics","Total"])
+		freq=data.frame(freq,Total=freq.tot[freq.tot[,2]!="Statistics","Total"],
+				fix.empty.names =F,check.names=F)
 		
 		if(length(which(colnames(freq)=="NA"))>0)
 		{
