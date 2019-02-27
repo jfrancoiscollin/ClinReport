@@ -107,7 +107,11 @@ report.lsmeans=function(lsm,x1="treatment",x2=NULL,x3=NULL,data,
 	# Control the name of the estimate column
 	# so it's the same for all models
 	
-	lsm=update(lsm,inv.lbl="emmean",type="response")
+	if(type=="response")
+	{
+		lsm=update(lsm,inv.lbl="emmean",type="response")
+	}
+	
 	lsm=update(lsm,estName="emmean")
 	
 	terms=attr(lsm@model.info$terms,"term.labels")

@@ -1,5 +1,5 @@
 ---
-title: "ClinReport readme"
+title: "ClinReport R package"
 output: github_document
 ---
 
@@ -30,7 +30,8 @@ install.packages("ClinReport")
 ```{r, include=T}
 
 library(ClinReport)
-library(magrittr)
+library(officer)
+library(flextable)
 
 # Load data
 
@@ -50,7 +51,7 @@ gg
 
 ```
 
-# Put the results in a docx document
+# Put the results in a docx document  with officer  
 
 
 ```r

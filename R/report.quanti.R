@@ -17,7 +17,8 @@
 #' @param y.label Character Indicates the label for y parameter
 #' @param subjid Character Indicates the column in which there is the subject Id to add the number of subjects in the column header if x1 and x2 are not null.
 #' @param geomean Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=T))} fpr x>0
-
+#' @param add.mad Logical If yes the Median Absolute Deviance is added to the median statistics (see function \code{\link{mad}}) 
+#' 
 #' @description
 #' \code{report.quanti} 
 #' Returns quantitative descriptive statistics such as mean, median, standard deviation etc...
@@ -68,6 +69,10 @@
 #' 
 #' report.quanti(data=data,y="y_numeric",x1="GROUP",x2="TIMEPOINT",total=TRUE)
 #' 
+#' # Add median absolute deviance to the median statistics
+#' 
+#' report.quanti(data=data,y="y_numeric",x1="GROUP",x2="TIMEPOINT",total=TRUE,add.mad=TRUE)
+#' 
 #' # Quantitative statistics with spacing rows (option at.row)
 #' 
 #' report.quanti(data=data,y="y_numeric",x1="GROUP",
@@ -95,7 +100,8 @@
 
 report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		round=2,
-		total=F,scientific=F,digits=NULL,at.row=NULL,subjid=NULL,geomean=F)
+		total=F,scientific=F,digits=NULL,at.row=NULL,subjid=NULL,geomean=F,
+		add.mad=F)
 {
 	
 	
@@ -118,7 +124,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	if(class(data)!="data.frame") stop("data argument should be a data.frame. Thank you for your comprehension")
 	if(class(y)!="character") stop("Dear user. y argument should be a character.  Thank you for your comprehension")
 	if(!any(colnames(data)==y)) stop("y argument should be in data colnames. Thank you for your comprehension")
-
+	
 	
 	if(!is.logical(total))		stop("Argument total argument must be logical")
 	if(!is.numeric(digits) & !is.null(digits)) stop("Argument digits must be numeric")
@@ -193,7 +199,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	if(geomean)
 	{
 		stat_list=c("N"=N,"mean"=geo.mean,
-				"sd"=sd,"median"=median,"mad"=mad,
+				"sd"=sd,"median"=median,
 				"q1"=q1,"q3"=q3,"min"=min,"max"=max,
 				"missing"=missing)
 		
@@ -201,10 +207,15 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	{
 		
 		stat_list=c("N"=N,"mean"=mean,
-				"sd"=sd,"median"=median,"mad"=mad,
+				"sd"=sd,"median"=median,
 				"q1"=q1,"q3"=q3,"min"=min,"max"=max,
 				"missing"=missing)
 		
+	}
+	
+	if(add.mad)
+	{
+		stat_list=c(stat_list,"mad"=mad)
 	}
 	
 	# compute statistics
@@ -225,7 +236,15 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	stat$mean_sd=paste0(stat$mean,"(",stat$sd,")")
 	stat$q1_q3=paste0("[",stat$q1,";",stat$q3,"]")
 	stat$min_max=paste0("[",stat$min,";",stat$max,"]")
-	stat$median_mad=paste0(stat$median,"(",stat$mad,")")
+	
+	if(add.mad)
+	{
+		stat$median_mad=paste0(stat$median,"(",stat$mad,")")
+	}else
+	{
+		stat$median_mad=paste0(stat$median)
+	}
+	
 	
 	stat$mean=NULL
 	stat$sd=NULL
@@ -259,7 +278,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	
 	colnames(stat2)[colnames(stat2)=="value"]=y.label
-
+	
 	levels(stat2$Statistics)[levels(stat2$Statistics)=="N"]="N"
 	if(geomean)
 	{
@@ -269,7 +288,15 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		levels(stat2$Statistics)[levels(stat2$Statistics)=="mean_sd"]="Mean (SD)"	
 	}
 	
-	levels(stat2$Statistics)[levels(stat2$Statistics)=="median_mad"]="Median (MAD)"
+	if(add.mad)
+	{
+		levels(stat2$Statistics)[levels(stat2$Statistics)=="median_mad"]="Median (MAD)"
+	}else
+	{
+		levels(stat2$Statistics)[levels(stat2$Statistics)=="median_mad"]="Median"
+	}
+	
+	
 	levels(stat2$Statistics)[levels(stat2$Statistics)=="min_max"]="[Min;Max]"
 	levels(stat2$Statistics)[levels(stat2$Statistics)=="missing"]="Missing"
 	levels(stat2$Statistics)[levels(stat2$Statistics)=="q1_q3"]="[Q1;Q3]"
@@ -284,14 +311,14 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	{
 		if(is.null(x2))
 		{
-
-			temp=report.quanti(data=data,y=y,y.label="Total")$output
+			
+			temp=report.quanti(data=data,y=y,y.label="Total",add.mad=add.mad)$output
 			stat2=merge(stat2,temp,by="Statistics")
 		}
 		
 		if(!is.null(x2))
 		{
-			temp=report.quanti(data=data,y=y,x1=x2)$output
+			temp=report.quanti(data=data,y=y,x1=x2,add.mad=add.mad)$output
 			temp=melt(temp,id.vars="Statistics",variable.name=x2,value.name = "Total")
 			stat2=merge(stat2,temp,by=c(x2,"Statistics"))
 		}
@@ -299,20 +326,36 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	}
 	
 	
-	if(geomean)
+	if(add.mad)
 	{
-		stat2$Statistics=factor(stat2$Statistics,levels=c("N","Geo Mean (SD)","Median (MAD)",
-						"[Q1;Q3]","[Min;Max]","Missing"))
+		if(geomean)
+		{
+			stat2$Statistics=factor(stat2$Statistics,levels=c("N","Geo Mean (SD)","Median (MAD)",
+							"[Q1;Q3]","[Min;Max]","Missing"))
+		}else
+		{
+			stat2$Statistics=factor(stat2$Statistics,levels=c("N","Mean (SD)","Median (MAD)",
+							"[Q1;Q3]","[Min;Max]","Missing"))
+		}
+		
 	}else
 	{
-		stat2$Statistics=factor(stat2$Statistics,levels=c("N","Mean (SD)","Median (MAD)",
-						"[Q1;Q3]","[Min;Max]","Missing"))
+		if(geomean)
+		{
+			stat2$Statistics=factor(stat2$Statistics,levels=c("N","Geo Mean (SD)","Median",
+							"[Q1;Q3]","[Min;Max]","Missing"))
+		}else
+		{
+			stat2$Statistics=factor(stat2$Statistics,levels=c("N","Mean (SD)","Median",
+							"[Q1;Q3]","[Min;Max]","Missing"))
+		}
 	}
+
 	
 	if(!is.null(x2)) stat2=stat2[order(stat2[,x2],stat2$Statistics),]
 	if(is.null(x2)) stat2=stat2[order(stat2$Statistics),]
 	
-
+	
 	
 	if(!is.null(subjid))
 	{
@@ -381,7 +424,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		nbcol=2
 	}
 	
-
+	
 	stat2=ClinReport::desc(output=stat2,total=total,nbcol=nbcol,y=y,x1=x1,x2=x2,at.row=at.row,
 			subjid=subjid,type.desc="quanti",type=NULL,y.label=y.label,
 			raw.output=raw.stat)

@@ -6,7 +6,7 @@
 \usage{
 report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = y,
   round = 2, total = F, scientific = F, digits = NULL,
-  at.row = NULL, subjid = NULL, geomean = F)
+  at.row = NULL, subjid = NULL, geomean = F, add.mad = F)
 }
 \arguments{
 \item{data}{Data.frame object}
@@ -32,6 +32,8 @@ report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = y,
 \item{subjid}{Character Indicates the column in which there is the subject Id to add the number of subjects in the column header if x1 and x2 are not null.}
 
 \item{geomean}{Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=T))} fpr x>0}
+
+\item{add.mad}{Logical If yes the Median Absolute Deviance is added to the median statistics (see function \code{\link{mad}})}
 }
 \value{
 A desc object.
@@ -79,6 +81,10 @@ report.quanti(data=data,y="y_numeric",x1="GROUP",x2="TIMEPOINT")
 # Quantitative statistics with two factors and a total column
 
 report.quanti(data=data,y="y_numeric",x1="GROUP",x2="TIMEPOINT",total=TRUE)
+
+# Add median absolute deviance to the median statistics
+
+report.quanti(data=data,y="y_numeric",x1="GROUP",x2="TIMEPOINT",total=TRUE,add.mad=TRUE)
 
 # Quantitative statistics with spacing rows (option at.row)
 

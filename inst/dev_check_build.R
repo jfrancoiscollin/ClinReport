@@ -26,8 +26,6 @@ roxygenize("C:\\Users\\jfcollin\\git\\ClinReport")
 
 check(args ="--as-cran")
 
-#usethis::use_readme_rmd()
-#usethis::use_news_md()
 
 install()
 build()
