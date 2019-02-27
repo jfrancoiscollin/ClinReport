@@ -1,0 +1,175 @@
+---
+title: "ClinReport Vignette, Welcome!"
+author: "Jean-Francois COLLIN"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ClinReport Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# A simple example
+
+Start by loading all usual libraries.
+
+```{r}
+library(ClinReport)
+library(officer)
+library(flextable)
+library(dplyr)
+library(reshape2)
+library(nlme)
+library(emmeans)
+```
+
+Load your data.
+
+```{r, include=T}
+# We will use fake date
+data(data)
+print(head(data))
+```
+
+Create a statistical output for a quantitative response and two explicative variables.
+For example a treatment group and a time variable corresponding to the visits of a clinical trial.
+
+For that we use the `report.quanti()` function:
+
+```{r, include=TRUE}
+tab1=report.quanti(data=data,y="y_numeric",
+		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",
+		subjid="SUBJID")
+
+tab1
+```  
+
+
+The `at.row` argument is used to space the results between each visit and the `subjid` argument is used
+to add in the columns header the total number of subjects randomized by treatment group.
+
+
+Generally we want also the corresponding graphics. So you can use the specific plot function
+to print the corresponding graphic of your table:
+
+
+```{r, include=TRUE}
+g1=plot(tab1,title="The title that you want to display")
+print(g1)
+```  
+
+You can modify the plot by using the following arguments of the plot.desc function:
+
+```{r, include=TRUE}
+args(ClinReport:::plot.desc)
+``` 
+
+
+Then we can use the `report.doc()` function which use the **flextable** package to format
+the output into a `flextable` object, ready to export to `Microsoft Word` with the **officer** package.
+
+The table will look like this (we can have a preview in HTML, just to check):
+
+```{r, include=TRUE}
+report.doc(tab1,title="Quantitative statistics (2 explicative variables)",
+		colspan.value="Treatment group")			
+```
+
+Then, we add it to a `rdocx` object with the corresponding graphic:
+
+```{r}
+doc=read_docx()
+doc=report.doc(tab1,title="Quantitative statistics (2 explicative variables)",
+		colspan.value="Treatment group",doc=doc,init.numbering=T)
+doc=body_add_gg(doc, value = g1, style = "centered" )
+```
+
+Write the doc to a docx file:
+
+```{r results='hide'}
+file=paste(tempfile(),".docx",sep="")
+print(doc, target =file)
+
+#Open it
+#shell.exec(file)
+```
+
+
+
+## The different outputs
+
+### Qualitative tables
+
+
+An example of qualitative statistics with one explicative variables
+
+```{r}
+tab2=report.quali(data=data,y="y_logistic",
+		x1="VAR",total=T,subjid="SUBJID")
+		
+report.doc(tab2,title="Qualitative table with two variables",
+colspan.value="A variable")	
+
+ ```
+
+An example of qualitative statistics with two explicative variables
+
+```{r}
+tab2=report.quali(data=data,y="y_logistic",
+		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",
+		total=T,subjid="SUBJID")
+		
+report.doc(tab2,title="Qualitative table with two variables",
+colspan.value="Treatment group")	
+
+ ```
+
+### Quantitative tables
+
+
+Put example 
+
+
+
+### Mixed Quantitative and Qualitative tables
+
+
+Put example 
+
+
+### Anova model reporting
+
+Put example 
+
+
+### LS-Means model reporting
+
+Put example 
+
+
+### Pairs and Contrasts of LS-MEans
+
+
+Put example 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
