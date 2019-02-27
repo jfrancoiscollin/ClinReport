@@ -20,9 +20,9 @@ library(roxygen2)
 library(usethis)
 library(rmarkdown)
 
-setwd("C:\\Users\\jfcollin\\git\\ClinReport")
+setwd("C:\\Users\\jfcollin\\git")
 
-roxygenize("C:\\Users\\jfcollin\\git\\ClinReport")
+roxygenize("C:\\Users\\jfcollin\\git")
 
 check(args ="--as-cran")
 
