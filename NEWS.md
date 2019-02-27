@@ -17,5 +17,30 @@ lineplot with or without confidence intervals (see examples in report.doc functi
 * Suppressed some recursive calls
 
 
+# ClinReport 0.9.1.7
+
+## Enhancement
+
+* Add the font.size option
+
+
+
+# ClinReport 0.9.1.8
+
+## Issues
+
+* Corrected the code of report.lsmeans which reported systematically in response values the lsmeans of GLM models
+
+## Enhancement
+
+* Add the add.mad option in report.quanti so the mad is not systematically reported
+
+
+
+
+
+
+
+
 
 
