@@ -120,10 +120,10 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	# Check 
 	################################
 	
-	if(is.null(y)) stop("y argument cannot be NULL. Thank you for your comprehension. We love you anyway")
-	if(class(data)!="data.frame") stop("data argument should be a data.frame. Thank you for your comprehension")
-	if(class(y)!="character") stop("Dear user. y argument should be a character.  Thank you for your comprehension")
-	if(!any(colnames(data)==y)) stop("y argument should be in data colnames. Thank you for your comprehension")
+	if(is.null(y)) stop("y argument cannot be NULL. Thank you for your comprehension")
+	if(class(data)!="data.frame") stop("data argument should be a data.frame")
+	if(class(y)!="character") stop("Dear user. y argument should be a character")
+	if(!any(colnames(data)==y)) stop("y argument should be in data colnames")
 	
 	
 	if(!is.logical(total))		stop("Argument total argument must be logical")

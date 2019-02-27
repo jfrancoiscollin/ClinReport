@@ -9,9 +9,9 @@
 # sep=.Platform$path.sep))
 #
 #
-#Sys.setenv(PATH = paste(Sys.getenv("PATH"),
-#				"C:/Users/jfcollin/AppData/Local/Pandoc",
-#				sep=.Platform$path.sep))
+Sys.setenv(PATH = paste(Sys.getenv("PATH"),
+				"C:/Users/jfcollin/AppData/Local/Pandoc",
+				sep=.Platform$path.sep))
 #
 
 
