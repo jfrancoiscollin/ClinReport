@@ -91,7 +91,7 @@
 #' 
 #' @import reshape2
 #' 
-#' @importFrom dplyr %>% summarise_at group_by_ funs_
+#' @importFrom dplyr %>% summarise_at group_by 
 #' 
 #' @export
 
@@ -152,13 +152,12 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	if(!is.null(x1) & is.null(x2))
 	{
-		by_GROUP=data %>% group_by_(x1)
+		by_GROUP=data %>% group_by(!!as.name(x1))
 	}
 	
 	if(!is.null(x1) & !is.null(x2))
 	{
-		by_GROUP=data %>% group_by_(x1)%>% group_by_(x2,add=T)	
-		
+		by_GROUP=data %>% group_by(!!as.name(x1))%>% group_by(!!as.name(x2),add=T)	
 	}
 	
 	# define statistics
@@ -220,15 +219,14 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	# compute statistics
 	
-	stat=data.frame(by_GROUP %>% summarise_at(.funs=funs_(dots=stat_list),.vars=y))
+	stat=data.frame(by_GROUP %>% summarise_at(.funs=stat_list,.vars=y))
 	
 	# Save raw output for graphics
 	raw.stat=stat
 	
 	# format outputs
 	
-	ind=which(sapply(stat,class)!="factor") 
-	ind=ind[!"%in%"(ind,which(colnames(stat)=="N" | colnames(stat)=="missing"))] 
+	ind=which(sapply(stat,class)=="numeric") 
 	stat[ind]=format(round(stat[ind],round),nsmall=round,scientific=scientific,digits=digits)
 	
 	# Regroup stat
