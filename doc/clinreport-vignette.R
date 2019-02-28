@@ -4,7 +4,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-## ---- echo = FALSE, message=FALSE, warning=FALSE-------------------------
+## ---- echo = TRUE, message=FALSE, warning=FALSE--------------------------
 library(ClinReport)
 library(officer)
 library(flextable)

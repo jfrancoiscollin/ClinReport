@@ -520,8 +520,7 @@ report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
 		if(table$type.mod=="quali")
 		{			
 			ft <- add_footer_row(ft,top=FALSE, values =footnote,colwidths=ncol(output))
-			ft <- merge_at(ft,j=1:ncol(output), part = "footer")
-			ft <- fontsize(ft, size = 8, part = "footer")
+			ft <- fontsize(ft, size = font.size-1, part = "footer")
 			ft <-height_all(ft, height=0.3, part = "footer")
 		}
 		
