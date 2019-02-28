@@ -488,7 +488,12 @@ report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
 	
 	ft=hline(ft, border = fp_border(width = 2), part = "header" )
 	ft=hline_top(ft, border = fp_border(width = 2), part = "header" )
-	ft=hline_bottom(ft, border = fp_border(width = 2), part = "body" )
+	
+#	ft=hline_bottom(ft, border = fp_border(width = 2), part = "body" )
+
+	ft=add_footer_row(ft,top=FALSE, values ="",colwidths=ncol(output))
+	ft=hline_bottom(ft, border = fp_border(width = 2), part = "footer")
+	
 	ft=vline(ft, j =1:nb.col,border = fp_border(width = 1),part = "body")
 	
 	# merge first column in case there are repetitions

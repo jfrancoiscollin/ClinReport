@@ -309,13 +309,12 @@ shell.exec(file)
 
 
 
-
+#
 #
 #doc=read_docx()
-#
 #ft <- flextable( head( iris ) )
 #ft <- add_footer_row(ft, values = "blah blah", colwidths = 5)
 #ft=height_all(ft, height=0.3, part = "footer")
 #doc <- body_add_flextable(doc, value = ft)		
-#
+
 
