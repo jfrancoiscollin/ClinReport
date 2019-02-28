@@ -24,5 +24,7 @@ Suggests:
     magrittr,
     knitr,
     rmarkdown
-RoxygenNote: 6.1.1
 VignetteBuilder: knitr
+URL: https://jfrancoiscollin.github.io/
+Encoding: UTF-8
+RoxygenNote: 6.1.1

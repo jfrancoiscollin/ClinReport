@@ -27,17 +27,6 @@ library(usethis)
 library(rmarkdown)
 
 setwd("C:\\Users\\jfcollin\\git")
-roxygenize("C:\\Users\\jfcollin\\git")
-devtools::build_vignettes()
-
-#devtools::use_vignette("ClinReport-vignette")
-
-
-check(args ="--as-cran")
-
-
-install(build_vignettes =T)
-build()
 
 
 
@@ -45,8 +34,7 @@ build()
 #  readme
 ###############################################
 
-render("C:\\Users\\jfcollin\\git\\ClinReport\\inst\\README.Rmd")
-
+render("C:\\Users\\jfcollin\\git\\inst\\README.Rmd")
 #shell.exec("C:\\Users\\jfcollin\\git\\ClinReport\\README.html")
 
 
@@ -54,6 +42,24 @@ render("C:\\Users\\jfcollin\\git\\ClinReport\\inst\\README.Rmd")
 
 render("C:\\Users\\jfcollin\\git\\vignettes\\clinreport-vignette.Rmd")
 #shell.exec("C:\\Users\\jfcollin\\git\\vignettes\\clinreport-vignette.html")
+
+
+
+
+
+
+
+devtools::build_vignettes()
+roxygenize("C:\\Users\\jfcollin\\git")
+
+
+check(args ="--as-cran")
+
+
+install(build_vignettes =T)
+build(path = "C:\\Users\\jfcollin\\Google Drive\\R packages")
+
+
 
 
 

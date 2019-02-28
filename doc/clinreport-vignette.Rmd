@@ -1,5 +1,5 @@
 ---
-title: "ClinReport Vignette, Welcome!"
+title: "ClinReport R package"
 author: "Jean-Francois COLLIN"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -16,11 +16,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-# A simple example
+## Get started
 
 Start by loading all usual libraries.
 
-```{r}
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
 library(ClinReport)
 library(officer)
 library(flextable)
@@ -28,12 +28,13 @@ library(dplyr)
 library(reshape2)
 library(nlme)
 library(emmeans)
+library(car)
 ```
 
 Load your data.
 
-```{r, include=T}
-# We will use fake date
+```{r, include=TRUE}
+# We will use fake data
 data(data)
 print(head(data))
 ```
@@ -79,8 +80,12 @@ The table will look like this (we can have a preview in HTML, just to check):
 
 ```{r, include=TRUE}
 report.doc(tab1,title="Quantitative statistics (2 explicative variables)",
-		colspan.value="Treatment group")			
+		colspan.value="Treatment group", init.numbering =T )			
 ```
+
+The `init.numbering` argument is used to specify that
+it's the first output. After that, all output numbers
+will be increased automatically after each call of the function `report.doc()`.
 
 Then, we add it to a `rdocx` object with the corresponding graphic:
 
@@ -102,44 +107,140 @@ print(doc, target =file)
 ```
 
 
-
 ## The different outputs
 
 ### Qualitative tables
 
-Put example 
 
- 
+An example of qualitative statistics with one explicative variables
+
+```{r}
+tab=report.quali(data=data,y="y_logistic",
+		x1="VAR",total=T,subjid="SUBJID")
+		
+report.doc(tab,title="Qualitative table with two variables",
+colspan.value="A variable")	
+
+ ```
+
+An example of qualitative statistics with two explicative variables
+
+```{r}
+tab=report.quali(data=data,y="y_logistic",
+		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",
+		total=T,subjid="SUBJID")
+		
+report.doc(tab,title="Qualitative table with two variables",
+colspan.value="Treatment group")	
+
+ ```
 
 ### Quantitative tables
 
 
-Put example 
+
+An example of quantitative statistics with one explicative variables
+
+```{r}
+tab=report.quanti(data=data,y="y_numeric",
+		x1="VAR",total=T,subjid="SUBJID")
+		
+report.doc(tab,title="Quantitative table with one explicative variable",
+colspan.value="A variable")	
+
+ ```
+
+An example of quantitative statistics with two explicative variables
+
+```{r}
+tab=report.quanti(data=data,y="y_numeric",
+		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",
+		total=T,subjid="SUBJID")
+		
+report.doc(tab,title="Quantitative table with two explicative variables",
+colspan.value="Treatment group")	
+ ```
 
 
 
 ### Mixed Quantitative and Qualitative tables
 
+You can mix qualitative and quantitative outputs.
 
-Put example 
+But it's only possible for 1 explicative variable, 
+and it should be the same variable for both response:
 
+```{r}
+tab1=report.quanti(data=data,y="y_numeric",
+		x1="GROUP",subjid="SUBJID",y.label="Y numeric")
+
+tab2=report.quali(data=data,y="y_logistic",
+		x1="GROUP",subjid="SUBJID",y.label="Y logistic")
+
+tab3=regroup(tab1,tab2,rbind.label="The label of your choice")
+
+
+report.doc(tab3,title="Mixed Qualitative and Quantitative output",
+colspan.value="Treatment group")
+```
 
 ### Anova model reporting
 
-Put example 
+For the anova table reporting, it's basically a call
+to the function `xtable_to_flextable()`. The function
+`report.doc()` just handle the numbering of the output
+and the header with the title.
+
+```{r}
+# Removing baseline data for the model
+data.mod=droplevels(data[data$TIMEPOINT!="D0",])
+
+mod=lme(y_numeric~baseline+GROUP+TIMEPOINT+GROUP*TIMEPOINT,
+random=~1|SUBJID,data=data.mod,na.action=na.omit)
+ 
+anov3=Anova(mod,3)
+
+report.doc(anov3,title="Mixed Qualitative and Quantitative output")
+```
 
 
 ### LS-Means model reporting
 
-Put example 
+LS-means reporting are based on the package **emmeans**.
+The function `report.lsmeans()` enables to format the output:
+
+```{r}
+lsm=emmeans(mod,~GROUP|TIMEPOINT)
+
+tab=report.lsmeans(lsm,x1="GROUP",x2="TIMEPOINT",data=data.mod,
+at.row="TIMEPOINT")
+
+report.doc(tab,title="LS-Means example",
+colspan.value="Treatment Group")
+```
 
 
 ### Pairs and Contrasts of LS-MEans
 
+If you want to report contrast, you'll have to specify
+`contrast=TRUE` in the call to `report.lsmeans()`.
 
-Put example 
 
 
+```{r}
+contr=contrast(lsm, "trt.vs.ctrl", ref = "A")
+
+# Now there is just only one explicative variable
+# since we make comparison between treatment group
+# so there is only x1="TIMEPOINT" in the call
+
+tab.contr=report.lsmeans(lsm=contr,x1="TIMEPOINT",
+		data=data.mod,contrast=TRUE,at.row="contrast")
+		
+		
+report.doc(tab.contr,title="LS-Means contrast example",
+colspan.value="Time points")		
+```
 
 
 
