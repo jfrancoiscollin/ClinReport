@@ -13,7 +13,7 @@ Imports:
 	reshape2, 
 	dplyr (>= 0.8.0.1), 
 	emmeans (>= 1.3.2), 
-	officer (>= 0.3.3), 
+	officer, 
 	utils, 
 	flextable (>= 0.5.1), 
 	xtable
@@ -24,6 +24,7 @@ Suggests:
     magrittr,
     knitr,
     rmarkdown
+Remotes: davidgohel/officer
 VignetteBuilder: knitr
 URL: https://jfrancoiscollin.github.io/
 Encoding: UTF-8
