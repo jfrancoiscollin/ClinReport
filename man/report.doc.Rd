@@ -276,7 +276,8 @@ doc=body_add_par(doc,"A beautiful reporting using ClinReport", style = "heading 
 doc=body_add_par(doc,"Descriptive statistics", style = "heading 2")
 
 doc=report.doc(tab1.1,title="Quantitative statistics (2 explicative variables) (Table 1/2)",
-	colspan.value="Treatment group",doc=doc,init.numbering=T)
+	colspan.value="Treatment group",doc=doc,init.numbering=T,
+page.break=F)
 
 doc=report.doc(tab1.2,title="Quantitative statistics (2 explicative variables) (Table 2/2)",
 	colspan.value="Treatment group",doc=doc)
