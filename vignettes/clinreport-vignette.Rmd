@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 Start by loading all usual libraries.
 
-```{r, echo = FALSE, message=FALSE, warning=FALSE}
+```{r, echo = TRUE, message=FALSE, warning=FALSE}
 library(ClinReport)
 library(officer)
 library(flextable)
