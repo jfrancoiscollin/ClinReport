@@ -42,6 +42,7 @@ lineplot with or without confidence intervals (see examples in report.doc functi
 ## Issues
 
 * Correction of nbcol argument when x2=NULL and x1!=NULL in report.quali function
+* Correction of a footenote issue for ls-means reporting of GLM model
 
 ## Enhancement
 
