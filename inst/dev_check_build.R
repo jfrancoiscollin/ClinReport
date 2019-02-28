@@ -34,22 +34,23 @@ setwd("C:\\Users\\jfcollin\\git")
 #  readme
 ###############################################
 
-render("C:\\Users\\jfcollin\\git\\inst\\README.Rmd")
-#shell.exec("C:\\Users\\jfcollin\\git\\ClinReport\\README.html")
+render("C:\\Users\\jfcollin\\git\\README.Rmd")
+#shell.exec("C:\\Users\\jfcollin\\git\\README.html")
 
-
+###############################################
 # Vignette
+###############################################
 
 render("C:\\Users\\jfcollin\\git\\vignettes\\clinreport-vignette.Rmd")
 #shell.exec("C:\\Users\\jfcollin\\git\\vignettes\\clinreport-vignette.html")
-
-
-
-
-
-
-
 devtools::build_vignettes()
+
+###############################################
+# Check install and build
+###############################################
+
+
+
 roxygenize("C:\\Users\\jfcollin\\git")
 
 

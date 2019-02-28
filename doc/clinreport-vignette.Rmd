@@ -66,7 +66,7 @@ g1=plot(tab1,title="The title that you want to display")
 print(g1)
 ```  
 
-You can modify the plot by using the following arguments of the plot.desc function:
+You can modify the plot by using the following arguments of the `plot.desc()` function:
 
 ```{r, include=TRUE}
 args(ClinReport:::plot.desc)
@@ -87,7 +87,7 @@ The `init.numbering` argument is used to specify that
 it's the first output. After that, all output numbers
 will be increased automatically after each call of the function `report.doc()`.
 
-Then, we add it to a `rdocx` object with the corresponding graphic:
+Then, we add those results to a `rdocx` object:
 
 ```{r}
 doc=read_docx()

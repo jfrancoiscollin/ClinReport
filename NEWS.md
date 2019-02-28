@@ -48,5 +48,7 @@ lineplot with or without confidence intervals (see examples in report.doc functi
 * function report.quanti: stop using group_by_: replaced by group_by
 * function report.quanti: remove the funs_ in summarise_at
 * Add a vignette in the package
+* Add a footer_row and hline to all report.doc outputs
+
 
 

@@ -262,7 +262,8 @@
 #'doc=body_add_par(doc,"Descriptive statistics", style = "heading 2")
 #'
 #'doc=report.doc(tab1.1,title="Quantitative statistics (2 explicative variables) (Table 1/2)",
-#'		colspan.value="Treatment group",doc=doc,init.numbering=T)
+#'		colspan.value="Treatment group",doc=doc,init.numbering=T,
+#' page.break=F)
 #'
 #'doc=report.doc(tab1.2,title="Quantitative statistics (2 explicative variables) (Table 2/2)",
 #'		colspan.value="Treatment group",doc=doc)
@@ -509,7 +510,7 @@ report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
 	
 	ft=height_all(ft, height=0.1, part = "body")
 	ft=height_all(ft, height=0.3, part = "header")
-	
+	ft=height_all(ft, height=0.1, part = "footer")
 	
 	# add foot note for LS Means to indicates the type of
 	# response if it's a qualitative model
