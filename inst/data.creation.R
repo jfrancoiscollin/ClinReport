@@ -24,6 +24,8 @@ y_logistic[sample(1:length(y_logistic),10)]=NA
 y_numeric[sample(1:length(y_numeric),10)]=NA
 y_poisson[sample(1:length(y_poisson),10)]=NA
 
+y_logistic=as.factor(y_logistic)
+
 GROUP=c(c(rep("A",size1/5),rep("B",size2/5),rep("C",size3/5)),
 		c(rep("A",size1),rep("B",size2),rep("C",size3)))
 
@@ -39,7 +41,7 @@ SUBJID=rep(paste0("Subj ", c(1:(length(GROUP)/6))),rep(6,length(paste0("Subj ", 
 data=data.frame(y_numeric,y_logistic,y_poisson,baseline,VAR,GROUP,TIMEPOINT,SUBJID)
 
 
-save(data, file = "C:\\Users\\jfcollin\\Google Drive\\Dev\\ClinReport\\data\\data.RData")
+save(data, file = "C:\\Users\\jfcollin\\git\\data\\data.RData")
 
 
 

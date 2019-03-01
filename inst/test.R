@@ -318,3 +318,102 @@ shell.exec(file)
 #doc <- body_add_flextable(doc, value = ft)		
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+############################################################
+# Test Matthieu
+############################################################
+
+
+
+
+#♂ test clin rePort from Jeff with moxi data
+
+library(tidyverse)
+library(ncappc)
+library(mrgsolve)
+library(ClinReport)
+
+as.numeric.factor <- function(x) {as.numeric(levels(x))[x]}
+
+geomean = function(x, na.rm=TRUE){
+	exp(sum(log(x[x > 0]), na.rm=na.rm) / length(x))
+}
+
+round_df <- function(df, digits) {
+	nums <- vapply(df, is.numeric, FUN.VALUE = logical(1))
+	
+	df[,nums] <- round(df[,nums], digits = digits)
+	
+	(df)
+}
+
+###################### import data #################
+
+
+
+FORM_D971 <- c("D971-F3", "D971-F4", "D971-F5",  "D971-F6", "D971-F7", "D971-F8")
+FORM_D971_IV <- c("D971-F3", "D971-F4", "D971-F5",  "D971-F6", "D971-F7", "D971-F8", "Litt_IV")
+
+rawdata <- readRDS("C:\\Users\\jfcollin\\Downloads\\Moxi_dose_data_plus_IV_new_form.rds")
+
+
+rawdata <- rawdata %>%
+		filter(FORMULATION %in% FORM_D971_IV)
+
+rawdata$ID <- as.factor(rawdata$ID)
+
+rawdata$TIME_adjusted <- rawdata$TIME
+rawdata$TIME_adjusted[rawdata$ROUTE=='IV' & rawdata$TIME_adjusted==30] <- 29
+
+data_dose <- rawdata %>%
+		filter(!is.na(AMT))%>%
+		arrange(ID, TIME)
+
+data_conc <- rawdata %>%
+		filter(is.na(AMT))%>%
+		arrange(ID, TIME)
+
+Formulation_name <- rawdata %>%
+		select(FORM, FORMULATION) %>%
+		group_by(FORM)%>%
+		slice(1)
+
+####################### test stat #############################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

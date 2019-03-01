@@ -105,24 +105,21 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	
 	
 	
-	#check
-	if(is.null(y)) stop("y argument cannot be NULL. Thank you for your comprehension. We love you anyway")
-	if(class(data)!="data.frame") stop("data argument should be a data.frame. Thank you for your comprehension")
-	if(class(y)!="character") stop("Dear user. y argument should be a character.  Thank you for your comprehension")
-	if(!any(colnames(data)==y)) stop("y argument should be in data colnames. Thank you for your comprehension")
-	if(total==T & is.null(x1) & is.null(x2)) message("Since x1 and x2 are NULL, it's not necessary to set total=T. In fact it doesn't make any sense... So it's not taken into account in the end. Thank you for your comprehension")
+	#checks on y and data arguments
 	
-	
+	if(is.null(y)) stop("y argument cannot be NULL")
+	if(class(data)!="data.frame") stop("data argument should be a data.frame")
+	if(class(y)!="character") stop("Dear user. y argument should be a character")
+
+	y=check.x(y)
 	
 	if(!is.null(x2))
 	{
 		if(is.null(x2.label)) x2.label=x2
 	}
 	
-	# transform into factor (just in case)
 	
-	data[,y]=as.factor(data[,y])
-		
+	
 	# Recursive call in case x1 and/or x2 are NULL
 	
 	
@@ -130,7 +127,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	{
 		
 		temp=data
-		temp$int=y.label
+		temp$int=as.factor(y.label)
 		
 		freq=report.quali(temp,y,x1="int",x2.label=x2.label,y.label=y.label,
 				x2="int",y.levels.label=y.levels.label,total=F,
@@ -147,10 +144,8 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	if(!is.null(x1) & is.null(x2))
 	{
 		
-		
-		
 		temp=data
-		temp$int=1
+		temp$int=as.factor(1)
 		freq=report.quali(temp,y,x1,x2="int",y.levels.label=y.levels.label,total=total,
 				y.label=y.label,
 				,percent.col=percent.col,subjid=subjid)
@@ -165,7 +160,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	
 	if(is.null(x1) & !is.null(x2))
 	{
-		stop("x1 cannot be NULL if x2 is not null, the inverse is possible anyway... don't ask...")
+		stop("x1 argument cannot be NULL if x2 argument is not null")
 	}
 	
 	
@@ -173,28 +168,26 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 # from now on we continue only if x1 and x2 are not null
 # if they were. they had been replaced by an intercept(s) and this function calls itself recursively.
 	
+# check
 	
-	
-#		check
-	if(!is.character(x1)) stop("x1 is not a character. I don't know what it is however... ^^")
-	if(!any(colnames(data)==x1)) stop("x1 argument should be in data colnames. Thank you for your comprehension")
-	if(!is.character(x2)) stop("x2 is not a character. I don't know what it is however... (^-^)")
-	if(!any(colnames(data)==x2)) stop("x2 argument should be in data colnames. Thank you for your comprehension")
-	
-	data[,x1]=as.factor(data[,x1])
-	data[,x2]=as.factor(data[,x2])
+	x1=check.x(x1)
+	x2=check.x(x2)
 	
 	
 	# check
-	if(any(levels(data[,x1])=="")) stop(paste0("One of the levels of ",x1," is equal to '' and this function doesn't like that. Can you please change this annoying level?"))
-	if(any(levels(data[,x2])=="")) stop(paste0("One of the levels of ",x2," is equal to '' and this function doesn't like that. Can you please change this annoying level?"))
+	if(any(levels(data[,x1])=="")) stop(paste0("One of the levels of ",x1," is equal to '' and this function doesn't like that. Can you please change this level?"))
+	if(any(levels(data[,x2])=="")) stop(paste0("One of the levels of ",x2," is equal to '' and this function doesn't like that. Can you please change this level?"))
 	
 	
 	
 	# add NA as category
-	# to count the number of missing values
+	# to count the number of missing values (if it's not already the case)
 	
-	data[,y]=addNA(data[,y])
+	if(!any(is.na(levels(data[,y]))))
+	{
+		data[,y]=addNA(data[,y])
+	}
+	
 	
 	
 	# Compute frequency and total sample size for percentage
@@ -219,7 +212,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	if(percent.col)
 	{
 		freq=merge(freq,n,by=c("Var2","Var3"))
-	
+		
 	}else
 	{
 		freq=merge(freq,n,by=c("Var1","Var3"))
@@ -275,25 +268,25 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	
 	if(!is.null(subjid))
 	{
-
-			if(!any("%in%"(colnames(data),subjid))) stop(paste0(subjid," variable is not in data colnames"))
+		
+		if(!any("%in%"(colnames(data),subjid))) stop(paste0(subjid," variable is not in data colnames"))
+		
+		if(!total)
+		{
+			N=tapply(data[,subjid],data[,x1],function(x)length(unique(x)))
+			colnames(freq)[-c(1,2)]=paste0(colnames(freq)[-c(1,2)]," (N=",N,")")
 			
-			if(!total)
-			{
-				N=tapply(data[,subjid],data[,x1],function(x)length(unique(x)))
-				colnames(freq)[-c(1,2)]=paste0(colnames(freq)[-c(1,2)]," (N=",N,")")
-				
-			}
+		}
+		
+		
+		if(total)
+		{
+			N=tapply(data[,subjid],data[,x1],function(x)length(unique(x)))
+			N=c(N,sum(N))
+			colnames(freq)[-c(1,2)]=paste0(colnames(freq)[-c(1,2)]," (N=",N,")")
 			
-			
-			if(total)
-			{
-				N=tapply(data[,subjid],data[,x1],function(x)length(unique(x)))
-				N=c(N,sum(N))
-				colnames(freq)[-c(1,2)]=paste0(colnames(freq)[-c(1,2)]," (N=",N,")")
-				
-			}
-
+		}
+		
 	}
 	
 	
@@ -325,7 +318,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	#Remove (NaN%) and (0.00%) from SD if n=0 and " " if any
 	freq=as.data.frame(apply(freq,2,function(x)gsub("(NaN%)","",x,fixed=T)))
 	freq=as.data.frame(apply(freq,2,function(x)gsub("(0.00%)","(0%)",x,fixed=T)))
-
+	
 	# Spacing results
 	
 	
@@ -334,7 +327,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		freq=spacetable(freq,at.row=at.row)
 	}
 	
-
+	
 	
 	
 	freq=ClinReport::desc(output=freq,total=total,nbcol=nbcol,y=y,x1=x1,x2=x2,

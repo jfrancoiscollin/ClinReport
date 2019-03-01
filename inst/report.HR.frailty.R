@@ -26,6 +26,7 @@
 
 #' @examples
 #' \dontrun{
+#' library(frailtypack)
 #' data(kidney)
 #' mod=frailtyPenal(Surv(time,status)~sex+age,
 #' n.knots=12,kappa=10000,data=kidney)

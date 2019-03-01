@@ -122,18 +122,17 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	if(is.null(y)) stop("y argument cannot be NULL. Thank you for your comprehension")
 	if(class(data)!="data.frame") stop("data argument should be a data.frame")
+	
 	if(class(y)!="character") stop("Dear user. y argument should be a character")
 	if(!any(colnames(data)==y)) stop("y argument should be in data colnames")
-	
+	if(!is.numeric(data[,y])) stop(paste0(as.character(substitute(data)),"[,'",y,"']","should be a numeric variable"))
 	
 	if(!is.logical(total))		stop("Argument total argument must be logical")
 	if(!is.numeric(digits) & !is.null(digits)) stop("Argument digits must be numeric")
 	
 	
-	if(!is.numeric(data[,y])) stop(paste("y should be a numeric variable"))
-	if(!is.numeric(round)) stop(paste("round should be numeric"))
 	
-	# if x1 and x2 are NULL we use the function with temporary intercepts
+	if(!is.numeric(round)) stop(paste("round should be numeric"))
 	
 	
 	if(is.null(x1) & !is.null(x2)) stop("If you have only one explicative variable, then use x1 and not x2 argument")
@@ -152,11 +151,17 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	if(!is.null(x1) & is.null(x2))
 	{
+		x1=check.x(x1)
+		
 		by_GROUP=data %>% group_by(!!as.name(x1))
 	}
 	
 	if(!is.null(x1) & !is.null(x2))
 	{
+		
+		x1=check.x(x1)
+		x2=check.x(x2)
+		
 		by_GROUP=data %>% group_by(!!as.name(x1))%>% group_by(!!as.name(x2),add=T)	
 	}
 	
@@ -348,7 +353,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 							"[Q1;Q3]","[Min;Max]","Missing"))
 		}
 	}
-
+	
 	
 	if(!is.null(x2)) stat2=stat2[order(stat2[,x2],stat2$Statistics),]
 	if(is.null(x2)) stat2=stat2[order(stat2$Statistics),]
