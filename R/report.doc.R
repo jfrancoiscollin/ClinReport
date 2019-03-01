@@ -104,9 +104,9 @@
 #' # Create your stats tables and graphics
 #' #####################
 #' 
-#' #' Quatitative stats (2 explicative variables) ##################################
-#' #' since it's a big enough table, we don't want it to overlap 2 pasges
-#' #' so we split it in two with split.desc function
+#' # Quatitative stats (2 explicative variables) ##################################
+#' # since it's a big enough table, we don't want it to overlap 2 pasges
+#' # so we split it in two with split.desc function
 #'
 #'tab1=report.quanti(data=data,y="y_numeric",
 #'		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",subjid="SUBJID")

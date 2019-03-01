@@ -151,7 +151,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	if(!is.null(x1) & is.null(x2))
 	{
-		x1=check.x(x1)
+		x1=check.x(data,x1)
 		
 		by_GROUP=data %>% group_by(!!as.name(x1))
 	}
@@ -159,8 +159,8 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	if(!is.null(x1) & !is.null(x2))
 	{
 		
-		x1=check.x(x1)
-		x2=check.x(x2)
+		x1=check.x(data,x1)
+		x2=check.x(data,x2)
 		
 		by_GROUP=data %>% group_by(!!as.name(x1))%>% group_by(!!as.name(x2),add=T)	
 	}

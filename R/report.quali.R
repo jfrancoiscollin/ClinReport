@@ -111,7 +111,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	if(class(data)!="data.frame") stop("data argument should be a data.frame")
 	if(class(y)!="character") stop("Dear user. y argument should be a character")
 
-	y=check.x(y)
+	y=check.x(data,y)
 	
 	if(!is.null(x2))
 	{
@@ -170,8 +170,8 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	
 # check
 	
-	x1=check.x(x1)
-	x2=check.x(x2)
+	x1=check.x(data,x1)
+	x2=check.x(data,x2)
 	
 	
 	# check

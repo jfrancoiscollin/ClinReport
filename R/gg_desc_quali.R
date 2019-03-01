@@ -32,16 +32,16 @@
 #'desc=report.quali(data=data,y="y_logistic",x1="GROUP",
 #'		x2="TIMEPOINT")
 #' 
-#'gg=gg_desc_quali(desc,
+#'gg=ClinReport:::gg_desc_quali(desc,
 #' title="Qualitative desc object with 2 explicative variables",
 #' legend.label="Y levels")
 #'
 #'
 #'desc2=report.quali(data=data,y="y_logistic",x1="GROUP")
-#'gg_desc_quali(desc2,title="Qualitative desc object with 1 explicative variable")
+#'ClinReport:::gg_desc_quali(desc2,title="Qualitative desc object with 1 explicative variable")
 #' 
 #' desc3=report.quali(data=data,y="y_logistic")
-#' gg_desc_quali(desc3,title="Qualitative desc object with 1 explicative variable")
+#' ClinReport:::gg_desc_quali(desc3,title="Qualitative desc object with 1 explicative variable")
 #' 
 #' 
 #' 
@@ -51,7 +51,6 @@
 #' }
 #' 
 #' @import ggplot2
-#' @export
 
 
 gg_desc_quali=function(desc,title="",ylim=NULL,xlim,xlab="",ylab="Percentage",

@@ -35,12 +35,12 @@
 #'desc=report.quanti(data=data,y="y_numeric",x1="GROUP",
 #'		x2="TIMEPOINT")
 #' 
-#' gg_desc_quanti(desc,title="My title",ylab="Hello dear",
+#' ClinReport:::gg_desc_quanti(desc,title="My title",ylab="Hello dear",
 #'		ylim=c(-2,8),xlab="Great!",legend.label="Treatment group")
 #' 
 #' # With SD
 #' 
-#' gg_desc_quanti(desc,title="My title",ylab="Hello dear",
+#' ClinReport:::gg_desc_quanti(desc,title="My title",ylab="Hello dear",
 #'		ylim=c(-2,8),xlab="Great!",legend.label="Treatment group",add.sd=TRUE)
 #' 
 #' 
@@ -51,14 +51,13 @@
 
 #'
 #'
-#'gg_desc_quanti(desc2,title="My title",ylab="Hello dear")
+#'ClinReport:::gg_desc_quanti(desc2,title="My title",ylab="Hello dear")
 #'
 #'
-#'gg_desc_quanti(desc3,title="My title",ylab="Hello dear")
+#'ClinReport:::gg_desc_quanti(desc3,title="My title",ylab="Hello dear")
 #' }
 #' 
 #' @import ggplot2
-#' @export
 
 
 gg_desc_quanti=function(desc,title="",ylim=NULL,xlim,xlab="",ylab="",

@@ -27,7 +27,7 @@
 #' Future versions will improve the "standard" graphic reporting, 
 #' the anova table reporting and statistics tables specific for Adverse Events reporting. Survival models will also be included. 
 #'     
-#' @author Jean-Francois COLLIN
+#' @author Jean-Francois Collin, \email{jfcollin@@live.fr}
 #' @docType package
 #' @name ClinReport
 NULL
