@@ -57,15 +57,15 @@ test3=emmeans(mod3,~GROUP|TIMEPOINT)
 tab.mod3=report.lsmeans(lsm=test3,x1="GROUP",
 	x2="TIMEPOINT",at.row="TIMEPOINT",data=data.mod)
 
-gg=gg_desc_lsmeans(tab.mod3,title="LS Means plot example")
+gg=ClinReport:::gg_desc_lsmeans(tab.mod3,title="LS Means plot example")
 
 
 test4=emmeans(mod3,~GROUP)
 tab.mod4=report.lsmeans(lsm=test4,x1="GROUP",data=data.mod)
 
-gg=gg_desc_lsmeans(tab.mod4,title="LS Means plot example")
+gg=ClinReport:::gg_desc_lsmeans(tab.mod4,title="LS Means plot example")
 
-gg2=gg_desc_lsmeans(tab.mod4,title="LS Means plot example",add.ci=TRUE)
+gg2=ClinReport:::gg_desc_lsmeans(tab.mod4,title="LS Means plot example",add.ci=TRUE)
 
 }
 
