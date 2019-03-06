@@ -23,6 +23,9 @@
 #' @param contrast Logical. Specify if the contrast function has been used after the emmeans function
 #' @param contrast.name Character. Corresponds to the label of the column in which the contrasts are specified
 #'  Default value is 'contrast'.
+#' @param stat.name Character. Indicates the name of the variable that report the statistics in report.quanti function.
+#' Default = "Statistics"
+#' 
 #' 
 #' @description
 #' Creates a desc object.
@@ -48,7 +51,7 @@
 desc=function(output=NULL,total=NULL,nbcol=NULL,y=NULL,x1=NULL,x2=NULL,
 		at.row=NULL,
 		subjid=NULL,type.desc=NULL,type=NULL,y.label=NULL,type.mod=NULL,
-		raw.output=NULL,contrast=NULL,contrast.name=NULL)
+		raw.output=NULL,contrast=NULL,contrast.name=NULL,stat.name=NULL)
 {
 	
 	
@@ -56,7 +59,7 @@ desc=function(output=NULL,total=NULL,nbcol=NULL,y=NULL,x1=NULL,x2=NULL,
 			at.row=at.row,
 			subjid=subjid,type.desc=type.desc,type=type,y.label=y.label,
 			type.mod=type.mod,raw.output=raw.output,contrast=contrast,
-			contrast.name=contrast.name)
+			contrast.name=contrast.name,stat.name=stat.name)
 	
 	class(l)="desc"
 	

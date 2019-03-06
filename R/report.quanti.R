@@ -18,6 +18,11 @@
 #' @param subjid Character Indicates the column in which there is the subject Id to add the number of subjects in the column header if x1 and x2 are not null.
 #' @param geomean Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=T))} fpr x>0
 #' @param add.mad Logical If yes the Median Absolute Deviance is added to the median statistics (see function \code{\link{mad}}) 
+#' @param default.stat Logical (default to TRUE). If FALSE you can specify your own example
+#' @param func.stat Function. Used only if default.stat=FALSE
+#' @param stat.name Character. Indicates the name of the variable that report the statistics Default = "Statistics"
+#' @param func.stat.name Character. Used only if default.stat=FALSE.  Indicates the name of specific statistic you want to report
+#' 
 #' 
 #' @description
 #' \code{report.quanti} 
@@ -470,7 +475,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	stat2=ClinReport::desc(output=stat2,total=total,nbcol=nbcol,y=y,x1=x1,x2=x2,at.row=at.row,
 			subjid=subjid,type.desc="quanti",type=NULL,y.label=y.label,
-			raw.output=raw.stat)
+			raw.output=raw.stat,stat.name=stat.name)
 	
 	
 	

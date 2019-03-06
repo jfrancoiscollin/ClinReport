@@ -64,10 +64,10 @@ regroup <- function(x,y,...)
 regroup.desc=function(x,y,rbind.label="Response",...)
 {
 	
-	if(!is.null(x$x2) | !is.null(y$x2)) stop("Binding impossible with x2 argument not NULL")
+	
 	if(x$type.desc=="lsmeans") stop("Binding impossible for now for ls means table")
 	if(y$type.desc=="lsmeans") stop("Binding impossible for now for ls means table")
-	 
+	
 	
 	out.x=x$output
 	out.y=y$output
@@ -76,6 +76,9 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 	
 	if(x$type.desc!=y$type.desc)
 	{
+		
+		if(!is.null(x$x2) | !is.null(y$x2)) stop("Binding impossible with x2 argument not NULL")
+		
 		#check
 		if(x$total!=y$total) stop("Different Total argument: binding impossible")
 		if(is.null(y$x1)) stop("x1 argument cannot be NULL: binding impossible")
@@ -113,28 +116,45 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 	
 	
 	
-	
-	if(x$type.desc==y$type.desc)
+	if(x$type.desc=="quanti")
 	{
 		
-		if(x$total!=y$total) stop("Different Total argument: binding impossible")
-		if(is.null(y$x1)) stop("x1 argument cannot be NULL: binding impossible")
-		if(is.null(x$x1)) stop("x1 argument cannot be NULL: binding impossible")
-		if(x$x1!=y$x1) stop("Different x1 argument: binding impossible")
-		if(x$subjid!=y$subjid) stop("Different subjid argument: binding impossible")
+		if(x$type.desc==y$type.desc)
+		{
+			
+			if(x$total!=y$total) stop("Different Total argument: binding impossible")
+			if(is.null(y$x1)) stop("x1 argument cannot be NULL: binding impossible")
+			if(is.null(x$x1)) stop("x1 argument cannot be NULL: binding impossible")
+			if(x$x1!=y$x1) stop("Different x1 argument: binding impossible")
+			if(x$subjid!=y$subjid) stop("Different subjid argument: binding impossible")
+			
+			nbcol=x$nbcol
+			
+			r=rbind(out.x,out.y)
+			
+			
+			if(is.null(x$x2)) r=r[order(r[,x$stat.name]),]
+			
+			if(!is.null(x$x2))
+			{
+				r=r[order(r[,x$x2],r[,x$stat.name]),]
+				if(!is.null(x$at.row))
+				{
+					r=r[r[,x$at.row]!="",]
+				}
+				
+				r=spacetable(r,x$at.row)
+			}
+			
+			
+			r=ClinReport::desc(output=r,total=x$total,x1=x$x1,
+					type.desc=x$type.desc,subjid=x$subjid,
+					nbcol=nbcol)
+			
+			r
+		}
 		
-		nbcol=x$nbcol
-		
-		r=rbind(out.x,out.y)
-		
-		r=ClinReport::desc(output=r,total=x$total,x1=x$x1,
-				type.desc=x$type.desc,subjid=x$subjid,
-				nbcol=nbcol)
-		
-		r
 	}
-	
-	
 	
 	
 	

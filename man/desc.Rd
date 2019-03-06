@@ -7,7 +7,8 @@
 desc(output = NULL, total = NULL, nbcol = NULL, y = NULL,
   x1 = NULL, x2 = NULL, at.row = NULL, subjid = NULL,
   type.desc = NULL, type = NULL, y.label = NULL, type.mod = NULL,
-  raw.output = NULL, contrast = NULL, contrast.name = NULL)
+  raw.output = NULL, contrast = NULL, contrast.name = NULL,
+  stat.name = NULL)
 }
 \arguments{
 \item{output}{a data.frame object}
@@ -41,6 +42,9 @@ If not null, it adds in the headers the number of unique subject per levels of x
 
 \item{contrast.name}{Character. Corresponds to the label of the column in which the contrasts are specified
 Default value is 'contrast'.}
+
+\item{stat.name}{Character. Indicates the name of the variable that report the statistics in report.quanti function.
+Default = "Statistics"}
 }
 \value{
 A desc object

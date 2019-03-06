@@ -6,7 +6,9 @@
 \usage{
 report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = y,
   round = 2, total = F, scientific = F, digits = NULL,
-  at.row = NULL, subjid = NULL, geomean = F, add.mad = F)
+  at.row = NULL, subjid = NULL, geomean = F, add.mad = F,
+  default.stat = T, func.stat, stat.name = "Statistics",
+  func.stat.name = "")
 }
 \arguments{
 \item{data}{Data.frame object}
@@ -34,6 +36,14 @@ report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = y,
 \item{geomean}{Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=T))} fpr x>0}
 
 \item{add.mad}{Logical If yes the Median Absolute Deviance is added to the median statistics (see function \code{\link{mad}})}
+
+\item{default.stat}{Logical (default to TRUE). If FALSE you can specify your own example}
+
+\item{func.stat}{Function. Used only if default.stat=FALSE}
+
+\item{stat.name}{Character. Indicates the name of the variable that report the statistics Default = "Statistics"}
+
+\item{func.stat.name}{Character. Used only if default.stat=FALSE.  Indicates the name of specific statistic you want to report}
 }
 \value{
 A desc object.
