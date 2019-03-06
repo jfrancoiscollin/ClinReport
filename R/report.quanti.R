@@ -101,9 +101,10 @@
 report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		round=2,
 		total=F,scientific=F,digits=NULL,at.row=NULL,subjid=NULL,geomean=F,
-		add.mad=F)
+		add.mad=F,default.stat=T,func.stat,stat.name="Statistics",func.stat.name="")
 {
 	
+	stat.name=make.names(stat.name)
 	
 #	y="DEMEANOUR_num"
 #	x1="GROUP"
@@ -167,60 +168,75 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	# define statistics
 	
-	N=as.formula(paste0("~","length(.)"))
-	n=as.formula(paste0("~","length(",y,")"))
-	mean=as.formula(paste0("~","mean(",y,",na.rm=T)"))
-	sd=as.formula(paste0("~","sd(",y,",na.rm=T)"))
-	median=as.formula(paste0("~","median(",y,",na.rm=T)"))
-	mad=as.formula(paste0("~","mad(",y,",na.rm=T)"))
-	q1=as.formula(paste0("~","quantile(",y,",na.rm=T,0.25,type =3)"))
-	q3=as.formula(paste0("~","quantile(",y,",na.rm=T,0.75,type =3)"))
-	min=as.formula(paste0("~","min(",y,",na.rm=T)"))
-	max=as.formula(paste0("~","max(",y,",na.rm=T)"))
-	missing=as.formula(paste0("~","length(",y,"[is.na(",y,")])"))
 	
-	geomean_func=function(x)
+	if(default.stat)
 	{
-		if(any(x<=0)) message(paste0(length(x[x<=0])," values were removed to calculate the Geometric mean"))
-		x=x[x>0]
-		exp(mean(log(x),na.rm=T))
-	}
-	
-	#TODO: add mad option
-	geo.mean=as.formula(paste0("~","geomean_func(",y,")"))
-	
+		
+		N=as.formula(paste0("~","length(.)"))
+		n=as.formula(paste0("~","length(",y,")"))
+		mean=as.formula(paste0("~","mean(",y,",na.rm=T)"))
+		sd=as.formula(paste0("~","sd(",y,",na.rm=T)"))
+		median=as.formula(paste0("~","median(",y,",na.rm=T)"))
+		mad=as.formula(paste0("~","mad(",y,",na.rm=T)"))
+		q1=as.formula(paste0("~","quantile(",y,",na.rm=T,0.25,type =3)"))
+		q3=as.formula(paste0("~","quantile(",y,",na.rm=T,0.75,type =3)"))
+		min=as.formula(paste0("~","min(",y,",na.rm=T)"))
+		max=as.formula(paste0("~","max(",y,",na.rm=T)"))
+		missing=as.formula(paste0("~","length(",y,"[is.na(",y,")])"))
+		
+		geomean_func=function(x)
+		{
+			if(any(x<=0)) message(paste0(length(x[x<=0])," values were removed to calculate the Geometric mean"))
+			x=x[x>0]
+			exp(mean(log(x),na.rm=T))
+		}
+		
+		
+		geo.mean=as.formula(paste0("~","geomean_func(",y,")"))
+		
 #	geomean1=as.formula(paste0("~","geomean_func1(",y,")"))
 #	
-	#	select statistics
-	
+		#	select statistics
+		
 #	stat_list=c("N"=N,"n"=n,"mean"=mean,
 #			"sd"=sd,"median"=median,"mad"=mad,
 #			"q1"=q1,"q3"=q3,"min"=min,"max"=max,
 #			"missing"=missing,
 #			"geomean"=geomean,
 #			"geomean1"=geomean1)
-	
-	if(geomean)
-	{
-		stat_list=c("N"=N,"mean"=geo.mean,
-				"sd"=sd,"median"=median,
-				"q1"=q1,"q3"=q3,"min"=min,"max"=max,
-				"missing"=missing)
 		
-	}else
-	{
+		if(geomean)
+		{
+			stat_list=c("N"=N,"mean"=geo.mean,
+					"sd"=sd,"median"=median,
+					"q1"=q1,"q3"=q3,"min"=min,"max"=max,
+					"missing"=missing)
+			
+		}else
+		{
+			
+			stat_list=c("N"=N,"mean"=mean,
+					"sd"=sd,"median"=median,
+					"q1"=q1,"q3"=q3,"min"=min,"max"=max,
+					"missing"=missing)
+			
+		}
 		
-		stat_list=c("N"=N,"mean"=mean,
-				"sd"=sd,"median"=median,
-				"q1"=q1,"q3"=q3,"min"=min,"max"=max,
-				"missing"=missing)
+		if(add.mad)
+		{
+			stat_list=c(stat_list,"mad"=mad)
+		}
 		
 	}
 	
-	if(add.mad)
+	
+	
+	if(!default.stat)
 	{
-		stat_list=c(stat_list,"mad"=mad)
+		stat=paste0(substitute(func.stat))
+		stat_list=as.formula(paste0("~",stat,"(",y,")"))
 	}
+	
 	
 	# compute statistics
 	
@@ -236,41 +252,46 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	# Regroup stat
 	
-	stat$mean_sd=paste0(stat$mean,"(",stat$sd,")")
-	stat$q1_q3=paste0("[",stat$q1,";",stat$q3,"]")
-	stat$min_max=paste0("[",stat$min,";",stat$max,"]")
-	
-	if(add.mad)
+	if(default.stat)
 	{
-		stat$median_mad=paste0(stat$median,"(",stat$mad,")")
-	}else
-	{
-		stat$median_mad=paste0(stat$median)
+		stat$mean_sd=paste0(stat$mean,"(",stat$sd,")")
+		stat$q1_q3=paste0("[",stat$q1,";",stat$q3,"]")
+		stat$min_max=paste0("[",stat$min,";",stat$max,"]")
+		
+		if(add.mad)
+		{
+			stat$median_mad=paste0(stat$median,"(",stat$mad,")")
+		}else
+		{
+			stat$median_mad=paste0(stat$median)
+		}
+		
+		
+		stat$mean=NULL
+		stat$sd=NULL
+		stat$median=NULL
+		stat$mad=NULL
+		stat$min=NULL
+		stat$max=NULL
+		stat$q1=NULL
+		stat$q3=NULL
 	}
 	
 	
-	stat$mean=NULL
-	stat$sd=NULL
-	stat$median=NULL
-	stat$mad=NULL
-	stat$min=NULL
-	stat$max=NULL
-	stat$q1=NULL
-	stat$q3=NULL
 	
 	# reshape 
 	
-	m=melt(data=stat,id.vars=c(x1,x2),variable.name="Statistics",value.name ="value")
+	m=melt(data=stat,id.vars=c(x1,x2),variable.name=stat.name,value.name ="value")
 	
 	if(!is.null(x1) & !is.null(x2))
 	{
-		stat2=dcast(m,as.formula(paste0(x2,"+","Statistics","~",x1)),
+		stat2=dcast(m,as.formula(paste0(x2,"+",stat.name,"~",x1)),
 				value.var="value")
 	}
 	
 	if(!is.null(x1) & is.null(x2))
 	{
-		stat2=dcast(m,as.formula(paste0("Statistics","~",x1)),
+		stat2=dcast(m,as.formula(paste0(stat.name,"~",x1)),
 				value.var="value")
 	}
 	
@@ -282,31 +303,43 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	colnames(stat2)[colnames(stat2)=="value"]=y.label
 	
-	levels(stat2$Statistics)[levels(stat2$Statistics)=="N"]="N"
-	if(geomean)
+	
+	if(default.stat)
 	{
-		levels(stat2$Statistics)[levels(stat2$Statistics)=="mean_sd"]="Geo Mean (SD)"
-	}else
-	{
-		levels(stat2$Statistics)[levels(stat2$Statistics)=="mean_sd"]="Mean (SD)"	
+		
+		levels(stat2[,stat.name])[levels(stat2[,stat.name])=="N"]="N"
+		if(geomean)
+		{
+			levels(stat2[,stat.name])[levels(stat2[,stat.name])=="mean_sd"]="Geo Mean (SD)"
+		}else
+		{
+			levels(stat2[,stat.name])[levels(stat2[,stat.name])=="mean_sd"]="Mean (SD)"	
+		}
+		
+		if(add.mad)
+		{
+			levels(stat2[,stat.name])[levels(stat2[,stat.name])=="median_mad"]="Median (MAD)"
+		}else
+		{
+			levels(stat2[,stat.name])[levels(stat2[,stat.name])=="median_mad"]="Median"
+		}
+		
+		
+		levels(stat2[,stat.name])[levels(stat2[,stat.name])=="min_max"]="[Min;Max]"
+		levels(stat2[,stat.name])[levels(stat2[,stat.name])=="missing"]="Missing"
+		levels(stat2[,stat.name])[levels(stat2[,stat.name])=="q1_q3"]="[Q1;Q3]"
+		
+		if(!is.null(x2)) stat2=stat2[order(stat2[,x2],stat2[,stat.name]),]
+		if(is.null(x2)) stat2=stat2[order(stat2[,stat.name]),]
+		
 	}
 	
-	if(add.mad)
+	
+	if(!default.stat)
 	{
-		levels(stat2$Statistics)[levels(stat2$Statistics)=="median_mad"]="Median (MAD)"
-	}else
-	{
-		levels(stat2$Statistics)[levels(stat2$Statistics)=="median_mad"]="Median"
+		
+		levels(stat2[,stat.name])[levels(stat2[,stat.name])==y]=func.stat.name
 	}
-	
-	
-	levels(stat2$Statistics)[levels(stat2$Statistics)=="min_max"]="[Min;Max]"
-	levels(stat2$Statistics)[levels(stat2$Statistics)=="missing"]="Missing"
-	levels(stat2$Statistics)[levels(stat2$Statistics)=="q1_q3"]="[Q1;Q3]"
-	
-	if(!is.null(x2)) stat2=stat2[order(stat2[,x2],stat2$Statistics),]
-	if(is.null(x2)) stat2=stat2[order(stat2$Statistics),]
-	
 	
 # add Total, if requested
 	
@@ -315,49 +348,56 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		if(is.null(x2))
 		{
 			
-			temp=report.quanti(data=data,y=y,y.label="Total",add.mad=add.mad)$output
-			stat2=merge(stat2,temp,by="Statistics")
+			temp=report.quanti(data=data,y=y,y.label="Total",add.mad=add.mad,
+					default.stat=default.stat,func.stat=func.stat,stat.name=stat.name,
+					func.stat.name=func.stat.name)$output
+			stat2=merge(stat2,temp,by=stat.name)
 		}
 		
 		if(!is.null(x2))
 		{
-			temp=report.quanti(data=data,y=y,x1=x2,add.mad=add.mad)$output
-			temp=melt(temp,id.vars="Statistics",variable.name=x2,value.name = "Total")
-			stat2=merge(stat2,temp,by=c(x2,"Statistics"))
+			temp=report.quanti(data=data,y=y,x1=x2,add.mad=add.mad,
+					default.stat=default.stat,func.stat=func.stat,stat.name=stat.name,
+					func.stat.name=func.stat.name)$output
+			temp=melt(temp,id.vars=stat.name,variable.name=x2,value.name = "Total")
+			stat2=merge(stat2,temp,by=c(x2,stat.name))
 		}
 		
 	}
 	
 	
-	if(add.mad)
+	if(default.stat)
 	{
-		if(geomean)
+		if(add.mad)
 		{
-			stat2$Statistics=factor(stat2$Statistics,levels=c("N","Geo Mean (SD)","Median (MAD)",
-							"[Q1;Q3]","[Min;Max]","Missing"))
+			if(geomean)
+			{
+				stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Geo Mean (SD)","Median (MAD)",
+								"[Q1;Q3]","[Min;Max]","Missing"))
+			}else
+			{
+				stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Mean (SD)","Median (MAD)",
+								"[Q1;Q3]","[Min;Max]","Missing"))
+			}
+			
 		}else
 		{
-			stat2$Statistics=factor(stat2$Statistics,levels=c("N","Mean (SD)","Median (MAD)",
-							"[Q1;Q3]","[Min;Max]","Missing"))
+			if(geomean)
+			{
+				stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Geo Mean (SD)","Median",
+								"[Q1;Q3]","[Min;Max]","Missing"))
+			}else
+			{
+				stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Mean (SD)","Median",
+								"[Q1;Q3]","[Min;Max]","Missing"))
+			}
 		}
 		
-	}else
-	{
-		if(geomean)
-		{
-			stat2$Statistics=factor(stat2$Statistics,levels=c("N","Geo Mean (SD)","Median",
-							"[Q1;Q3]","[Min;Max]","Missing"))
-		}else
-		{
-			stat2$Statistics=factor(stat2$Statistics,levels=c("N","Mean (SD)","Median",
-							"[Q1;Q3]","[Min;Max]","Missing"))
-		}
+		
+		
+		if(!is.null(x2)) stat2=stat2[order(stat2[,x2],stat2[,stat.name]),]
+		if(is.null(x2)) stat2=stat2[order(stat2[,stat.name]),]
 	}
-	
-	
-	if(!is.null(x2)) stat2=stat2[order(stat2[,x2],stat2$Statistics),]
-	if(is.null(x2)) stat2=stat2[order(stat2$Statistics),]
-	
 	
 	
 	if(!is.null(subjid))

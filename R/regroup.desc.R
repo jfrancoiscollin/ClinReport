@@ -72,6 +72,8 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 	out.x=x$output
 	out.y=y$output
 	
+	# Mixed binding (quali-quanti or quanti-quali)
+	
 	if(x$type.desc!=y$type.desc)
 	{
 		#check
@@ -108,5 +110,35 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 		r
 		
 	}
+	
+	
+	
+	
+	if(x$type.desc==y$type.desc)
+	{
+		
+		if(x$total!=y$total) stop("Different Total argument: binding impossible")
+		if(is.null(y$x1)) stop("x1 argument cannot be NULL: binding impossible")
+		if(is.null(x$x1)) stop("x1 argument cannot be NULL: binding impossible")
+		if(x$x1!=y$x1) stop("Different x1 argument: binding impossible")
+		if(x$subjid!=y$subjid) stop("Different subjid argument: binding impossible")
+		
+		nbcol=x$nbcol
+		
+		r=rbind(out.x,out.y)
+		
+		r=ClinReport::desc(output=r,total=x$total,x1=x$x1,
+				type.desc=x$type.desc,subjid=x$subjid,
+				nbcol=nbcol)
+		
+		r
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }
