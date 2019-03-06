@@ -54,7 +54,7 @@ devtools::build_vignettes()
 roxygenize("C:\\Users\\jfcollin\\git")
 
 
-#usethis::use_build_ignore("notes")
+#usethis::use_build_ignore("docs")
 
 check(args ="--as-cran")
 
@@ -66,10 +66,14 @@ build(path = "C:\\Users\\jfcollin\\Google Drive\\R packages")
 
 
 
+###############################################
+# Website
+###############################################
 
 
 
 
+#pkgdown::build_site()
 
 
 
