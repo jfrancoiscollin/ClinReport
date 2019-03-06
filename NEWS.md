@@ -53,3 +53,37 @@ lineplot with or without confidence intervals (see examples in report.doc functi
 
 
 
+# ClinReport 0.9.1.10
+
+
+## Issues
+
+* correction of report.lsmeans: always updated the results to type="response"
+
+## Enhancement
+
+* check in report.quanti and report.quali if the variables are factors or numeric and
+return a message if they are not (eventually transform character variables into factors)
+
+
+# ClinReport 0.9.1.11
+
+
+## Enhancement
+
+* Add the add.stat function to add a specific statistic in report.quanti function
+* Improve the regroup function to regroup two quantitative desc object*
+* Improve the report.quanti function so it's now possible to not systematically have the default statistics.
+The user can now implement it's own statistics using argument func.stat and func.stat.name.
+
+
+
+
+
+
+
+
+
+
+
+

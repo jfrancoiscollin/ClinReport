@@ -1,15 +1,14 @@
-# TODO: Add comment
-# 
+# TODO: create default stat option for report.quanti like option(default.stat=list(mean, max etc..))
+# TODO: Add link to the website in the documentation
 # Author: jfcollin
 ###############################################################################
 
-
-#' add.stat method for desc object
+#' @title  add.stat method for desc object
 #' 
 #' @param tab A desc object
 #' @param data The data frame used to creat tab
-#' @param func.stat Passed to report.quanti function
-#' @param func.stat.name Passed to report.quanti function
+#' @param func.stat Passed to \code{report.quanti} function
+#' @param func.stat.name Passed to \code{report.quanti} function
 #' @param ... Other parameters
 #' 
 #' 
@@ -30,17 +29,31 @@
 #' 
 #' @examples
 #' 
+#' # Load the data
+#' 
 #'data(data)
 #'
-#'cv=function(y) sd(y,na.rm=T)/mean(y,na.rm=T)
-#'
+#'# The default statistics are given here:
+#' 
 #'tab1=report.quanti(data=data,y="y_numeric",x1="GROUP",total=TRUE,subjid="SUBJID")
 #'
-#'add.stat.desc(tab1,data,func.stat=cv,func.stat.name="Coef. Var")
+#' # Define the function corresponding to the coefficient of variation for example
+#' 
+#'cv=function(y) sd(y,na.rm=TRUE)/mean(y,na.rm=TRUE)
+#' 
+#' # We use the add.stat function:
+#' 
+#'tab1.cv=add.stat(tab1,data,func.stat=cv,func.stat.name="Coef. Var")
 #'
-#'tab=report.quanti(data=data,y="y_numeric",x1="GROUP",x2="TIMEPOINT",total=TRUE,subjid="SUBJID",
+#'tab1.cv
+#' 
+#' # Same with 2 explicative variables
+#' 
+#'tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
+#' x2="TIMEPOINT",total=TRUE,subjid="SUBJID",
 #'		at.row="TIMEPOINT")
-#'add.stat.desc(tab,data,func.stat=cv,func.stat.name="Coef. Var")
+#' 
+#'add.stat(tab,data,func.stat=cv,func.stat.name="Coef. Var")
 #' 
 #' 
 #' @rdname add.stat
@@ -53,8 +66,7 @@ add.stat <- function(tab,data,func.stat,func.stat.name,...)
 	UseMethod("add.stat")
 }
 
-#' 
-#' 
+
 #' @rdname add.stat
 #' 
 #' @export

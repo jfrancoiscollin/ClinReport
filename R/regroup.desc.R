@@ -110,7 +110,7 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 				at.row=rbind.label,subjid=x$subjid,
 				nbcol=nbcol)
 		
-		r
+		return(r)
 		
 	}
 	
@@ -140,7 +140,7 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 				r=r[order(r[,x$x2],r[,x$stat.name]),]
 				if(!is.null(x$at.row))
 				{
-					r=r[r[,x$at.row]!="",]
+					r=droplevels(r[r[,x$at.row]!="",])
 				}
 				
 				r=spacetable(r,x$at.row)
@@ -151,7 +151,7 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 					type.desc=x$type.desc,subjid=x$subjid,
 					nbcol=nbcol)
 			
-			r
+			return(r)
 		}
 		
 	}
