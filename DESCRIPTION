@@ -25,6 +25,6 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-URL: https://jfrancoiscollin.github.io/
+URL: https://jfrancoiscollin.github.io/ClinReport
 Encoding: UTF-8
 RoxygenNote: 6.1.1
