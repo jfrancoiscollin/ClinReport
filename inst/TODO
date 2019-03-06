@@ -2,6 +2,10 @@
 TODO list:
 
 tester le package avec testthat
-option MAD pour report.quanti
-colnames specifique object desc
+créer une fonction add.stat et remove.stat pour ajouter ou enlever 
+une statistique à un report.quanti ou report.quali
+exemple coefficient de variation, rapport de corrélation, etc ...
 
+
+compléter la vignette avec les graphiques et un exemples sur le split.desc
+structurer le site .io avec des onglets "Get Started" "Tables" "Graphics" "Modify outputs" "Export to Word" 

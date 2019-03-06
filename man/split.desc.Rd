@@ -23,8 +23,8 @@
 Split method for desc object
 }
 \details{
-It's a useful functio for splitting a desc table in two. It can be used when the table
-takes too much space in height (see the example below).
+Used for splitting an output in two. It can be used when the table
+takes too much space in a page of a Word document (see the example below).
 }
 \examples{
 
