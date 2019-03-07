@@ -1,0 +1,145 @@
+---
+title: "ClinReport R package: alter the outputs"
+author: "Jean-Francois COLLIN"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ClinReport Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+## Objective
+
+In this vignette we will see how to modify your outputs.
+Basically you can:
+
+- Mix qualitative and quantitative descriptive outputs: `regroup()` function
+- Choose the quantitative statistics you want to display: `report.quanti()` function
+- Add a specific statistics to an existing table: `add.stat()` function
+- Split an existing table in 2 parts: `split()` function
+
+## Get started
+
+Start by loading all usual libraries.
+
+```{r, echo = TRUE, message=FALSE, warning=FALSE}
+library(ClinReport)
+library(officer)
+library(flextable)
+library(dplyr)
+library(reshape2)
+library(nlme)
+library(emmeans)
+library(car)
+```
+
+Load your data.
+
+```{r, include=TRUE}
+# We will use fake data
+data(data)
+print(head(data))
+```
+
+
+
+### Mixed Quantitative and Qualitative tables: regroup() function
+
+You can mix qualitative and quantitative outputs. It's possible only if there is only 1 explicative variable, 
+and it should be the same variable for both response:
+
+```{r}
+tab1=report.quanti(data=data,y="y_numeric",
+		x1="GROUP",subjid="SUBJID",y.label="Y numeric")
+
+tab2=report.quali(data=data,y="y_logistic",
+		x1="GROUP",subjid="SUBJID",y.label="Y logistic")
+
+tab3=regroup(tab1,tab2,rbind.label="The label of your choice")
+
+
+report.doc(tab3,title="Mixed Qualitative and Quantitative output",
+colspan.value="Treatment group")
+```
+
+
+### Choose the quantitative statistic you want to display: report.quanti() function
+
+You will have to specify the function corresponding to the statistics
+and use the `func.stat` argument
+
+
+```{r}
+mystat2=function(x) mean(x,na.rm=T)/sd(x,na.rm=T) 
+
+tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
+total=TRUE,subjid="SUBJID",
+func.stat=mystat2,
+func.stat.name="Coefficient of variation")
+tab
+```
+
+### Add a specific statistics to an existing table: `add.stat()` function
+
+
+
+You can also add a specific (or several) statistics to an existing table.
+
+Let's say you want the default statistics (mean, median, sd etc..)
+plus some specific statistics like the mode or the coefficient of variation.
+
+In this case, you can use the `add.stat()` function with the `pos` argument
+to chhose where you want to add this statistic:
+
+```{r}
+# The default statistics are given here:
+ 
+tab1=report.quanti(data=data,y="y_numeric",x1="GROUP",total=TRUE,subjid="SUBJID")
+
+ # Define the function corresponding to the coefficient of variation for example
+ 
+cv=function(y) sd(y,na.rm=TRUE)/mean(y,na.rm=TRUE)
+ 
+ # We use the add.stat function to add CV at the second row:
+ 
+tab1.cv=add.stat(tab1,data,func.stat=cv,func.stat.name="Coef. Var",
+ pos=2)
+
+tab1.cv
+ 
+ # Same with 2 explicative variables
+ 
+tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
+ x2="TIMEPOINT",total=TRUE,subjid="SUBJID",
+		at.row="TIMEPOINT")
+ 
+ tab=add.stat(tab,data,func.stat=cv,func.stat.name="Coef. Var",
+ pos=2)
+ tab
+ 
+ # And on position 5, we can add for example the mode
+ 
+ mode=function(x)
+ {
+   x=na.omit(x)
+   ux <- unique(x)
+   ux[which.max(tabulate(match(x, ux)))]
+ }
+ 
+ 
+ tab=add.stat(tab,data,func.stat=mode,func.stat.name="Mode",
+ pos=5)
+ tab
+```
+
+
+
+
+

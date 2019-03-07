@@ -19,9 +19,9 @@
 #' @param geomean Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=T))} fpr x>0
 #' @param add.mad Logical If yes the Median Absolute Deviance is added to the median statistics (see function \code{\link{mad}}) 
 #' @param default.stat Logical (default to TRUE). If FALSE you can specify your own example
-#' @param func.stat Function. Used only if default.stat=FALSE
-#' @param stat.name Character. Indicates the name of the variable that report the statistics Default = "Statistics"
+#' @param func.stat Function. If specified then default.stat=FALSE and only the specified statistic is reported
 #' @param func.stat.name Character. Used only if default.stat=FALSE.  Indicates the name of specific statistic you want to report
+#' @param stat.name Character. Indicates the name of the variable that report the statistics Default = "Statistics"
 #' 
 #' 
 #' @description
@@ -40,6 +40,8 @@
 #' a message is printed  to indicate how many values were deleted to calculate the geometric mean.
 #' 
 #' \code{N} returns the number of observations (including NA values)
+#' 
+#' stat.name is auomatically transformed using \code{\link{make.names}} function.
 
 #' @return  
 #' A desc object.
@@ -98,14 +100,13 @@
 #' 
 #' tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
 #' x2="TIMEPOINT",total=TRUE,subjid="SUBJID",
-#' default.stat=FALSE,func.stat=mystat,func.stat.name="99% quantile")
+#' func.stat=mystat,func.stat.name="99% quantile")
 #' tab
 #' 
 #' mystat2=function(x) mean(x,na.rm=T)/sd(x,na.rm=T)
 #' 
 #' tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
-#' total=TRUE,subjid="SUBJID",
-#' default.stat=FALSE,func.stat=mystat2,
+#' total=TRUE,subjid="SUBJID",func.stat=mystat2,
 #' func.stat.name="Coefficient of variation")
 #' tab
 #' 
@@ -116,7 +117,7 @@
 #' }
 #' 
 #' tab=report.quanti(data=data,y="y_numeric",
-#' default.stat=FALSE,func.stat=mode,func.stat.name="Mode")
+#' func.stat=mode,func.stat.name="Mode")
 #' 
 #' 
 #' #Getting raw output
@@ -137,7 +138,7 @@
 report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		round=2,
 		total=F,scientific=F,digits=NULL,at.row=NULL,subjid=NULL,geomean=F,
-		add.mad=F,default.stat=T,func.stat,stat.name="Statistics",func.stat.name="")
+		add.mad=F,default.stat=T,func.stat=NULL,stat.name="Statistics",func.stat.name="")
 {
 	
 	stat.name=make.names(stat.name)
@@ -173,6 +174,16 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	
 	if(is.null(x1) & !is.null(x2)) stop("If you have only one explicative variable, then use x1 and not x2 argument")
+	
+	
+	if(!is.null(func.stat))
+	{
+		# check it's a function
+		if(!is.function(func.stat)) stop("func.stat argument should be a function")
+		
+		default.stat=F
+		
+	}
 	
 	################################
 	# start function
