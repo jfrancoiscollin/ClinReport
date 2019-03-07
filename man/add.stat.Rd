@@ -5,9 +5,10 @@
 \alias{add.stat.desc}
 \title{add.stat method for desc object}
 \usage{
-add.stat(tab, data, func.stat, func.stat.name, ...)
+add.stat(tab, data, func.stat, func.stat.name, pos, ...)
 
-\method{add.stat}{desc}(tab, data, func.stat, func.stat.name, ...)
+\method{add.stat}{desc}(tab, data, func.stat, func.stat.name, pos = NULL,
+  ...)
 }
 \arguments{
 \item{tab}{A desc object}
@@ -18,6 +19,8 @@ add.stat(tab, data, func.stat, func.stat.name, ...)
 
 \item{func.stat.name}{Passed to \code{report.quanti} function}
 
+\item{pos}{Numeric used to sepecify the position of the new statistics}
+
 \item{...}{Other parameters}
 }
 \value{
@@ -25,7 +28,7 @@ A "quanti" desc object (desc$type.desc="quanti")
 }
 \description{
 \code{add.stat.desc} 
-Enables the user to add a specific statistic in a desc object.
+It enables to add a specific quantitative statistic into an existing table.
 }
 \details{
 Enables the user to add a specific statistic in a desc object (only works for quantitative statistics for now).
@@ -46,9 +49,10 @@ tab1=report.quanti(data=data,y="y_numeric",x1="GROUP",total=TRUE,subjid="SUBJID"
 
 cv=function(y) sd(y,na.rm=TRUE)/mean(y,na.rm=TRUE)
 
-# We use the add.stat function:
+# We use the add.stat function to add CV at the second row:
 
-tab1.cv=add.stat(tab1,data,func.stat=cv,func.stat.name="Coef. Var")
+tab1.cv=add.stat(tab1,data,func.stat=cv,func.stat.name="Coef. Var",
+pos=2)
 
 tab1.cv
 
@@ -58,7 +62,24 @@ tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
 x2="TIMEPOINT",total=TRUE,subjid="SUBJID",
 	at.row="TIMEPOINT")
 
-add.stat(tab,data,func.stat=cv,func.stat.name="Coef. Var")
+tab=add.stat(tab,data,func.stat=cv,func.stat.name="Coef. Var",
+pos=2)
+tab
+
+# And on position 5, we can add for example the mode
+
+mode=function(x)
+{
+  x=na.omit(x)
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+
+tab=add.stat(tab,data,func.stat=mode,func.stat.name="Mode",
+pos=5)
+tab
+
 
 
 }

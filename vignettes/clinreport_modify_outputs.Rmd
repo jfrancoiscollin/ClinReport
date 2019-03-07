@@ -50,7 +50,7 @@ print(head(data))
 
 
 
-### Mixed Quantitative and Qualitative tables: regroup() function
+### Mixed Quantitative and Qualitative tables: `regroup()` function
 
 You can mix qualitative and quantitative outputs. It's possible only if there is only 1 explicative variable, 
 and it should be the same variable for both response:
@@ -70,7 +70,7 @@ colspan.value="Treatment group")
 ```
 
 
-### Choose the quantitative statistic you want to display: report.quanti() function
+### Choose the quantitative statistic you want to display: `report.quanti()` function
 
 You will have to specify the function corresponding to the statistics
 and use the `func.stat` argument
@@ -96,7 +96,7 @@ Let's say you want the default statistics (mean, median, sd etc..)
 plus some specific statistics like the mode or the coefficient of variation.
 
 In this case, you can use the `add.stat()` function with the `pos` argument
-to chhose where you want to add this statistic:
+to choose where you want to add this statistic:
 
 ```{r}
 # The default statistics are given here:
@@ -112,8 +112,8 @@ cv=function(y) sd(y,na.rm=TRUE)/mean(y,na.rm=TRUE)
 tab1.cv=add.stat(tab1,data,func.stat=cv,func.stat.name="Coef. Var",
  pos=2)
 
-tab1.cv
- 
+report.doc(tab1.cv,title="Example of adding a coefficient of variation")
+
  # Same with 2 explicative variables
  
 tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
@@ -122,7 +122,7 @@ tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
  
  tab=add.stat(tab,data,func.stat=cv,func.stat.name="Coef. Var",
  pos=2)
- tab
+
  
  # And on position 5, we can add for example the mode
  
@@ -136,7 +136,10 @@ tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
  
  tab=add.stat(tab,data,func.stat=mode,func.stat.name="Mode",
  pos=5)
- tab
+ 
+ report.doc(tab,title="Example of adding 2 more statistics in an existing table",
+ colspan.value="Treatment Group")
+
 ```
 
 

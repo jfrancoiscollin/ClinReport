@@ -16,7 +16,7 @@
 #' @param at.row Character Used to space the results (see examples)
 #' @param y.label Character Indicates the label for y parameter
 #' @param subjid Character Indicates the column in which there is the subject Id to add the number of subjects in the column header if x1 and x2 are not null.
-#' @param geomean Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=T))} fpr x>0
+#' @param geomean Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=TRUE))} fpr x>0
 #' @param add.mad Logical If yes the Median Absolute Deviance is added to the median statistics (see function \code{\link{mad}}) 
 #' @param default.stat Logical (default to TRUE). If FALSE you can specify your own example
 #' @param func.stat Function. If specified then default.stat=FALSE and only the specified statistic is reported
@@ -96,14 +96,14 @@
 #' 
 #' #Getting a specific statistic and not the default ones
 #' 
-#' mystat=function(x) quantile(x,0.99,na.rm=T)
+#' mystat=function(x) quantile(x,0.99,na.rm=TRUE)
 #' 
 #' tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
 #' x2="TIMEPOINT",total=TRUE,subjid="SUBJID",
 #' func.stat=mystat,func.stat.name="99% quantile")
 #' tab
 #' 
-#' mystat2=function(x) mean(x,na.rm=T)/sd(x,na.rm=T)
+#' mystat2=function(x) mean(x,na.rm=TRUE)/sd(x,na.rm=TRUE)
 #' 
 #' tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
 #' total=TRUE,subjid="SUBJID",func.stat=mystat2,

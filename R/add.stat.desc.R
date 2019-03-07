@@ -9,12 +9,13 @@
 #' @param data The data frame used to creat tab
 #' @param func.stat Passed to \code{report.quanti} function
 #' @param func.stat.name Passed to \code{report.quanti} function
+#' @param pos Numeric used to sepecify the position of the new statistics
 #' @param ... Other parameters
 #' 
 #' 
 #' @description
 #' \code{add.stat.desc} 
-#' Enables the user to add a specific statistic in a desc object.
+#' It enables to add a specific quantitative statistic into an existing table.
 #' 
 #' @details
 #' Enables the user to add a specific statistic in a desc object (only works for quantitative statistics for now).
@@ -93,6 +94,7 @@ add.stat <- function(tab,data,func.stat,func.stat.name,pos,...)
 
 add.stat.desc=function(tab,data,func.stat,func.stat.name,pos=NULL,...)
 {
+	if(tab$type.desc!="quanti") stop("This function only works for quantitative desc object")
 	
 	if(is.null(pos)) pos=1
 	

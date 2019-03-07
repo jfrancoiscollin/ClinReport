@@ -3,9 +3,12 @@ ClinReport R package
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-The aim of ClinReport is to give to R users the possibility to create
-nice statistical reporting outputs (tables and graphics) in ‘Microsoft
-Word’.
+The aim of ClinReport is to create statistical outputs (tables and
+graphics) in ‘Microsoft Word’ according to ‘clinical standards’ of
+reporting.
+
+It can be used outside the scope of clinical trials since the formatted
+outputs are suitable for any publications.
 
 ## Installation
 
@@ -16,7 +19,7 @@ You can install the released version of ClinReport from
 install.packages("ClinReport")
 ```
 
-## Basic example code
+## Basic example
 
 ``` r
 
@@ -28,7 +31,7 @@ library(flextable)
 
 data(data)
 
-# Descriptive statistice (Numerical response and 2 explicative variables):
+# Descriptive statistics (Numerical response and 2 explicative variables):
 
 tab1=report.quanti(data=data,y="y_numeric",
         x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",subjid="SUBJID")
@@ -76,7 +79,7 @@ tab1
 #> 40        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]
 #> 41        D5    Missing             0             0             0
 
-# You can have the correspnding graphic:
+# You can have the corresponding graphic:
 
 gg=plot(tab1,title="Mean response evolution as a function of time by treatment group",
  legend.label="Treatment groups",ylab="Y mean")
@@ -90,7 +93,7 @@ gg
 ``` r
 
 doc=read_docx()
-doc=report.doc(tab1,title="Example of quantitative descriptive table",doc=doc) 
+doc=report.doc(tab1,title="Example of a quantitative descriptive table",doc=doc) 
 
 # See the results
 

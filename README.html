@@ -603,11 +603,12 @@ body {
 <h1 id="clinreport-r-package">ClinReport R package</h1>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<p>The aim of ClinReport is to give to R users the possibility to create nice statistical reporting outputs (tables and graphics) in ‘Microsoft Word’.</p>
+<p>The aim of ClinReport is to create statistical outputs (tables and graphics) in ‘Microsoft Word’ according to ‘clinical standards’ of reporting.</p>
+<p>It can be used outside the scope of clinical trials since the formatted outputs are suitable for any publications.</p>
 <h2 id="installation">Installation</h2>
 <p>You can install the released version of ClinReport from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;ClinReport&quot;</span>)</a></code></pre></div>
-<h2 id="basic-example-code">Basic example code</h2>
+<h2 id="basic-example">Basic example</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"></a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw">library</span>(ClinReport)</a>
 <a class="sourceLine" id="cb2-3" title="3"><span class="kw">library</span>(officer)</a>
@@ -617,7 +618,7 @@ body {
 <a class="sourceLine" id="cb2-7" title="7"></a>
 <a class="sourceLine" id="cb2-8" title="8"><span class="kw">data</span>(data)</a>
 <a class="sourceLine" id="cb2-9" title="9"></a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="co"># Descriptive statistice (Numerical response and 2 explicative variables):</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co"># Descriptive statistics (Numerical response and 2 explicative variables):</span></a>
 <a class="sourceLine" id="cb2-11" title="11"></a>
 <a class="sourceLine" id="cb2-12" title="12">tab1=<span class="kw">report.quanti</span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">&quot;y_numeric&quot;</span>,</a>
 <a class="sourceLine" id="cb2-13" title="13">        <span class="dt">x1=</span><span class="st">&quot;GROUP&quot;</span>,<span class="dt">x2=</span><span class="st">&quot;TIMEPOINT&quot;</span>,<span class="dt">at.row=</span><span class="st">&quot;TIMEPOINT&quot;</span>,<span class="dt">subjid=</span><span class="st">&quot;SUBJID&quot;</span>)</a>
@@ -665,7 +666,7 @@ body {
 <a class="sourceLine" id="cb2-55" title="55"><span class="co">#&gt; 40        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]</span></a>
 <a class="sourceLine" id="cb2-56" title="56"><span class="co">#&gt; 41        D5    Missing             0             0             0</span></a>
 <a class="sourceLine" id="cb2-57" title="57"></a>
-<a class="sourceLine" id="cb2-58" title="58"><span class="co"># You can have the correspnding graphic:</span></a>
+<a class="sourceLine" id="cb2-58" title="58"><span class="co"># You can have the corresponding graphic:</span></a>
 <a class="sourceLine" id="cb2-59" title="59"></a>
 <a class="sourceLine" id="cb2-60" title="60">gg=<span class="kw">plot</span>(tab1,<span class="dt">title=</span><span class="st">&quot;Mean response evolution as a function of time by treatment group&quot;</span>,</a>
 <a class="sourceLine" id="cb2-61" title="61"> <span class="dt">legend.label=</span><span class="st">&quot;Treatment groups&quot;</span>,<span class="dt">ylab=</span><span class="st">&quot;Y mean&quot;</span>)</a>
@@ -675,7 +676,7 @@ body {
 <h1 id="put-the-results-in-a-docx-document-with-officer">Put the results in a docx document with officer</h1>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"></a>
 <a class="sourceLine" id="cb3-2" title="2">doc=<span class="kw">read_docx</span>()</a>
-<a class="sourceLine" id="cb3-3" title="3">doc=<span class="kw">report.doc</span>(tab1,<span class="dt">title=</span><span class="st">&quot;Example of quantitative descriptive table&quot;</span>,<span class="dt">doc=</span>doc) </a>
+<a class="sourceLine" id="cb3-3" title="3">doc=<span class="kw">report.doc</span>(tab1,<span class="dt">title=</span><span class="st">&quot;Example of a quantitative descriptive table&quot;</span>,<span class="dt">doc=</span>doc) </a>
 <a class="sourceLine" id="cb3-4" title="4"></a>
 <a class="sourceLine" id="cb3-5" title="5"><span class="co"># See the results</span></a>
 <a class="sourceLine" id="cb3-6" title="6"></a>
