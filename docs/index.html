@@ -55,6 +55,9 @@
 <li>
       <a href="articles/clinreport-vignette.html">ClinReport R package</a>
     </li>
+    <li>
+      <a href="articles/clinreport_modify_outputs.html">ClinReport R package: alter the outputs</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -77,16 +80,17 @@
     
     
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<p>The aim of ClinReport is to give to R users the possibility to create nice statistical reporting outputs (tables and graphics) in ‘Microsoft Word’.</p>
+<p>The aim of ClinReport is to create statistical outputs (tables and graphics) in ‘Microsoft Word’ according to ‘clinical standards’ of reporting.</p>
+<p>It can be used outside the scope of clinical trials since the formatted outputs are suitable for any publications.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of ClinReport from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"ClinReport"</span>)</a></code></pre></div>
 </div>
-<div id="basic-example-code" class="section level2">
+<div id="basic-example" class="section level2">
 <h2 class="hasAnchor">
-<a href="#basic-example-code" class="anchor"></a>Basic example code</h2>
+<a href="#basic-example" class="anchor"></a>Basic example</h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"></a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ClinReport)</a>
 <a class="sourceLine" id="cb2-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(officer)</a>
@@ -96,7 +100,7 @@
 <a class="sourceLine" id="cb2-7" title="7"></a>
 <a class="sourceLine" id="cb2-8" title="8"><span class="kw"><a href="reference/data.html">data</a></span>(data)</a>
 <a class="sourceLine" id="cb2-9" title="9"></a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="co"># Descriptive statistice (Numerical response and 2 explicative variables):</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co"># Descriptive statistics (Numerical response and 2 explicative variables):</span></a>
 <a class="sourceLine" id="cb2-11" title="11"></a>
 <a class="sourceLine" id="cb2-12" title="12">tab1=<span class="kw"><a href="reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_numeric"</span>,</a>
 <a class="sourceLine" id="cb2-13" title="13">        <span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">x2=</span><span class="st">"TIMEPOINT"</span>,<span class="dt">at.row=</span><span class="st">"TIMEPOINT"</span>,<span class="dt">subjid=</span><span class="st">"SUBJID"</span>)</a>
@@ -144,7 +148,7 @@
 <a class="sourceLine" id="cb2-55" title="55"><span class="co">#&gt; 40        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]</span></a>
 <a class="sourceLine" id="cb2-56" title="56"><span class="co">#&gt; 41        D5    Missing             0             0             0</span></a>
 <a class="sourceLine" id="cb2-57" title="57"></a>
-<a class="sourceLine" id="cb2-58" title="58"><span class="co"># You can have the correspnding graphic:</span></a>
+<a class="sourceLine" id="cb2-58" title="58"><span class="co"># You can have the corresponding graphic:</span></a>
 <a class="sourceLine" id="cb2-59" title="59"></a>
 <a class="sourceLine" id="cb2-60" title="60">gg=<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tab1,<span class="dt">title=</span><span class="st">"Mean response evolution as a function of time by treatment group"</span>,</a>
 <a class="sourceLine" id="cb2-61" title="61"> <span class="dt">legend.label=</span><span class="st">"Treatment groups"</span>,<span class="dt">ylab=</span><span class="st">"Y mean"</span>)</a>
@@ -156,7 +160,7 @@
 <a href="#put-the-results-in-a-docx-document-with-officer" class="anchor"></a>Put the results in a docx document with officer</h1></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"></a>
 <a class="sourceLine" id="cb3-2" title="2">doc=<span class="kw">read_docx</span>()</a>
-<a class="sourceLine" id="cb3-3" title="3">doc=<span class="kw"><a href="reference/report.doc.html">report.doc</a></span>(tab1,<span class="dt">title=</span><span class="st">"Example of quantitative descriptive table"</span>,<span class="dt">doc=</span>doc) </a>
+<a class="sourceLine" id="cb3-3" title="3">doc=<span class="kw"><a href="reference/report.doc.html">report.doc</a></span>(tab1,<span class="dt">title=</span><span class="st">"Example of a quantitative descriptive table"</span>,<span class="dt">doc=</span>doc) </a>
 <a class="sourceLine" id="cb3-4" title="4"></a>
 <a class="sourceLine" id="cb3-5" title="5"><span class="co"># See the results</span></a>
 <a class="sourceLine" id="cb3-6" title="6"></a>
