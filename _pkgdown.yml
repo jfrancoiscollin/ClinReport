@@ -1,0 +1,58 @@
+navbar:
+  structure:
+    left:
+    - home
+    - intro
+    - reference
+    - articles
+    - news
+    right: github
+  components:
+    home:
+      icon: fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    articles:
+      text: Vignette
+      menu:
+      - text: ClinReport R package
+        href: articles/clinreport-vignette.html
+    news:
+      text: Changelog
+      href: news/index.html
+
+
+articles:
+- title: Vignette
+  desc: >
+    Get Started Vignette
+  contents: '`clinreport-vignette`'
+
+
+reference:
+- title: "Create the main statistical outputs"
+  desc: >
+    Functions used to create the main the statistical outputs.   
+  contents:
+  - '`report.lsmeans`'
+  - '`report.quali`'
+  - '`report.quanti`'
+- title: "Modify the outputs"
+  desc: >
+    Functions used to modify the statistical outputs.   
+  contents:
+  - '`add.stat`'
+  - '`regroup`'
+- title: "Graphic outputs"
+  desc: >
+    Function used to create the corresponding graphics of the statistical outputs.   
+  contents:
+  - '`plot.desc`'
+- title: "Export to word"
+  desc: >
+    Function used to export the outputs to Microsoft Word  
+  contents:
+  - '`report.doc`'
+  
