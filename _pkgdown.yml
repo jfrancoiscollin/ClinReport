@@ -45,6 +45,7 @@ reference:
   contents:
   - '`add.stat`'
   - '`regroup`'
+  - '`split.desc`'
 - title: "Graphic outputs"
   desc: >
     Function used to create the corresponding graphics of the statistical outputs.   
