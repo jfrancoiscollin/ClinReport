@@ -55,7 +55,7 @@ roxygenize("C:\\Users\\jfcollin\\git")
 
 
 #usethis::use_build_ignore("docs")
-
+#usethis::use_pkgdown()
 check(args ="--as-cran")
 
 
