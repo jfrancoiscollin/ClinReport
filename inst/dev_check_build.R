@@ -70,10 +70,28 @@ build(path = "C:\\Users\\jfcollin\\Google Drive\\R packages")
 # Website
 ###############################################
 
+## create _pkgdown.yml to customize the website
+#usethis::use_pkgdown()
+#
+## show a template for all functions to reference
+#pkgdown::template_reference()
+#
+## To create the corresponding web page
+#pkgdown::build_reference()
+#
+## show a template for the vignette
+#pkgdown::template_articles()
+#
+## To create the corresponding web page
+#pkgdown::build_articles()
+#
+#
+## Navigation bar
+#pkgdown::template_navbar()
 
 
-
-#pkgdown::build_site()
+# Build the site
+pkgdown::build_site()
 
 
 
