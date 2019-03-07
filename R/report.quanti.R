@@ -91,8 +91,39 @@
 #' # Print tab output
 #' tab
 #' 
+#' 
+#' #Getting a specific statistic and not the default ones
+#' 
+#' mystat=function(x) quantile(x,0.99,na.rm=T)
+#' 
+#' tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
+#' x2="TIMEPOINT",total=TRUE,subjid="SUBJID",
+#' default.stat=FALSE,func.stat=mystat,func.stat.name="99% quantile")
+#' tab
+#' 
+#' mystat2=function(x) mean(x,na.rm=T)/sd(x,na.rm=T)
+#' 
+#' tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
+#' total=TRUE,subjid="SUBJID",
+#' default.stat=FALSE,func.stat=mystat2,
+#' func.stat.name="Coefficient of variation")
+#' tab
+#' 
+#' mode=function(x) {
+#'   x=na.omit(x)
+#'   ux <- unique(x)
+#'   ux[which.max(tabulate(match(x, ux)))]
+#' }
+#' 
+#' tab=report.quanti(data=data,y="y_numeric",
+#' default.stat=FALSE,func.stat=mode,func.stat.name="Mode")
+#' 
+#' 
 #' #Getting raw output
 #' tab$raw.output
+#' 
+#' #Getting a data.frame version of the output
+#' tab$output
 #' 
 #' @import reshape2
 #' 
@@ -398,8 +429,6 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 			}
 		}
 		
-		
-		
 		if(!is.null(x2)) stat2=stat2[order(stat2[,x2],stat2[,stat.name]),]
 		if(is.null(x2)) stat2=stat2[order(stat2[,stat.name]),]
 	}
@@ -459,7 +488,9 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	if(!is.null(at.row))
 	{
+		lev=levels(stat2[,stat.name])
 		stat2=spacetable(stat2,at.row=at.row)
+		stat2[,stat.name]=factor(stat2[,stat.name],levels=c(lev,""))
 	}
 	
 	

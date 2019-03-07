@@ -105,9 +105,12 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 		
 		r=r[,c(ncol(r),1:(ncol(r)-1))]
 		
-		r=ClinReport::desc(output=r,total=x$total,x1=x$x1,
+		r=ClinReport::desc(output=r,
+				y=c(x$y,y$y),
+				total=x$total,x1=x$x1,
 				type.desc="quali_quanti",
-				at.row=rbind.label,subjid=x$subjid,
+				at.row=rbind.label,
+				subjid=x$subjid,
 				nbcol=nbcol)
 		
 		return(r)
@@ -116,43 +119,48 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 	
 	
 	
-	if(x$type.desc=="quanti")
+	if(x$type.desc=="quanti" & y$type.desc=="quanti")
 	{
 		
-		if(x$type.desc==y$type.desc)
+		
+		if(x$total!=y$total) stop("Different Total argument: binding impossible")
+		if(x$y!=y$y) stop("Different y argument: binding impossible")
+		if(is.null(y$x1)) stop("x1 argument cannot be NULL: binding impossible")
+		if(is.null(x$x1)) stop("x1 argument cannot be NULL: binding impossible")
+		if(x$x1!=y$x1) stop("Different x1 argument: binding impossible")
+		if(x$subjid!=y$subjid) stop("Different subjid argument: binding impossible")
+		
+		nbcol=x$nbcol
+		
+		r=rbind(out.x,out.y)
+		
+		
+		if(is.null(x$x2)) r=r[order(r[,x$stat.name]),]
+		
+		if(!is.null(x$x2))
 		{
-			
-			if(x$total!=y$total) stop("Different Total argument: binding impossible")
-			if(is.null(y$x1)) stop("x1 argument cannot be NULL: binding impossible")
-			if(is.null(x$x1)) stop("x1 argument cannot be NULL: binding impossible")
-			if(x$x1!=y$x1) stop("Different x1 argument: binding impossible")
-			if(x$subjid!=y$subjid) stop("Different subjid argument: binding impossible")
-			
-			nbcol=x$nbcol
-			
-			r=rbind(out.x,out.y)
-			
-			
-			if(is.null(x$x2)) r=r[order(r[,x$stat.name]),]
-			
-			if(!is.null(x$x2))
+			r=r[order(r[,x$x2],r[,x$stat.name]),]
+			if(!is.null(x$at.row))
 			{
-				r=r[order(r[,x$x2],r[,x$stat.name]),]
-				if(!is.null(x$at.row))
-				{
-					r=droplevels(r[r[,x$at.row]!="",])
-				}
-				
+				r=droplevels(r[r[,x$at.row]!="",])				
+				lev=levels(r[,x$stat.name])
 				r=spacetable(r,x$at.row)
+				r[,x$stat.name]=factor(r[,x$stat.name],levels=c(lev,""))
 			}
 			
 			
-			r=ClinReport::desc(output=r,total=x$total,x1=x$x1,
-					type.desc=x$type.desc,subjid=x$subjid,
-					nbcol=nbcol)
-			
-			return(r)
 		}
+		
+		
+		r=ClinReport::desc(output=r,
+				y=x$y,
+				total=x$total,x1=x$x1,x2=x$x2,
+				type.desc=x$type.desc,subjid=x$subjid,
+				nbcol=nbcol,
+				stat.name=x$stat.name,
+				at.row=x$at.row)
+		
+		return(r)
 		
 	}
 	
