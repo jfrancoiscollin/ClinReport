@@ -79,7 +79,7 @@ plot.desc=function(x,...,title="",ylim=NULL,xlim,xlab="",ylab="",
 	
 	if(x$type.desc=="quanti")
 	{
-		gg=gg_desc_quanti(x,title=title,ylim=ylim,xlim=xlim,xlab=xlab,ylab="",
+		gg=gg_desc_quanti(x,title=title,ylim=ylim,xlim=xlim,xlab=xlab,ylab=ylab,
 				legend.label=legend.label,add.sd=add.sd)
 		
 		return(gg)

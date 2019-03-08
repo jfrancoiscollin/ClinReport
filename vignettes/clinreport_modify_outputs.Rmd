@@ -1,5 +1,5 @@
 ---
-title: "ClinReport R package: alter the outputs"
+title: "ClinReport: Play with the outputs"
 author: "Jean-Francois COLLIN"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -83,7 +83,9 @@ tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
 total=TRUE,subjid="SUBJID",
 func.stat=mystat2,
 func.stat.name="Coefficient of variation")
-tab
+
+report.doc(tab,title="Example of a specific statistic reporting",
+colspan.value="Treatment group")
 ```
 
 ### Add a specific statistics to an existing table: `add.stat()` function
