@@ -2,6 +2,7 @@ pandoc: '2.6'
 pkgdown: 1.3.0
 pkgdown_sha: ~
 articles:
-  clinreport-vignette: clinreport-vignette.html
+  clinreport_graphics: clinreport_graphics.html
   clinreport_modify_outputs: clinreport_modify_outputs.html
+  clinreport_vignette_get_started: clinreport_vignette_get_started.html
 

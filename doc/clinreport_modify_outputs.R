@@ -39,7 +39,9 @@ tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
 total=TRUE,subjid="SUBJID",
 func.stat=mystat2,
 func.stat.name="Coefficient of variation")
-tab
+
+report.doc(tab,title="Example of a specific statistic reporting",
+colspan.value="Treatment group")
 
 ## ------------------------------------------------------------------------
 # The default statistics are given here:
