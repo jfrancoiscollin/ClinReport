@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Jean-Francois COLLIN" />
+
+<meta name="date" content="2019-03-08" />
+
+<title>ClinReport: Graphic outputs</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">ClinReport: Graphic outputs</h1>
+<h4 class="author"><em>Jean-Francois COLLIN</em></h4>
+<h4 class="date"><em>2019-03-08</em></h4>
+
+
+
+<div id="objective" class="section level2">
+<h2>Objective</h2>
+<p>In this vignette we will see the different graphics that you can produce with ClinReport.</p>
+</div>
+<div id="get-started" class="section level2">
+<h2>Get started</h2>
+<p>Start by loading all usual libraries.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(ClinReport)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(officer)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(flextable)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="kw">library</span>(reshape2)</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="kw">library</span>(nlme)</a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="kw">library</span>(emmeans)</a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="kw">library</span>(car)</a></code></pre></div>
+<p>Load your data.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># We will use fake data</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw">data</span>(data)</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw">print</span>(<span class="kw">head</span>(data))</a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt;    y_numeric y_logistic y_poisson   baseline   VAR GROUP TIMEPOINT SUBJID</span></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt; 1 -0.4203490          1         5 -0.4203490 Cat 1     A        D0 Subj 1</span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt; 2 -0.1570941          1         5 -0.1570941 Cat 2     A        D0 Subj 1</span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt; 3         NA          0         3 -2.0853720 Cat 2     A        D0 Subj 1</span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt; 4 -0.4728527          0         5 -0.4728527 Cat 1     A        D0 Subj 1</span></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt; 5 -0.8651713          1         4 -0.8651713 Cat 1     A        D0 Subj 1</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt; 6 -1.5476907          1         3 -1.5476907 Cat 1     A        D0 Subj 1</span></a></code></pre></div>
+<div id="quantitative-graphics" class="section level3">
+<h3>Quantitative graphics</h3>
+<p>First you need to produce a quantitative table using <code>report.quanti()</code> function then you use the <code>plot()</code> function on the result:</p>
+<p>If there is no explicative variable, the corresponding graphic of the call to <code>report.quanti()</code> is a barplot of the mean of the response value.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># Only one numerical response</span></a>
+<a class="sourceLine" id="cb3-2" title="2"></a>
+<a class="sourceLine" id="cb3-3" title="3">tab1=<span class="kw">report.quanti</span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">&quot;y_numeric&quot;</span>)</a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="kw">plot</span>(tab1,<span class="dt">title=</span><span class="st">&quot;Mean (+/-SD) of y&quot;</span>,<span class="dt">add.sd=</span>T,<span class="dt">ylab=</span><span class="st">&quot;Mean Response value&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;&quot;</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>If there is one explicative variable, the corresponding graphic will be a barplot per treatment group.</p>
+<p>You can personnalize the outputs using, the usual, <code>title</code> <code>xlab</code> <code>ylab</code> <code>ylim</code> etc.. options.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co">#  one numerical response ; one explicative variable</span></a>
+<a class="sourceLine" id="cb4-2" title="2"></a>
+<a class="sourceLine" id="cb4-3" title="3">tab2=<span class="kw">report.quanti</span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">&quot;y_numeric&quot;</span>,<span class="dt">x1=</span><span class="st">&quot;GROUP&quot;</span>)</a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="kw">plot</span>(tab2,<span class="dt">title=</span><span class="st">&quot;Mean (+/-SD) of y per treatment group&quot;</span>,<span class="dt">add.sd=</span>T,<span class="dt">ylab=</span><span class="st">&quot;Mean of y&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">8</span>))</a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<p>If there is also a second explicative variable. The corresponding plot will be a lineplot:</p>
+<p>The means will be connected according to this second variable to capture the evolution accross its different levels.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">#  one numerical response ; two explicative variable</span></a>
+<a class="sourceLine" id="cb5-2" title="2"></a>
+<a class="sourceLine" id="cb5-3" title="3">tab3=<span class="kw">report.quanti</span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">&quot;y_numeric&quot;</span>,<span class="dt">x1=</span><span class="st">&quot;GROUP&quot;</span>,<span class="dt">x2=</span><span class="st">&quot;TIMEPOINT&quot;</span>)</a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="kw">plot</span>(tab3,<span class="dt">title=</span><span class="st">&quot;Mean (+/-SD) of y per treatment group&quot;</span>,<span class="dt">add.sd=</span>T,<span class="dt">ylab=</span><span class="st">&quot;Mean of y&quot;</span>,<span class="dt">xlab=</span><span class="st">&quot;&quot;</span>,</a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">8</span>))</a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt; Warning: Removed 1 rows containing missing values (geom_point).</span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; Warning: Removed 1 rows containing missing values (geom_path).</span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt; Warning: Removed 3 rows containing missing values (geom_errorbar).</span></a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
