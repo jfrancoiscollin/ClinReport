@@ -1,5 +1,5 @@
 ---
-title: "ClinReport: Graphic outputs"
+title: "ClinReport Vignette 3: Graphic Outputs"
 author: "Jean-Francois COLLIN"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette

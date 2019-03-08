@@ -2,7 +2,7 @@
 % Please edit documentation in R/report.lsmeans.R
 \name{report.lsmeans}
 \alias{report.lsmeans}
-\title{Creates a desc object for 'LS Means' statistics reporting}
+\title{'LS Means' statistics reporting}
 \usage{
 report.lsmeans(lsm, x1 = "treatment", x2 = NULL, x3 = NULL, data,
   variable.name = "Statistics", at.row = NULL, infer = c(T, T),

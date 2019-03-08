@@ -2,7 +2,7 @@
 % Please edit documentation in R/report.quali.R
 \name{report.quali}
 \alias{report.quali}
-\title{Creates a desc object for "qualitative" statistics (frequencies and percentages) reporting}
+\title{Descriptive "qualitative" statistics (frequencies and percentages) reporting}
 \usage{
 report.quali(data, y = NULL, x1 = NULL, x2 = NULL, y.label = y,
   x2.label = NULL, y.levels.label = "Levels", total = F, round = 2,

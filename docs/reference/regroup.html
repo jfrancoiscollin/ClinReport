@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>regroup method for desc object — regroup • ClinReport</title>
+<title>Regroup two descriptive tables into one — regroup • ClinReport</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,11 +30,10 @@
 
 
 
-<meta property="og:title" content="regroup method for desc object — regroup" />
+<meta property="og:title" content="Regroup two descriptive tables into one — regroup" />
 
 <meta property="og:description" content="regroup 
-regroup 2 desc objects of different type.desc (quanti and quali) in a single desc object 
-of type quali_quanti." />
+Regroup 2 desc objects into a single desc object." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -72,31 +71,13 @@ of type quali_quanti." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
+  <a href="../index.html">Home</a>
+</li>
+<li>
+  <a href="../articles/index.html">Vignettes</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Vignette
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/clinreport_graphics.html">ClinReport: Graphic outputs</a>
-    </li>
-    <li>
-      <a href="../articles/clinreport_modify_outputs.html">ClinReport: Play with the outputs</a>
-    </li>
-    <li>
-      <a href="../articles/clinreport_vignette_get_started.html">ClinReport: Get Started</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -117,7 +98,7 @@ of type quali_quanti." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>regroup method for desc object</h1>
+    <h1>Regroup two descriptive tables into one</h1>
     
     <div class="hidden name"><code>regroup.Rd</code></div>
     </div>
@@ -125,8 +106,7 @@ of type quali_quanti." />
     <div class="ref-description">
     
     <p><code>regroup</code> 
-regroup 2 desc objects of different type.desc (quanti and quali) in a single desc object 
-of type quali_quanti.</p>
+Regroup 2 desc objects into a single desc object.</p>
     
     </div>
 
@@ -162,11 +142,14 @@ of type quali_quanti.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>It's only possible to regroup statistics for desc objects with one and only one explicative variable.
+    <p>To regroup a quantitative table and a qualitative table, it's only possible if there is one and only one explicative variable.
 So it works if and only if <code>x1</code> argument in <code>x</code> and <code>y</code> objects are not NULL, are the same 
 and if <code>x2</code> argument is NULL in both <code>x</code> and <code>y</code> objects.</p>
 <p>The function takes the y.label argument of object <code>x</code> and <code>y</code> respectively
 as label for the levels of the new column created under the name of rbind.label (see example below)</p>
+<p>It's also possible to regroup two quantitative tables, in this case it's possible if there is one or 
+two explicative variables.</p>
+<p>For now it's not possible to regroup two qualitative tables.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -177,6 +160,7 @@ as label for the levels of the new column created under the name of rbind.label 
     <pre class="examples"><div class='input'>
 <span class='fu'><a href='data.html'>data</a></span>(<span class='no'>data</span>)
 
+<span class='co'># Example with a qualitative and a quantitative tables</span>
 <span class='co'>#The argument y.label is stored in the desc object and </span>
 <span class='co'># only used after by the regroup function</span>
 
@@ -209,7 +193,30 @@ as label for the levels of the new column created under the name of rbind.label 
 #&gt; 9  [-2.99;7.96]
 #&gt; 10            2</div><div class='input'>
 
+<span class='co'># Example with 2 quantitative tables</span>
 
+<span class='no'>tab1</span><span class='kw'>=</span><span class='fu'><a href='report.quanti.html'>report.quanti</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,
+        <span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Y numeric"</span>)
+
+<span class='no'>data</span>$<span class='no'>y_numeric2</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>data</span>$<span class='no'>y_numeric</span>))
+
+<span class='no'>tab2</span><span class='kw'>=</span><span class='fu'><a href='report.quanti.html'>report.quanti</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric2"</span>,
+        <span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Y Numeric 2"</span>)
+
+<span class='fu'>regroup</span>(<span class='no'>tab1</span>,<span class='no'>tab2</span>,<span class='kw'>rbind.label</span><span class='kw'>=</span><span class='st'>"The label of your choice"</span>)</div><div class='output co'>#&gt;    The label of your choice Statistics     A (N=30)     B (N=21)     C (N=17)
+#&gt; 1                 Y numeric          N          180          120           96
+#&gt; 2                 Y numeric  Mean (SD)   1.46(1.50)   3.15(2.00)   3.87(2.52)
+#&gt; 3                 Y numeric     Median         1.59         3.75         4.73
+#&gt; 4                 Y numeric    [Q1;Q3]  [0.45;2.50]  [2.46;4.44]  [3.44;5.30]
+#&gt; 5                 Y numeric  [Min;Max] [-2.34;4.36] [-2.44;6.19] [-2.99;7.96]
+#&gt; 6                 Y numeric    Missing            4            4            2
+#&gt; 7                                                                            
+#&gt; 8               Y Numeric 2          N          180          120           96
+#&gt; 9               Y Numeric 2  Mean (SD)   0.06(1.05)   0.04(1.02)   0.20(0.99)
+#&gt; 10              Y Numeric 2     Median         0.09         0.07         0.03
+#&gt; 11              Y Numeric 2    [Q1;Q3] [-0.58;0.77] [-0.64;0.68] [-0.41;0.93]
+#&gt; 12              Y Numeric 2  [Min;Max] [-2.61;2.65] [-2.18;2.76] [-2.27;2.68]
+#&gt; 13              Y Numeric 2    Missing            0            0            0</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

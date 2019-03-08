@@ -4,7 +4,7 @@
 \alias{report.doc}
 \alias{report.doc.desc}
 \alias{report.doc.anova}
-\title{Transform a desc object to a flexTable object ready to export into a Word document using officer}
+\title{Export a statistical table into 'Microsoft Word'}
 \usage{
 report.doc(table, ...)
 

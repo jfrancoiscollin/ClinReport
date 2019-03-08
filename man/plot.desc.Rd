@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.desc.R
 \name{plot.desc}
 \alias{plot.desc}
-\title{Plot method for desc object}
+\title{Display the corresponding graphic of statistical table}
 \usage{
 \method{plot}{desc}(x, ..., title = "", ylim = NULL, xlim, xlab = "",
   ylab = "", legend.label = "Group", add.sd = F, add.ci = F,
@@ -32,7 +32,7 @@
 \item{add.line}{Logical. If TRUE it joins the dots with a line (default to TRUE)}
 }
 \description{
-Plot method for desc object
+Display the corresponding graphic of statistical table
 }
 \details{
 It's a wrapper function whiche uses  \code{\link{gg_desc_quanti}} 

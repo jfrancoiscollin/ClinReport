@@ -2,7 +2,7 @@
 % Please edit documentation in R/report.quanti.R
 \name{report.quanti}
 \alias{report.quanti}
-\title{Creates a desc object for "quantitative" statistics reporting}
+\title{Descriptive "quantitative" statistics (mean, SD, median...) reporting}
 \usage{
 report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = y,
   round = 2, total = F, scientific = F, digits = NULL,

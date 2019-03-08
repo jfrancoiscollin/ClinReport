@@ -3,7 +3,7 @@
 \name{add.stat}
 \alias{add.stat}
 \alias{add.stat.desc}
-\title{add.stat method for desc object}
+\title{Add a new statistic to an existing table}
 \usage{
 add.stat(tab, data, func.stat, func.stat.name, pos, ...)
 
