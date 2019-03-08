@@ -3,7 +3,7 @@
 # Author: jfcollin
 ###############################################################################
 
-#' @title  add.stat method for desc object
+#' @title  Add a new statistic to an existing table
 #' 
 #' @param tab A desc object
 #' @param data The data frame used to creat tab

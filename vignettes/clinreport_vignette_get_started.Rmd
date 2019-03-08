@@ -1,5 +1,5 @@
 ---
-title: "ClinReport: Get Started"
+title: "ClinReport Vignette 1: Get Started"
 author: "Jean-Francois COLLIN"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette

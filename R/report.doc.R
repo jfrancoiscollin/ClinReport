@@ -11,7 +11,7 @@
 .output=new.env(parent = emptyenv())
 
 
-#' Transform a desc object to a flexTable object ready to export into a Word document using officer
+#' Export a statistical table into 'Microsoft Word'
 #'
 #' @param table A desc object that report statistics (the results of \code{report.quanti} or \code{report.quali})
 #' @param title Character. The title of the table

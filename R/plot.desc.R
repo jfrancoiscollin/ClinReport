@@ -4,7 +4,7 @@
 ###############################################################################
 
 
-#' Plot method for desc object
+#' Display the corresponding graphic of statistical table
 #' 
 #' @param x A desc object
 #' @param title Character The title of the plot

@@ -1,34 +1,26 @@
 navbar:
-  structure:
-    left:
-    - home
-    - intro
-    - reference
-    - articles
-    - news
-    right: github
-  components:
-    home:
-      icon: fa-home fa-lg
+  title: "ClinReport"
+  left:
+    - text: "Home"
       href: index.html
-    reference:
-      text: Reference
+    - text: "Vignettes"
+      href: articles/index.html
+    - text: "Reference"
       href: reference/index.html
-    articles:
-      text: Vignette
-      menu:
-      - text: ClinReport R package
-        href: articles/clinreport-vignette.html
-    news:
-      text: Changelog
+    - text: "Changelog"
       href: news/index.html
 
-
 articles:
-- title: Vignette
+- title: Vignettes
   desc: >
-    Get Started Vignette
-  contents: '`clinreport-vignette`'
+    The Get Started vignette introduce the main functions.  
+    The second one shows you how to modify/alter/personnalize the outputs.
+    The last one describes the different graphics you can get with `ClinReport`.
+  contents: 
+   - clinreport_vignette_get_started
+   - clinreport_modify_outputs
+   - clinreport_graphics
+
 
 
 reference:

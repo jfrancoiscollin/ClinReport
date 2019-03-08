@@ -34,6 +34,9 @@ setwd("C:\\Users\\jfcollin\\git")
 #  readme
 ###############################################
 
+#use_cran_badge()
+#use_lifecycle_badge("stable")
+
 render("C:\\Users\\jfcollin\\git\\README.Rmd")
 #shell.exec("C:\\Users\\jfcollin\\git\\README.html")
 
@@ -66,7 +69,7 @@ roxygenize("C:\\Users\\jfcollin\\git")
 check(args ="--as-cran")
 
 
-install()
+#install()
 install(build_vignettes =T)
 build(path = "C:\\Users\\jfcollin\\Google Drive\\R packages")
 

@@ -4,7 +4,7 @@
 ###############################################################################
 
 
-#' Creates a desc object for 'LS Means' statistics reporting
+#' 'LS Means' statistics reporting
 #'
 #' @param lsm emmGrid object (result of a \code{emmeans} call)
 #' @param x1 Character Mandatory. Indicating a factor in the data (can be an intercept: see example). Levels will be displayed in columns

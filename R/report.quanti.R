@@ -2,7 +2,7 @@
 # Author: jfcollin
 ###############################################################################
 
-#' Creates a desc object for "quantitative" statistics reporting
+#' Descriptive "quantitative" statistics (mean, SD, median...) reporting
 #' 
 #'
 #' @param data Data.frame object

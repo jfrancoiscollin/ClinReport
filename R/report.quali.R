@@ -2,7 +2,7 @@
 # Author: jfcollin
 ###############################################################################
 
-#' Creates a desc object for "qualitative" statistics (frequencies and percentages) reporting
+#' Descriptive "qualitative" statistics (frequencies and percentages) reporting
 #'
 #' @param data a data.frame object
 #' @param y Character indicating a factor in the data
