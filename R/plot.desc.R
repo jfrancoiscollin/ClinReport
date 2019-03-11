@@ -16,6 +16,7 @@
 #' @param add.sd Logical. If TRUE it adds bars to the means representing +/-SD (for desc quanti reporting only)
 #' @param add.ci Logical. If TRUE it adds bars to the means representing 95\% CI (for LS Means reporting only)
 #' @param add.line Logical. If TRUE it joins the dots with a line (default to TRUE)
+#' @param size.title Numeric. used to specify the font size of the title
 #' @param ... Other parameters
 #' 
 #' 
@@ -74,7 +75,7 @@
 #' @export
 
 plot.desc=function(x,...,title="",ylim=NULL,xlim,xlab="",ylab="",
-		legend.label="Group",add.sd=F,add.ci=F,add.line=T)
+		legend.label="Group",add.sd=F,add.ci=F,size.title=10,add.line=T)
 {
 	
 	if(x$type.desc=="quanti")
@@ -82,7 +83,7 @@ plot.desc=function(x,...,title="",ylim=NULL,xlim,xlab="",ylab="",
 		gg=gg_desc_quanti(x,title=title,ylim=ylim,xlim=xlim,xlab=xlab,ylab=ylab,
 				legend.label=legend.label,add.sd=add.sd)
 		
-		return(gg)
+		
 	}
 	
 	
@@ -91,7 +92,7 @@ plot.desc=function(x,...,title="",ylim=NULL,xlim,xlab="",ylab="",
 		gg=gg_desc_lsmeans(x,title=title,ylim=ylim,xlim=xlim,xlab=xlab,ylab=ylab,
 				legend.label=legend.label,add.ci=add.ci,add.line=add.line)
 		
-		return(gg)
+
 	}
 	
 	if(x$type.desc=="quali")
@@ -99,8 +100,13 @@ plot.desc=function(x,...,title="",ylim=NULL,xlim,xlab="",ylab="",
 		gg=gg_desc_quali(x,title=title,ylim=ylim,xlim=xlim,xlab=xlab,ylab=ylab,
 				legend.label=legend.label)
 		
-		return(gg)
+
 	}
+	
+	
+	gg=gg+theme(title=element_text(size=size.title))
+	
+	return(gg)
 	
 }
 

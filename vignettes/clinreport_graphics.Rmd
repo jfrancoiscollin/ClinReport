@@ -54,7 +54,7 @@ then you use the `plot()` function on the result:
 If there is no explicative variable, the corresponding graphic of the call to `report.quanti()`
 is a barplot of the mean of the response value.
 
-```{r}
+```{r fig.width = 8, fig.height = 6}
 # Only one numerical response
 
 tab1=report.quanti(data=data,y="y_numeric")
@@ -67,7 +67,7 @@ barplot per treatment group.
 
 You can personnalize the outputs using, the usual, `title` `xlab` `ylab` `ylim` etc.. options.
 
-```{r}
+```{r fig.width = 8, fig.height = 6}
 #  one numerical response ; one explicative variable
 
 tab2=report.quanti(data=data,y="y_numeric",x1="GROUP")
@@ -81,7 +81,7 @@ The means will be connected according to this second variable to capture the evo
 accross its different levels.
 
 
-```{r}
+```{r fig.width = 8, fig.height = 6}
 #  one numerical response ; two explicative variable
 
 tab3=report.quanti(data=data,y="y_numeric",x1="GROUP",x2="TIMEPOINT")
@@ -93,14 +93,90 @@ ylim=c(-1,8))
 ### Qualitative graphics
 
 
+For qualitative statistics, the corresponding graphics will be barplots.
 
+If only the argument `y` is supplied, the corresponding graphic will looks like:
 
-```{r}
+```{r fig.width = 8, fig.height = 6}
 # Only one categorical response
 
 tab1=report.quali(data=data,y="y_logistic")
 plot(tab1,title="Distribution of y (%)",ylab="Percentages",xlab="",ylim=c(0,100))
 ```
+
+
+If there is one explicative variable, it will be split by color and split on the x-axis:
+
+```{r fig.width = 8, fig.height = 6}
+# one categorical response ; one categorical explicative variable
+
+tab1=report.quali(data=data,y="y_logistic",x1="GROUP")
+plot(tab1,title="Distribution of y per treatment group (%)",
+ylab="Percentages",xlab="",ylim=c(0,100),legend.label="Levels of y")
+```
+
+
+If there is two explicative variables, it will be split by color, split on the x-axis and split by panels:
+
+
+```{r fig.width = 8, fig.height = 6}
+# one categorical response ; two categorical explicative variables
+
+tab1=report.quali(data=data,y="y_logistic",x1="GROUP",x2="VAR")
+plot(tab1,title="Distribution of y per treatment group\nand by level of VAR (%)",
+ylab="Percentages",xlab="",ylim=c(0,100),legend.label="Levels of y")
+```
+
+
+### LS-means graphics
+
+For LS-Means graphics, it will be pretty much the same graphics as the graphics
+of quantitative statistics.
+
+Instead of displaying the standard deviations, it's the 95% confidence intervals that are displayed.
+
+
+For one explicative variable:
+
+```{r fig.width = 8, fig.height = 6}
+# Only one categorical response
+
+
+mod=lme(y_numeric~GROUP,
+random=~1|SUBJID,data=data,na.action=na.omit)
+ 
+test=emmeans(mod,~GROUP)
+ 
+tab.mod=report.lsmeans(lsm=test,x1="GROUP",data=data)
+
+plot(tab.mod,title="LS-means evolution of y per treatment group",
+ylab="LS-Means",xlab="",add.ci=TRUE)
+
+```
+
+With two explicative variables:
+
+```{r fig.width = 8, fig.height = 6}
+# Only one categorical response
+
+
+mod=lme(y_numeric~baseline+GROUP+TIMEPOINT+GROUP*TIMEPOINT,
+random=~1|SUBJID,data=data,na.action=na.omit)
+ 
+test=emmeans(mod,~GROUP|TIMEPOINT)
+ 
+tab.mod=report.lsmeans(lsm=test,x1="GROUP",
+		x2="TIMEPOINT",at.row="TIMEPOINT",data=data)
+
+plot(tab.mod,title="LS-means evolution of y per treatment group\nas a function of time",
+ylab="LS-Means",xlab="",add.ci=TRUE)
+
+
+```
+
+
+
+
 
 
 

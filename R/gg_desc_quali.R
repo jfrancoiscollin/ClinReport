@@ -74,7 +74,7 @@ gg_desc_quali=function(desc,title="",ylim=NULL,xlim,xlab="",
 	Var2="Var2"
 	percent="percent"
 	
-	th=theme(plot.background = element_rect(
+	th=theme_bw()+theme(plot.background = element_rect(
 					colour = "black",
 					size = 1,
 					linetype = "solid"),legend.position="bottom",
@@ -84,7 +84,8 @@ gg_desc_quali=function(desc,title="",ylim=NULL,xlim,xlab="",
 	
 	if(!is.null(x1) & !is.null(x2))
 	{
-		gg=ggplot(stat, aes_(as.name(Var2),as.name(percent),fill=as.name(Var1))) +
+		gg=ggplot(stat, aes_(as.name(Var2),as.name(percent)
+		,fill=as.name(Var1))) +
 				geom_col()+facet_wrap(~Var3)+theme_bw()+
 				scale_fill_discrete(name=legend.label)+th+
 				ylim(ylim)+
@@ -97,8 +98,10 @@ gg_desc_quali=function(desc,title="",ylim=NULL,xlim,xlab="",
 	if(!is.null(x1) & is.null(x2))
 	{
 		
-		gg=ggplot(stat, aes_(as.name(Var2),as.name(percent))) +
-				geom_col()+theme_bw()+th+
+		gg=ggplot(stat, aes_(as.name(Var2),as.name(percent),
+								fill=as.name(Var1))) +
+				geom_col()+
+				scale_fill_discrete(name=legend.label)+th+
 				ylim(ylim)+
 				labs(title=title,x=xlab,y=ylab)
 		
@@ -110,15 +113,12 @@ gg_desc_quali=function(desc,title="",ylim=NULL,xlim,xlab="",
 	{
 		
 		gg=ggplot(stat, aes_(as.name(Var1),as.name(percent))) +
-				geom_col()+theme_bw()+th+
+				geom_col()+th+
 				ylim(ylim)+	labs(title=title,x=xlab,y=ylab)
 		
 		return(gg)
 		
 	}
-	
-	
-	
 }
 
 
