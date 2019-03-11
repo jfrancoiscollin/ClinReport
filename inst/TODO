@@ -7,5 +7,14 @@ une statistique à un report.quanti ou report.quali
 exemple coefficient de variation, rapport de corrélation, etc ...
 
 
+add row.percentage and column.percentages in the exmaple  of the vignette
+
+
+create the transpose.desc function to put statistics in column
+
+add the possibility to combine in column qualitative and quantitative stats
+(example of xavier request)
+
+
 compléter la vignette avec les graphiques et un exemples sur le split.desc
 structurer le site .io avec des onglets "Get Started" "Tables" "Graphics" "Modify outputs" "Export to Word" 

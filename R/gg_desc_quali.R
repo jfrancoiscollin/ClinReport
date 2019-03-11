@@ -53,7 +53,8 @@
 #' @import ggplot2
 
 
-gg_desc_quali=function(desc,title="",ylim=NULL,xlim,xlab="",ylab="Percentage",
+gg_desc_quali=function(desc,title="",ylim=NULL,xlim,xlab="",
+		ylab="Percentage",
 		legend.label="Group")
 {
 	
@@ -66,26 +67,28 @@ gg_desc_quali=function(desc,title="",ylim=NULL,xlim,xlab="",ylab="Percentage",
 	stat=na.omit(stat)
 	stat$percent=100*(stat$Freq.x/stat$Freq.y)
 	
-	if(is.null(ylim)) ylim=c(min(stat[,"percent"],na.rm=T),max(stat[,"percent"],na.rm=T))
+	if(is.null(ylim)) ylim=c(0,max(stat[,"percent"],na.rm=T))
 	
 	
 	Var1="Var1"
 	Var2="Var2"
 	percent="percent"
 	
+	th=theme(plot.background = element_rect(
+					colour = "black",
+					size = 1,
+					linetype = "solid"),legend.position="bottom",
+			title=element_text(size = 10),
+			axis.text.x=element_text(angle =45,hjust=1))
+	
+	
 	if(!is.null(x1) & !is.null(x2))
 	{
 		gg=ggplot(stat, aes_(as.name(Var2),as.name(percent),fill=as.name(Var1))) +
 				geom_col()+facet_wrap(~Var3)+theme_bw()+
-				scale_fill_discrete(name=legend.label)+
-				theme(plot.background = element_rect(
-								colour = "black",
-								size = 1,
-								linetype = "solid"),legend.position="bottom",
-						title=element_text(size = 10),
-						axis.text.x=element_text(angle =45,hjust=1))+xlab("")+
-				ylab(ylab)+xlab(xlab)+
-				labs(title=title)
+				scale_fill_discrete(name=legend.label)+th+
+				ylim(ylim)+
+				labs(title=title,x=xlab,y=ylab)
 		
 		return(gg)
 	}
@@ -95,15 +98,9 @@ gg_desc_quali=function(desc,title="",ylim=NULL,xlim,xlab="",ylab="Percentage",
 	{
 		
 		gg=ggplot(stat, aes_(as.name(Var2),as.name(percent))) +
-				geom_col()+theme_bw()+
-				theme(plot.background = element_rect(
-								colour = "black",
-								size = 1,
-								linetype = "solid"),legend.position="bottom",
-						title=element_text(size = 10),
-						axis.text.x=element_text(angle =45,hjust=1))+xlab("")+
-				ylab(ylab)+xlab(xlab)+
-				labs(title=title)
+				geom_col()+theme_bw()+th+
+				ylim(ylim)+
+				labs(title=title,x=xlab,y=ylab)
 		
 		return(gg)
 		
@@ -113,15 +110,8 @@ gg_desc_quali=function(desc,title="",ylim=NULL,xlim,xlab="",ylab="Percentage",
 	{
 		
 		gg=ggplot(stat, aes_(as.name(Var1),as.name(percent))) +
-				geom_col()+theme_bw()+
-				theme(plot.background = element_rect(
-								colour = "black",
-								size = 1,
-								linetype = "solid"),legend.position="bottom",
-						title=element_text(size = 10),
-						axis.text.x=element_text(angle =45,hjust=1))+xlab("")+
-				ylab(ylab)+xlab(xlab)+
-				labs(title=title)
+				geom_col()+theme_bw()+th+
+				ylim(ylim)+	labs(title=title,x=xlab,y=ylab)
 		
 		return(gg)
 		

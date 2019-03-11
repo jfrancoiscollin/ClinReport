@@ -90,5 +90,25 @@ ylim=c(-1,8))
 ```
 
 
+### Qualitative graphics
+
+
+
+
+```{r}
+# Only one categorical response
+
+tab1=report.quali(data=data,y="y_logistic")
+plot(tab1,title="Distribution of y (%)",ylab="Percentages",xlab="",ylim=c(0,100))
+```
+
+
+
+
+
+
+
+
+
 
 

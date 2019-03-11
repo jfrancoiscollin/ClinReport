@@ -88,7 +88,7 @@ plot.desc=function(x,...,title="",ylim=NULL,xlim,xlab="",ylab="",
 	
 	if(x$type.desc=="lsmeans")
 	{
-		gg=gg_desc_lsmeans(x,title=title,ylim=ylim,xlim=xlim,xlab=xlab,ylab="",
+		gg=gg_desc_lsmeans(x,title=title,ylim=ylim,xlim=xlim,xlab=xlab,ylab=ylab,
 				legend.label=legend.label,add.ci=add.ci,add.line=add.line)
 		
 		return(gg)
@@ -96,7 +96,7 @@ plot.desc=function(x,...,title="",ylim=NULL,xlim,xlab="",ylab="",
 	
 	if(x$type.desc=="quali")
 	{
-		gg=gg_desc_quali(x,title=title,ylim=ylim,xlim=xlim,xlab=xlab,ylab="",
+		gg=gg_desc_quali(x,title=title,ylim=ylim,xlim=xlim,xlab=xlab,ylab=ylab,
 				legend.label=legend.label)
 		
 		return(gg)

@@ -6,7 +6,7 @@ ClinReport R package
 [![CRAN
 status](https://www.r-pkg.org/badges/version/ClinReport)](https://cran.r-project.org/package=ClinReport)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-![cranlogs](http://cranlogs.r-pkg.org./badges/officer)
+![cranlogs](http://cranlogs.r-pkg.org./badges/ClinReport)
 
 ## Introduction
 
