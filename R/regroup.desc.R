@@ -100,7 +100,14 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 		if(is.null(y$x1)) stop("x1 argument cannot be NULL: binding impossible")
 		if(is.null(x$x1)) stop("x1 argument cannot be NULL: binding impossible")
 		if(x$x1!=y$x1) stop("Different x1 argument: binding impossible")
-		if(x$subjid!=y$subjid) stop("Different subjid argument: binding impossible")
+		
+		if(!is.null(x$subjid) & !is.null(y$subjid))
+		{
+			if(x$subjid!=y$subjid) stop("Different subjid argument: binding impossible")
+		}
+		
+		if(is.null(x$subjid) & !is.null(y$subjid)) stop("Different subjid argument: binding impossible")
+		if(!is.null(x$subjid) & is.null(y$subjid)) stop("Different subjid argument: binding impossible")
 		
 		if(x$type.desc=="quanti") out.x$Levels=""
 		if(y$type.desc=="quanti") out.y$Levels=""
@@ -145,8 +152,16 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 		if(is.null(y$x1)) stop("x1 argument cannot be NULL: binding impossible")
 		if(is.null(x$x1)) stop("x1 argument cannot be NULL: binding impossible")
 		if(x$x1!=y$x1) stop("Different x1 argument: binding impossible")
-		if(x$subjid!=y$subjid) stop("Different subjid argument: binding impossible")
 		
+		if(!is.null(x$subjid) & !is.null(y$subjid))
+		{
+			if(x$subjid!=y$subjid) stop("Different subjid argument: binding impossible")
+		}
+		
+		if(is.null(x$subjid) & !is.null(y$subjid)) stop("Different subjid argument: binding impossible")
+		if(!is.null(x$subjid) & is.null(y$subjid)) stop("Different subjid argument: binding impossible")
+			
+			
 		nbcol=x$nbcol
 		
 		r=rbind(out.x,out.y)
