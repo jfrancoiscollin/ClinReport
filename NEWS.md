@@ -72,9 +72,10 @@ return a message if they are not (eventually transform character variables into 
 ## Enhancement
 
 * Add the add.stat function to add a specific statistic in report.quanti function
-* Improve the regroup function to regroup two quantitative desc object*
+* Improve the regroup function to regroup two quantitative desc object
 * Improve the report.quanti function so it's now possible to not systematically have the default statistics.
 The user can now implement it's own statistics using argument func.stat and func.stat.name.
+* Complete the vignettes
 
 
 

@@ -44,6 +44,13 @@ report.doc(tab,title="Example of a specific statistic reporting",
 colspan.value="Treatment group")
 
 ## ------------------------------------------------------------------------
+tab=report.quali(data=data,y="y_logistic",x1="GROUP",
+total=TRUE,subjid="SUBJID",percent.col=FALSE)
+
+report.doc(tab,title="Example of row percentage reporting",
+colspan.value="Treatment group")
+
+## ------------------------------------------------------------------------
 # The default statistics are given here:
  
 tab1=report.quanti(data=data,y="y_numeric",x1="GROUP",total=TRUE,subjid="SUBJID")

@@ -2,7 +2,7 @@ Package: ClinReport
 Type: Package
 Title: Statistical Reporting in Clinical Trials
 Version: 0.9.1.11
-Date: 2019-02-28
+Date: 2019-03-12
 Author: Jean-Francois Collin
 Maintainer: Jean-Francois Collin <jfcollin@live.fr>
 Description: It enables to create easily formatted statistical tables in 'Microsoft Word' documents in pretty formats according to 'clinical standards'. It can be used also outside the scope of clinical trials, for any statistical reporting in 'Word'. Descriptive tables for quantitative statistics (mean, median, max etc..) and/or qualitative statistics (frequencies and percentages) are available and formatted tables of Least Square Means of Linear Models, Linear Mixed Models and Generalized Linear Mixed Models coming from emmeans() function are also available. The package works with 'officer' and 'flextable' packages to export the outputs into 'Microsoft Word' documents.       

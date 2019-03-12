@@ -17,9 +17,9 @@
 #' The package works with officer and flextable packages to export the outputs
 #' into Microsoft Word documents.   
 #' 
-#' There are 2 main functions for descriptive reporting : \code{report.quanti} and \code{report.quali}
+#' There are two main functions for descriptive reporting : \code{report.quanti} and \code{report.quali}
 #' 
-#' There is 1 unique function for model LS means reporting: \code{report.lsmeans}
+#' There is one unique function for LS means reporting: \code{report.lsmeans}
 #'  
 #' Each of those 3 functions creates a desc object that can be used with \code{report.doc} to export the result(s) 
 #' into a Word document. This is the unique function to export the output(s) into a Word document.
@@ -27,6 +27,8 @@
 #' Future versions will improve the "standard" graphic reporting, 
 #' the anova table reporting and statistics tables specific for Adverse Events reporting. Survival models will also be included. 
 #'     
+#' You can visit the website for more exmaples: \href{https://jfrancoiscollin.github.io/ClinReport}{ClinReport website}
+#' 
 #' @author Jean-Francois Collin, \email{jfcollin@@live.fr}
 #' @docType package
 #' @name ClinReport

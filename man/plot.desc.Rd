@@ -4,9 +4,9 @@
 \alias{plot.desc}
 \title{Display the corresponding graphic of statistical table}
 \usage{
-\method{plot}{desc}(x, ..., title = "", ylim = NULL, xlim, xlab = "",
-  ylab = "", legend.label = "Group", add.sd = F, add.ci = F,
-  add.line = T)
+\method{plot}{desc}(x, ..., title = "", ylim = NULL, xlim = NULL,
+  xlab = "", ylab = "", legend.label = "Group", add.sd = F,
+  add.ci = F, size.title = 10, add.line = T)
 }
 \arguments{
 \item{x}{A desc object}
@@ -28,6 +28,8 @@
 \item{add.sd}{Logical. If TRUE it adds bars to the means representing +/-SD (for desc quanti reporting only)}
 
 \item{add.ci}{Logical. If TRUE it adds bars to the means representing 95\% CI (for LS Means reporting only)}
+
+\item{size.title}{Numeric. used to specify the font size of the title}
 
 \item{add.line}{Logical. If TRUE it joins the dots with a line (default to TRUE)}
 }

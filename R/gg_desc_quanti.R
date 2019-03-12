@@ -60,7 +60,7 @@
 #' @import ggplot2
 
 
-gg_desc_quanti=function(desc,title="",ylim=NULL,xlim,xlab="",ylab="",
+gg_desc_quanti=function(desc,title="",ylim=NULL,xlim=NULL,xlab="",ylab="",
 		legend.label="Group",add.sd=F)
 {
 	
@@ -149,6 +149,12 @@ gg_desc_quanti=function(desc,title="",ylim=NULL,xlim,xlab="",ylab="",
 	{
 		gg=gg+ylim(ylim)
 	}
+	
+	if(!is.null(xlim)) 
+	{
+		gg=gg+ylim(xlim)
+	}
+	
 	
 	return(gg)
 	

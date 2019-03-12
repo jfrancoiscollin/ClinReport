@@ -74,7 +74,7 @@
 #' 
 #' @export
 
-plot.desc=function(x,...,title="",ylim=NULL,xlim,xlab="",ylab="",
+plot.desc=function(x,...,title="",ylim=NULL,xlim=NULL,xlab="",ylab="",
 		legend.label="Group",add.sd=F,add.ci=F,size.title=10,add.line=T)
 {
 	

@@ -65,7 +65,7 @@
       <h1>ClinReport Vignette 1: Get Started</h1>
                         <h4 class="author">Jean-Francois COLLIN</h4>
             
-            <h4 class="date">2019-03-08</h4>
+            <h4 class="date">2019-03-12</h4>
       
       
       <div class="hidden name"><code>clinreport_vignette_get_started.Rmd</code></div>
@@ -153,9 +153,10 @@
 <p><img src="clinreport_vignette_get_started_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>You can modify the plot by using the following arguments of the <code><a href="../reference/plot.desc.html">plot.desc()</a></code> function:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/args">args</a></span>(ClinReport<span class="op">:::</span>plot.desc)</a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="co">#&gt; function (x, ..., title = "", ylim = NULL, xlim, xlab = "", ylab = "", </span></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="co">#&gt;     legend.label = "Group", add.sd = F, add.ci = F, add.line = T) </span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="co">#&gt; NULL</span></a></code></pre></div>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co">#&gt; function (x, ..., title = "", ylim = NULL, xlim = NULL, xlab = "", </span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="co">#&gt;     ylab = "", legend.label = "Group", add.sd = F, add.ci = F, </span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="co">#&gt;     size.title = 10, add.line = T) </span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt; NULL</span></a></code></pre></div>
 <p>Then we can use the <code><a href="../reference/report.doc.html">report.doc()</a></code> function which use the <strong>flextable</strong> package to format the output into a <code>flextable</code> object, ready to export to <code>Microsoft Word</code> with the <strong>officer</strong> package.</p>
 <p>The table will look like this (we can have a preview in HTML, just to check):</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="../reference/report.doc.html">report.doc</a></span>(tab1,<span class="dt">title=</span><span class="st">"Quantitative statistics (2 explicative variables)"</span>,</a>
@@ -446,9 +447,10 @@
 <p>Write the doc to a docx file:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">file=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempfile</a></span>(),<span class="st">".docx"</span>,<span class="dt">sep=</span><span class="st">""</span>)</a>
 <a class="sourceLine" id="cb8-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(doc, <span class="dt">target =</span>file)</a>
-<a class="sourceLine" id="cb8-3" title="3"></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="co">#Open it</span></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="co">#shell.exec(file)</span></a></code></pre></div>
+<a class="sourceLine" id="cb8-3" title="3"><span class="co">#&gt; Note: zip::zip() is deprecated, please use zip::zipr() instead</span></a>
+<a class="sourceLine" id="cb8-4" title="4"></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="co">#Open it</span></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="co">#shell.exec(file)</span></a></code></pre></div>
 </div>
 <div id="the-different-outputs" class="section level2">
 <h2 class="hasAnchor">
