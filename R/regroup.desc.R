@@ -13,7 +13,7 @@
 #' 
 #' @description
 #' \code{regroup} 
-#' Regroup 2 desc objects into a single desc object.
+#' regroup two descriptive tables (qualitative or quantitative) into one
 #' 
 #' @details
 #' 
@@ -30,7 +30,7 @@
 #' For now it's not possible to regroup two qualitative tables.
 #' 
 #' @return  
-#' A desc object of type.desc="quali_quanti"
+#' A desc object corresponding to a table of statistics. 
 #' 
 #' @seealso \code{\link{report.quali}} \code{\link{report.quanti}} \code{\link{report.doc}} \code{\link{desc}}
 #' 
