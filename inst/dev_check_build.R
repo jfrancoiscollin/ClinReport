@@ -63,7 +63,8 @@ devtools::build_vignettes()
 
 
 
-
+# to avoid the check of the docs directory
+# when check as cran
 #usethis::use_build_ignore("docs")
 
 check(args ="--as-cran")

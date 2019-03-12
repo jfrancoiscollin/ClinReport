@@ -4,7 +4,7 @@ author: "Jean-Francois COLLIN"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ClinReport Vignette}
+  %\VignetteIndexEntry{ClinReport Vignette 1}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
