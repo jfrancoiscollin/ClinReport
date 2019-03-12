@@ -19,11 +19,11 @@ regroup(x, y, ...)
 \item{rbind.label}{Character. The label for rbind column header}
 }
 \value{
-A desc object of type.desc="quali_quanti"
+A desc object corresponding to a table of statistics.
 }
 \description{
 \code{regroup} 
-Regroup 2 desc objects into a single desc object.
+regroup two descriptive tables (qualitative or quantitative) into one
 }
 \details{
 Regroup a quantitative table and a qualitative table, is only possible if there is one and only one explicative variable.
