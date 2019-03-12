@@ -7,7 +7,10 @@ une statistique à un report.quanti ou report.quali
 exemple coefficient de variation, rapport de corrélation, etc ...
 
 
-add row.percentage and column.percentages in the exmaple  of the vignette
+add SEM and color in gg_desc_quanti if x1!=NULL and x2=NULL
+
+update the news file with the correction of the bug of add.stat if subjid=NULL
+
 
 
 create the transpose.desc function to put statistics in column

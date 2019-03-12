@@ -77,10 +77,12 @@ return a message if they are not (eventually transform character variables into 
 The user can now implement it's own statistics using argument func.stat and func.stat.name.
 * Complete the vignettes
 
+# ClinReport 0.9.1.12
 
 
+## Issues
 
-
+* correction of add.stat: when subjid=NULL add.stat didn't work
 
 
 
