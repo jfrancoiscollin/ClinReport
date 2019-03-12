@@ -2,7 +2,7 @@
 % Please edit documentation in R/split.desc.R
 \name{split.desc}
 \alias{split.desc}
-\title{Split method for desc object}
+\title{Split a table of statistics in two.}
 \usage{
 \method{split}{desc}(x, f, drop, ..., variable, at)
 }
@@ -20,10 +20,10 @@
 \item{at}{Integer. Indicates the maximum number of levels to include in the first splitted table}
 }
 \description{
-Split method for desc object
+Split a table of statistics in two.
 }
 \details{
-Used for splitting an output in two. It can be used when the table
+Used for splitting an output in two. It can be used for example when the table
 takes too much space in a page of a Word document (see the example below).
 }
 \examples{

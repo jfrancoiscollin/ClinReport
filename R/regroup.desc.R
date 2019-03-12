@@ -17,7 +17,7 @@
 #' 
 #' @details
 #' 
-#' To regroup a quantitative table and a qualitative table, it's only possible if there is one and only one explicative variable.
+#' Regroup a quantitative table and a qualitative table, is only possible if there is one and only one explicative variable.
 #' So it works if and only if \code{x1} argument in \code{x} and \code{y} objects are not NULL, are the same 
 #' and if \code{x2} argument is NULL in both \code{x} and \code{y} objects.
 #' 

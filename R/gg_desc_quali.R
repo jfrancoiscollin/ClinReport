@@ -53,7 +53,7 @@
 #' @import ggplot2
 
 
-gg_desc_quali=function(desc,title="",ylim=NULL,xlim,xlab="",
+gg_desc_quali=function(desc,title="",ylim=NULL,xlim=NULL,xlab="",
 		ylab="Percentage",
 		legend.label="Group")
 {
@@ -67,7 +67,7 @@ gg_desc_quali=function(desc,title="",ylim=NULL,xlim,xlab="",
 	stat=na.omit(stat)
 	stat$percent=100*(stat$Freq.x/stat$Freq.y)
 	
-	if(is.null(ylim)) ylim=c(0,max(stat[,"percent"],na.rm=T))
+	if(is.null(ylim)) ylim=c(0,100)
 	
 	
 	Var1="Var1"

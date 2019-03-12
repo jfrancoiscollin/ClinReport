@@ -28,6 +28,7 @@ library(rmarkdown)
 
 setwd("C:\\Users\\jfcollin\\git")
 
+roxygenize("C:\\Users\\jfcollin\\git")
 
 
 ###############################################
@@ -61,7 +62,6 @@ devtools::build_vignettes()
 
 
 
-roxygenize("C:\\Users\\jfcollin\\git")
 
 
 #usethis::use_build_ignore("docs")

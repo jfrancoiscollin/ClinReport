@@ -33,7 +33,9 @@
 <meta property="og:title" content="Export a statistical table into 'Microsoft Word' — report.doc" />
 
 <meta property="og:description" content="report.doc 
-Export the table to MS word in &quot;clinical standard&quot; format." />
+This function enables to export the table created with report.quali report.quanti or report.lsmeans
+to a Microsoft Word in a &quot;clinical standard&quot; format.
+It's also possible to use it to have a preview of the table in HTML format if the doc argument is NULL." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -106,7 +108,9 @@ Export the table to MS word in &quot;clinical standard&quot; format." />
     <div class="ref-description">
     
     <p><code>report.doc</code> 
-Export the table to MS word in "clinical standard" format.</p>
+This function enables to export the table created with <code><a href='report.quali.html'>report.quali</a></code> <code><a href='report.quanti.html'>report.quanti</a></code> or <code><a href='report.lsmeans.html'>report.lsmeans</a></code>
+to a Microsoft Word in a "clinical standard" format.</p>
+<p>It's also possible to use it to have a preview of the table in HTML format if the doc argument is NULL.</p>
     
     </div>
 
@@ -175,11 +179,13 @@ Export the table to MS word in "clinical standard" format.</p>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A flextable object (if doc=NULL) or a rdocx object (if doc= an rdocx object).</p>
+    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>It creates a flextable object from a desc object and can eventually add it directly into a rdocx object.
- @return  
-A flextable object or a rdocx object.</p>
+    <p>It creates a flextable object from a desc object and can eventually add it directly into a rdocx object.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -404,7 +410,8 @@ by treatment group (95% CI Poisson model)"</span>,
 
 <span class='no'>doc</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/officer/topics/body_add_par'>body_add_par</a></span>(<span class='no'>doc</span>,<span class='st'>"Corresponding graphic of output 3"</span>, <span class='kw'>style</span> <span class='kw'>=</span><span class='st'>"Normal"</span>)
 
-<span class='no'>doc</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/officer/topics/body_add_gg'>body_add_gg</a></span>(<span class='no'>doc</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>gg2</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"centered"</span> )</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 18 rows containing missing values (geom_col).</span></div><div class='input'>
+<span class='no'>doc</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/officer/topics/body_add_gg'>body_add_gg</a></span>(<span class='no'>doc</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>gg2</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"centered"</span> )
+
 <span class='no'>doc</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/officer/topics/body_add_break'>body_add_break</a></span>(<span class='no'>doc</span>)
 
 <span class='no'>doc</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/officer/topics/body_add_par'>body_add_par</a></span>(<span class='no'>doc</span>,<span class='st'>"Example of mixing qualitative and quantitative
@@ -492,7 +499,7 @@ statistics with the function regroup"</span>, <span class='kw'>style</span> <spa
 
 
 <span class='no'>file</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempfile</a></span>(),<span class='st'>".docx"</span>,<span class='kw'>sep</span><span class='kw'>=</span><span class='st'>""</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>doc</span>, <span class='kw'>target</span> <span class='kw'>=</span><span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Note: zip::zip() is deprecated, please use zip::zipr() instead</span></div><div class='output co'>#&gt; [1] "C:/Users/jfcollin/AppData/Local/Temp/RtmpGArbQS/file13885c0c2385.docx"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/shell.exec'>shell.exec</a></span>(<span class='no'>file</span>)</div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>doc</span>, <span class='kw'>target</span> <span class='kw'>=</span><span class='no'>file</span>)</div><div class='output co'>#&gt; <span class='message'>Note: zip::zip() is deprecated, please use zip::zipr() instead</span></div><div class='output co'>#&gt; [1] "C:/Users/jfcollin/AppData/Local/Temp/RtmpAznf9e/file1a845d551538.docx"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/shell.exec'>shell.exec</a></span>(<span class='no'>file</span>)</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -500,6 +507,8 @@ statistics with the function regroup"</span>, <span class='kw'>style</span> <spa
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>

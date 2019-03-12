@@ -33,12 +33,12 @@ report.doc(tab3,title="Mixed Qualitative and Quantitative output",
 colspan.value="Treatment group")
 
 ## ------------------------------------------------------------------------
-mystat2=function(x) mean(x,na.rm=T)/sd(x,na.rm=T) 
+es=function(x) mean(x,na.rm=T)/sd(x,na.rm=T) 
 
 tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
 total=TRUE,subjid="SUBJID",
-func.stat=mystat2,
-func.stat.name="Coefficient of variation")
+func.stat=es,
+func.stat.name="Effect size")
 
 report.doc(tab,title="Example of a specific statistic reporting",
 colspan.value="Treatment group")

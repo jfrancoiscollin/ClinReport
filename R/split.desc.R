@@ -3,7 +3,7 @@
 # Author: jfcollin
 ###############################################################################
 
-#' Split method for desc object
+#' Split a table of statistics in two.
 #' 
 #' @param x A desc object
 #' @param variable Character. Indicates the variable to use for the split
@@ -13,7 +13,7 @@
 #' @param ... Other parameters
 #' 
 #' @details 
-#' Used for splitting an output in two. It can be used when the table
+#' Used for splitting an output in two. It can be used for example when the table
 #' takes too much space in a page of a Word document (see the example below).
 #' 
 #' @seealso \code{\link{desc}} 

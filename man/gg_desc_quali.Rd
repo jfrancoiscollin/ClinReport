@@ -4,8 +4,8 @@
 \alias{gg_desc_quali}
 \title{Creates a ggplot object corresponding to a qualitative desc object}
 \usage{
-gg_desc_quali(desc, title = "", ylim = NULL, xlim, xlab = "",
-  ylab = "Percentage", legend.label = "Group")
+gg_desc_quali(desc, title = "", ylim = NULL, xlim = NULL,
+  xlab = "", ylab = "Percentage", legend.label = "Group")
 }
 \arguments{
 \item{desc}{Desc object}

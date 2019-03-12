@@ -6,7 +6,7 @@
 
 #' R documentation for ClinReport package
 #' 
-#' It enables to create easily a statistical reporting in Microsoft Word documents with tables in a pretty format according to "clinical standards".
+#' The aim is to create easily a statistical reporting in Microsoft Word documents with tables in a pretty format according to "clinical standards".
 #' 
 #' It can also be used outside the scope of clinical trials, for any statistical reporting in Word. 
 #' 

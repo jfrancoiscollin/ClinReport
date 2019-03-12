@@ -438,9 +438,10 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>Write the doc to a docx file:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">file=<span class="kw">paste</span>(<span class="kw">tempfile</span>(),<span class="st">&quot;.docx&quot;</span>,<span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</a>
 <a class="sourceLine" id="cb8-2" title="2"><span class="kw">print</span>(doc, <span class="dt">target =</span>file)</a>
-<a class="sourceLine" id="cb8-3" title="3"></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="co">#Open it</span></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="co">#shell.exec(file)</span></a></code></pre></div>
+<a class="sourceLine" id="cb8-3" title="3"><span class="co">#&gt; Note: zip::zip() is deprecated, please use zip::zipr() instead</span></a>
+<a class="sourceLine" id="cb8-4" title="4"></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="co">#Open it</span></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="co">#shell.exec(file)</span></a></code></pre></div>
 </div>
 <div id="the-different-outputs" class="section level2">
 <h2>The different outputs</h2>

@@ -15,16 +15,16 @@
 #' 
 #' @description
 #' \code{add.stat.desc} 
-#' It enables to add a specific quantitative statistic into an existing table.
+#' enables to add a specific quantitative statistic into an existing table of statistics.
 #' 
 #' @details
-#' Enables the user to add a specific statistic in a desc object (only works for quantitative statistics for now).
-#' It calls the report.quanti function with the same attributes as the tab argument and use the reproup function.
-#' to bind the two results.
+#' Add a specific statistic in a desc object (only works for quantitative statistics for now).
+#' It calls the \code{\link{report.quanti}} function with the same attributes as the tab argument and 
+#' uses the \code{\link{regroup}} function to bind the two results.
 #' 
 #' 
 #' @return  
-#' A "quanti" desc object (desc$type.desc="quanti")
+#' A "quanti" desc object (desc$type.desc equal to "quanti")
 #' 
 #' @seealso \code{\link{regroup}} \code{\link{report.quanti}} 
 #' 

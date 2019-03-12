@@ -53,7 +53,7 @@ A desc object
 Creates a desc object.
 }
 \details{
-No detail.
+Used internally by code{report.XXX} functions
 }
 \examples{
 

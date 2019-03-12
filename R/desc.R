@@ -32,12 +32,13 @@
 #' 
 #' 
 #' @details
-#' No detail.
+#' Used internally by code{report.XXX} functions
+#' 
 #' @return  
 #' A desc object
 #' 
 #' @seealso \code{\link{report.quali}} \code{\link{report.quanti}} \code{\link{report.lsmeans}} 
-
+#' 
 #' @examples
 #' 
 #'\dontrun{
@@ -46,7 +47,10 @@
 #' 
 #' }
 #' 
-#' @export
+#' @export 
+
+
+
 
 desc=function(output=NULL,total=NULL,nbcol=NULL,y=NULL,x1=NULL,x2=NULL,
 		at.row=NULL,

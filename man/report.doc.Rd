@@ -41,14 +41,18 @@ report.doc(table, ...)
 
 \item{anova}{Logical. Used to specify if the table is an anova table. By default it's not}
 }
+\value{
+A flextable object (if doc=NULL) or a rdocx object (if doc= an rdocx object).
+}
 \description{
 \code{report.doc} 
-Export the table to MS word in "clinical standard" format.
+This function enables to export the table created with \code{\link{report.quali}} \code{\link{report.quanti}} or \code{\link{report.lsmeans}}
+to a Microsoft Word in a "clinical standard" format. 
+
+It's also possible to use it to have a preview of the table in HTML format if the doc argument is NULL.
 }
 \details{
 It creates a flextable object from a desc object and can eventually add it directly into a rdocx object.
- @return  
-A flextable object or a rdocx object.
 }
 \examples{
 \dontshow{
