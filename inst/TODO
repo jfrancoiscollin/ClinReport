@@ -19,5 +19,11 @@ add the possibility to combine in column qualitative and quantitative stats
 (example of xavier request)
 
 
-compléter la vignette avec les graphiques et un exemples sur le split.desc
-structurer le site .io avec des onglets "Get Started" "Tables" "Graphics" "Modify outputs" "Export to Word" 
+Ajouter une vignette avec un exemple de rapport stat complet?
+
+
+Ajouter le reporting des modèles de survie (package survival et frailtyPenal)
+
+Mettre des espaces dans les lignes verticales des outputs au même niveaux que 
+at.row
+

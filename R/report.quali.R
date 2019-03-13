@@ -110,7 +110,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	if(is.null(y)) stop("y argument cannot be NULL")
 	if(class(data)!="data.frame") stop("data argument should be a data.frame")
 	if(class(y)!="character") stop("Dear user. y argument should be a character")
-
+	
 	y=check.x(data,y)
 	
 	if(!is.null(x2))
@@ -321,9 +321,16 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	
 	# Spacing results
 	
+     # check: si c'est mal renseigné on le met à null avec un message
+	if(!any(colnames(freq)==at.row)) 
+	{
+		message("at.row argument was not found in the colnames of the statistic table produced (probably mispelled)\n
+        so it has been set to NULL")
+		at.row=NULL
+	}	
 	
 	if(!is.null(at.row))
-	{
+	{	
 		freq=spacetable(freq,at.row=at.row)
 	}
 	

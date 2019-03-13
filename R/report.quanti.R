@@ -495,6 +495,15 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		
 	}
 	
+	# Spacing the results
+	
+	# check: si c'est mal renseigné on le met à null avec un message
+	if(!any(colnames(stat2)==at.row)) 
+	{
+		message("at.row argument was not found in the colnames of the statistic table produced (probably mispelled)\n
+						so it has been set to NULL")
+		at.row=NULL
+	}	
 	
 	
 	if(!is.null(at.row))
