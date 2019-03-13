@@ -83,11 +83,12 @@ report.doc(tab1,title="Quantitative statistics (2 explicative variables)",
 		colspan.value="Treatment group", init.numbering =T )			
 ```
 
-The `init.numbering` argument is used to specify that
-it's the first output. After that, all output numbers
-will be increased automatically after each call of the function `report.doc()`.
+All output numbers will be increased automatically after each call of the function `report.doc()`.
 
-Then, we add those results to a `rdocx` object:
+You can restart the numbering of the outputs by using `init.numbering=T` 
+argument in `report.doc()` function.
+
+Finally, we add those results to a `rdocx` object:
 
 ```{r}
 doc=read_docx()
@@ -112,7 +113,7 @@ print(doc, target =file)
 ### Qualitative tables
 
 
-An example of qualitative statistics with one explicative variables
+An example of qualitative statistics with one explicative variable
 
 ```{r}
 tab=report.quali(data=data,y="y_logistic",
@@ -139,7 +140,7 @@ colspan.value="Treatment group")
 
 
 
-An example of quantitative statistics with one explicative variables
+An example of quantitative statistics with one explicative variable
 
 ```{r}
 tab=report.quanti(data=data,y="y_numeric",
@@ -180,7 +181,7 @@ tab2=report.quali(data=data,y="y_logistic",
 tab3=regroup(tab1,tab2,rbind.label="The label of your choice")
 
 
-report.doc(tab3,title="Mixed Qualitative and Quantitative output",
+report.doc(tab3,title="Mixed Qualitative and Quantitative outputs",
 colspan.value="Treatment group")
 ```
 
