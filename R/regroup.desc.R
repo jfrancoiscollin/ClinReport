@@ -93,6 +93,9 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 	if(x$type.desc!=y$type.desc)
 	{
 		
+		if(x$regrouped==T & y$regrouped==F)  y$output$rbind.label=y$y.label
+		if(x$regrouped==F & y$regrouped==T)  x$output$rbind.label=x$y.label
+		
 		if(!is.null(x$x2) | !is.null(y$x2)) stop("Binding impossible with x2 argument not NULL")
 		
 		#check
@@ -134,7 +137,9 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 				type.desc="quali_quanti",
 				at.row=rbind.label,
 				subjid=x$subjid,
-				nbcol=nbcol)
+				nbcol=nbcol,
+				regrouped=T,
+				rbind.label=rbind.label)
 		
 		return(r)
 		
@@ -145,7 +150,8 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 	if(x$type.desc=="quanti" & y$type.desc=="quanti")
 	{
 		
-		
+		if(x$regrouped==T & y$regrouped==F)  y$output$rbind.label=y$y.label
+		if(x$regrouped==F & y$regrouped==T)  x$output$rbind.label=x$y.label
 		
 		
 		if(x$total!=y$total) stop("Different Total argument: binding impossible")
@@ -204,7 +210,9 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 				type.desc=x$type.desc,subjid=x$subjid,
 				nbcol=nbcol,
 				stat.name=x$stat.name,
-				at.row=x$at.row)
+				at.row=x$at.row,
+				regrouped=T,
+				rbind.label=rbind.label)
 		
 		return(r)
 		

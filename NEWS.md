@@ -85,7 +85,7 @@ The user can now implement it's own statistics using argument func.stat and func
 * correction of add.stat: when subjid=NULL add.stat didn't work
 * correction in report.quanti: if default quantitative stat were integer, the correct number of digits was not homogeneous
 * correction in report.quanti: total column was not rounded properly, it was always 2 digits
-            
+* correction: spacetable function, reordered lexically the at.row factor: corrected      
 
 
 
