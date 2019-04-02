@@ -317,6 +317,18 @@ shell.exec(file)
 
 
 
+f=function(a)
+{
+	if(class(substitute(a))=="name")
+	{
+		x=as.character(substitute(a))
+		x	
+	}else
+	{
+		a
+	}
+
+}
 
 
 

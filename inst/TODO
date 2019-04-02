@@ -2,16 +2,15 @@
 TODO list:
 
 tester le package avec testthat
-créer une fonction add.stat et remove.stat pour ajouter ou enlever 
+
+
+créer une fonction remove.stat? pour  enlever 
 une statistique à un report.quanti ou report.quali
-exemple coefficient de variation, rapport de corrélation, etc ...
 
 
 add SEM and color in gg_desc_quanti if x1!=NULL and x2=NULL
 
 update the news file with the correction of the bug of add.stat if subjid=NULL
-
-
 
 create the transpose.desc function to put statistics in column
 
@@ -25,5 +24,22 @@ Ajouter une vignette avec un exemple de rapport stat complet?
 Ajouter le reporting des modèles de survie (package survival et frailtyPenal)
 
 Mettre des espaces dans les lignes verticales des outputs au même niveaux que 
-at.row
+at.row: create a new vline function
+
+
+create a highlight argument in report.doc to underline some cells in the table
+
+add a note in the vignette to say that some will be horrified to the fact that I use 
+the sign = and not <- in my code. I never understood why to use 2 signs instead of 1
+is better... I use R for a long time, I always coded like this and it never
+causes me any issue. So because I'm antoconformist to some extends,
+I'll continue coding like this unless someone give the agument of the century!
+
+
+
+
+implement formula use?
+formula=(y~x1+x2)
+all.vars(formula)
+
 

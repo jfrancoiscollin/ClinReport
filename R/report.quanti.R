@@ -274,6 +274,21 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 			stat_list=c(stat_list,"mad"=mad)
 		}
 		
+		
+		# compute statistics
+		
+		stat=data.frame(by_GROUP %>% summarise_at(.funs=stat_list,.vars=y))
+		
+		# in case there are integers
+		#we transform into numeric so that values can be in the proper format
+
+		stat$mean=as.numeric(stat$mean)
+		stat$sd=as.numeric(stat$sd)
+		stat$median=as.numeric(stat$median)
+		stat$q1=as.numeric(stat$q1)
+		stat$q3=as.numeric(stat$q3)
+		stat$min=as.numeric(stat$min)
+		stat$max=as.numeric(stat$max)
 	}
 	
 	
@@ -282,19 +297,19 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	{
 		stat=paste0(substitute(func.stat))
 		stat_list=as.formula(paste0("~",stat,"(",y,")"))
+		
+		# compute statistics
+		
+		stat=data.frame(by_GROUP %>% summarise_at(.funs=stat_list,.vars=y))
+		
 	}
 	
-	
-	# compute statistics
-	
-	stat=data.frame(by_GROUP %>% summarise_at(.funs=stat_list,.vars=y))
-	
+		
 	# Save raw output for graphics
 	raw.stat=stat
 	
-	# format outputs
-	
-	ind=which(sapply(stat,class)=="numeric") 
+	# format outputs	
+	ind=which(sapply(stat,class)=="numeric") 	
 	stat[ind]=format(round(stat[ind],round),nsmall=round,scientific=scientific,digits=digits)
 	
 	# Regroup stat
@@ -397,7 +412,8 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 			
 			temp=report.quanti(data=data,y=y,y.label="Total",add.mad=add.mad,
 					default.stat=default.stat,func.stat=func.stat,stat.name=stat.name,
-					func.stat.name=func.stat.name)$output
+					func.stat.name=func.stat.name,round=round,digits=digits,
+					scientific=scientific)$output
 			stat2=merge(stat2,temp,by=stat.name)
 		}
 		
@@ -405,7 +421,8 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		{
 			temp=report.quanti(data=data,y=y,x1=x2,add.mad=add.mad,
 					default.stat=default.stat,func.stat=func.stat,stat.name=stat.name,
-					func.stat.name=func.stat.name)$output
+					func.stat.name=func.stat.name,round=round,digits=digits,
+					scientific=scientific)$output
 			temp=melt(temp,id.vars=stat.name,variable.name=x2,value.name = "Total")
 			stat2=merge(stat2,temp,by=c(x2,stat.name))
 		}
