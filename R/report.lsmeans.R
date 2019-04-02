@@ -238,7 +238,8 @@ report.lsmeans=function(lsm,x1="treatment",x2=NULL,x3=NULL,data,
 	
 	lsm=ClinReport::desc(output=d,x1=x1,x2=x2,total=F,nbcol=length(nbcol),
 			type.desc="lsmeans",type=type,y.label="",type.mod=type.mod,
-			raw.output=raw.output,contrast=contrast,contrast.name=contrast.name)
+			raw.output=raw.output,contrast=contrast,contrast.name=contrast.name,
+			at.row=at.row)
 	
 	
 	

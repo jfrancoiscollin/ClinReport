@@ -8,7 +8,7 @@ desc(output = NULL, total = NULL, nbcol = NULL, y = NULL,
   x1 = NULL, x2 = NULL, at.row = NULL, subjid = NULL,
   type.desc = NULL, type = NULL, y.label = NULL, type.mod = NULL,
   raw.output = NULL, contrast = NULL, contrast.name = NULL,
-  stat.name = NULL)
+  stat.name = NULL, regrouped = F, rbind.label = NULL)
 }
 \arguments{
 \item{output}{a data.frame object}
@@ -45,6 +45,10 @@ Default value is 'contrast'.}
 
 \item{stat.name}{Character. Indicates the name of the variable that report the statistics in report.quanti function.
 Default = "Statistics"}
+
+\item{regrouped}{Logical. used to indicate if the desc object regroup several desc objects (see \code{\link{regroup.desc}} )}
+
+\item{rbind.label}{Character. The name of the label in case several desc objects are regrouped}
 }
 \value{
 A desc object
