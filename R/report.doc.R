@@ -491,11 +491,20 @@ report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
 	
 	# Add lines
 	
-	ft=hline(ft, border = fp_border(width = 2), part = "header" )
+	if(!is.null(colspan.value))
+	{
+		ft=hline(ft, i=1,border = fp_border(width = 2), part = "header" )
+		ft=hline(ft, i=2,j=(nb.col+1):(nb.col+n.stat),border = fp_border(width = 2), part = "header" )
+		ft=hline(ft, i=3,border = fp_border(width = 2), part = "header" )
+	}else
+	{
+		ft=hline(ft, border = fp_border(width = 2), part = "header" )
+	}
+	
 	ft=hline_top(ft, border = fp_border(width = 2), part = "header" )
 	
 #	ft=hline_bottom(ft, border = fp_border(width = 2), part = "body" )
-
+	
 	ft=add_footer_row(ft,top=FALSE, values ="",colwidths=ncol(output))
 	ft=hline_bottom(ft, border = fp_border(width = 2), part = "footer")
 	

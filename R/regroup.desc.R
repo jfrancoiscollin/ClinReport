@@ -163,7 +163,7 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 				type.desc="quali_quanti",
 				at.row=rbind.label,
 				subjid=x$subjid,
-				nbcol=nbcol,
+				nbcol=nbcol+1,
 				regrouped=T,
 				rbind.label=rbind.label)
 		
