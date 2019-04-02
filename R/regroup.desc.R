@@ -149,8 +149,13 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 			r=spacetable(r,rbind.label)
 		}
 		
-		
-		nbcol=max(x$nbcol,y$nbcol)
+		if(x$regrouped==F & y$regrouped==F)
+		{
+			nbcol=max(x$nbcol,y$nbcol)+1
+		}else
+		{
+			nbcol=max(x$nbcol,y$nbcol)
+		}
 		
 		if(x$regrouped==F & y$regrouped==F)
 		{
@@ -163,7 +168,7 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 				type.desc="quali_quanti",
 				at.row=rbind.label,
 				subjid=x$subjid,
-				nbcol=nbcol+1,
+				nbcol=nbcol,
 				regrouped=T,
 				rbind.label=rbind.label)
 		

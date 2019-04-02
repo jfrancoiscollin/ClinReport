@@ -508,8 +508,17 @@ report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
 	ft=add_footer_row(ft,top=FALSE, values ="",colwidths=ncol(output))
 	ft=hline_bottom(ft, border = fp_border(width = 2), part = "footer")
 	
-	ft=vline(ft, j =1:nb.col,border = fp_border(width = 1),part = "body")
+	if(is.null(table$at.row))
+	{
+		ft=vline(ft,j =1:nb.col,border = fp_border(width = 1),part = "body")
+	}
+	else
+	{
+		i=space_vline(output,table$at.row)
+		ft=vline(ft, i=i,j =1:nb.col,border = fp_border(width = 1),part = "body")
+	}
 	
+
 	# merge first column in case there are repetitions
 	
 	ft=merge_v(ft,j=1)
