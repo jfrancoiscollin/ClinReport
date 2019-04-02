@@ -93,7 +93,7 @@ tab2=report.quali(data=data,y="y_logistic",
 tab3=regroup(tab1,tab2,rbind.label="The label of your choice")
 
 
-report.doc(tab3,title="Mixed Qualitative and Quantitative output",
+report.doc(tab3,title="Mixed Qualitative and Quantitative outputs",
 colspan.value="Treatment group")
 
 ## ------------------------------------------------------------------------

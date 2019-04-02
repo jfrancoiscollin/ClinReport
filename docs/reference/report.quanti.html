@@ -64,7 +64,7 @@ Returns quantitative descriptive statistics such as mean, median, standard devia
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ClinReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.12</span>
       </span>
     </div>
 
@@ -199,7 +199,8 @@ Returns quantitative descriptive statistics such as mean, median, standard devia
 in columns and/or <code>x2</code> in rows). 
 See the example to show the results. If <code>total=TRUE</code>, the last column is the statistics
 performed overall levels of <code>x1</code> for each levels of <code>x2</code>. 
-Quantiles are calculated using type 3 (SAS) algorithms.</p>
+Quantiles are calculated using type 3 (SAS presumed definition) algorithms, but even though,
+some differences between SAS and R can appear on quantile values.</p>
 <p>"geomean" compute the geometric mean defined as exp(mean(log(y))). The values below or equal 0 are removed and
 a message is printed  to indicate how many values were deleted to calculate the geometric mean.</p>
 <p><code>N</code> returns the number of observations (including NA values)</p>

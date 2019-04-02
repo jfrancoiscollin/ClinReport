@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ClinReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.12</span>
       </span>
     </div>
 
@@ -195,7 +195,7 @@
 </div>
     <div id="clinreport-09111" class="section level1">
 <h1 class="page-header">
-<a href="#clinreport-09111" class="anchor"></a>ClinReport 0.9.1.11<small> Unreleased </small>
+<a href="#clinreport-09111" class="anchor"></a>ClinReport 0.9.1.11<small> 2019-03-12 </small>
 </h1>
 <div id="enhancement-5" class="section level2">
 <h2 class="hasAnchor">
@@ -205,6 +205,30 @@
 <li>Improve the regroup function to regroup two quantitative desc object</li>
 <li>Improve the report.quanti function so it’s now possible to not systematically have the default statistics. The user can now implement it’s own statistics using argument func.stat and func.stat.name.</li>
 <li>Complete the vignettes</li>
+</ul>
+</div>
+</div>
+    <div id="clinreport-09112" class="section level1">
+<h1 class="page-header">
+<a href="#clinreport-09112" class="anchor"></a>ClinReport 0.9.1.12<small> Unreleased </small>
+</h1>
+<div id="issues-4" class="section level2">
+<h2 class="hasAnchor">
+<a href="#issues-4" class="anchor"></a>Issues</h2>
+<ul>
+<li>correction of add.stat: when subjid=NULL add.stat didn’t work</li>
+<li>correction in report.quanti: if default quantitative stat were integer, the correct number of digits was not homogeneous</li>
+<li>correction in report.quanti: total column was not rounded properly, it was always 2 digits</li>
+<li>correction: spacetable function, reordered lexically the at.row factor: corrected</li>
+</ul>
+</div>
+<div id="enhancement-6" class="section level2">
+<h2 class="hasAnchor">
+<a href="#enhancement-6" class="anchor"></a>Enhancement</h2>
+<ul>
+<li>Can regroup more than 2 desc object with the function regroup</li>
+<li>the vertical lines are splitted in report.doc if the at.row argument is filled it adds more readibility to the output</li>
+<li>the horizontal line under the colspan value underline only the levels of colspan levels it adds more readibility to the doc</li>
 </ul>
 </div>
 </div>
@@ -220,6 +244,7 @@
         <li><a href="#clinreport-0919">0.9.1.9</a></li>
         <li><a href="#clinreport-09110">0.9.1.10</a></li>
         <li><a href="#clinreport-09111">0.9.1.11</a></li>
+        <li><a href="#clinreport-09112">0.9.1.12</a></li>
       </ul>
     </div>
   </div>

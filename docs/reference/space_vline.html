@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add space to the results of a statistic table — spacetable • ClinReport</title>
+<title>Compute the indices where to put blanks in report.doc — space_vline • ClinReport</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="Add space to the results of a statistic table — spacetable" />
+<meta property="og:title" content="Compute the indices where to put blanks in report.doc — space_vline" />
 
-<meta property="og:description" content="spacetable 
-Add space at some interval in a table of statistics" />
+<meta property="og:description" content="Compute the indices where to put blanks in report.doc" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -98,76 +97,45 @@ Add space at some interval in a table of statistics" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add space to the results of a statistic table</h1>
+    <h1>Compute the indices where to put blanks in report.doc</h1>
     
-    <div class="hidden name"><code>spacetable.Rd</code></div>
+    <div class="hidden name"><code>space_vline.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>spacetable</code> 
-Add space at some interval in a table of statistics</p>
+    <p>Compute the indices where to put blanks in <code>report.doc</code></p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>spacetable</span>(<span class='no'>tab</span>, <span class='kw'>at.row</span> <span class='kw'>=</span> <span class='fl'>6</span>)</pre>
+    <pre class="usage"><span class='fu'>space_vline</span>(<span class='no'>tab</span>, <span class='no'>at.row</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tab</th>
-      <td><p>a data.frame. Normally, the output part of a desc object</p></td>
+      <td><p>data.frame from a desc object</p></td>
     </tr>
     <tr>
       <th>at.row</th>
-      <td><p>Numeric (between 1 and <code><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>ncol(tab)</a></code>) or Character (a column name of tab)</p></td>
+      <td><p>Character. at.row option of a desc object</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame with some space between levels of the variable specified by <code>at.row</code></p>
+    <p>A vector of integers</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Used internally into <code>report.lsmeans</code>, <code>report.quanti</code> and <code>report.quali</code></p>
+    <p>None</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='report.quanti.html'>report.quanti</a></code>  <code><a href='report.quali.html'>report.quali</a></code>  <code><a href='report.lsmeans.html'>report.lsmeans</a></code></p></div>
+    <div class='dont-index'><p><code><a href='report.doc.html'>report.doc</a></code></p></div>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'><a href='data.html'>data</a></span>(<span class='no'>data</span>)
-<span class='fu'>spacetable</span>(<span class='fu'><a href='report.quali.html'>report.quali</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
-<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)$<span class='no'>output</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)</div><div class='output co'>#&gt;    TIMEPOINT Levels    Statistics          A          B          C
-#&gt; 1         D0      0  n (column %) 11(36.67%) 11(55.00%)  7(43.75%)
-#&gt; 2         D0      1  n (column %) 18(60.00%)  8(40.00%)  7(43.75%)
-#&gt; 3         D0         Missing n(%)   1(3.33%)   1(5.00%)  2(12.50%)
-#&gt; 4                                                                 
-#&gt; 5         D1      0  n (column %)  7(23.33%) 13(65.00%)  8(50.00%)
-#&gt; 6         D1      1  n (column %) 21(70.00%)  7(35.00%)  7(43.75%)
-#&gt; 7         D1         Missing n(%)   2(6.67%)      0(0%)   1(6.25%)
-#&gt; 8                                                                 
-#&gt; 9         D2      0  n (column %) 18(60.00%)  7(35.00%) 11(68.75%)
-#&gt; 10        D2      1  n (column %) 12(40.00%) 13(65.00%)  5(31.25%)
-#&gt; 11        D2         Missing n(%)      0(0%)      0(0%)      0(0%)
-#&gt; 12                                                                
-#&gt; 13        D3      0  n (column %) 11(36.67%) 10(50.00%)  7(43.75%)
-#&gt; 14        D3      1  n (column %) 19(63.33%) 10(50.00%)  9(56.25%)
-#&gt; 15        D3         Missing n(%)      0(0%)      0(0%)      0(0%)
-#&gt; 16                                                                
-#&gt; 17        D4      0  n (column %) 18(60.00%) 12(60.00%)  6(37.50%)
-#&gt; 18        D4      1  n (column %) 12(40.00%)  8(40.00%)  8(50.00%)
-#&gt; 19        D4         Missing n(%)      0(0%)      0(0%)  2(12.50%)
-#&gt; 20                                                                
-#&gt; 21        D5      0  n (column %) 14(46.67%)  7(35.00%)  8(50.00%)
-#&gt; 22        D5      1  n (column %) 15(50.00%) 13(65.00%)  8(50.00%)
-#&gt; 23        D5         Missing n(%)   1(3.33%)      0(0%)      0(0%)</div><div class='input'>
-
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -179,9 +147,7 @@ Add space at some interval in a table of statistics</p>
       <li><a href="#details">Details</a></li>
 
       <li><a href="#see-also">See also</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>
