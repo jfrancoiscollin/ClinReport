@@ -321,7 +321,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	
 	# Spacing results
 	
-     # check: si c'est mal renseigne on le met à null avec un message
+     # check: si c'est mal renseigne on le met a null avec un message
 
 if(!is.null(at.row))
 {	
