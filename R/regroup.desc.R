@@ -87,16 +87,23 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 	
 	if(x$regrouped==T & y$regrouped==F)
 	{
-		y$output$rbind.label=y$y.label
-		colnames(y$output)[colnames(y$output)=="rbind.label"]=x$rbind.label
-		rbind.label=x$rbind.label
+		if(x$type.desc=="quali_quanti")
+		{
+			y$output$rbind.label=y$y.label
+			colnames(y$output)[colnames(y$output)=="rbind.label"]=x$rbind.label
+			rbind.label=x$rbind.label
+		}
+		
 	}
 	
 	if(x$regrouped==F & y$regrouped==T)
 	{
-		x$output$rbind.label=x$y.label
-		colnames(x$output)[colnames(x$output)=="rbind.label"]=y$rbind.label
-		rbind.label=y$rbind.label
+		if(y$type.desc=="quali_quanti")
+		{
+			x$output$rbind.label=x$y.label
+			colnames(x$output)[colnames(x$output)=="rbind.label"]=y$rbind.label
+			rbind.label=y$rbind.label
+		}
 	}
 	
 	out.x=droplevels(x$output)

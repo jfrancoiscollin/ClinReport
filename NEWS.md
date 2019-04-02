@@ -90,6 +90,10 @@ The user can now implement it's own statistics using argument func.stat and func
 ## Enhancement
 
 * Can regroup more than 2 desc object with the function regroup
+* the vertical lines are splitted in report.doc if the at.row argument is filled
+it adds more readibility to the output
+* the horizontal line under the colspan value underline only the levels of colspan levels
+it adds more readibility to the doc
 
 
 
