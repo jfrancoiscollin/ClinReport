@@ -322,13 +322,17 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	# Spacing results
 	
      # check: si c'est mal renseigné on le met à null avec un message
+
+if(!is.null(at.row))
+{	
 	if(!any(colnames(freq)==at.row)) 
 	{
 		message("at.row argument was not found in the colnames of the statistic table produced (probably mispelled)\n
         so it has been set to NULL")
 		at.row=NULL
 	}	
-	
+}
+
 	if(!is.null(at.row))
 	{	
 		freq=spacetable(freq,at.row=at.row)
