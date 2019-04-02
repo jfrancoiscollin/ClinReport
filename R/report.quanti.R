@@ -34,7 +34,8 @@
 #' in columns and/or \code{x2} in rows). 
 #' See the example to show the results. If \code{total=TRUE}, the last column is the statistics
 #' performed overall levels of \code{x1} for each levels of \code{x2}. 
-#' Quantiles are calculated using type 3 (SAS) algorithms.
+#' Quantiles are calculated using type 3 (SAS presumed definition) algorithms, but even though,
+#' some differences between SAS and R can appear on quantile values.
 #' 
 #' "geomean" compute the geometric mean defined as exp(mean(log(y))). The values below or equal 0 are removed and
 #' a message is printed  to indicate how many values were deleted to calculate the geometric mean.

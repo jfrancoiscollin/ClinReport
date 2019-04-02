@@ -87,6 +87,9 @@ The user can now implement it's own statistics using argument func.stat and func
 * correction in report.quanti: total column was not rounded properly, it was always 2 digits
 * correction: spacetable function, reordered lexically the at.row factor: corrected      
 
+## Enhancement
+
+* Can regroup more than 2 desc object with the function regroup
 
 
 

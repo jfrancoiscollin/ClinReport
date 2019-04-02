@@ -99,8 +99,8 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 		rbind.label=y$rbind.label
 	}
 	
-	out.x=x$output
-	out.y=y$output
+	out.x=droplevels(x$output)
+	out.y=droplevels(y$output)
 	
 	# Mixed binding (quali-quanti or quanti-quali)
 	
@@ -145,14 +145,17 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 			colnames(r)[colnames(r)=="rbind"]=rbind.label
 		}else
 		{
-			
+			r=droplevels(r[r[,rbind.label]!="",])	
 			r=spacetable(r,rbind.label)
 		}
 		
 		
 		nbcol=max(x$nbcol,y$nbcol)
 		
-		r=r[,c(ncol(r),1:(ncol(r)-1))]
+		if(x$regrouped==F & y$regrouped==F)
+		{
+			r=r[,c(ncol(r),1:(ncol(r)-1))]
+		}
 		
 		r=ClinReport::desc(output=r,
 				y=c(x$y,y$y),
