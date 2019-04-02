@@ -131,7 +131,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		
 		freq=report.quali(temp,y,x1="int",x2.label=x2.label,y.label=y.label,
 				x2="int",y.levels.label=y.levels.label,total=F,
-				,percent.col=percent.col,subjid=subjid)
+				,percent.col=percent.col,subjid=subjid,round=round)
 		
 		freq$output=freq$output[,-1]
 		freq$x1=NULL
@@ -148,7 +148,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		temp$int=as.factor(1)
 		freq=report.quali(temp,y,x1,x2="int",y.levels.label=y.levels.label,total=total,
 				y.label=y.label,
-				,percent.col=percent.col,subjid=subjid)
+				,percent.col=percent.col,subjid=subjid,round=round)
 		
 		freq$output=freq$output[,-1]
 		freq$x2=NULL
