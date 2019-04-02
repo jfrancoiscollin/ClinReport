@@ -245,7 +245,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	if(total)
 	{
 		freq.tot=report.quali(data=data,y=y,
-				x1=x2)$output
+				x1=x2,round=round)$output
 		
 		freq.tot=suppressWarnings(melt(freq.tot,measure.vars=colnames(freq.tot)[-1],
 						y.levels.label=x2.label,value.name="Total"))
