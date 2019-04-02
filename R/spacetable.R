@@ -118,6 +118,9 @@ spacetable=function(tab,at.row=6)
 	if(is.character(at.row))
 	{
 		split=tab[,at.row]
+		
+		split=factor(split,levels=unique(split))
+		
 		check=length(split)==nrow(tab)
 		if(!check)stop("length(split)!=nrow(tab): the at.row argument is inappropriate")
 		
