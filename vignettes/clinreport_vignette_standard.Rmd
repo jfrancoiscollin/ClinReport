@@ -18,30 +18,30 @@ knitr::opts_chunk$set(
 
 # Clinical Standards
 
-There is no official guidance regarding the format of the statistic tables used in a clinical trial report,
-but there are some implicit standards that are 'accepted/recognized' and most frequently used.
+There is no official guidance regarding the format of the statistical tables used for clinical trial reporting,
+but there are implicit standards that are most frequently used.
 
-Those standards are given below in no specific order:
+Those standards are given below (in no specific order):
 
 >
 *	If statistics are reported by treatment group, display the statistics by treatment groups in columns
 *	Do not display horizontal or vertical lines in the body of the table 
 *	When there are statistics reported for several parameters or if they are reported by level of another factor
-in the same table, split the results by parameter with a space
-*	Add the number of subject randomized in the column headers 
+in the same table, split the results with empty rows
+*	Add the number of subjects randomized in the column headers 
 *	Each output should be numbered
 *	Each output should have a title
 *	The number of digits should be the same in all cells 
 *	Always display the unit of the measured parameter in its label between parenthesis
 *	Police Headers should be bolded
 *	Usually for baseline characteristics add the Total column along with the treatment groups
-*	Use (most of the time) the Times police
+*	Use (most of the time) the *Times New Roman* police
 
 
 For quantitative statistics:
 
 >
-*	Report systematically the standard deviation between parenthesis after the mean *mean(SD)*
+*	Report systematically the standard deviation between parenthesis after the mean: *mean(SD)*
 *	Report the interval Q1 Q3 between brackets: *[Q1;Q3]*
 *	Report the interval Min Max between brackets: *[Min;Max]*
 
@@ -56,26 +56,29 @@ For Least-Square Means statistics and P-values:
 
 >
 *	Report systematically the standard error between parenthesis after the estimate *estimate(SE)*
-*	Report the 95% interval between brackets: *[Lower Bound;Upper Bound]*
-*	Display *P<0.001* instead of the value
+*	Report the 95% confidence interval between brackets: *[Lower Bound;Upper Bound]*
+*	If P<0.001, display *P<0.001* instead of the value of P
 
-Those few rules are the default reporting option in the package **ClinReport**
-as can be seen in the table below:
+#  Example with `ClinReport`
+
+The purpose of the package **ClinReport** is to make Clincal Reporting easy according to those standards.
+
+Those are the default reporting options in the package **ClinReport** so few lines of code are necessary
+as can be seen in the example below:
 
 ```{r, echo = TRUE, message=FALSE, warning=FALSE, include=FALSE}
-library(officer)
-library(flextable)
 library(dplyr)
 library(reshape2)
 library(nlme)
 library(emmeans)
 library(car)
-	
 ```  
 
 
 ```{r, include=TRUE}
 library(ClinReport)
+library(officer)
+library(flextable)
 
 data(data)
 
@@ -104,8 +107,7 @@ doc
 ```
 
 
-It's the only purpose of the package **ClinReport**: make Clincal Reporting easy
-
+By default, this table respect all the standards described above.
 
 
 

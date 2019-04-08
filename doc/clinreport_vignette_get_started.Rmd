@@ -1,10 +1,10 @@
 ---
-title: "ClinReport Vignette 1: Get Started"
+title: "ClinReport Vignette 2: Get Started"
 author: "Jean-Francois COLLIN"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ClinReport Vignette 1}
+  %\VignetteIndexEntry{ClinReport Vignette 2: Get Started}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
