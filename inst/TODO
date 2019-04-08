@@ -41,7 +41,7 @@ Ajouter l'option n_percent = T par défaut si F on affiche d'abord le pourcentage
 reporting des AE: 
           nécessite 2 modifications de la report.quali
           pouvoir transposer la table: stat en colonne et niveaux en ligne
-          compter au niveaux des sujets ceux qui présente at least one event
+          compter au niveaux des sujets ceux qui présentent at least one event
           le total des AE est compter sur le niveau le plus haut (SOC name) le PT name est une sous catégorie
           see Z:\D965\1808_NT2\STAT\RESULTS\Statistical Report\Stat report NT2
           
