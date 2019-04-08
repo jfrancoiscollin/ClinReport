@@ -1,0 +1,127 @@
+---
+title: "ClinReport Vignette 1: Clinical Standards for Reporting Statistics"
+author: "Jean-Francois COLLIN"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ClinReport Vignette 1: Clinical Standards for Reporting Statistics}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Clinical Standards
+
+There is no official guidance regarding the format of the statistical tables used for clinical trial reporting,
+but there are implicit standards that are most frequently used.
+
+Those standards are given below (in no specific order):
+
+>
+*	If statistics are reported by treatment group, display the statistics by treatment groups in columns
+*	Do not display horizontal or vertical lines in the body of the table 
+*	When there are statistics reported for several parameters or if they are reported by level of another factor
+in the same table, split the results with empty rows
+*	Add the number of subjects randomized in the column headers 
+*	Each output should be numbered
+*	Each output should have a title
+*	The number of digits should be the same in all cells 
+*	Always display the unit of the measured parameter in its label between parenthesis
+*	Police Headers should be bolded
+*	Usually for baseline characteristics add the Total column along with the treatment groups
+*	Use (most of the time) the *Times New Roman* police
+
+
+For quantitative statistics:
+
+>
+*	Report systematically the standard deviation between parenthesis after the mean: *mean(SD)*
+*	Report the interval Q1 Q3 between brackets: *[Q1;Q3]*
+*	Report the interval Min Max between brackets: *[Min;Max]*
+
+
+For qualitative statistics:
+
+>
+*	Report the percentages and the number of observations *N(%)* or *%(N)*
+
+
+For Least-Square Means statistics and P-values:
+
+>
+*	Report systematically the standard error between parenthesis after the estimate *estimate(SE)*
+*	Report the 95% confidence interval between brackets: *[Lower Bound;Upper Bound]*
+*	If P<0.001, display *P<0.001* instead of the value of P
+
+#  Example with `ClinReport`
+
+The purpose of the package **ClinReport** is to make Clincal Reporting easy according to those standards.
+
+Those are the default reporting options in the package **ClinReport** so few lines of code are necessary
+as can be seen in the example below:
+
+```{r, echo = TRUE, message=FALSE, warning=FALSE, include=FALSE}
+library(dplyr)
+library(reshape2)
+library(nlme)
+library(emmeans)
+library(car)
+```  
+
+
+```{r, include=TRUE}
+library(ClinReport)
+library(officer)
+library(flextable)
+
+data(data)
+
+# Default quantitative stat desc
+
+tab1=report.quanti(data=data,y="y_numeric",
+		x1="GROUP",y.label="Quantitative response (units)",
+		subjid="SUBJID",total=T)
+		
+# Default qualitative stat desc
+
+tab2=report.quali(data=data,y="y_logistic",
+		x1="GROUP",y.label="Qualitative response",
+		subjid="SUBJID",total=T)
+
+# Binding them into a single table
+
+tab=regroup(tab1,tab2)
+
+# Create formatted output for Microsoft Word
+
+doc=report.doc(tab,title="Table of classic descriptive statistics (qualitative and quantitative parameter)",
+		colspan.value="Treatment group", init.numbering =T )			
+
+doc
+```
+
+
+By default, this table respect all the standards described above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

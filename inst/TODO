@@ -10,7 +10,6 @@ une statistique à un report.quanti ou report.quali
 
 add SEM and color in gg_desc_quanti if x1!=NULL and x2=NULL
 
-update the news file with the correction of the bug of add.stat if subjid=NULL
 
 create the transpose.desc function to put statistics in column
 
@@ -20,11 +19,10 @@ add the possibility to combine in column qualitative and quantitative stats
 
 Ajouter une vignette avec un exemple de rapport stat complet?
 
+Ajouter un exemple dans la vignette avec la table animal disposition de peridry
+
 
 Ajouter le reporting des modèles de survie (package survival et frailtyPenal)
-
-Mettre des espaces dans les lignes verticales des outputs au même niveaux que 
-at.row: create a new vline function
 
 
 create a highlight argument in report.doc to underline some cells in the table
@@ -37,7 +35,16 @@ I'll continue coding like this unless someone give the agument of the century!
 
 
 
+Ajouter l'option n_percent = T par défaut si F on affiche d'abord le pourcentage et après l'effectif
 
+
+reporting des AE: 
+          nécessite 2 modifications de la report.quali
+          pouvoir transposer la table: stat en colonne et niveaux en ligne
+          compter au niveaux des sujets ceux qui présentent at least one event
+          le total des AE est compter sur le niveau le plus haut (SOC name) le PT name est une sous catégorie
+          see Z:\D965\1808_NT2\STAT\RESULTS\Statistical Report\Stat report NT2
+          
 implement formula use?
 formula=(y~x1+x2)
 all.vars(formula)

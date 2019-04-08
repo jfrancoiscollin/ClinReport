@@ -45,13 +45,16 @@ render("C:\\Users\\jfcollin\\git\\README.Rmd")
 # Vignette
 ###############################################
 
+render("C:\\Users\\jfcollin\\git\\vignettes\\clinreport_vignette_standard.Rmd")
 render("C:\\Users\\jfcollin\\git\\vignettes\\clinreport_vignette_get_started.Rmd")
 render("C:\\Users\\jfcollin\\git\\vignettes\\clinreport_modify_outputs.Rmd")
 render("C:\\Users\\jfcollin\\git\\vignettes\\clinreport_graphics.Rmd")
 
-#shell.exec("C:\\Users\\jfcollin\\git\\vignettes\\clinreport-vignette.html")
+#shell.exec("C:\\Users\\jfcollin\\git\\vignettes\\clinreport_vignette_standard.html")
+#shell.exec("C:\\Users\\jfcollin\\git\\vignettes\\clinreport_vignette_get_started.html")
 #shell.exec("C:\\Users\\jfcollin\\git\\vignettes\\clinreport_modify_outputs.html")
 #shell.exec("C:\\Users\\jfcollin\\git\\vignettes\\clinreport_graphics.html")
+
 
 
 devtools::build_vignettes()

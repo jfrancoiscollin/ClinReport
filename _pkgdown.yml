@@ -13,15 +13,15 @@ navbar:
 articles:
 - title: Vignettes
   desc: >
+    Clinical Standards are explained in the first Vignette.    
     The Get Started vignette introduce the main functions.  
-    The second one shows you how to modify/alter/personnalize the outputs.
+    The third one shows how to modify/alter/personnalize the outputs.
     The last one describes the different graphics you can get with `ClinReport`.
   contents: 
+   - clinreport_vignette_standard
    - clinreport_vignette_get_started
    - clinreport_modify_outputs
    - clinreport_graphics
-
-
 
 reference:
 - title: "Create the main statistical outputs"
