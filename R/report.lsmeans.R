@@ -21,6 +21,7 @@
 #' @param contrast Logical. Specify if the contrast function has been used after the emmeans function (see examples)
 #' @param contrast.name Character. Corresponds to the label of the column in which the contrasts are specified (see example).
 #'  Default value is 'contrast'.
+#' @param round Numeric. Specify the number of digits to round the statistics
 #' 
 #' @description
 #' Creates a desc object for "LS Means" statistics reporting. 
@@ -78,7 +79,8 @@
 
 report.lsmeans=function(lsm,x1="treatment",x2=NULL,x3=NULL,data,
 		variable.name="Statistics",at.row=NULL,infer=c(T,T),type="link",contrast=F,
-		contrast.name="contrast",x1.name="treatment",x2.name=NULL,x3.name=NULL)
+		contrast.name="contrast",x1.name="treatment",x2.name=NULL,x3.name=NULL,
+		round=2)
 {
 	
 	if (!missing(x1.name))
@@ -156,7 +158,7 @@ report.lsmeans=function(lsm,x1="treatment",x2=NULL,x3=NULL,data,
 	lsm=raw.output
 	
 	
-	lsm[,-nbcol]=format(round(lsm[,-nbcol],2), nsmall = 2)
+	lsm[,-nbcol]=format(round(lsm[,-nbcol],round), nsmall = round)
 	lsm[,-nbcol]=apply(lsm[,-nbcol],2,function(x)gsub(" ","",x))
 	
 	

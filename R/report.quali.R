@@ -16,6 +16,7 @@
 #' @param at.row Character. Pass to spacetable function. Used to space the results (see example below)
 #' @param percent.col Logical By default it is set to T to indicate that column percentages should be reported. If set to False, row percentages are reported.
 #' @param subjid Character Indicates in the data.frame the name of the column used to identify the Id of the subjects. If not null, it adds in the headers the number of unique subject per levels of x1 or y (if x1 is null).
+#' @param remove.zero Logical. Remove the levels in the contingency table for which there is no observation.
 #' 
 #' @description
 #' Compute and report frequencies and percentages by levels of \code{y} (in rows) and by levels of \code{x1} (in columns)
@@ -84,7 +85,7 @@
 report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		x2.label=NULL,
 		y.levels.label="Levels",total=F,
-		round=2,at.row=NULL,percent.col=T,subjid=NULL)
+		round=2,at.row=NULL,percent.col=T,subjid=NULL,remove.zero=F)
 {
 	
 #   y="DEMEANOUR"
@@ -218,6 +219,10 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		freq=merge(freq,n,by=c("Var1","Var3"))
 	}
 	
+	if(remove.zero)
+	{
+		freq=droplevels(freq[freq$Freq.x!=0,])
+	}
 	
 	raw.freq=freq
 	
