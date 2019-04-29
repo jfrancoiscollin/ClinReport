@@ -79,32 +79,11 @@
 
 report.lsmeans=function(lsm,x1="treatment",x2=NULL,x3=NULL,data,
 		variable.name="Statistics",at.row=NULL,infer=c(T,T),type="link",contrast=F,
-		contrast.name="contrast",x1.name="treatment",x2.name=NULL,x3.name=NULL,
+		contrast.name="contrast",
 		round=2)
 {
 	
-	if (!missing(x1.name))
-	{
-		warning("argument x1.name is deprecated; please use x1 instead.", 
-				call. = FALSE)
-		
-		x1=x1.name
-	}
-	
-	if (!missing(x2.name))
-	{
-		warning("argument x2.name is deprecated; please use x2 instead.", 
-				call. = FALSE)
-		x2=x2.name
-	}
-	
-	if (!missing(x3.name))
-	{
-		warning("argument x3.name is deprecated; please use x3 instead.", 
-				call. = FALSE)
-		
-		x3=x3.name
-	}
+
 	
 	# Control the name of the estimate column
 	# so it's the same for all models
@@ -126,19 +105,24 @@ report.lsmeans=function(lsm,x1="treatment",x2=NULL,x3=NULL,data,
 	if(!is.character(x3) & !is.null(x3)) stop("\n x3 must be a character")
 	if(is.null(x1)) stop("\n It's not possible to have x1 argument NULL")
 	
+	if(!contrast)
+	{
+		if(!any(colnames(data)==x1) & !is.null(x1)) stop("\n x1 argument should be in data colnames")
+		if(!any(colnames(data)==x2) & !is.null(x2)) stop("\n x2 argument should be in data colnames")
+		if(!any(colnames(data)==x3) & !is.null(x3)) stop("\n x3 argument should be in data colnames")
+		
+		if(class(data[,x1])!="factor" & !is.null(x1)) stop("\n x1 argument should be a factor")
+		if(class(data[,x2])!="factor" & !is.null(x2)) stop("\n x2 argument should be a factor")
+		if(class(data[,x3])!="factor" & !is.null(x3)) stop("\n x3 argument should be a factor")
+		
+		if(!any("%in%"(c(x1,x2,x3),terms)))  stop("\n One of the explicative variable is not in the terms of the emmGrid object (see attr(lsm@model.info$terms,'term.labels'))")
+		
+	}
+
 	
-	if(!any(colnames(data)==x1) & !is.null(x1)) stop("\n x1 argument should be in data colnames")
-	if(!any(colnames(data)==x2) & !is.null(x2)) stop("\n x2 argument should be in data colnames")
-	if(!any(colnames(data)==x3) & !is.null(x3)) stop("\n x3 argument should be in data colnames")
-	
-	if(class(data[,x1])!="factor" & !is.null(x1)) stop("\n x1 argument should be a factor")
-	if(class(data[,x2])!="factor" & !is.null(x2)) stop("\n x2 argument should be a factor")
-	if(class(data[,x3])!="factor" & !is.null(x3)) stop("\n x3 argument should be a factor")
 	
 	
-	
-	if(!any("%in%"(c(x1,x2,x3),terms)))  stop("\n One of the explicative variable is not in the terms of the emmGrid object (see attr(lsm@model.info$terms,'term.labels'))")
-	
+
 	call=as.character(lsm@model.info$call)[1]
 	
 	
@@ -147,7 +131,11 @@ report.lsmeans=function(lsm,x1="treatment",x2=NULL,x3=NULL,data,
 	if(is.null(x2) & !is.null(x3)) stop("\n It's not possible to have x2 NULL and x3 not NULL")
 	if(!is.null(x2) & !is.null(x3)) nbcol=1:3
 	
-	if(contrast) nbcol=c(nbcol,nbcol+1)
+	if(!is.null(x2) & !is.null(x3))
+	{
+		if(contrast) nbcol=c(nbcol,nbcol+1)
+	}
+	
 	
 	if(any("%in%"(call,c("lm","lmer","lme.formula")))) type.mod="quanti"
 	if(any("%in%"(call,c("glm","glmer")))) type.mod="quali"
