@@ -72,9 +72,10 @@ tab=report.quanti(data=data,y="y_numeric",
 
 mod=glm(y_logistic~GROUP+TIMEPOINT+GROUP*TIMEPOINT,
 family=binomial,data=data,na.action=na.omit)
+
 test=emmeans(mod,~GROUP|TIMEPOINT)
-tab.mod=report.lsmeans(lsm=test,x1="GROUP",
-x2="TIMEPOINT",at.row="TIMEPOINT",data=data)
+
+tab.mod=report.lsmeans(lsm=test,at.row="TIMEPOINT")
 
 
 doc=read_docx()
@@ -179,8 +180,7 @@ test1=emmeans(mod1,~GROUP|TIMEPOINT)
 
 anov1=Anova(mod1)
 
-tab.mod1=report.lsmeans(lsm=test1,x1="GROUP",
-x2="TIMEPOINT",at.row="TIMEPOINT",data=data.mod)
+tab.mod1=report.lsmeans(lsm=test1,at.row="TIMEPOINT")
 
 gg.mod1=plot(tab.mod1,title="LS-Means response evolution as a function of time\\n
 by treatment group (95\% CI)",
@@ -193,7 +193,7 @@ mod2=lm(y_numeric~baseline+GROUP,data=data.mod)
 anov2=Anova(mod2,type=3)
 
 test2=emmeans(mod2,~GROUP)
-tab.mod2=report.lsmeans(lsm=test2,x1="GROUP",data=data.mod)
+tab.mod2=report.lsmeans(lsm=test2)
 
 
 gg.mod2=plot(tab.mod2,title="LS-Means response\\nby treatment group (95\% CI)",
@@ -209,8 +209,7 @@ anov3=Anova(mod3,3)
 
 test3=emmeans(mod3,~GROUP|TIMEPOINT)
 
-tab.mod3=report.lsmeans(lsm=test3,x1="GROUP",
-x2="TIMEPOINT",at.row="TIMEPOINT",data=data.mod)
+tab.mod3=report.lsmeans(lsm=test3,at.row="TIMEPOINT")
 
 gg.mod3=plot(tab.mod3,title="LS-Means response evolution as a function of time\\n
 by treatment group (95\% CI Mixed model)",
@@ -220,8 +219,7 @@ by treatment group (95\% CI Mixed model)",
 
 contr=contrast(test3, "trt.vs.ctrl", ref = "A")
 
-tab.mod3.contr=report.lsmeans(lsm=contr,x1="TIMEPOINT",
-	data=data.mod,contrast=TRUE,at.row="contrast")
+tab.mod3.contr=report.lsmeans(lsm=contr,at.row="contrast")
 
 gg.mod3.contr=plot(tab.mod3.contr,title="LS-Means contrast versus reference A\\n
 			(95\% CI Mixed model)",
@@ -239,8 +237,7 @@ anov4=Anova(mod4,3)
 
 test4=emmeans(mod4,~GROUP|TIMEPOINT)
 
-tab.mod4=report.lsmeans(lsm=test4,x1="GROUP",
-x2="TIMEPOINT",at.row="TIMEPOINT",data=data.mod)
+tab.mod4=report.lsmeans(lsm=test4,at.row="TIMEPOINT")
 
 gg.mod4=plot(tab.mod4,title="LS-Means response evolution as a function of time\\n
 by treatment group (95\% CI Logistic model)",
@@ -258,8 +255,7 @@ anov5=Anova(mod5,3)
 
 test5=emmeans(mod5,~GROUP|TIMEPOINT)
 
-tab.mod5=report.lsmeans(lsm=test5,x1="GROUP",
-x2="TIMEPOINT",at.row="TIMEPOINT",type="response",data=data.mod)
+tab.mod5=report.lsmeans(lsm=test5,at.row="TIMEPOINT",type="response")
 
 
 gg.mod5=plot(tab.mod5,title="LS-Means response evolution as a function of time\\n

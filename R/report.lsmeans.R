@@ -65,13 +65,15 @@
 #' 
 #' @export
 
-report.lsmeans=function(lsm,variable.name="Statistics",at.row=NULL,infer=c(T,T),type="link",round=2)
+report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),type="link",round=2)
 {
 	
 	# Checks
 	
+	
 	if(class(lsm)!="emmGrid") stop("\n This function takes an emmGrid object only as lsm argument")
 	
+	variable.name="Statistics"
 	
 	terms=attr(lsm@model.info$terms,"term.labels")
 	

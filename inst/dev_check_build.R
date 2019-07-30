@@ -74,6 +74,7 @@ check(args ="--as-cran")
 
 
 #install()
+
 install(build_vignettes =T)
 build(path = "C:\\Users\\jfcollin\\Google Drive\\R packages")
 
