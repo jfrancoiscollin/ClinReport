@@ -393,7 +393,7 @@ report.doc <- function(table,...)
 #' @export 
 
 report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
-		init.numbering=F,numbering=T,font.name="Times",page.break=T,font.size=11,...)
+		init.numbering=F,numbering=T,font.name="Times",page.break=T,font.size=10,...)
 {
 	
 	
@@ -575,7 +575,7 @@ report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
 
 
 report.doc.anova=function(table,title="Anova table",type.anova=3,doc=NULL,numbering=T,
-		init.numbering=F,font.name="Times",font.size=11,page.break=T,...)
+		init.numbering=F,font.name="Times",font.size=10,page.break=T,...)
 {
 	
 	
