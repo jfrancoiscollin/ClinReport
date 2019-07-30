@@ -230,6 +230,8 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	if(!is.null(x2)) colnames(raw.freq)[colnames(raw.freq)=="Var3"]=x2
 	colnames(raw.freq)[colnames(raw.freq)=="Var1"]=y
 	
+	if(x1==x2) raw.freq=raw.freq[,colnames(raw.freq)!=x2]
+	
 	freq$percent=paste0("(",format(round(100*(freq$Freq.x/freq$Freq.y),round), nsmall = round),"%)")
 	freq$percent=gsub(" ","",freq$percent,fixed=T)
 	freq$value=paste0(freq$Freq.x,freq$percent)

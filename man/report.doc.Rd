@@ -10,11 +10,11 @@ report.doc(table, ...)
 
 \method{report.doc}{desc}(table, title, colspan.value = NULL,
   doc = NULL, init.numbering = F, numbering = T,
-  font.name = "Times", page.break = T, font.size = 11, ...)
+  font.name = "Times", page.break = T, font.size = 10, ...)
 
 \method{report.doc}{anova}(table, title = "Anova table",
   type.anova = 3, doc = NULL, numbering = T, init.numbering = F,
-  font.name = "Times", font.size = 11, page.break = T, ...)
+  font.name = "Times", font.size = 10, page.break = T, ...)
 }
 \arguments{
 \item{table}{A desc object that report statistics (the results of \code{report.quanti} or \code{report.quali})}

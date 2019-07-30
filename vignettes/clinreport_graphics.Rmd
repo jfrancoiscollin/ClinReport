@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ClinReport Vignette 4: Graphic Outputs}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -169,7 +169,6 @@ tab.mod=report.lsmeans(lsm=test,at.row="TIMEPOINT")
 
 plot(tab.mod,title="LS-means evolution of y per treatment group\nas a function of time",
 ylab="LS-Means",xlab="",add.ci=TRUE)
-
 
 ```
 

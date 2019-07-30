@@ -63,7 +63,7 @@
 #' 
 #' @import reshape2 stats
 #' 
-#' @export
+#' @export 
 
 report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),type="link",round=2)
 {
@@ -87,6 +87,15 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),type="link",round=2)
 	}
 	
 	estname=lsm@misc$estName
+	
+	if(!is.null(lsm@misc$predict.type))
+	{
+		if(lsm@misc$predict.type=="response")
+		{
+			if(!is.null(lsm@misc$inv.lbl)) estname=lsm@misc$inv.lbl
+		}
+	}
+
 	vars=unique(c(lsm@misc$pri.vars,lsm@misc$by.vars))
 	
 	if(length(vars)==1)

@@ -89,4 +89,3 @@ plot(tab.mod,title="LS-means evolution of y per treatment group\nas a function o
 ylab="LS-Means",xlab="",add.ci=TRUE)
 
 
-
