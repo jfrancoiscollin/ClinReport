@@ -58,9 +58,10 @@
 #' 
 #'mod=glm(y_logistic~GROUP+TIMEPOINT+GROUP*TIMEPOINT,
 #'family=binomial,data=data,na.action=na.omit)
+#' 
 #'test=emmeans(mod,~GROUP|TIMEPOINT)
-#'tab.mod=report.lsmeans(lsm=test,x1="GROUP",
-#'x2="TIMEPOINT",at.row="TIMEPOINT",data=data)
+#' 
+#'tab.mod=report.lsmeans(lsm=test,at.row="TIMEPOINT")
 #' 
 #' 
 #'doc=read_docx()
