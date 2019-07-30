@@ -430,7 +430,7 @@ report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
 	
 	if(numbering)
 	{
-		title= paste0("Output ",get("number",envir=.output),": ",c(title))
+		title= paste0("Table ",get("number",envir=.output),": ",c(title))
 	}
 	
 	
@@ -592,7 +592,7 @@ report.doc.anova=function(table,title="Anova table",type.anova=3,doc=NULL,number
 	
 	if(numbering)
 	{
-		title= paste0("Output ",get("number",envir=.output),": ",c(title))
+		title= paste0("Table ",get("number",envir=.output),": ",c(title))
 	}
 	
 	
