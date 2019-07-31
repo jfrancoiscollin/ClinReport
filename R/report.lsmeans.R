@@ -61,6 +61,17 @@
 #' contr=contrast(warp.emm, "trt.vs.ctrl", ref = "M")
 #' report.lsmeans(lsm=contr,at="wool")
 #' 
+#' 
+#' # Cox model
+#' 
+#' data(time_to_cure)
+#' 
+#' fit <- coxph(Surv(time, status) ~ Group, data = time_to_cure) 
+#' em=emmeans(fit,~Group,type="response")
+#' pairs=pairs(em,adjust="none",exclude="Sentinel group")
+#' tab.pairs=report.lsmeans(pairs)
+#' 
+#' 
 #' @import reshape2 stats
 #' 
 #' @export 
@@ -126,9 +137,9 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),type="link",round=2)
 	
 	nbcol=1:length(vars)
 	
-	if(any("%in%"(call,c("lm","lmer","lme.formula")))) type.mod="quanti"
+	if(any("%in%"(call,c("lm","lmer","lme.formula","coxph")))) type.mod="quanti"
 	if(any("%in%"(call,c("glm","glmer")))) type.mod="quali"
-	if(!any("%in%"(call,c("glm","glmer","lm","lmer","lme.formula")))) stop("\n This function only supports lm, lmer, lme, glm or glmer models")
+	if(!any("%in%"(call,c("glm","glmer","lm","lmer","lme.formula","coxph")))) stop("\n This function only supports lm, lmer, lme, glm or glmer models")
 	
 	
 	raw.output=data.frame(summary(lsm,infer=infer))
