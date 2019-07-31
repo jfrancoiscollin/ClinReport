@@ -63,6 +63,19 @@ warp.emm <- emmeans(warp.lm, ~ tension | wool)
 contr=contrast(warp.emm, "trt.vs.ctrl", ref = "M")
 report.lsmeans(lsm=contr,at="wool")
 
+
+# Cox model
+
+library(survival)
+
+data(time_to_cure)
+
+fit <- coxph(Surv(time, status) ~ Group, data = time_to_cure) 
+em=emmeans(fit,~Group,type="response")
+pairs=pairs(em,adjust="none",exclude="Sentinel group")
+tab.pairs=report.lsmeans(pairs)
+
+
 }
 \seealso{
 \code{\link{report.quali}} \code{\link{emmeans}} \code{\link{report.doc}} \code{\link{desc}}

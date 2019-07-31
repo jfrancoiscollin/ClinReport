@@ -9,7 +9,6 @@
 #' @param lsm emmGrid object (result of a \code{emmeans} call)
 #' @param infer A vector of one or two logical values. Passed to \code{summary.emmGrid} function.
 #' @param at.row Character. Passed to spacetable function. Used to space the results per levels of the mentioned variable
-#' @param type Character. Type of prediction desired. Passed to summary.emmGrid function. Can be "link" or "response"
 #' @param round Numeric. Specify the number of digits to round the statistics
 #' 
 #' @description
@@ -64,6 +63,8 @@
 #' 
 #' # Cox model
 #' 
+#' library(survival)
+#' 
 #' data(time_to_cure)
 #' 
 #' fit <- coxph(Surv(time, status) ~ Group, data = time_to_cure) 
@@ -76,7 +77,7 @@
 #' 
 #' @export 
 
-report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),type="link",round=2)
+report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2)
 {
 	
 	# Checks
@@ -101,10 +102,15 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),type="link",round=2)
 	
 	if(!is.null(lsm@misc$predict.type))
 	{
+		type=lsm@misc$predict.type
+		
 		if(lsm@misc$predict.type=="response")
 		{
 			if(!is.null(lsm@misc$inv.lbl)) estname=lsm@misc$inv.lbl
 		}
+	}else
+	{
+		type="response"
 	}
 
 	vars=unique(c(lsm@misc$pri.vars,lsm@misc$by.vars))

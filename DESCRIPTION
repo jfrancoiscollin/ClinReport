@@ -2,10 +2,11 @@ Package: ClinReport
 Type: Package
 Title: Statistical Reporting for publication and clinical trials
 Version: 0.9.1.13
-Date: 2019-04-02
+Date: 2019-07-31
 Author: Jean-Francois Collin
 Maintainer: Jean-Francois Collin <jfcollin@live.fr>
 Description: It enables to create easy to read formatted statistical tables. They can be exported in 'Microsoft Word' or R markdown documents. It can be used within the scope of clinical trials, or for any publication. Descriptive tables for quantitative statistics (mean, median, max etc..) and/or qualitative statistics (frequencies and percentages) are available and formatted tables of Least Square Means of Linear Models, Linear Mixed Models, Cox Models and Generalized Linear Mixed Models coming from emmeans() function are also available. The package works with 'officer' and 'flextable' packages to export the outputs into 'Microsoft Word' or R markdown documents.       
+Depends: R (>= 3.5.0)
 License: GPL-3
 Imports: 
 	stats, 
@@ -23,7 +24,8 @@ Suggests:
     car,
     magrittr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    survival
 VignetteBuilder: knitr
 URL: https://jfrancoiscollin.github.io/ClinReport
 BugReports: https://github.com/jfrancoiscollin/ClinReport/issues

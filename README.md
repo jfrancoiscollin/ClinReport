@@ -10,12 +10,12 @@ status](https://www.r-pkg.org/badges/version/ClinReport)](https://cran.r-project
 
 ## Introduction
 
-The aim of ClinReport is to create statistical outputs (tables and
-graphics) in ‘Microsoft Word’ according to ‘clinical standards’ of
-reporting.
+The aim of ClinReport is to export statistical outputs (tables and
+graphics) from R to ‘Microsoft Word’ or R markdown documents in easy to
+read format according to usual standards of reporting.
 
-The formatted outputs are also suitable for any publications, so it can
-also be used outside the scope of clinical trials.
+The formatted outputs are suitable for any publications and can be used
+within the scope of clinical trials.
 
 ## Installation
 
