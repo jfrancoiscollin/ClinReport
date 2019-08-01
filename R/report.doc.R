@@ -11,7 +11,7 @@
 .output=new.env(parent = emptyenv())
 
 
-#' Export a statistical table into 'Microsoft Word'
+#' Export a statistical table into a 'Microsoft Word' or R markdown document
 #'
 #' @param table A desc object that report statistics (the results of \code{report.quanti} or \code{report.quali})
 #' @param title Character. The title of the table
@@ -29,12 +29,27 @@
 #' @description
 #' \code{report.doc} 
 #' This function enables to export the table created with \code{\link{report.quali}} \code{\link{report.quanti}} or \code{\link{report.lsmeans}}
-#' to a Microsoft Word in a "clinical standard" format. 
+#' to a Microsoft Word or a R markdown document in standrad easy to read format. 
 #' 
 #' It's also possible to use it to have a preview of the table in HTML format if the doc argument is NULL.
 #' 
 #' @details
-#' It creates a flextable object from a desc object and can eventually add it directly into a rdocx object.
+#' 
+#' This function creates a flextable object from a desc object
+#' 
+#' For Microsoft Word documents:
+#' 
+#' The argument doc should be used so the flextable is added to a rdocx object.
+#' 
+#' For R markdown documents:
+#' 
+#' Just don't use the doc argument. Something like:
+#' 
+#' ```{r, include=TRUE}
+#' tab=report.quanti(data=data,y="y_numeric",x1="GROUP")
+#' doc=report.doc(tab,title="Example",colspan.value="Treatment group" )		
+#' doc	
+#' ```
 #' 
 #' @return  
 #' A flextable object (if doc=NULL) or a rdocx object (if doc= an rdocx object).
