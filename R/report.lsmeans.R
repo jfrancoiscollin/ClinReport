@@ -19,7 +19,7 @@
 #' @param data deprecated
 #' @param contrast deprecated
 #' @param contrast.name deprecated
-#' 
+#' @param type deprecated
 #' 
 #' @description
 #' Creates a desc object for "LS Means" statistics reporting. 
@@ -88,7 +88,7 @@
 #' @export 
 
 report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2.name,x3.name,data,
-		contrast,contrast.name)
+		contrast,contrast.name,type)
 {
 	
 	
@@ -121,6 +121,10 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 	
 	if (!missing("x3.name"))
 		warning("argument deprecated. There is no need anymore to specify any variable name")
+	
+	if (!missing("type"))
+		warning("argument deprecated. There is no need anymore to specify the type of the prediction")
+	
 	
 	
 	# Checks
