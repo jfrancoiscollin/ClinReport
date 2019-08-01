@@ -126,3 +126,18 @@ tab.contr=report.lsmeans(lsm=contr,at="TIMEPOINT")
 report.doc(tab.contr,title="LS-Means contrast example",
 colspan.value="Contrasts")		
 
+## ------------------------------------------------------------------------
+library(survival)
+ 
+data(time_to_cure)
+ 
+fit <- coxph(Surv(time, status) ~ Group, data = time_to_cure) 
+em=emmeans(fit,~Group,type="response")
+pairs=pairs(em,adjust="none",exclude="Sentinel group")
+tab.pairs=report.lsmeans(pairs)
+
+tab.pairs
+
+report.doc(tab.pairs,title="Hazard ratios of a Cox model")
+
+

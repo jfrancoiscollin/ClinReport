@@ -74,26 +74,24 @@
 
     
     
-<div id="clinical-standards" class="section level1">
+<div id="standards-for-reporting-statistics" class="section level1">
 <h1 class="hasAnchor">
-<a href="#clinical-standards" class="anchor"></a>Clinical Standards</h1>
-<p>There is no official guidance regarding the format of the statistical tables used for clinical trial reporting, but there are implicit standards that are most frequently used.</p>
-<p>Those standards are given below (in no specific order):</p>
+<a href="#standards-for-reporting-statistics" class="anchor"></a>Standards for reporting statistics</h1>
+<p><strong>ClinReport</strong> enables to export tables an graphics of statistics according to the following standards:</p>
 <blockquote>
 <ul>
-<li>If statistics are reported by treatment group, display the statistics by treatment groups in columns</li>
+<li>Display the statistics by (treatment) groups in columns</li>
 <li>Do not display horizontal or vertical lines in the body of the table</li>
-<li>When there are statistics reported for several parameters or if they are reported by level of another factor in the same table, split the results with empty rows</li>
-<li>Add the number of subjects randomized in the column headers</li>
-<li>Each output should be numbered</li>
-<li>Each output should have a title</li>
-<li>The number of digits should be the same in all cells</li>
-<li>Always display the unit of the measured parameter in its label between parenthesis</li>
-<li>Police Headers should be bolded</li>
-<li>Usually for baseline characteristics add the Total column along with the treatment groups</li>
-<li>Use (most of the time) the <em>Times New Roman</em> police</li>
+<li>Split vertically the results of several factor levels with empty rows</li>
+<li>Add the number of subjects/observations in the column headers</li>
+<li>Each table is numbered (or can be numbered at least)</li>
+<li>Each table have a title (or can be titled at least)</li>
+<li>The number of digits are the same in all cells of the table</li>
+<li>Police Headers are bolded</li>
+<li>Use the <em>Times New Roman</em> police by default (can be changed if necessary)</li>
 </ul>
 </blockquote>
+<p>Those are usually used for any scientific publications, including the reporting of epidemiological or clinical statistics.</p>
 <p>For quantitative statistics:</p>
 <blockquote>
 <ul>
@@ -127,8 +125,9 @@
 <h1 class="hasAnchor">
 <a href="#example-with-clinreport" class="anchor"></a>Example with <code>ClinReport</code>
 </h1>
-<p>The purpose of the package <strong>ClinReport</strong> is to make Clincal Reporting easy according to those standards.</p>
-<p>Those are the default reporting options in the package <strong>ClinReport</strong> so few lines of code are necessary as can be seen in the example below:</p>
+<p>The purpose of the package <strong>ClinReport</strong> is to simplify the Statistical Reporting given the above standards.</p>
+<p>They are the default options so few lines of code are necessary.</p>
+<p>Example:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ClinReport)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="co">#&gt; </span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="co">#&gt; Attachement du package : 'ClinReport'</span></span>
@@ -156,12 +155,45 @@
 <span id="cb1-25"><a href="#cb1-25"></a></span>
 <span id="cb1-26"><a href="#cb1-26"></a>tab=<span class="kw"><a href="../reference/regroup.html">regroup</a></span>(tab1,tab2)</span>
 <span id="cb1-27"><a href="#cb1-27"></a></span>
-<span id="cb1-28"><a href="#cb1-28"></a><span class="co"># Create formatted output for Microsoft Word</span></span>
+<span id="cb1-28"><a href="#cb1-28"></a><span class="co"># In the R console, it looks like</span></span>
 <span id="cb1-29"><a href="#cb1-29"></a></span>
-<span id="cb1-30"><a href="#cb1-30"></a>doc=<span class="kw"><a href="../reference/report.doc.html">report.doc</a></span>(tab,<span class="dt">title=</span><span class="st">"Table of classic descriptive statistics (qualitative and quantitative parameter)"</span>,</span>
-<span id="cb1-31"><a href="#cb1-31"></a>        <span class="dt">colspan.value=</span><span class="st">"Treatment group"</span>, <span class="dt">init.numbering =</span>T )            </span>
-<span id="cb1-32"><a href="#cb1-32"></a></span>
-<span id="cb1-33"><a href="#cb1-33"></a>doc</span></code></pre></div>
+<span id="cb1-30"><a href="#cb1-30"></a>tab</span>
+<span id="cb1-31"><a href="#cb1-31"></a><span class="co">#&gt; </span></span>
+<span id="cb1-32"><a href="#cb1-32"></a><span class="co">#&gt; ############################################</span></span>
+<span id="cb1-33"><a href="#cb1-33"></a><span class="co">#&gt; </span></span>
+<span id="cb1-34"><a href="#cb1-34"></a><span class="co">#&gt; ############################################</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a><span class="co">#&gt; </span></span>
+<span id="cb1-36"><a href="#cb1-36"></a><span class="co">#&gt;                         Response Levels    Statistics     A (N=30)</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a><span class="co">#&gt; 1  Quantitative response (units)                    N          180</span></span>
+<span id="cb1-38"><a href="#cb1-38"></a><span class="co">#&gt; 2  Quantitative response (units)            Mean (SD)   1.46(1.50)</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a><span class="co">#&gt; 3  Quantitative response (units)               Median         1.59</span></span>
+<span id="cb1-40"><a href="#cb1-40"></a><span class="co">#&gt; 4  Quantitative response (units)              [Q1;Q3]  [0.45;2.50]</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a><span class="co">#&gt; 5  Quantitative response (units)            [Min;Max] [-2.34;4.36]</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a><span class="co">#&gt; 6  Quantitative response (units)              Missing            4</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a><span class="co">#&gt; 7                                                                 </span></span>
+<span id="cb1-44"><a href="#cb1-44"></a><span class="co">#&gt; 8           Qualitative response      0  n (column %)   79(43.89%)</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a><span class="co">#&gt; 9           Qualitative response      1  n (column %)   97(53.89%)</span></span>
+<span id="cb1-46"><a href="#cb1-46"></a><span class="co">#&gt; 10          Qualitative response         Missing n(%)     4(2.22%)</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a><span class="co">#&gt;        B (N=21)     C (N=17) Total (N=68)</span></span>
+<span id="cb1-48"><a href="#cb1-48"></a><span class="co">#&gt; 1           120           96          396</span></span>
+<span id="cb1-49"><a href="#cb1-49"></a><span class="co">#&gt; 2    3.15(2.00)   3.87(2.52)   2.56(2.20)</span></span>
+<span id="cb1-50"><a href="#cb1-50"></a><span class="co">#&gt; 3          3.75         4.73         2.71</span></span>
+<span id="cb1-51"><a href="#cb1-51"></a><span class="co">#&gt; 4   [2.46;4.44]  [3.44;5.30]  [1.04;4.33]</span></span>
+<span id="cb1-52"><a href="#cb1-52"></a><span class="co">#&gt; 5  [-2.44;6.19] [-2.99;7.96] [-2.99;7.96]</span></span>
+<span id="cb1-53"><a href="#cb1-53"></a><span class="co">#&gt; 6             4            2           10</span></span>
+<span id="cb1-54"><a href="#cb1-54"></a><span class="co">#&gt; 7                                        </span></span>
+<span id="cb1-55"><a href="#cb1-55"></a><span class="co">#&gt; 8    60(50.00%)   47(48.96%)  186(46.97%)</span></span>
+<span id="cb1-56"><a href="#cb1-56"></a><span class="co">#&gt; 9    59(49.17%)   44(45.83%)  200(50.51%)</span></span>
+<span id="cb1-57"><a href="#cb1-57"></a><span class="co">#&gt; 10     1(0.83%)     5(5.21%)    10(2.53%)</span></span>
+<span id="cb1-58"><a href="#cb1-58"></a><span class="co">#&gt; </span></span>
+<span id="cb1-59"><a href="#cb1-59"></a><span class="co">#&gt; ############################################</span></span>
+<span id="cb1-60"><a href="#cb1-60"></a></span>
+<span id="cb1-61"><a href="#cb1-61"></a><span class="co"># Create formatted output for Microsoft Word or R markdown documents (like this one)</span></span>
+<span id="cb1-62"><a href="#cb1-62"></a></span>
+<span id="cb1-63"><a href="#cb1-63"></a>doc=<span class="kw"><a href="../reference/report.doc.html">report.doc</a></span>(tab,<span class="dt">title=</span><span class="st">"Table of classic descriptive statistics (qualitative and quantitative parameter)"</span>,</span>
+<span id="cb1-64"><a href="#cb1-64"></a>        <span class="dt">colspan.value=</span><span class="st">"Treatment group"</span>, <span class="dt">init.numbering =</span>T )            </span>
+<span id="cb1-65"><a href="#cb1-65"></a></span>
+<span id="cb1-66"><a href="#cb1-66"></a>doc</span></code></pre></div>
 <div class="tabwid"><table class="table">
 <thead>
 <tr><td colspan="7" style="width:70px;height:22px;background-clip: padding-box;background-color:rgba(220, 220, 220, 1.00);vertical-align: middle;transform: rotate(0deg);border-bottom: 2px solid rgba(0, 0, 0, 1.00);border-top: 2px solid rgba(0, 0, 0, 1.00);border-left: 1px solid rgba(255, 255, 255, 0.00);border-right: 1px solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:0;padding-top:0;padding-left:0;padding-right:0;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;">Table 1: Table of classic descriptive statistics (qualitative and quantitative parameter)</span></p></td></tr>
@@ -278,7 +310,7 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#clinical-standards">Clinical Standards</a></li>
+<li><a href="#standards-for-reporting-statistics">Standards for reporting statistics</a></li>
       <li><a href="#example-with-clinreport">Example with <code>ClinReport</code></a></li>
       </ul>
 </div>

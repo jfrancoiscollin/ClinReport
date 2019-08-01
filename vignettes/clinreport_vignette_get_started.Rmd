@@ -1,10 +1,10 @@
 ---
-title: "ClinReport Vignette 2: Get Started"
+title: "ClinReport Vignette 2: The different type of statistical tables"
 author: "Jean-Francois COLLIN"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ClinReport Vignette 2: Get Started}
+  %\VignetteIndexEntry{ClinReport Vignette 2: The different type of statistical tables}
   %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
 ---
@@ -108,9 +108,9 @@ print(doc, target =file)
 ```
 
 
-## The different outputs
+## The descriptive statistics
 
-### Qualitative tables
+### Qualitative descriptive tables
 
 
 An example of qualitative statistics with one explicative variable
@@ -136,9 +136,7 @@ colspan.value="Treatment group")
 
  ```
 
-### Quantitative tables
-
-
+### Quantitative descriptive tables
 
 An example of quantitative statistics with one explicative variable
 
@@ -164,7 +162,7 @@ colspan.value="Treatment group")
 
 
 
-### Mixed Quantitative and Qualitative tables
+### Mix descriptive statistics of quantitative and qualitative nature
 
 You can mix qualitative and quantitative outputs.
 
@@ -185,7 +183,11 @@ report.doc(tab3,title="Mixed Qualitative and Quantitative outputs",
 colspan.value="Treatment group")
 ```
 
-### Anova model reporting
+
+## The inferential statistics
+
+
+### Anova table reporting
 
 For the anova table reporting, it's basically a call
 to the function `xtable_to_flextable()`. The function
@@ -238,7 +240,24 @@ colspan.value="Contrasts")
 ```
 
 
+### Hazard ratios of a Cox model
 
+
+```{r}
+library(survival)
+ 
+data(time_to_cure)
+ 
+fit <- coxph(Surv(time, status) ~ Group, data = time_to_cure) 
+em=emmeans(fit,~Group,type="response")
+pairs=pairs(em,adjust="none",exclude="Sentinel group")
+tab.pairs=report.lsmeans(pairs)
+
+tab.pairs
+
+report.doc(tab.pairs,title="Hazard ratios of a Cox model")
+
+```
 
 
 

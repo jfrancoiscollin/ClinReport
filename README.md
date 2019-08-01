@@ -15,7 +15,7 @@ graphics) from R to ‘Microsoft Word’ or R markdown documents in easy to
 read format according to usual standards of reporting.
 
 The formatted outputs are suitable for any publications and can be used
-within the scope of clinical trials.
+within the scope of epidemiological studies or clinical trials.
 
 ## Installation
 

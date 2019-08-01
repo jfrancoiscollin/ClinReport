@@ -241,7 +241,7 @@ by treatment group (95\% CI Mixed model)",
 
 contr=contrast(test3, "trt.vs.ctrl", ref = "A")
 
-tab.mod3.contr=report.lsmeans(lsm=contr,at.row="contrast")
+tab.mod3.contr=report.lsmeans(lsm=contr,at="TIMEPOINT")
 
 gg.mod3.contr=plot(tab.mod3.contr,title="LS-Means contrast versus reference A\\n
 			(95\% CI Mixed model)",
@@ -277,7 +277,7 @@ anov5=Anova(mod5,3)
 
 test5=emmeans(mod5,~GROUP|TIMEPOINT)
 
-tab.mod5=report.lsmeans(lsm=test5,at.row="TIMEPOINT",type="response")
+tab.mod5=report.lsmeans(lsm=test5,at.row="TIMEPOINT")
 
 
 gg.mod5=plot(tab.mod5,title="LS-Means response evolution as a function of time\\n

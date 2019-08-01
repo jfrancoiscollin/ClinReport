@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ClinReport Vignette 2: Get Started • ClinReport</title>
+<title>ClinReport Vignette 2: The different type of statistical tables • ClinReport</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="ClinReport Vignette 2: Get Started">
+<script src="../pkgdown.js"></script><meta property="og:title" content="ClinReport Vignette 2: The different type of statistical tables">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -62,7 +62,7 @@
 <script src="clinreport_vignette_get_started_files/tabwid-1.0.0/tabwid.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>ClinReport Vignette 2: Get Started</h1>
+      <h1>ClinReport Vignette 2: The different type of statistical tables</h1>
                         <h4 class="author">Jean-Francois COLLIN</h4>
             
             <h4 class="date">2019-08-01</h4>
@@ -459,12 +459,12 @@
 <span id="cb8-4"><a href="#cb8-4"></a><span class="co">#Open it</span></span>
 <span id="cb8-5"><a href="#cb8-5"></a><span class="co">#shell.exec(file)</span></span></code></pre></div>
 </div>
-<div id="the-different-outputs" class="section level2">
+<div id="the-descriptive-statistics" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-different-outputs" class="anchor"></a>The different outputs</h2>
-<div id="qualitative-tables" class="section level3">
+<a href="#the-descriptive-statistics" class="anchor"></a>The descriptive statistics</h2>
+<div id="qualitative-descriptive-tables" class="section level3">
 <h3 class="hasAnchor">
-<a href="#qualitative-tables" class="anchor"></a>Qualitative tables</h3>
+<a href="#qualitative-descriptive-tables" class="anchor"></a>Qualitative descriptive tables</h3>
 <p>An example of qualitative statistics with one explicative variable</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>tab=<span class="kw"><a href="../reference/report.quali.html">report.quali</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_logistic"</span>,</span>
 <span id="cb9-2"><a href="#cb9-2"></a>        <span class="dt">x1=</span><span class="st">"VAR"</span>,<span class="dt">total=</span>T,<span class="dt">subjid=</span><span class="st">"SUBJID"</span>)</span>
@@ -740,9 +740,9 @@
 <tfoot><tr><td colspan="7" style="width:80px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 2px solid rgba(0, 0, 0, 1.00);border-top: 1px solid rgba(255, 255, 255, 0.00);border-left: 1px solid rgba(255, 255, 255, 0.00);border-right: 1px solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:0;padding-top:0;padding-left:0;padding-right:0;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;"></span></p></td></tr></tfoot>
 </table></div>
 </div>
-<div id="quantitative-tables" class="section level3">
+<div id="quantitative-descriptive-tables" class="section level3">
 <h3 class="hasAnchor">
-<a href="#quantitative-tables" class="anchor"></a>Quantitative tables</h3>
+<a href="#quantitative-descriptive-tables" class="anchor"></a>Quantitative descriptive tables</h3>
 <p>An example of quantitative statistics with one explicative variable</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>tab=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_numeric"</span>,</span>
 <span id="cb11-2"><a href="#cb11-2"></a>        <span class="dt">x1=</span><span class="st">"VAR"</span>,<span class="dt">total=</span>T,<span class="dt">subjid=</span><span class="st">"SUBJID"</span>)</span>
@@ -1132,9 +1132,9 @@
 <tfoot><tr><td colspan="6" style="width:80px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 2px solid rgba(0, 0, 0, 1.00);border-top: 1px solid rgba(255, 255, 255, 0.00);border-left: 1px solid rgba(255, 255, 255, 0.00);border-right: 1px solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:0;padding-top:0;padding-left:0;padding-right:0;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;"></span></p></td></tr></tfoot>
 </table></div>
 </div>
-<div id="mixed-quantitative-and-qualitative-tables" class="section level3">
+<div id="mix-descriptive-statistics-of-quantitative-and-qualitative-nature" class="section level3">
 <h3 class="hasAnchor">
-<a href="#mixed-quantitative-and-qualitative-tables" class="anchor"></a>Mixed Quantitative and Qualitative tables</h3>
+<a href="#mix-descriptive-statistics-of-quantitative-and-qualitative-nature" class="anchor"></a>Mix descriptive statistics of quantitative and qualitative nature</h3>
 <p>You can mix qualitative and quantitative outputs.</p>
 <p>But it’s only possible for 1 explicative variable, and it should be the same variable for both response:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>tab1=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_numeric"</span>,</span>
@@ -1244,9 +1244,13 @@
 <tfoot><tr><td colspan="6" style="width:137px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 2px solid rgba(0, 0, 0, 1.00);border-top: 1px solid rgba(255, 255, 255, 0.00);border-left: 1px solid rgba(255, 255, 255, 0.00);border-right: 1px solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:0;padding-top:0;padding-left:0;padding-right:0;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;"></span></p></td></tr></tfoot>
 </table></div>
 </div>
-<div id="anova-model-reporting" class="section level3">
+</div>
+<div id="the-inferential-statistics" class="section level2">
+<h2 class="hasAnchor">
+<a href="#the-inferential-statistics" class="anchor"></a>The inferential statistics</h2>
+<div id="anova-table-reporting" class="section level3">
 <h3 class="hasAnchor">
-<a href="#anova-model-reporting" class="anchor"></a>Anova model reporting</h3>
+<a href="#anova-table-reporting" class="anchor"></a>Anova table reporting</h3>
 <p>For the anova table reporting, it’s basically a call to the function <code>xtable_to_flextable()</code>. The function <code><a href="../reference/report.doc.html">report.doc()</a></code> just handle the numbering of the output and the header with the title.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Removing baseline data for the model</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a>data.mod=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/droplevels">droplevels</a></span>(data[data<span class="op">$</span>TIMEPOINT<span class="op">!=</span><span class="st">"D0"</span>,])</span>
@@ -1592,6 +1596,65 @@
 <tfoot><tr><td colspan="4" style="width:80px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 2px solid rgba(0, 0, 0, 1.00);border-top: 1px solid rgba(255, 255, 255, 0.00);border-left: 1px solid rgba(255, 255, 255, 0.00);border-right: 1px solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:0;padding-top:0;padding-left:0;padding-right:0;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;"></span></p></td></tr></tfoot>
 </table></div>
 </div>
+<div id="hazard-ratios-of-a-cox-model" class="section level3">
+<h3 class="hasAnchor">
+<a href="#hazard-ratios-of-a-cox-model" class="anchor"></a>Hazard ratios of a Cox model</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(survival)</span>
+<span id="cb17-2"><a href="#cb17-2"></a> </span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="kw"><a href="../reference/data.html">data</a></span>(time_to_cure)</span>
+<span id="cb17-4"><a href="#cb17-4"></a> </span>
+<span id="cb17-5"><a href="#cb17-5"></a>fit &lt;-<span class="st"> </span><span class="kw">coxph</span>(<span class="kw">Surv</span>(time, status) <span class="op">~</span><span class="st"> </span>Group, <span class="dt">data =</span> time_to_cure) </span>
+<span id="cb17-6"><a href="#cb17-6"></a>em=<span class="kw">emmeans</span>(fit,<span class="op">~</span>Group,<span class="dt">type=</span><span class="st">"response"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7"></a>pairs=<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/pairs">pairs</a></span>(em,<span class="dt">adjust=</span><span class="st">"none"</span>,<span class="dt">exclude=</span><span class="st">"Sentinel group"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8"></a>tab.pairs=<span class="kw"><a href="../reference/report.lsmeans.html">report.lsmeans</a></span>(pairs)</span>
+<span id="cb17-9"><a href="#cb17-9"></a></span>
+<span id="cb17-10"><a href="#cb17-10"></a>tab.pairs</span>
+<span id="cb17-11"><a href="#cb17-11"></a><span class="co">#&gt; </span></span>
+<span id="cb17-12"><a href="#cb17-12"></a><span class="co">#&gt; ############################################</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a><span class="co">#&gt; LS-Means comparisons of: time</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a><span class="co">#&gt; ############################################</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a><span class="co">#&gt; </span></span>
+<span id="cb17-16"><a href="#cb17-16"></a><span class="co">#&gt;      Statistics Group A / Group B Group A / Group C Group B / Group C</span></span>
+<span id="cb17-17"><a href="#cb17-17"></a><span class="co">#&gt; 1 Estimate (SE)        0.68(0.26)        0.65(0.24)        0.95(0.34)</span></span>
+<span id="cb17-18"><a href="#cb17-18"></a><span class="co">#&gt; 2        95% CI       [0.32;1.44]       [0.31;1.35]       [0.47;1.93]</span></span>
+<span id="cb17-19"><a href="#cb17-19"></a><span class="co">#&gt; 3       P-value             0.310             0.250             0.890</span></span>
+<span id="cb17-20"><a href="#cb17-20"></a><span class="co">#&gt; </span></span>
+<span id="cb17-21"><a href="#cb17-21"></a><span class="co">#&gt; ############################################</span></span>
+<span id="cb17-22"><a href="#cb17-22"></a></span>
+<span id="cb17-23"><a href="#cb17-23"></a><span class="kw"><a href="../reference/report.doc.html">report.doc</a></span>(tab.pairs,<span class="dt">title=</span><span class="st">"Hazard ratios of a Cox model"</span>)</span></code></pre></div>
+<div class="tabwid"><table class="table">
+<thead>
+<tr><td colspan="4" style="width:65px;height:22px;background-clip: padding-box;background-color:rgba(220, 220, 220, 1.00);vertical-align: middle;transform: rotate(0deg);border-bottom: 2px solid rgba(0, 0, 0, 1.00);border-top: 2px solid rgba(0, 0, 0, 1.00);border-left: 1px solid rgba(255, 255, 255, 0.00);border-right: 1px solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:0;padding-top:0;padding-left:0;padding-right:0;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;">Table 10: Hazard ratios of a Cox model</span></p></td></tr>
+<tr>
+<td style="width:65px;height:22px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 2px solid rgba(0, 0, 0, 1.00);border-top: 2px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">Statistics</span></p></td>
+<td style="width:112px;height:22px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 2px solid rgba(0, 0, 0, 1.00);border-top: 2px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">Group A / Group B</span></p></td>
+<td style="width:112px;height:22px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 2px solid rgba(0, 0, 0, 1.00);border-top: 2px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">Group A / Group C</span></p></td>
+<td style="width:112px;height:22px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 2px solid rgba(0, 0, 0, 1.00);border-top: 2px solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">Group B / Group C</span></p></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="width:88px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1px solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">Estimate (SE)</span></p></td>
+<td style="width:73px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1px solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">0.68(0.26)</span></p></td>
+<td style="width:73px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">0.65(0.24)</span></p></td>
+<td style="width:73px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">0.95(0.34)</span></p></td>
+</tr>
+<tr>
+<td style="width:88px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1px solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">95% CI</span></p></td>
+<td style="width:73px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1px solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">[0.32;1.44]</span></p></td>
+<td style="width:73px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">[0.31;1.35]</span></p></td>
+<td style="width:73px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">[0.47;1.93]</span></p></td>
+</tr>
+<tr>
+<td style="width:88px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1px solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">P-value</span></p></td>
+<td style="width:73px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1px solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">0.310</span></p></td>
+<td style="width:73px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">0.250</span></p></td>
+<td style="width:73px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2px;padding-top:2px;padding-left:5px;padding-right:5px;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(17, 17, 17, 1.00);background-color:transparent;">0.890</span></p></td>
+</tr>
+</tbody>
+<tfoot><tr><td colspan="4" style="width:88px;height:7px;background-color:transparent;vertical-align: middle;transform: rotate(0deg);border-bottom: 2px solid rgba(0, 0, 0, 1.00);border-top: 1px solid rgba(255, 255, 255, 0.00);border-left: 1px solid rgba(255, 255, 255, 0.00);border-right: 1px solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:0;padding-top:0;padding-left:0;padding-right:0;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;"></span></p></td></tr></tfoot>
+</table></div>
+</div>
 </div>
   </div>
 
@@ -1601,7 +1664,8 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#get-started">Get started</a></li>
-      <li><a href="#the-different-outputs">The different outputs</a></li>
+      <li><a href="#the-descriptive-statistics">The descriptive statistics</a></li>
+      <li><a href="#the-inferential-statistics">The inferential statistics</a></li>
       </ul>
 </div>
       </div>

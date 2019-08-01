@@ -5,7 +5,7 @@
 \title{'LS Means' statistics reporting}
 \usage{
 report.lsmeans(lsm, at.row = NULL, infer = c(T, T), round = 2, x1,
-  x2, x3, x1.name, x2.name, x3.name, data, contrast, contrast.name)
+  x2, x3, x1.name, x2.name, x3.name, data, contrast, contrast.name, type)
 }
 \arguments{
 \item{lsm}{emmGrid object (result of a \code{emmeans} call)}
@@ -33,6 +33,8 @@ report.lsmeans(lsm, at.row = NULL, infer = c(T, T), round = 2, x1,
 \item{contrast}{deprecated}
 
 \item{contrast.name}{deprecated}
+
+\item{type}{deprecated}
 }
 \value{
 A desc object that can be used by the \code{report.doc} function.
