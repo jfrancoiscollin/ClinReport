@@ -11,7 +11,7 @@
 .output=new.env(parent = emptyenv())
 
 
-#' Export a statistical table into 'Microsoft Word'
+#' Export a statistical table into a 'Microsoft Word' or a R markdown document
 #'
 #' @param table A desc object that report statistics (the results of \code{report.quanti} or \code{report.quali})
 #' @param title Character. The title of the table
@@ -29,12 +29,36 @@
 #' @description
 #' \code{report.doc} 
 #' This function enables to export the table created with \code{\link{report.quali}} \code{\link{report.quanti}} or \code{\link{report.lsmeans}}
-#' to a Microsoft Word in a "clinical standard" format. 
+#' to a Microsoft Word or a R markdown document in standrad easy to read format. 
 #' 
 #' It's also possible to use it to have a preview of the table in HTML format if the doc argument is NULL.
 #' 
 #' @details
-#' It creates a flextable object from a desc object and can eventually add it directly into a rdocx object.
+#' 
+#' This function creates a flextable object from a desc object.
+#' 
+#' \strong{For Microsoft Word documents:}
+#' 
+#' The argument \code{doc} should be used so the flextable is added to a rdocx object.
+#' 
+#' Like:
+#' 
+#' \code{doc=read_docx()}
+#' 
+#' \code{tab=report.quanti(data=data,y="y_numeric",x1="GROUP")}
+#' 
+#' \code{doc=report.doc(tab,doc=doc)}
+#' 
+#' \strong{For R markdown documents:}
+#' 
+#' Just don't use the \code{doc} argument. Something like:
+#' 
+#' ```\{r, include=TRUE\} \cr
+#' \code{tab=report.quanti(data=data,y="y_numeric",x1="GROUP")} \cr
+#' \code{doc=report.doc(tab)} \cr
+#' \code{doc} \cr
+#' ``` \cr
+#'  
 #' 
 #' @return  
 #' A flextable object (if doc=NULL) or a rdocx object (if doc= an rdocx object).
@@ -58,9 +82,10 @@
 #' 
 #'mod=glm(y_logistic~GROUP+TIMEPOINT+GROUP*TIMEPOINT,
 #'family=binomial,data=data,na.action=na.omit)
+#' 
 #'test=emmeans(mod,~GROUP|TIMEPOINT)
-#'tab.mod=report.lsmeans(lsm=test,x1="GROUP",
-#'x2="TIMEPOINT",at.row="TIMEPOINT",data=data)
+#' 
+#'tab.mod=report.lsmeans(lsm=test,at.row="TIMEPOINT")
 #' 
 #' 
 #'doc=read_docx()
@@ -165,8 +190,7 @@
 #' 
 #'anov1=Anova(mod1)
 #'
-#'tab.mod1=report.lsmeans(lsm=test1,x1="GROUP",
-#' x2="TIMEPOINT",at.row="TIMEPOINT",data=data.mod)
+#'tab.mod1=report.lsmeans(lsm=test1,at.row="TIMEPOINT")
 #'
 #'gg.mod1=plot(tab.mod1,title="LS-Means response evolution as a function of time\n
 #' by treatment group (95% CI)",
@@ -179,7 +203,7 @@
 #'anov2=Anova(mod2,type=3)
 #' 
 #'test2=emmeans(mod2,~GROUP)
-#'tab.mod2=report.lsmeans(lsm=test2,x1="GROUP",data=data.mod)
+#'tab.mod2=report.lsmeans(lsm=test2)
 #'
 #'
 #'gg.mod2=plot(tab.mod2,title="LS-Means response\nby treatment group (95% CI)",
@@ -195,8 +219,7 @@
 #' 
 #'test3=emmeans(mod3,~GROUP|TIMEPOINT)
 #' 
-#'tab.mod3=report.lsmeans(lsm=test3,x1="GROUP",
-#' x2="TIMEPOINT",at.row="TIMEPOINT",data=data.mod)
+#'tab.mod3=report.lsmeans(lsm=test3,at.row="TIMEPOINT")
 #'
 #'gg.mod3=plot(tab.mod3,title="LS-Means response evolution as a function of time\n
 #'by treatment group (95% CI Mixed model)",
@@ -206,8 +229,7 @@
 #'
 #'contr=contrast(test3, "trt.vs.ctrl", ref = "A")
 #'
-#'tab.mod3.contr=report.lsmeans(lsm=contr,x1="TIMEPOINT",
-#'		data=data.mod,contrast=TRUE,at.row="contrast")
+#'tab.mod3.contr=report.lsmeans(lsm=contr,at="TIMEPOINT")
 #'
 #'gg.mod3.contr=plot(tab.mod3.contr,title="LS-Means contrast versus reference A\n
 #'				(95% CI Mixed model)",
@@ -225,8 +247,7 @@
 #' 
 #'test4=emmeans(mod4,~GROUP|TIMEPOINT)
 #'
-#'tab.mod4=report.lsmeans(lsm=test4,x1="GROUP",
-#' x2="TIMEPOINT",at.row="TIMEPOINT",data=data.mod)
+#'tab.mod4=report.lsmeans(lsm=test4,at.row="TIMEPOINT")
 #'
 #'gg.mod4=plot(tab.mod4,title="LS-Means response evolution as a function of time\n
 #'by treatment group (95% CI Logistic model)",
@@ -244,8 +265,7 @@
 #' 
 #'test5=emmeans(mod5,~GROUP|TIMEPOINT)
 #'
-#'tab.mod5=report.lsmeans(lsm=test5,x1="GROUP",
-#' x2="TIMEPOINT",at.row="TIMEPOINT",type="response",data=data.mod)
+#'tab.mod5=report.lsmeans(lsm=test5,at.row="TIMEPOINT")
 #'
 #'
 #'gg.mod5=plot(tab.mod5,title="LS-Means response evolution as a function of time\n
@@ -396,8 +416,8 @@ report.doc <- function(table,...)
 #' @rdname report.doc
 #' @export 
 
-report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
-		init.numbering=F,numbering=T,font.name="Times",page.break=T,font.size=11,...)
+report.doc.desc=function(table,title=NULL,colspan.value=NULL,doc=NULL,
+		init.numbering=F,numbering=T,font.name="Times",page.break=T,font.size=10,...)
 {
 	
 	
@@ -434,7 +454,14 @@ report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
 	
 	if(numbering)
 	{
-		title= paste0("Output ",get("number",envir=.output),": ",c(title))
+		if(!is.null(title))
+		{
+			title= paste0("Table ",get("number",envir=.output),": ",c(title))
+		}else
+		{
+			title= paste0("Table ",get("number",envir=.output),": ",c(table$title))
+		}
+		
 	}
 	
 	
@@ -579,7 +606,7 @@ report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
 
 
 report.doc.anova=function(table,title="Anova table",type.anova=3,doc=NULL,numbering=T,
-		init.numbering=F,font.name="Times",font.size=11,page.break=T,...)
+		init.numbering=F,font.name="Times",font.size=10,page.break=T,...)
 {
 	
 	
@@ -596,7 +623,7 @@ report.doc.anova=function(table,title="Anova table",type.anova=3,doc=NULL,number
 	
 	if(numbering)
 	{
-		title= paste0("Output ",get("number",envir=.output),": ",c(title))
+		title= paste0("Table ",get("number",envir=.output),": ",c(title))
 	}
 	
 	

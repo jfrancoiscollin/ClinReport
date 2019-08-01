@@ -254,7 +254,10 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 	}
 	
 	
-	
+	if(x$type.desc=="quali" & y$type.desc=="quali")
+	{
+		message("The regroup function doesn't work yet with two 'quali' objects")
+	}
 	
 	
 	

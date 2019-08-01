@@ -64,7 +64,7 @@ regroup two descriptive tables (qualitative or quantitative) into one" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ClinReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13</span>
       </span>
     </div>
 
@@ -170,7 +170,12 @@ two explicative variables.</p>
 <span class='no'>tab2</span><span class='kw'>=</span><span class='fu'><a href='report.quali.html'>report.quali</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,
         <span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Y logistic"</span>)
 
-<span class='fu'>regroup</span>(<span class='no'>tab1</span>,<span class='no'>tab2</span>,<span class='kw'>rbind.label</span><span class='kw'>=</span><span class='st'>"The label of your choice"</span>)</div><div class='output co'>#&gt;    The label of your choice Levels    Statistics     A (N=30)     B (N=21)
+<span class='fu'>regroup</span>(<span class='no'>tab1</span>,<span class='no'>tab2</span>,<span class='kw'>rbind.label</span><span class='kw'>=</span><span class='st'>"The label of your choice"</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; 
+#&gt; ############################################
+#&gt; 
+#&gt;    The label of your choice Levels    Statistics     A (N=30)     B (N=21)
 #&gt; 1                 Y numeric                    N          180          120
 #&gt; 2                 Y numeric            Mean (SD)   1.46(1.50)   3.15(2.00)
 #&gt; 3                 Y numeric               Median         1.59         3.75
@@ -191,7 +196,10 @@ two explicative variables.</p>
 #&gt; 7              
 #&gt; 8    47(48.96%)
 #&gt; 9    44(45.83%)
-#&gt; 10     5(5.21%)</div><div class='input'>
+#&gt; 10     5(5.21%)
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 
 <span class='co'># Example with 2 quantitative tables</span>
 
@@ -203,7 +211,12 @@ two explicative variables.</p>
 <span class='no'>tab2</span><span class='kw'>=</span><span class='fu'><a href='report.quanti.html'>report.quanti</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric2"</span>,
         <span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Y Numeric 2"</span>)
 
-<span class='fu'>regroup</span>(<span class='no'>tab1</span>,<span class='no'>tab2</span>,<span class='kw'>rbind.label</span><span class='kw'>=</span><span class='st'>"The label of your choice"</span>)</div><div class='output co'>#&gt;    The label of your choice Statistics     A (N=30)     B (N=21)     C (N=17)
+<span class='fu'>regroup</span>(<span class='no'>tab1</span>,<span class='no'>tab2</span>,<span class='kw'>rbind.label</span><span class='kw'>=</span><span class='st'>"The label of your choice"</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; 
+#&gt; ############################################
+#&gt; 
+#&gt;    The label of your choice Statistics     A (N=30)     B (N=21)     C (N=17)
 #&gt; 1                 Y numeric          N          180          120           96
 #&gt; 2                 Y numeric  Mean (SD)   1.46(1.50)   3.15(2.00)   3.87(2.52)
 #&gt; 3                 Y numeric     Median         1.59         3.75         4.73
@@ -216,7 +229,10 @@ two explicative variables.</p>
 #&gt; 10              Y Numeric 2     Median         0.09         0.07         0.03
 #&gt; 11              Y Numeric 2    [Q1;Q3] [-0.58;0.77] [-0.64;0.68] [-0.41;0.93]
 #&gt; 12              Y Numeric 2  [Min;Max] [-2.61;2.65] [-2.18;2.76] [-2.27;2.68]
-#&gt; 13              Y Numeric 2    Missing            0            0            0</div><div class='input'>
+#&gt; 13              Y Numeric 2    Missing            0            0            0
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

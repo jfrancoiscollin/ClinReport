@@ -64,7 +64,7 @@ and x2 in rows." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ClinReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13</span>
       </span>
     </div>
 
@@ -112,7 +112,7 @@ and <code>x2</code> in rows.</p>
 
     <pre class="usage"><span class='fu'>report.quali</span>(<span class='no'>data</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>x1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>x2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.label</span> <span class='kw'>=</span> <span class='no'>y</span>,
   <span class='kw'>x2.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.levels.label</span> <span class='kw'>=</span> <span class='st'>"Levels"</span>, <span class='kw'>total</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>round</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>at.row</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>percent.col</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>subjid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>at.row</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>percent.col</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>subjid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>remove.zero</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,6 +165,10 @@ and <code>x2</code> in rows.</p>
       <th>subjid</th>
       <td><p>Character Indicates in the data.frame the name of the column used to identify the Id of the subjects. If not null, it adds in the headers the number of unique subject per levels of x1 or y (if x1 is null).</p></td>
     </tr>
+    <tr>
+      <th>remove.zero</th>
+      <td><p>Logical. Remove the levels in the contingency table for which there is no observation.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -191,19 +195,40 @@ performed overall levels of the explicative variables x1.</p>
 
 <span class='co'># No explicative variable changing y labels (option y.levels.label)</span>
 <span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,
-<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Clinical cure"</span>,<span class='kw'>y.levels.label</span><span class='kw'>=</span><span class='st'>"Levels"</span>)</div><div class='output co'>#&gt;   Levels    Statistics Clinical cure
+<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Clinical cure"</span>,<span class='kw'>y.levels.label</span><span class='kw'>=</span><span class='st'>"Levels"</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Qualitative descriptive statistics of : Clinical cure
+#&gt; ############################################
+#&gt; 
+#&gt;   Levels    Statistics Clinical cure
 #&gt; 1      0  n (column %)   186(46.97%)
 #&gt; 2      1  n (column %)   200(50.51%)
-#&gt; 3         Missing n(%)     10(2.53%)</div><div class='input'>
+#&gt; 3         Missing n(%)     10(2.53%)
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># 1 explicative variable (option x1:  levels in columns)</span>
-<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>y.levels.label</span><span class='kw'>=</span><span class='st'>"Clinical cure"</span>)</div><div class='output co'>#&gt;   Clinical cure    Statistics          A          B          C
+<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>y.levels.label</span><span class='kw'>=</span><span class='st'>"Clinical cure"</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Qualitative descriptive statistics of : y_logistic
+#&gt; ############################################
+#&gt; 
+#&gt;   Clinical cure    Statistics          A          B          C
 #&gt; 1             0  n (column %) 79(43.89%) 60(50.00%) 47(48.96%)
 #&gt; 2             1  n (column %) 97(53.89%) 59(49.17%) 44(45.83%)
-#&gt; 3                Missing n(%)   4(2.22%)   1(0.83%)   5(5.21%)</div><div class='input'>
+#&gt; 3                Missing n(%)   4(2.22%)   1(0.83%)   5(5.21%)
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># 2 explicative variables (x1, levels in columns, option x2, levels in rows),</span>
 <span class='co'># spcacing the results (option at.row)</span>
 <span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
-<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>y.levels.label</span><span class='kw'>=</span><span class='st'>"Clinical cure"</span>,<span class='kw'>x2.label</span><span class='kw'>=</span><span class='st'>"Days"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"Days"</span>)</div><div class='output co'>#&gt;    Days Clinical cure    Statistics          A          B          C
+<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>y.levels.label</span><span class='kw'>=</span><span class='st'>"Clinical cure"</span>,<span class='kw'>x2.label</span><span class='kw'>=</span><span class='st'>"Days"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"Days"</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Qualitative descriptive statistics of : y_logistic
+#&gt; ############################################
+#&gt; 
+#&gt;    Days Clinical cure    Statistics          A          B          C
 #&gt; 1    D0             0  n (column %) 11(36.67%) 11(55.00%)  7(43.75%)
 #&gt; 2    D0             1  n (column %) 18(60.00%)  8(40.00%)  7(43.75%)
 #&gt; 3    D0                Missing n(%)   1(3.33%)   1(5.00%)  2(12.50%)
@@ -226,10 +251,18 @@ performed overall levels of the explicative variables x1.</p>
 #&gt; 20                                                                  
 #&gt; 21   D5             0  n (column %) 14(46.67%)  7(35.00%)  8(50.00%)
 #&gt; 22   D5             1  n (column %) 15(50.00%) 13(65.00%)  8(50.00%)
-#&gt; 23   D5                Missing n(%)   1(3.33%)      0(0%)      0(0%)</div><div class='input'>
+#&gt; 23   D5                Missing n(%)   1(3.33%)      0(0%)      0(0%)
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># 2 explicative variables with row percentages (option percent.col=F)</span>
 <span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
-<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>percent.col</span><span class='kw'>=</span><span class='fl'>FALSE</span>,<span class='kw'>x2.label</span><span class='kw'>=</span><span class='st'>"Days"</span>,<span class='kw'>y.levels.label</span><span class='kw'>=</span><span class='st'>"Clinical cure"</span>)</div><div class='output co'>#&gt;    Days Clinical cure    Statistics          A          B          C
+<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>percent.col</span><span class='kw'>=</span><span class='fl'>FALSE</span>,<span class='kw'>x2.label</span><span class='kw'>=</span><span class='st'>"Days"</span>,<span class='kw'>y.levels.label</span><span class='kw'>=</span><span class='st'>"Clinical cure"</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Qualitative descriptive statistics of : y_logistic
+#&gt; ############################################
+#&gt; 
+#&gt;    Days Clinical cure    Statistics          A          B          C
 #&gt; 1    D0             0     n (row %) 11(37.93%) 11(37.93%)  7(24.14%)
 #&gt; 2    D0             1     n (row %) 18(54.55%)  8(24.24%)  7(21.21%)
 #&gt; 3    D0                Missing n(%)  1(25.00%)  1(25.00%)  2(50.00%)
@@ -247,10 +280,18 @@ performed overall levels of the explicative variables x1.</p>
 #&gt; 15   D4                Missing n(%)      0(0%)      0(0%) 2(100.00%)
 #&gt; 16   D5             0     n (row %) 14(48.28%)  7(24.14%)  8(27.59%)
 #&gt; 17   D5             1     n (row %) 15(41.67%) 13(36.11%)  8(22.22%)
-#&gt; 18   D5                Missing n(%) 1(100.00%)      0(0%)      0(0%)</div><div class='input'>
+#&gt; 18   D5                Missing n(%) 1(100.00%)      0(0%)      0(0%)
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># Add Total number of subjects in headers (option subjid="SUBJID")</span>
 <span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
-<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>)</div><div class='output co'>#&gt;    TIMEPOINT Levels    Statistics   A (N=30)   B (N=21)   C (N=17)
+<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Qualitative descriptive statistics of : y_logistic
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT Levels    Statistics   A (N=30)   B (N=21)   C (N=17)
 #&gt; 1         D0      0  n (column %) 11(36.67%) 11(55.00%)  7(43.75%)
 #&gt; 2         D0      1  n (column %) 18(60.00%)  8(40.00%)  7(43.75%)
 #&gt; 3         D0         Missing n(%)   1(3.33%)   1(5.00%)  2(12.50%)
@@ -273,10 +314,18 @@ performed overall levels of the explicative variables x1.</p>
 #&gt; 20                                                                
 #&gt; 21        D5      0  n (column %) 14(46.67%)  7(35.00%)  8(50.00%)
 #&gt; 22        D5      1  n (column %) 15(50.00%) 13(65.00%)  8(50.00%)
-#&gt; 23        D5         Missing n(%)   1(3.33%)      0(0%)      0(0%)</div><div class='input'>
+#&gt; 23        D5         Missing n(%)   1(3.33%)      0(0%)      0(0%)
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># Round percentages to 1 digit (option round=1)</span>
 <span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
-<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,<span class='kw'>round</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt;    TIMEPOINT Levels    Statistics  A (N=30)  B (N=21)  C (N=17)
+<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,<span class='kw'>round</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Qualitative descriptive statistics of : y_logistic
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT Levels    Statistics  A (N=30)  B (N=21)  C (N=17)
 #&gt; 1         D0      0  n (column %) 11(36.7%) 11(55.0%)  7(43.8%)
 #&gt; 2         D0      1  n (column %) 18(60.0%)  8(40.0%)  7(43.8%)
 #&gt; 3         D0         Missing n(%)   1(3.3%)   1(5.0%)  2(12.5%)
@@ -299,13 +348,21 @@ performed overall levels of the explicative variables x1.</p>
 #&gt; 20                                                             
 #&gt; 21        D5      0  n (column %) 14(46.7%)  7(35.0%)  8(50.0%)
 #&gt; 22        D5      1  n (column %) 15(50.0%) 13(65.0%)  8(50.0%)
-#&gt; 23        D5         Missing n(%)   1(3.3%)   0(0.0%)   0(0.0%)</div><div class='input'>
+#&gt; 23        D5         Missing n(%)   1(3.3%)   0(0.0%)   0(0.0%)
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 
 <span class='co'># Qualitative statistics with a response with more than one levels</span>
 <span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_poisson"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,<span class='kw'>round</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>data[,'y_poisson']has been transformed into a factor</span></div><div class='input'>
 <span class='co'># Print formatted results</span>
-<span class='no'>tab</span></div><div class='output co'>#&gt;    TIMEPOINT Levels    Statistics  A (N=30)  B (N=21) C (N=17)
+<span class='no'>tab</span></div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Qualitative descriptive statistics of : y_poisson
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT Levels    Statistics  A (N=30)  B (N=21) C (N=17)
 #&gt; 1         D0      1  n (column %)   0(0.0%)   0(0.0%)  0(0.0%)
 #&gt; 2         D0      2  n (column %)   0(0.0%)   0(0.0%)  1(6.2%)
 #&gt; 3         D0      3  n (column %)  9(30.0%)  4(20.0%) 4(25.0%)
@@ -382,226 +439,229 @@ performed overall levels of the explicative variables x1.</p>
 #&gt; 74        D5      9  n (column %)   0(0.0%)  5(25.0%)  0(0.0%)
 #&gt; 75        D5     10  n (column %)   0(0.0%)  4(20.0%)  0(0.0%)
 #&gt; 76        D5     11  n (column %)   0(0.0%)   0(0.0%)  0(0.0%)
-#&gt; 77        D5         Missing n(%)   2(6.7%)   0(0.0%)  0(0.0%)</div><div class='input'>
+#&gt; 77        D5         Missing n(%)   2(6.7%)   0(0.0%)  0(0.0%)
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 
 <span class='co'>#Getting raw output (unformatted) </span>
-<span class='no'>tab</span>$<span class='no'>raw.output</span></div><div class='output co'>#&gt;     Var2 Var3 Var1 Freq.x Freq.y
-#&gt; 1      A   D0    1      0     30
-#&gt; 2      A   D0    2      0     30
-#&gt; 3      A   D0    3      9     30
-#&gt; 4      A   D0    4     10     30
-#&gt; 5      A   D0    5     10     30
-#&gt; 6      A   D0    6      0     30
-#&gt; 7      A   D0    7      0     30
-#&gt; 8      A   D0    8      0     30
-#&gt; 9      A   D0    9      0     30
-#&gt; 10     A   D0   10      0     30
-#&gt; 11     A   D0   11      0     30
-#&gt; 12     A   D0 &lt;NA&gt;      1     30
-#&gt; 13     A   D1    1      2     30
-#&gt; 14     A   D1    2      9     30
-#&gt; 15     A   D1    3      9     30
-#&gt; 16     A   D1    4      7     30
-#&gt; 17     A   D1    5      1     30
-#&gt; 18     A   D1    6      1     30
-#&gt; 19     A   D1    7      0     30
-#&gt; 20     A   D1    8      0     30
-#&gt; 21     A   D1    9      0     30
-#&gt; 22     A   D1   10      0     30
-#&gt; 23     A   D1   11      0     30
-#&gt; 24     A   D1 &lt;NA&gt;      1     30
-#&gt; 25     A   D2    1      0     30
-#&gt; 26     A   D2    2      9     30
-#&gt; 27     A   D2    3     10     30
-#&gt; 28     A   D2    4      7     30
-#&gt; 29     A   D2    5      3     30
-#&gt; 30     A   D2    6      0     30
-#&gt; 31     A   D2    7      0     30
-#&gt; 32     A   D2    8      0     30
-#&gt; 33     A   D2    9      0     30
-#&gt; 34     A   D2   10      0     30
-#&gt; 35     A   D2   11      0     30
-#&gt; 36     A   D2 &lt;NA&gt;      1     30
-#&gt; 37     A   D3    1      4     30
-#&gt; 38     A   D3    2      6     30
-#&gt; 39     A   D3    3     10     30
-#&gt; 40     A   D3    4      9     30
-#&gt; 41     A   D3    5      1     30
-#&gt; 42     A   D3    6      0     30
-#&gt; 43     A   D3    7      0     30
-#&gt; 44     A   D3    8      0     30
-#&gt; 45     A   D3    9      0     30
-#&gt; 46     A   D3   10      0     30
-#&gt; 47     A   D3   11      0     30
-#&gt; 48     A   D3 &lt;NA&gt;      0     30
-#&gt; 49     A   D4    1      2     30
-#&gt; 50     A   D4    2      6     30
-#&gt; 51     A   D4    3     12     30
-#&gt; 52     A   D4    4      7     30
-#&gt; 53     A   D4    5      3     30
-#&gt; 54     A   D4    6      0     30
-#&gt; 55     A   D4    7      0     30
-#&gt; 56     A   D4    8      0     30
-#&gt; 57     A   D4    9      0     30
-#&gt; 58     A   D4   10      0     30
-#&gt; 59     A   D4   11      0     30
-#&gt; 60     A   D4 &lt;NA&gt;      0     30
-#&gt; 61     A   D5    1      0     30
-#&gt; 62     A   D5    2      6     30
-#&gt; 63     A   D5    3     14     30
-#&gt; 64     A   D5    4      4     30
-#&gt; 65     A   D5    5      2     30
-#&gt; 66     A   D5    6      2     30
-#&gt; 67     A   D5    7      0     30
-#&gt; 68     A   D5    8      0     30
-#&gt; 69     A   D5    9      0     30
-#&gt; 70     A   D5   10      0     30
-#&gt; 71     A   D5   11      0     30
-#&gt; 72     A   D5 &lt;NA&gt;      2     30
-#&gt; 73     B   D0    1      0     20
-#&gt; 74     B   D0    2      0     20
-#&gt; 75     B   D0    3      4     20
-#&gt; 76     B   D0    4      8     20
-#&gt; 77     B   D0    5      7     20
-#&gt; 78     B   D0    6      0     20
-#&gt; 79     B   D0    7      1     20
-#&gt; 80     B   D0    8      0     20
-#&gt; 81     B   D0    9      0     20
-#&gt; 82     B   D0   10      0     20
-#&gt; 83     B   D0   11      0     20
-#&gt; 84     B   D0 &lt;NA&gt;      0     20
-#&gt; 85     B   D1    1      0     20
-#&gt; 86     B   D1    2      0     20
-#&gt; 87     B   D1    3      0     20
-#&gt; 88     B   D1    4      0     20
-#&gt; 89     B   D1    5      0     20
-#&gt; 90     B   D1    6      0     20
-#&gt; 91     B   D1    7      0     20
-#&gt; 92     B   D1    8     10     20
-#&gt; 93     B   D1    9      6     20
-#&gt; 94     B   D1   10      4     20
-#&gt; 95     B   D1   11      0     20
-#&gt; 96     B   D1 &lt;NA&gt;      0     20
-#&gt; 97     B   D2    1      0     20
-#&gt; 98     B   D2    2      0     20
-#&gt; 99     B   D2    3      0     20
-#&gt; 100    B   D2    4      0     20
-#&gt; 101    B   D2    5      0     20
-#&gt; 102    B   D2    6      0     20
-#&gt; 103    B   D2    7      1     20
-#&gt; 104    B   D2    8      4     20
-#&gt; 105    B   D2    9      9     20
-#&gt; 106    B   D2   10      4     20
-#&gt; 107    B   D2   11      2     20
-#&gt; 108    B   D2 &lt;NA&gt;      0     20
-#&gt; 109    B   D3    1      0     20
-#&gt; 110    B   D3    2      0     20
-#&gt; 111    B   D3    3      0     20
-#&gt; 112    B   D3    4      0     20
-#&gt; 113    B   D3    5      0     20
-#&gt; 114    B   D3    6      0     20
-#&gt; 115    B   D3    7      0     20
-#&gt; 116    B   D3    8      5     20
-#&gt; 117    B   D3    9     10     20
-#&gt; 118    B   D3   10      3     20
-#&gt; 119    B   D3   11      2     20
-#&gt; 120    B   D3 &lt;NA&gt;      0     20
-#&gt; 121    B   D4    1      0     20
-#&gt; 122    B   D4    2      0     20
-#&gt; 123    B   D4    3      0     20
-#&gt; 124    B   D4    4      0     20
-#&gt; 125    B   D4    5      0     20
-#&gt; 126    B   D4    6      0     20
-#&gt; 127    B   D4    7      2     20
-#&gt; 128    B   D4    8      1     20
-#&gt; 129    B   D4    9     12     20
-#&gt; 130    B   D4   10      4     20
-#&gt; 131    B   D4   11      0     20
-#&gt; 132    B   D4 &lt;NA&gt;      1     20
-#&gt; 133    B   D5    1      0     20
-#&gt; 134    B   D5    2      0     20
-#&gt; 135    B   D5    3      0     20
-#&gt; 136    B   D5    4      0     20
-#&gt; 137    B   D5    5      0     20
-#&gt; 138    B   D5    6      0     20
-#&gt; 139    B   D5    7      2     20
-#&gt; 140    B   D5    8      9     20
-#&gt; 141    B   D5    9      5     20
-#&gt; 142    B   D5   10      4     20
-#&gt; 143    B   D5   11      0     20
-#&gt; 144    B   D5 &lt;NA&gt;      0     20
-#&gt; 145    C   D0    1      0     16
-#&gt; 146    C   D0    2      1     16
-#&gt; 147    C   D0    3      4     16
-#&gt; 148    C   D0    4      8     16
-#&gt; 149    C   D0    5      2     16
-#&gt; 150    C   D0    6      1     16
-#&gt; 151    C   D0    7      0     16
-#&gt; 152    C   D0    8      0     16
-#&gt; 153    C   D0    9      0     16
-#&gt; 154    C   D0   10      0     16
-#&gt; 155    C   D0   11      0     16
-#&gt; 156    C   D0 &lt;NA&gt;      0     16
-#&gt; 157    C   D1    1      0     16
-#&gt; 158    C   D1    2      0     16
-#&gt; 159    C   D1    3      0     16
-#&gt; 160    C   D1    4      4     16
-#&gt; 161    C   D1    5      8     16
-#&gt; 162    C   D1    6      1     16
-#&gt; 163    C   D1    7      1     16
-#&gt; 164    C   D1    8      0     16
-#&gt; 165    C   D1    9      0     16
-#&gt; 166    C   D1   10      0     16
-#&gt; 167    C   D1   11      0     16
-#&gt; 168    C   D1 &lt;NA&gt;      2     16
-#&gt; 169    C   D2    1      0     16
-#&gt; 170    C   D2    2      0     16
-#&gt; 171    C   D2    3      2     16
-#&gt; 172    C   D2    4      4     16
-#&gt; 173    C   D2    5      6     16
-#&gt; 174    C   D2    6      2     16
-#&gt; 175    C   D2    7      1     16
-#&gt; 176    C   D2    8      1     16
-#&gt; 177    C   D2    9      0     16
-#&gt; 178    C   D2   10      0     16
-#&gt; 179    C   D2   11      0     16
-#&gt; 180    C   D2 &lt;NA&gt;      0     16
-#&gt; 181    C   D3    1      0     16
-#&gt; 182    C   D3    2      0     16
-#&gt; 183    C   D3    3      2     16
-#&gt; 184    C   D3    4      2     16
-#&gt; 185    C   D3    5      9     16
-#&gt; 186    C   D3    6      2     16
-#&gt; 187    C   D3    7      0     16
-#&gt; 188    C   D3    8      1     16
-#&gt; 189    C   D3    9      0     16
-#&gt; 190    C   D3   10      0     16
-#&gt; 191    C   D3   11      0     16
-#&gt; 192    C   D3 &lt;NA&gt;      0     16
-#&gt; 193    C   D4    1      0     16
-#&gt; 194    C   D4    2      0     16
-#&gt; 195    C   D4    3      1     16
-#&gt; 196    C   D4    4      4     16
-#&gt; 197    C   D4    5      4     16
-#&gt; 198    C   D4    6      4     16
-#&gt; 199    C   D4    7      1     16
-#&gt; 200    C   D4    8      0     16
-#&gt; 201    C   D4    9      0     16
-#&gt; 202    C   D4   10      0     16
-#&gt; 203    C   D4   11      0     16
-#&gt; 204    C   D4 &lt;NA&gt;      2     16
-#&gt; 205    C   D5    1      0     16
-#&gt; 206    C   D5    2      0     16
-#&gt; 207    C   D5    3      0     16
-#&gt; 208    C   D5    4      8     16
-#&gt; 209    C   D5    5      5     16
-#&gt; 210    C   D5    6      2     16
-#&gt; 211    C   D5    7      1     16
-#&gt; 212    C   D5    8      0     16
-#&gt; 213    C   D5    9      0     16
-#&gt; 214    C   D5   10      0     16
-#&gt; 215    C   D5   11      0     16
-#&gt; 216    C   D5 &lt;NA&gt;      0     16</div></pre>
+<span class='no'>tab</span>$<span class='no'>raw.output</span></div><div class='output co'>#&gt;     GROUP TIMEPOINT y_poisson Freq.x Freq.y
+#&gt; 1       A        D0         1      0     30
+#&gt; 2       A        D0         2      0     30
+#&gt; 3       A        D0         3      9     30
+#&gt; 4       A        D0         4     10     30
+#&gt; 5       A        D0         5     10     30
+#&gt; 6       A        D0         6      0     30
+#&gt; 7       A        D0         7      0     30
+#&gt; 8       A        D0         8      0     30
+#&gt; 9       A        D0         9      0     30
+#&gt; 10      A        D0        10      0     30
+#&gt; 11      A        D0        11      0     30
+#&gt; 12      A        D0      &lt;NA&gt;      1     30
+#&gt; 13      A        D1         1      2     30
+#&gt; 14      A        D1         2      9     30
+#&gt; 15      A        D1         3      9     30
+#&gt; 16      A        D1         4      7     30
+#&gt; 17      A        D1         5      1     30
+#&gt; 18      A        D1         6      1     30
+#&gt; 19      A        D1         7      0     30
+#&gt; 20      A        D1         8      0     30
+#&gt; 21      A        D1         9      0     30
+#&gt; 22      A        D1        10      0     30
+#&gt; 23      A        D1        11      0     30
+#&gt; 24      A        D1      &lt;NA&gt;      1     30
+#&gt; 25      A        D2         1      0     30
+#&gt; 26      A        D2         2      9     30
+#&gt; 27      A        D2         3     10     30
+#&gt; 28      A        D2         4      7     30
+#&gt; 29      A        D2         5      3     30
+#&gt; 30      A        D2         6      0     30
+#&gt; 31      A        D2         7      0     30
+#&gt; 32      A        D2         8      0     30
+#&gt; 33      A        D2         9      0     30
+#&gt; 34      A        D2        10      0     30
+#&gt; 35      A        D2        11      0     30
+#&gt; 36      A        D2      &lt;NA&gt;      1     30
+#&gt; 37      A        D3         1      4     30
+#&gt; 38      A        D3         2      6     30
+#&gt; 39      A        D3         3     10     30
+#&gt; 40      A        D3         4      9     30
+#&gt; 41      A        D3         5      1     30
+#&gt; 42      A        D3         6      0     30
+#&gt; 43      A        D3         7      0     30
+#&gt; 44      A        D3         8      0     30
+#&gt; 45      A        D3         9      0     30
+#&gt; 46      A        D3        10      0     30
+#&gt; 47      A        D3        11      0     30
+#&gt; 48      A        D3      &lt;NA&gt;      0     30
+#&gt; 49      A        D4         1      2     30
+#&gt; 50      A        D4         2      6     30
+#&gt; 51      A        D4         3     12     30
+#&gt; 52      A        D4         4      7     30
+#&gt; 53      A        D4         5      3     30
+#&gt; 54      A        D4         6      0     30
+#&gt; 55      A        D4         7      0     30
+#&gt; 56      A        D4         8      0     30
+#&gt; 57      A        D4         9      0     30
+#&gt; 58      A        D4        10      0     30
+#&gt; 59      A        D4        11      0     30
+#&gt; 60      A        D4      &lt;NA&gt;      0     30
+#&gt; 61      A        D5         1      0     30
+#&gt; 62      A        D5         2      6     30
+#&gt; 63      A        D5         3     14     30
+#&gt; 64      A        D5         4      4     30
+#&gt; 65      A        D5         5      2     30
+#&gt; 66      A        D5         6      2     30
+#&gt; 67      A        D5         7      0     30
+#&gt; 68      A        D5         8      0     30
+#&gt; 69      A        D5         9      0     30
+#&gt; 70      A        D5        10      0     30
+#&gt; 71      A        D5        11      0     30
+#&gt; 72      A        D5      &lt;NA&gt;      2     30
+#&gt; 73      B        D0         1      0     20
+#&gt; 74      B        D0         2      0     20
+#&gt; 75      B        D0         3      4     20
+#&gt; 76      B        D0         4      8     20
+#&gt; 77      B        D0         5      7     20
+#&gt; 78      B        D0         6      0     20
+#&gt; 79      B        D0         7      1     20
+#&gt; 80      B        D0         8      0     20
+#&gt; 81      B        D0         9      0     20
+#&gt; 82      B        D0        10      0     20
+#&gt; 83      B        D0        11      0     20
+#&gt; 84      B        D0      &lt;NA&gt;      0     20
+#&gt; 85      B        D1         1      0     20
+#&gt; 86      B        D1         2      0     20
+#&gt; 87      B        D1         3      0     20
+#&gt; 88      B        D1         4      0     20
+#&gt; 89      B        D1         5      0     20
+#&gt; 90      B        D1         6      0     20
+#&gt; 91      B        D1         7      0     20
+#&gt; 92      B        D1         8     10     20
+#&gt; 93      B        D1         9      6     20
+#&gt; 94      B        D1        10      4     20
+#&gt; 95      B        D1        11      0     20
+#&gt; 96      B        D1      &lt;NA&gt;      0     20
+#&gt; 97      B        D2         1      0     20
+#&gt; 98      B        D2         2      0     20
+#&gt; 99      B        D2         3      0     20
+#&gt; 100     B        D2         4      0     20
+#&gt; 101     B        D2         5      0     20
+#&gt; 102     B        D2         6      0     20
+#&gt; 103     B        D2         7      1     20
+#&gt; 104     B        D2         8      4     20
+#&gt; 105     B        D2         9      9     20
+#&gt; 106     B        D2        10      4     20
+#&gt; 107     B        D2        11      2     20
+#&gt; 108     B        D2      &lt;NA&gt;      0     20
+#&gt; 109     B        D3         1      0     20
+#&gt; 110     B        D3         2      0     20
+#&gt; 111     B        D3         3      0     20
+#&gt; 112     B        D3         4      0     20
+#&gt; 113     B        D3         5      0     20
+#&gt; 114     B        D3         6      0     20
+#&gt; 115     B        D3         7      0     20
+#&gt; 116     B        D3         8      5     20
+#&gt; 117     B        D3         9     10     20
+#&gt; 118     B        D3        10      3     20
+#&gt; 119     B        D3        11      2     20
+#&gt; 120     B        D3      &lt;NA&gt;      0     20
+#&gt; 121     B        D4         1      0     20
+#&gt; 122     B        D4         2      0     20
+#&gt; 123     B        D4         3      0     20
+#&gt; 124     B        D4         4      0     20
+#&gt; 125     B        D4         5      0     20
+#&gt; 126     B        D4         6      0     20
+#&gt; 127     B        D4         7      2     20
+#&gt; 128     B        D4         8      1     20
+#&gt; 129     B        D4         9     12     20
+#&gt; 130     B        D4        10      4     20
+#&gt; 131     B        D4        11      0     20
+#&gt; 132     B        D4      &lt;NA&gt;      1     20
+#&gt; 133     B        D5         1      0     20
+#&gt; 134     B        D5         2      0     20
+#&gt; 135     B        D5         3      0     20
+#&gt; 136     B        D5         4      0     20
+#&gt; 137     B        D5         5      0     20
+#&gt; 138     B        D5         6      0     20
+#&gt; 139     B        D5         7      2     20
+#&gt; 140     B        D5         8      9     20
+#&gt; 141     B        D5         9      5     20
+#&gt; 142     B        D5        10      4     20
+#&gt; 143     B        D5        11      0     20
+#&gt; 144     B        D5      &lt;NA&gt;      0     20
+#&gt; 145     C        D0         1      0     16
+#&gt; 146     C        D0         2      1     16
+#&gt; 147     C        D0         3      4     16
+#&gt; 148     C        D0         4      8     16
+#&gt; 149     C        D0         5      2     16
+#&gt; 150     C        D0         6      1     16
+#&gt; 151     C        D0         7      0     16
+#&gt; 152     C        D0         8      0     16
+#&gt; 153     C        D0         9      0     16
+#&gt; 154     C        D0        10      0     16
+#&gt; 155     C        D0        11      0     16
+#&gt; 156     C        D0      &lt;NA&gt;      0     16
+#&gt; 157     C        D1         1      0     16
+#&gt; 158     C        D1         2      0     16
+#&gt; 159     C        D1         3      0     16
+#&gt; 160     C        D1         4      4     16
+#&gt; 161     C        D1         5      8     16
+#&gt; 162     C        D1         6      1     16
+#&gt; 163     C        D1         7      1     16
+#&gt; 164     C        D1         8      0     16
+#&gt; 165     C        D1         9      0     16
+#&gt; 166     C        D1        10      0     16
+#&gt; 167     C        D1        11      0     16
+#&gt; 168     C        D1      &lt;NA&gt;      2     16
+#&gt; 169     C        D2         1      0     16
+#&gt; 170     C        D2         2      0     16
+#&gt; 171     C        D2         3      2     16
+#&gt; 172     C        D2         4      4     16
+#&gt; 173     C        D2         5      6     16
+#&gt; 174     C        D2         6      2     16
+#&gt; 175     C        D2         7      1     16
+#&gt; 176     C        D2         8      1     16
+#&gt; 177     C        D2         9      0     16
+#&gt; 178     C        D2        10      0     16
+#&gt; 179     C        D2        11      0     16
+#&gt; 180     C        D2      &lt;NA&gt;      0     16
+#&gt; 181     C        D3         1      0     16
+#&gt; 182     C        D3         2      0     16
+#&gt; 183     C        D3         3      2     16
+#&gt; 184     C        D3         4      2     16
+#&gt; 185     C        D3         5      9     16
+#&gt; 186     C        D3         6      2     16
+#&gt; 187     C        D3         7      0     16
+#&gt; 188     C        D3         8      1     16
+#&gt; 189     C        D3         9      0     16
+#&gt; 190     C        D3        10      0     16
+#&gt; 191     C        D3        11      0     16
+#&gt; 192     C        D3      &lt;NA&gt;      0     16
+#&gt; 193     C        D4         1      0     16
+#&gt; 194     C        D4         2      0     16
+#&gt; 195     C        D4         3      1     16
+#&gt; 196     C        D4         4      4     16
+#&gt; 197     C        D4         5      4     16
+#&gt; 198     C        D4         6      4     16
+#&gt; 199     C        D4         7      1     16
+#&gt; 200     C        D4         8      0     16
+#&gt; 201     C        D4         9      0     16
+#&gt; 202     C        D4        10      0     16
+#&gt; 203     C        D4        11      0     16
+#&gt; 204     C        D4      &lt;NA&gt;      2     16
+#&gt; 205     C        D5         1      0     16
+#&gt; 206     C        D5         2      0     16
+#&gt; 207     C        D5         3      0     16
+#&gt; 208     C        D5         4      8     16
+#&gt; 209     C        D5         5      5     16
+#&gt; 210     C        D5         6      2     16
+#&gt; 211     C        D5         7      1     16
+#&gt; 212     C        D5         8      0     16
+#&gt; 213     C        D5         9      0     16
+#&gt; 214     C        D5        10      0     16
+#&gt; 215     C        D5        11      0     16
+#&gt; 216     C        D5      &lt;NA&gt;      0     16</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -64,7 +64,7 @@ Returns quantitative descriptive statistics such as mean, median, standard devia
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ClinReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13</span>
       </span>
     </div>
 
@@ -217,43 +217,80 @@ a message is printed  to indicate how many values were deleted to calculate the 
 
 <span class='co'># Quantitative statistics with no factor</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Awesome results"</span>)</div><div class='output co'>#&gt;   Statistics Awesome results        Total
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Awesome results"</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Quantitative descriptive statistics of: Awesome results
+#&gt; ############################################
+#&gt; 
+#&gt;   Statistics Awesome results        Total
 #&gt; 6          N             396          396
 #&gt; 3  Mean (SD)      2.56(2.20)   2.56(2.20)
 #&gt; 4     Median            2.71         2.71
 #&gt; 2    [Q1;Q3]     [1.04;4.33]  [1.04;4.33]
 #&gt; 1  [Min;Max]    [-2.99;7.96] [-2.99;7.96]
-#&gt; 5    Missing              10           10</div><div class='input'>
+#&gt; 5    Missing              10           10
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'>#' # Quantitative statistics with no factor with geometric mean (option geomean=TRUE)</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Awesome results"</span>,<span class='kw'>geomean</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>66 values were removed to calculate the Geometric mean</span></div><div class='output co'>#&gt;      Statistics Awesome results
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Awesome results"</span>,<span class='kw'>geomean</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>66 values were removed to calculate the Geometric mean</span></div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Quantitative descriptive statistics of: Awesome results
+#&gt; ############################################
+#&gt; 
+#&gt;      Statistics Awesome results
 #&gt; 1             N             396
 #&gt; 3 Geo Mean (SD)      2.52(2.20)
 #&gt; 6        Median            2.71
 #&gt; 4       [Q1;Q3]     [1.04;4.33]
 #&gt; 5     [Min;Max]    [-2.99;7.96]
-#&gt; 2       Missing              10</div><div class='input'>
+#&gt; 2       Missing              10
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># Quantitative statistics with one factor</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>)</div><div class='output co'>#&gt;   Statistics            A            B            C
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Quantitative descriptive statistics of: y_numeric
+#&gt; ############################################
+#&gt; 
+#&gt;   Statistics            A            B            C
 #&gt; 1          N          180          120           96
 #&gt; 3  Mean (SD)   1.46(1.50)   3.15(2.00)   3.87(2.52)
 #&gt; 6     Median         1.59         3.75         4.73
 #&gt; 4    [Q1;Q3]  [0.45;2.50]  [2.46;4.44]  [3.44;5.30]
 #&gt; 5  [Min;Max] [-2.34;4.36] [-2.44;6.19] [-2.99;7.96]
-#&gt; 2    Missing            4            4            2</div><div class='input'>
+#&gt; 2    Missing            4            4            2
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># One factor with total column</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;   Statistics            A            B            C        Total
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Quantitative descriptive statistics of: y_numeric
+#&gt; ############################################
+#&gt; 
+#&gt;   Statistics            A            B            C        Total
 #&gt; 6          N          180          120           96          396
 #&gt; 3  Mean (SD)   1.46(1.50)   3.15(2.00)   3.87(2.52)   2.56(2.20)
 #&gt; 4     Median         1.59         3.75         4.73         2.71
 #&gt; 2    [Q1;Q3]  [0.45;2.50]  [2.46;4.44]  [3.44;5.30]  [1.04;4.33]
 #&gt; 1  [Min;Max] [-2.34;4.36] [-2.44;6.19] [-2.99;7.96] [-2.99;7.96]
-#&gt; 5    Missing            4            4            2           10</div><div class='input'>
+#&gt; 5    Missing            4            4            2           10
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># Quantitative statistics with two factors</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)</div><div class='output co'>#&gt;    TIMEPOINT Statistics             A             B             C
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Quantitative descriptive statistics of: y_numeric
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT Statistics             A             B             C
 #&gt; 1         D0          N            30            20            16
 #&gt; 3         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)
 #&gt; 6         D0     Median         -0.82         -0.69         -1.26
@@ -289,10 +326,18 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; 36        D5     Median          2.50          3.86          4.57
 #&gt; 34        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97]
 #&gt; 35        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]
-#&gt; 32        D5    Missing             0             0             0</div><div class='input'>
+#&gt; 32        D5    Missing             0             0             0
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># Quantitative statistics with two factors and a total column</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;    TIMEPOINT Statistics             A             B             C         Total
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Quantitative descriptive statistics of: y_numeric
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT Statistics             A             B             C         Total
 #&gt; 6         D0          N            30            20            16            66
 #&gt; 3         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)   -0.92(0.95)
 #&gt; 4         D0     Median         -0.82         -0.69         -1.26         -0.86
@@ -328,10 +373,18 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; 34        D5     Median          2.50          3.86          4.57          3.28
 #&gt; 32        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97] [ 2.42; 4.44]
 #&gt; 31        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]  [-1.19;6.54]
-#&gt; 35        D5    Missing             0             0             0             0</div><div class='input'>
+#&gt; 35        D5    Missing             0             0             0             0
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># Add median absolute deviance to the median statistics</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>add.mad</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;    TIMEPOINT   Statistics             A             B             C
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>add.mad</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Quantitative descriptive statistics of: y_numeric
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT   Statistics             A             B             C
 #&gt; 6         D0            N            30            20            16
 #&gt; 3         D0    Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)
 #&gt; 4         D0 Median (MAD)   -0.82(1.00)   -0.69(0.97)   -1.26(0.59)
@@ -404,11 +457,19 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; 34    3.28(1.48)
 #&gt; 32 [ 2.42; 4.44]
 #&gt; 31  [-1.19;6.54]
-#&gt; 35             0</div><div class='input'>
+#&gt; 35             0
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># Quantitative statistics with spacing rows (option at.row)</span>
 
 <span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
-<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)</div><div class='output co'>#&gt;    TIMEPOINT Statistics             A             B             C         Total
+<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Quantitative descriptive statistics of: y_numeric
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT Statistics             A             B             C         Total
 #&gt; 1         D0          N            30            20            16            66
 #&gt; 2         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)   -0.92(0.95)
 #&gt; 3         D0     Median         -0.82         -0.69         -1.26         -0.86
@@ -449,14 +510,22 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; 38        D5     Median          2.50          3.86          4.57          3.28
 #&gt; 39        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97] [ 2.42; 4.44]
 #&gt; 40        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]  [-1.19;6.54]
-#&gt; 41        D5    Missing             0             0             0             0</div><div class='input'>
+#&gt; 41        D5    Missing             0             0             0             0
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># Add number of subjects in headers (option subjid)</span>
 
 <span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>)
 
 <span class='co'># Print tab output</span>
-<span class='no'>tab</span></div><div class='output co'>#&gt;    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)  Total (N=68)
+<span class='no'>tab</span></div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Quantitative descriptive statistics of: y_numeric
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)  Total (N=68)
 #&gt; 1         D0          N            30            20            16            66
 #&gt; 2         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)   -0.92(0.95)
 #&gt; 3         D0     Median         -0.82         -0.69         -1.26         -0.86
@@ -497,7 +566,10 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; 38        D5     Median          2.50          3.86          4.57          3.28
 #&gt; 39        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97] [ 2.42; 4.44]
 #&gt; 40        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]  [-1.19;6.54]
-#&gt; 41        D5    Missing             0             0             0             0</div><div class='input'>
+#&gt; 41        D5    Missing             0             0             0             0
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 
 <span class='co'>#Getting a specific statistic and not the default ones</span>
 
@@ -505,7 +577,12 @@ a message is printed  to indicate how many values were deleted to calculate the 
 
 <span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,
-<span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>mystat</span>,<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"99% quantile"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in mystat(y_numeric): impossible de trouver la fonction "mystat"</span></div><div class='input'><span class='no'>tab</span></div><div class='output co'>#&gt;    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)  Total (N=68)
+<span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>mystat</span>,<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"99% quantile"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in mystat(y_numeric): impossible de trouver la fonction "mystat"</span></div><div class='input'><span class='no'>tab</span></div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Quantitative descriptive statistics of: y_numeric
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)  Total (N=68)
 #&gt; 1         D0          N            30            20            16            66
 #&gt; 2         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)   -0.92(0.95)
 #&gt; 3         D0     Median         -0.82         -0.69         -1.26         -0.86
@@ -546,12 +623,20 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; 38        D5     Median          2.50          3.86          4.57          3.28
 #&gt; 39        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97] [ 2.42; 4.44]
 #&gt; 40        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]  [-1.19;6.54]
-#&gt; 41        D5    Missing             0             0             0             0</div><div class='input'>
+#&gt; 41        D5    Missing             0             0             0             0
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='no'>mystat2</span><span class='kw'>=</span><span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/mean'>mean</a></span>(<span class='no'>x</span>,<span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>)/<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/sd'>sd</a></span>(<span class='no'>x</span>,<span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 
 <span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,<span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>mystat2</span>,
-<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"Coefficient of variation"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in mystat2(y_numeric): impossible de trouver la fonction "mystat2"</span></div><div class='input'><span class='no'>tab</span></div><div class='output co'>#&gt;    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)  Total (N=68)
+<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"Coefficient of variation"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in mystat2(y_numeric): impossible de trouver la fonction "mystat2"</span></div><div class='input'><span class='no'>tab</span></div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; Quantitative descriptive statistics of: y_numeric
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)  Total (N=68)
 #&gt; 1         D0          N            30            20            16            66
 #&gt; 2         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)   -0.92(0.95)
 #&gt; 3         D0     Median         -0.82         -0.69         -1.26         -0.86
@@ -592,7 +677,10 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; 38        D5     Median          2.50          3.86          4.57          3.28
 #&gt; 39        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97] [ 2.42; 4.44]
 #&gt; 40        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]  [-1.19;6.54]
-#&gt; 41        D5    Missing             0             0             0             0</div><div class='input'>
+#&gt; 41        D5    Missing             0             0             0             0
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='no'>mode</span><span class='kw'>=</span><span class='kw'>function</span>(<span class='no'>x</span>) {
   <span class='no'>x</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/na.fail'>na.omit</a></span>(<span class='no'>x</span>)
   <span class='no'>ux</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/unique'>unique</a></span>(<span class='no'>x</span>)

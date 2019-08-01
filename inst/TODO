@@ -3,6 +3,7 @@ TODO list:
 
 tester le package avec testthat
 
+put x1,x2,data etc... in report lsmeans deprecated
 
 créer une fonction remove.stat? pour  enlever 
 une statistique à un report.quanti ou report.quali

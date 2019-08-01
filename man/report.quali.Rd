@@ -6,7 +6,7 @@
 \usage{
 report.quali(data, y = NULL, x1 = NULL, x2 = NULL, y.label = y,
   x2.label = NULL, y.levels.label = "Levels", total = F, round = 2,
-  at.row = NULL, percent.col = T, subjid = NULL)
+  at.row = NULL, percent.col = T, subjid = NULL, remove.zero = F)
 }
 \arguments{
 \item{data}{a data.frame object}
@@ -32,6 +32,8 @@ report.quali(data, y = NULL, x1 = NULL, x2 = NULL, y.label = y,
 \item{percent.col}{Logical By default it is set to T to indicate that column percentages should be reported. If set to False, row percentages are reported.}
 
 \item{subjid}{Character Indicates in the data.frame the name of the column used to identify the Id of the subjects. If not null, it adds in the headers the number of unique subject per levels of x1 or y (if x1 is null).}
+
+\item{remove.zero}{Logical. Remove the levels in the contingency table for which there is no observation.}
 }
 \value{
 A desc object

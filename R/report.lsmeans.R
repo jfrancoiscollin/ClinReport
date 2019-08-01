@@ -7,20 +7,19 @@
 #' 'LS Means' statistics reporting
 #'
 #' @param lsm emmGrid object (result of a \code{emmeans} call)
-#' @param x1 Character Mandatory. Indicating a factor in the data (can be an intercept: see example). Levels will be displayed in columns
-#' @param x2 Character indicating a factor in the data. Levels will be displayed in rows
-#' @param x3 Character indicating a factor in the data. Levels will be displayed in rows
-#' @param x1.name Character. Deprecated (replaced by x1)
-#' @param x2.name Character. Deprecated (replaced by x2)
-#' @param x3.name Character Deprecated (replaced by x3)
-#' @param data Data.frame object from which the Least Square means are coming from
-#' @param variable.name Character. The label of the column which indicates the statistics reported.
 #' @param infer A vector of one or two logical values. Passed to \code{summary.emmGrid} function.
 #' @param at.row Character. Passed to spacetable function. Used to space the results per levels of the mentioned variable
-#' @param type Character. Type of prediction desired. Passed to summary.emmGrid function. Can be "link" or "response"
-#' @param contrast Logical. Specify if the contrast function has been used after the emmeans function (see examples)
-#' @param contrast.name Character. Corresponds to the label of the column in which the contrasts are specified (see example).
-#'  Default value is 'contrast'.
+#' @param round Numeric. Specify the number of digits to round the statistics
+#' @param x1 deprecated 
+#' @param x2 deprecated
+#' @param x3 deprecated
+#' @param x1.name deprecated
+#' @param x2.name deprecated
+#' @param x3.name deprecated
+#' @param data deprecated
+#' @param contrast deprecated
+#' @param contrast.name deprecated
+#' @param type deprecated
 #' 
 #' @description
 #' Creates a desc object for "LS Means" statistics reporting. 
@@ -49,20 +48,19 @@
 #' 
 #' mod=lm(Petal.Width~Species,data=iris)
 #' raw.lsm=emmeans(mod,~Species)
-#' report.lsmeans(raw.lsm,"Species",data=iris)
+#' report.lsmeans(raw.lsm)
 #' 
-#' # In case of just one intercept you must use a workaround...
-#' iris$int=1
-#' mod=glm(Species~int,data=iris,family=binomial)
-#' raw.lsm=emmeans(mod,~int)
-#' iris$int=as.factor(iris$int)
-#' report.lsmeans(raw.lsm,"int",data=iris)
+#' # In case of just one intercept 
+#' 
+#' mod=glm(Species~1,data=iris,family=binomial)
+#' raw.lsm=emmeans(mod,~1)
+#' report.lsmeans(raw.lsm)
 #' 
 #' #Mixed model example using lme4
 #' 
 #' mod=lmer(y_numeric~GROUP+TIMEPOINT+GROUP*TIMEPOINT+(1|SUBJID),data=data) 
 #' raw.lsm=emmeans(mod,~GROUP|TIMEPOINT)
-#' report.lsmeans(lsm=raw.lsm,x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",data=data)
+#' report.lsmeans(lsm=raw.lsm,at="TIMEPOINT")
 #' 
 #' 
 #' # GLM model with specific contrast
@@ -70,97 +68,146 @@
 #' warp.lm <- lm(breaks ~ wool+tension+wool:tension, data = warpbreaks)
 #' warp.emm <- emmeans(warp.lm, ~ tension | wool)
 #' contr=contrast(warp.emm, "trt.vs.ctrl", ref = "M")
-#' report.lsmeans(lsm=contr,x1="wool",data=warpbreaks,contrast=TRUE,at.row="contrast")
+#' report.lsmeans(lsm=contr,at="wool")
+#' 
+#' 
+#' # Cox model
+#' 
+#' library(survival)
+#' 
+#' data(time_to_cure)
+#' 
+#' fit <- coxph(Surv(time, status) ~ Group, data = time_to_cure) 
+#' em=emmeans(fit,~Group,type="response")
+#' pairs=pairs(em,adjust="none",exclude="Sentinel group")
+#' tab.pairs=report.lsmeans(pairs)
+#' 
 #' 
 #' @import reshape2 stats
 #' 
-#' @export
+#' @export 
 
-report.lsmeans=function(lsm,x1="treatment",x2=NULL,x3=NULL,data,
-		variable.name="Statistics",at.row=NULL,infer=c(T,T),type="link",contrast=F,
-		contrast.name="contrast",x1.name="treatment",x2.name=NULL,x3.name=NULL)
+report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2.name,x3.name,data,
+		contrast,contrast.name,type)
 {
 	
-	if (!missing(x1.name))
-	{
-		warning("argument x1.name is deprecated; please use x1 instead.", 
-				call. = FALSE)
-		
-		x1=x1.name
-	}
 	
-	if (!missing(x2.name))
-	{
-		warning("argument x2.name is deprecated; please use x2 instead.", 
-				call. = FALSE)
-		x2=x2.name
-	}
+	if (!missing("x1"))
+		warning("argument deprecated. There is no need anymore to specify any variable name")
 	
-	if (!missing(x3.name))
-	{
-		warning("argument x3.name is deprecated; please use x3 instead.", 
-				call. = FALSE)
-		
-		x3=x3.name
-	}
 	
-	# Control the name of the estimate column
-	# so it's the same for all models
+	if (!missing("x2"))
+		warning("argument deprecated. There is no need anymore to specify any variable name")
 	
-	if(type=="response")
-	{
-		lsm=update(lsm,inv.lbl="emmean",type="response")
-	}
+	if (!missing("x3"))
+		warning("argument deprecated. There is no need anymore to specify any variable name")
 	
-	lsm=update(lsm,estName="emmean")
 	
-	terms=attr(lsm@model.info$terms,"term.labels")
+	if (!missing("data"))
+		warning("argument deprecated. There is no need anymore to specify the name of the data frame")
+	
+	
+	if (!missing("contrast"))
+		warning("argument deprecated. There is no need anymore to specify if it's LS Means are contrast or not")
+	
+	if (!missing("contrast.name"))
+		warning("argument deprecated. There is no need anymore to specify if it's LS Means are contrast or not")
+	
+	if (!missing("x1.name"))
+		warning("argument deprecated. There is no need anymore to specify any variable name")
+	
+	if (!missing("x2.name"))
+		warning("argument deprecated. There is no need anymore to specify any variable name")
+	
+	if (!missing("x3.name"))
+		warning("argument deprecated. There is no need anymore to specify any variable name")
+	
+	if (!missing("type"))
+		warning("argument deprecated. There is no need anymore to specify the type of the prediction")
+	
+	
 	
 	# Checks
 	
+	
 	if(class(lsm)!="emmGrid") stop("\n This function takes an emmGrid object only as lsm argument")
-	if(!is.character(x1) & !is.null(x1)) stop("\n x1 must be a character")
-	if(!is.character(x2) & !is.null(x2)) stop("\n x2 must be a character")
-	if(!is.character(x3) & !is.null(x3)) stop("\n x3 must be a character")
-	if(is.null(x1)) stop("\n It's not possible to have x1 argument NULL")
+	
+	variable.name="Statistics"
+	
+	terms=attr(lsm@model.info$terms,"term.labels")
 	
 	
-	if(!any(colnames(data)==x1) & !is.null(x1)) stop("\n x1 argument should be in data colnames")
-	if(!any(colnames(data)==x2) & !is.null(x2)) stop("\n x2 argument should be in data colnames")
-	if(!any(colnames(data)==x3) & !is.null(x3)) stop("\n x3 argument should be in data colnames")
+	if(lsm@misc$estType=="pairs")
+	{
+		contrast=TRUE
+	}else
+	{
+		contrast=FALSE
+	}
 	
-	if(class(data[,x1])!="factor" & !is.null(x1)) stop("\n x1 argument should be a factor")
-	if(class(data[,x2])!="factor" & !is.null(x2)) stop("\n x2 argument should be a factor")
-	if(class(data[,x3])!="factor" & !is.null(x3)) stop("\n x3 argument should be a factor")
+	estname=lsm@misc$estName
+	
+	if(!is.null(lsm@misc$predict.type))
+	{
+		type=lsm@misc$predict.type
+		
+		if(lsm@misc$predict.type=="response")
+		{
+			if(!is.null(lsm@misc$inv.lbl)) estname=lsm@misc$inv.lbl
+		}
+	}else
+	{
+		type="response"
+	}
+
+	vars=unique(c(lsm@misc$pri.vars,lsm@misc$by.vars))
+	
+	if(length(vars)==1)
+	{
+		x1=vars[1]
+		x2=NULL
+		x3=NULL
+	}
+	
+	if(length(vars)==2)
+	{
+		x1=vars[1]
+		x2=vars[2]
+		x3=NULL
+	}
+	
+	if(length(vars)==3)
+	{
+		x1=vars[1]
+		x2=vars[2]
+		x3=vars[3]
+	}
 	
 	
-	
-	if(!any("%in%"(c(x1,x2,x3),terms)))  stop("\n One of the explicative variable is not in the terms of the emmGrid object (see attr(lsm@model.info$terms,'term.labels'))")
-	
+
 	call=as.character(lsm@model.info$call)[1]
+	response=all.vars(lsm@model.info$call)[1]
 	
+	title=paste0("LS-Means table of: ",response)
 	
-	if(is.null(x2) & is.null(x3)) nbcol=1
-	if(!is.null(x2) & is.null(x3)) nbcol=1:2
-	if(is.null(x2) & !is.null(x3)) stop("\n It's not possible to have x2 NULL and x3 not NULL")
-	if(!is.null(x2) & !is.null(x3)) nbcol=1:3
+	if(lsm@misc$estType=="pairs") title=paste0("LS-Means comparisons of: ",response)
 	
-	if(contrast) nbcol=c(nbcol,nbcol+1)
+	nbcol=1:length(vars)
 	
-	if(any("%in%"(call,c("lm","lmer","lme.formula")))) type.mod="quanti"
+	if(any("%in%"(call,c("lm","lmer","lme.formula","coxph")))) type.mod="quanti"
 	if(any("%in%"(call,c("glm","glmer")))) type.mod="quali"
-	if(!any("%in%"(call,c("glm","glmer","lm","lmer","lme.formula")))) stop("\n This function only supports lm, lmer, lme, glm or glmer models")
+	if(!any("%in%"(call,c("glm","glmer","lm","lmer","lme.formula","coxph")))) stop("\n This function only supports lm, lmer, lme, glm or glmer models")
 	
 	
 	raw.output=data.frame(summary(lsm,infer=infer))
 	lsm=raw.output
 	
 	
-	lsm[,-nbcol]=format(round(lsm[,-nbcol],2), nsmall = 2)
+	lsm[,-nbcol]=format(round(lsm[,-nbcol],round), nsmall = round)
 	lsm[,-nbcol]=apply(lsm[,-nbcol],2,function(x)gsub(" ","",x))
 	
 	
-	lsm$"Estimate (SE)"=paste(lsm$emmean,"(",lsm$SE,")",sep="")
+	lsm$"Estimate (SE)"=paste(lsm[,estname],"(",lsm$SE,")",sep="")
 	
 	if(!is.null(lsm$lower.CL))
 	{
@@ -193,8 +240,7 @@ report.lsmeans=function(lsm,x1="treatment",x2=NULL,x3=NULL,data,
 				measure.vars=colnames(lsm)[(length(nbcol)+1):length(colnames(lsm))],
 				variable.name=variable.name)
 		
-		form=paste(x2,"+",x3,"+",variable.name,"~",x1,sep="")
-		
+		form=paste(x2,"+",x3,"+",variable.name,"~",x1,sep="")	
 		form=as.formula(form)			
 		d=dcast(m,form)
 	}
@@ -206,11 +252,7 @@ report.lsmeans=function(lsm,x1="treatment",x2=NULL,x3=NULL,data,
 				variable.name=variable.name)
 		
 		form=paste(x2,"+",variable.name,"~",x1,sep="")
-		
-		if(contrast) form=paste(x2,"+",variable.name,"+",contrast.name,"~",x1,sep="")
-		
 		form=as.formula(form)	
-		
 		d=dcast(m,form)
 	}
 	
@@ -221,9 +263,7 @@ report.lsmeans=function(lsm,x1="treatment",x2=NULL,x3=NULL,data,
 				variable.name=variable.name)
 		
 		form=paste(variable.name,"~",x1,sep="")
-		if(contrast) form=paste(contrast.name,"+",variable.name,"~",x1,sep="")
 		form=as.formula(form)	
-		
 		d=dcast(m,form)
 	}
 	
@@ -236,13 +276,16 @@ report.lsmeans=function(lsm,x1="treatment",x2=NULL,x3=NULL,data,
 	
 	
 	
+	
+	
+	
 	lsm=ClinReport::desc(output=d,x1=x1,x2=x2,total=F,nbcol=length(nbcol),
 			type.desc="lsmeans",type=type,y.label="",type.mod=type.mod,
-			raw.output=raw.output,contrast=contrast,contrast.name=contrast.name,
-			at.row=at.row)
+			raw.output=raw.output,contrast=contrast,
+			at.row=at.row,title=title)
 	
 	
 	
-	lsm
+	return(lsm)
 	
 }

@@ -1,11 +1,11 @@
 ---
-title: "ClinReport Vignette 2: Get Started"
+title: "ClinReport Vignette 2: The different type of statistical tables"
 author: "Jean-Francois COLLIN"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{ClinReport Vignette 2: Get Started}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{ClinReport Vignette 2: The different type of statistical tables}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -108,9 +108,9 @@ print(doc, target =file)
 ```
 
 
-## The different outputs
+## The descriptive statistics
 
-### Qualitative tables
+### Qualitative descriptive tables
 
 
 An example of qualitative statistics with one explicative variable
@@ -136,9 +136,7 @@ colspan.value="Treatment group")
 
  ```
 
-### Quantitative tables
-
-
+### Quantitative descriptive tables
 
 An example of quantitative statistics with one explicative variable
 
@@ -164,7 +162,7 @@ colspan.value="Treatment group")
 
 
 
-### Mixed Quantitative and Qualitative tables
+### Mix descriptive statistics of quantitative and qualitative nature
 
 You can mix qualitative and quantitative outputs.
 
@@ -185,7 +183,11 @@ report.doc(tab3,title="Mixed Qualitative and Quantitative outputs",
 colspan.value="Treatment group")
 ```
 
-### Anova model reporting
+
+## The inferential statistics
+
+
+### Anova table reporting
 
 For the anova table reporting, it's basically a call
 to the function `xtable_to_flextable()`. The function
@@ -213,8 +215,7 @@ The function `report.lsmeans()` enables to format the output:
 ```{r}
 lsm=emmeans(mod,~GROUP|TIMEPOINT)
 
-tab=report.lsmeans(lsm,x1="GROUP",x2="TIMEPOINT",data=data.mod,
-at.row="TIMEPOINT")
+tab=report.lsmeans(lsm,at.row="TIMEPOINT")
 
 report.doc(tab,title="LS-Means example",
 colspan.value="Treatment Group")
@@ -223,28 +224,40 @@ colspan.value="Treatment Group")
 
 ### Pairs and Contrasts of LS-MEans
 
-If you want to report contrast, you'll have to specify
-`contrast=TRUE` in the call to `report.lsmeans()`.
-
+It's the same usage
 
 
 ```{r}
 contr=contrast(lsm, "trt.vs.ctrl", ref = "A")
 
-# Now there is just only one explicative variable
-# since we make comparison between treatment group
-# so there is only x1="TIMEPOINT" in the call
+# There is just only one explicative variable
 
-tab.contr=report.lsmeans(lsm=contr,x1="TIMEPOINT",
-		data=data.mod,contrast=TRUE,at.row="contrast")
+tab.contr=report.lsmeans(lsm=contr,at="TIMEPOINT")
 		
 		
 report.doc(tab.contr,title="LS-Means contrast example",
-colspan.value="Time points")		
+colspan.value="Contrasts")		
 ```
 
 
+### Hazard ratios of a Cox model
 
+
+```{r}
+library(survival)
+ 
+data(time_to_cure)
+ 
+fit <- coxph(Surv(time, status) ~ Group, data = time_to_cure) 
+em=emmeans(fit,~Group,type="response")
+pairs=pairs(em,adjust="none",exclude="Sentinel group")
+tab.pairs=report.lsmeans(pairs)
+
+tab.pairs
+
+report.doc(tab.pairs,title="Hazard ratios of a Cox model")
+
+```
 
 
 

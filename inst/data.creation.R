@@ -45,6 +45,7 @@ save(data, file = "C:\\Users\\jfcollin\\git\\data\\data.RData")
 
 
 
-
+#save(time_to_cure, file = "C:\\Users\\jfcollin\\git\\data\\time_to_cure.RData")
+#saveRDS(time_to_cure, file = "C:\\Users\\jfcollin\\git\\data\\time_to_cure.RData",version = 2)
 
 

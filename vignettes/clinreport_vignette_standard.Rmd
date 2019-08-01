@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ClinReport Vignette 1: Clinical Standards for Reporting Statistics}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -16,27 +16,22 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Clinical Standards
+# Standards for reporting statistics
 
-There is no official guidance regarding the format of the statistical tables used for clinical trial reporting,
-but there are implicit standards that are most frequently used.
-
-Those standards are given below (in no specific order):
+**ClinReport** enables to export tables an graphics of statistics according to the following standards:
 
 >
-*	If statistics are reported by treatment group, display the statistics by treatment groups in columns
+*	Display the statistics by (treatment) groups in columns
 *	Do not display horizontal or vertical lines in the body of the table 
-*	When there are statistics reported for several parameters or if they are reported by level of another factor
-in the same table, split the results with empty rows
-*	Add the number of subjects randomized in the column headers 
-*	Each output should be numbered
-*	Each output should have a title
-*	The number of digits should be the same in all cells 
-*	Always display the unit of the measured parameter in its label between parenthesis
-*	Police Headers should be bolded
-*	Usually for baseline characteristics add the Total column along with the treatment groups
-*	Use (most of the time) the *Times New Roman* police
+*	Split vertically the results of several factor levels with empty rows
+*	Add the number of subjects/observations in the column headers 
+*	Each table is numbered (or can be numbered at least)
+*	Each table have a title (or can be titled at least)
+*	The number of digits are the same in all cells of the table
+*	Police Headers are bolded
+*	Use the *Times New Roman* police by default (can be changed if necessary)
 
+Those are usually used for any scientific publications, including the reporting of epidemiological or clinical statistics. 
 
 For quantitative statistics:
 
@@ -61,10 +56,11 @@ For Least-Square Means statistics and P-values:
 
 #  Example with `ClinReport`
 
-The purpose of the package **ClinReport** is to make Clincal Reporting easy according to those standards.
+The purpose of the package **ClinReport** is to simplify the Statistical Reporting given the above standards.
 
-Those are the default reporting options in the package **ClinReport** so few lines of code are necessary
-as can be seen in the example below:
+They are the default options so few lines of code are necessary.
+
+Example:
 
 ```{r, echo = TRUE, message=FALSE, warning=FALSE, include=FALSE}
 library(dplyr)
@@ -98,7 +94,11 @@ tab2=report.quali(data=data,y="y_logistic",
 
 tab=regroup(tab1,tab2)
 
-# Create formatted output for Microsoft Word
+# In the R console, it looks like
+
+tab
+
+# Create formatted output for Microsoft Word or R markdown documents (like this one)
 
 doc=report.doc(tab,title="Table of classic descriptive statistics (qualitative and quantitative parameter)",
 		colspan.value="Treatment group", init.numbering =T )			

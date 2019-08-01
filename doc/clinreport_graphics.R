@@ -68,26 +68,24 @@ random=~1|SUBJID,data=data,na.action=na.omit)
  
 test=emmeans(mod,~GROUP)
  
-tab.mod=report.lsmeans(lsm=test,x1="GROUP",data=data)
+tab.mod=report.lsmeans(lsm=test)
 
-plot(tab.mod,title="LS-means evolution of y per treatment group",
+plot(tab.mod,title="LS-means of y per treatment group",
 ylab="LS-Means",xlab="",add.ci=TRUE)
 
 
 ## ----fig.width = 8, fig.height = 6---------------------------------------
-# Only one categorical response
 
+# Only one categorical response
 
 mod=lme(y_numeric~baseline+GROUP+TIMEPOINT+GROUP*TIMEPOINT,
 random=~1|SUBJID,data=data,na.action=na.omit)
  
 test=emmeans(mod,~GROUP|TIMEPOINT)
  
-tab.mod=report.lsmeans(lsm=test,x1="GROUP",
-		x2="TIMEPOINT",at.row="TIMEPOINT",data=data)
+tab.mod=report.lsmeans(lsm=test,at.row="TIMEPOINT")
 
 plot(tab.mod,title="LS-means evolution of y per treatment group\nas a function of time",
 ylab="LS-Means",xlab="",add.ci=TRUE)
-
 
 

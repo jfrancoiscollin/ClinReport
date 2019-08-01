@@ -12,7 +12,7 @@ The aim is to create easily a statistical reporting in Microsoft Word documents 
 It can also be used outside the scope of clinical trials, for any statistical reporting in Word.
 
 Descriptive tables for quantitative statistics (mean, median, max etc..) and qualitative statistics (frequencies and percentages) 
-are available and pretty tables of Least Square Means of LM, LME and GLM models coming from \code{emmeans} function in emmeans package are 
+are available and pretty tables of Least Square Means of LM, LME, Cox and GLM models coming from \code{emmeans} function in emmeans package are 
 also available.
 
 The package works with officer and flextable packages to export the outputs
@@ -25,8 +25,7 @@ There is one unique function for LS means reporting: \code{report.lsmeans}
 Each of those 3 functions creates a desc object that can be used with \code{report.doc} to export the result(s) 
 into a Word document. This is the unique function to export the output(s) into a Word document.
 
-Future versions will improve the "standard" graphic reporting, 
-the anova table reporting and statistics tables specific for Adverse Events reporting. Survival models will also be included. 
+Future versions will improve the "standard" graphic reporting and specific statistics tables used for reporting Adverse Events.
     
 You can visit the website for more exmaples: \href{https://jfrancoiscollin.github.io/ClinReport}{ClinReport website}
 }

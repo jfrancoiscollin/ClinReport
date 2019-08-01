@@ -96,5 +96,22 @@ it adds more readibility to the output
 it adds more readibility to the doc
 
 
+# ClinReport 0.9.1.13
+
+## Enhancement
+
+* The reporting of LS-Means has been much simplified so now most of the old arguments are deprecated
+* The reporting of Cox model hazard ratios has been added to the report.lsmeans function
+* The print of the tables has been improved
+* Minor bugs have been corrected 
+
+
+
+
+
+
+
+
+
 
 
