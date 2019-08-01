@@ -4,7 +4,7 @@
 \alias{report.doc}
 \alias{report.doc.desc}
 \alias{report.doc.anova}
-\title{Export a statistical table into a 'Microsoft Word' or R markdown document}
+\title{Export a statistical table into a 'Microsoft Word' or a R markdown document}
 \usage{
 report.doc(table, ...)
 

@@ -4,7 +4,8 @@
 \alias{report.lsmeans}
 \title{'LS Means' statistics reporting}
 \usage{
-report.lsmeans(lsm, at.row = NULL, infer = c(T, T), round = 2)
+report.lsmeans(lsm, at.row = NULL, infer = c(T, T), round = 2, x1,
+  x2, x3, x1.name, x2.name, x3.name, data, contrast, contrast.name)
 }
 \arguments{
 \item{lsm}{emmGrid object (result of a \code{emmeans} call)}
@@ -14,6 +15,24 @@ report.lsmeans(lsm, at.row = NULL, infer = c(T, T), round = 2)
 \item{infer}{A vector of one or two logical values. Passed to \code{summary.emmGrid} function.}
 
 \item{round}{Numeric. Specify the number of digits to round the statistics}
+
+\item{x1}{deprecated}
+
+\item{x2}{deprecated}
+
+\item{x3}{deprecated}
+
+\item{x1.name}{deprecated}
+
+\item{x2.name}{deprecated}
+
+\item{x3.name}{deprecated}
+
+\item{data}{deprecated}
+
+\item{contrast}{deprecated}
+
+\item{contrast.name}{deprecated}
 }
 \value{
 A desc object that can be used by the \code{report.doc} function.

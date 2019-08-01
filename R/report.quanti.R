@@ -159,7 +159,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	# Check 
 	################################
 	
-	if(is.null(y)) stop("y argument cannot be NULL. Thank you for your comprehension")
+	if(is.null(y)) stop("y argument cannot be NULL")
 	if(class(data)!="data.frame") stop("data argument should be a data.frame")
 	
 	if(class(y)!="character") stop("Dear user. y argument should be a character")

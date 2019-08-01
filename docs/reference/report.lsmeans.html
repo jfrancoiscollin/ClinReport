@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ClinReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13</span>
       </span>
     </div>
 
@@ -108,10 +108,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>report.lsmeans</span>(<span class='no'>lsm</span>, <span class='kw'>x1</span> <span class='kw'>=</span> <span class='st'>"treatment"</span>, <span class='kw'>x2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>x3</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>data</span>,
-  <span class='kw'>variable.name</span> <span class='kw'>=</span> <span class='st'>"Statistics"</span>, <span class='kw'>at.row</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>infer</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>T</span>, <span class='no'>T</span>),
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"link"</span>, <span class='kw'>contrast</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>contrast.name</span> <span class='kw'>=</span> <span class='st'>"contrast"</span>,
-  <span class='kw'>x1.name</span> <span class='kw'>=</span> <span class='st'>"treatment"</span>, <span class='kw'>x2.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>x3.name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>report.lsmeans</span>(<span class='no'>lsm</span>, <span class='kw'>at.row</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>infer</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>T</span>, <span class='no'>T</span>), <span class='kw'>round</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -119,26 +116,6 @@
     <tr>
       <th>lsm</th>
       <td><p>emmGrid object (result of a <code>emmeans</code> call)</p></td>
-    </tr>
-    <tr>
-      <th>x1</th>
-      <td><p>Character Mandatory. Indicating a factor in the data (can be an intercept: see example). Levels will be displayed in columns</p></td>
-    </tr>
-    <tr>
-      <th>x2</th>
-      <td><p>Character indicating a factor in the data. Levels will be displayed in rows</p></td>
-    </tr>
-    <tr>
-      <th>x3</th>
-      <td><p>Character indicating a factor in the data. Levels will be displayed in rows</p></td>
-    </tr>
-    <tr>
-      <th>data</th>
-      <td><p>Data.frame object from which the Least Square means are coming from</p></td>
-    </tr>
-    <tr>
-      <th>variable.name</th>
-      <td><p>Character. The label of the column which indicates the statistics reported.</p></td>
     </tr>
     <tr>
       <th>at.row</th>
@@ -149,29 +126,8 @@
       <td><p>A vector of one or two logical values. Passed to <code>summary.emmGrid</code> function.</p></td>
     </tr>
     <tr>
-      <th>type</th>
-      <td><p>Character. Type of prediction desired. Passed to summary.emmGrid function. Can be "link" or "response"</p></td>
-    </tr>
-    <tr>
-      <th>contrast</th>
-      <td><p>Logical. Specify if the contrast function has been used after the emmeans function (see examples)</p></td>
-    </tr>
-    <tr>
-      <th>contrast.name</th>
-      <td><p>Character. Corresponds to the label of the column in which the contrasts are specified (see example).
-Default value is 'contrast'.</p></td>
-    </tr>
-    <tr>
-      <th>x1.name</th>
-      <td><p>Character. Deprecated (replaced by x1)</p></td>
-    </tr>
-    <tr>
-      <th>x2.name</th>
-      <td><p>Character. Deprecated (replaced by x2)</p></td>
-    </tr>
-    <tr>
-      <th>x3.name</th>
-      <td><p>Character Deprecated (replaced by x3)</p></td>
+      <th>round</th>
+      <td><p>Numeric. Specify the number of digits to round the statistics</p></td>
     </tr>
     </table>
     
@@ -201,23 +157,43 @@ It doesn't work for quantitative covariates.</p>
 
 <span class='no'>mod</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='no'>Petal.Width</span>~<span class='no'>Species</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>iris</span>)
 <span class='no'>raw.lsm</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/emmeans/topics/emmeans'>emmeans</a></span>(<span class='no'>mod</span>,~<span class='no'>Species</span>)
-<span class='fu'>report.lsmeans</span>(<span class='no'>raw.lsm</span>,<span class='st'>"Species"</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>iris</span>)</div><div class='output co'>#&gt;      Statistics      setosa  versicolor   virginica
+<span class='fu'>report.lsmeans</span>(<span class='no'>raw.lsm</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; LS-Means table of: Petal.Width
+#&gt; ############################################
+#&gt; 
+#&gt;      Statistics      setosa  versicolor   virginica
 #&gt; 1 Estimate (SE)  0.25(0.03)  1.33(0.03)  2.03(0.03)
 #&gt; 2        95% CI [0.19;0.30] [1.27;1.38] [1.97;2.08]
-#&gt; 3       P-value      &lt;0.001      &lt;0.001      &lt;0.001</div><div class='input'>
-<span class='co'># In case of just one intercept you must use a workaround...</span>
-<span class='no'>iris</span>$<span class='no'>int</span><span class='kw'>=</span><span class='fl'>1</span>
-<span class='no'>mod</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></span>(<span class='no'>Species</span>~<span class='no'>int</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>iris</span>,<span class='kw'>family</span><span class='kw'>=</span><span class='no'>binomial</span>)
-<span class='no'>raw.lsm</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/emmeans/topics/emmeans'>emmeans</a></span>(<span class='no'>mod</span>,~<span class='no'>int</span>)
-<span class='no'>iris</span>$<span class='no'>int</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/factor'>as.factor</a></span>(<span class='no'>iris</span>$<span class='no'>int</span>)
-<span class='fu'>report.lsmeans</span>(<span class='no'>raw.lsm</span>,<span class='st'>"int"</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>iris</span>)</div><div class='output co'>#&gt;      Statistics           1
+#&gt; 3       P-value      &lt;0.001      &lt;0.001      &lt;0.001
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
+<span class='co'># In case of just one intercept </span>
+
+<span class='no'>mod</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></span>(<span class='no'>Species</span>~<span class='fl'>1</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>iris</span>,<span class='kw'>family</span><span class='kw'>=</span><span class='no'>binomial</span>)
+<span class='no'>raw.lsm</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/emmeans/topics/emmeans'>emmeans</a></span>(<span class='no'>mod</span>,~<span class='fl'>1</span>)
+<span class='fu'>report.lsmeans</span>(<span class='no'>raw.lsm</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; LS-Means table of: Species
+#&gt; ############################################
+#&gt; 
+#&gt;      Statistics           1
 #&gt; 1 Estimate (SE)  0.69(0.17)
 #&gt; 2        95% CI [0.35;1.03]
-#&gt; 3       P-value      &lt;0.001</div><div class='input'>
+#&gt; 3       P-value      &lt;0.001
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'>#Mixed model example using lme4</span>
 
-<span class='no'>mod</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/lme4/topics/lmer'>lmer</a></span>(<span class='no'>y_numeric</span>~<span class='no'>GROUP</span>+<span class='no'>TIMEPOINT</span>+<span class='no'>GROUP</span>*<span class='no'>TIMEPOINT</span>+(<span class='fl'>1</span><span class='kw'>|</span><span class='no'>SUBJID</span>),<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>)</div><div class='output co'>#&gt; <span class='message'>singular fit</span></div><div class='input'><span class='no'>raw.lsm</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/emmeans/topics/emmeans'>emmeans</a></span>(<span class='no'>mod</span>,~<span class='no'>GROUP</span><span class='kw'>|</span><span class='no'>TIMEPOINT</span>)
-<span class='fu'>report.lsmeans</span>(<span class='kw'>lsm</span><span class='kw'>=</span><span class='no'>raw.lsm</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>)</div><div class='output co'>#&gt;    TIMEPOINT    Statistics             A             B             C
+<span class='no'>mod</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/lme4/topics/lmer'>lmer</a></span>(<span class='no'>y_numeric</span>~<span class='no'>GROUP</span>+<span class='no'>TIMEPOINT</span>+<span class='no'>GROUP</span>*<span class='no'>TIMEPOINT</span>+(<span class='fl'>1</span><span class='kw'>|</span><span class='no'>SUBJID</span>),<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>)</div><div class='output co'>#&gt; <span class='message'>boundary (singular) fit: see ?isSingular</span></div><div class='input'><span class='no'>raw.lsm</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/emmeans/topics/emmeans'>emmeans</a></span>(<span class='no'>mod</span>,~<span class='no'>GROUP</span><span class='kw'>|</span><span class='no'>TIMEPOINT</span>)
+<span class='fu'>report.lsmeans</span>(<span class='kw'>lsm</span><span class='kw'>=</span><span class='no'>raw.lsm</span>,<span class='kw'>at</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; LS-Means table of: y_numeric
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT    Statistics             A             B             C
 #&gt; 1         D0 Estimate (SE)   -0.93(0.20)   -0.67(0.24)   -1.19(0.26)
 #&gt; 2         D0        95% CI [-1.32;-0.54] [-1.16;-0.19] [-1.72;-0.66]
 #&gt; 3         D0       P-value        &lt;0.001         0.010        &lt;0.001
@@ -240,22 +216,43 @@ It doesn't work for quantitative covariates.</p>
 #&gt; 20                                                                  
 #&gt; 21        D5 Estimate (SE)    2.27(0.19)    3.64(0.24)    4.43(0.26)
 #&gt; 22        D5        95% CI   [1.89;2.65]   [3.18;4.11]   [3.91;4.95]
-#&gt; 23        D5       P-value        &lt;0.001        &lt;0.001        &lt;0.001</div><div class='input'>
+#&gt; 23        D5       P-value        &lt;0.001        &lt;0.001        &lt;0.001
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 
 <span class='co'># GLM model with specific contrast</span>
 
 <span class='no'>warp.lm</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='no'>breaks</span> ~ <span class='no'>wool</span>+<span class='no'>tension</span>+<span class='no'>wool</span>:<span class='no'>tension</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>warpbreaks</span>)
 <span class='no'>warp.emm</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/emmeans/topics/emmeans'>emmeans</a></span>(<span class='no'>warp.lm</span>, ~ <span class='no'>tension</span> <span class='kw'>|</span> <span class='no'>wool</span>)
 <span class='no'>contr</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/emmeans/topics/contrast'>contrast</a></span>(<span class='no'>warp.emm</span>, <span class='st'>"trt.vs.ctrl"</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='st'>"M"</span>)
-<span class='fu'>report.lsmeans</span>(<span class='kw'>lsm</span><span class='kw'>=</span><span class='no'>contr</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"wool"</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>warpbreaks</span>,<span class='kw'>contrast</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"contrast"</span>)</div><div class='output co'>#&gt;   contrast    Statistics              A              B
-#&gt; 1    L - M Estimate (SE)    20.56(5.16)    -0.56(5.16)
-#&gt; 2    L - M        95% CI   [8.74;32.37] [-12.37;11.26]
-#&gt; 3    L - M       P-value         &lt;0.001          0.990
-#&gt; 4                                                     
-#&gt; 5    H - M Estimate (SE)     0.56(5.16)   -10.00(5.16)
-#&gt; 6    H - M        95% CI [-11.26;12.37]  [-21.81;1.81]
-#&gt; 7    H - M       P-value          0.990          0.110</div><div class='input'>
-</div></pre>
+<span class='fu'>report.lsmeans</span>(<span class='kw'>lsm</span><span class='kw'>=</span><span class='no'>contr</span>,<span class='kw'>at</span><span class='kw'>=</span><span class='st'>"wool"</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; LS-Means table of: breaks
+#&gt; ############################################
+#&gt; 
+#&gt;   wool    Statistics          L - M          H - M
+#&gt; 1    A Estimate (SE)    20.56(5.16)     0.56(5.16)
+#&gt; 2    A        95% CI   [8.74;32.37] [-11.26;12.37]
+#&gt; 3    A       P-value         &lt;0.001          0.990
+#&gt; 4                                                 
+#&gt; 5    B Estimate (SE)    -0.56(5.16)   -10.00(5.16)
+#&gt; 6    B        95% CI [-12.37;11.26]  [-21.81;1.81]
+#&gt; 7    B       P-value          0.990          0.110
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
+
+<span class='co'># Cox model</span>
+
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>survival</span>)
+
+<span class='fu'><a href='data.html'>data</a></span>(<span class='no'>time_to_cure</span>)
+
+<span class='no'>fit</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/survival/topics/coxph'>coxph</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/survival/topics/Surv'>Surv</a></span>(<span class='no'>time</span>, <span class='no'>status</span>) ~ <span class='no'>Group</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>time_to_cure</span>)
+<span class='no'>em</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/emmeans/topics/emmeans'>emmeans</a></span>(<span class='no'>fit</span>,~<span class='no'>Group</span>,<span class='kw'>type</span><span class='kw'>=</span><span class='st'>"response"</span>)
+<span class='no'>pairs</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/pairs'>pairs</a></span>(<span class='no'>em</span>,<span class='kw'>adjust</span><span class='kw'>=</span><span class='st'>"none"</span>,<span class='kw'>exclude</span><span class='kw'>=</span><span class='st'>"Sentinel group"</span>)
+<span class='no'>tab.pairs</span><span class='kw'>=</span><span class='fu'>report.lsmeans</span>(<span class='no'>pairs</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

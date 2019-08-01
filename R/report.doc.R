@@ -11,7 +11,7 @@
 .output=new.env(parent = emptyenv())
 
 
-#' Export a statistical table into a 'Microsoft Word' or R markdown document
+#' Export a statistical table into a 'Microsoft Word' or a R markdown document
 #'
 #' @param table A desc object that report statistics (the results of \code{report.quanti} or \code{report.quali})
 #' @param title Character. The title of the table

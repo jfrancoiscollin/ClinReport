@@ -43,10 +43,11 @@ data(data)
 tab1=report.quanti(data=data,y="y_numeric",
         x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",subjid="SUBJID")
 tab1
-#> [1] "############################################"
-#> [1] "Quantitative descriptive statistics of: y_numeric"
-#> [1] "############################################"
-#> [1] ""
+#> 
+#> ############################################
+#> Quantitative descriptive statistics of: y_numeric
+#> ############################################
+#> 
 #>    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)
 #> 1         D0          N            30            20            16
 #> 2         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)
@@ -89,6 +90,8 @@ tab1
 #> 39        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97]
 #> 40        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]
 #> 41        D5    Missing             0             0             0
+#> 
+#> ############################################
 
 # You can have the corresponding graphic:
 
@@ -99,7 +102,7 @@ gg
 
 <img src="man/figures/README-unnamed-chunk-1-1.png" width="90%" />
 
-# Put the results in a docx document with officer
+# Put the results in a Microsoft Word or a R markdown document with officer
 
 ``` r
 

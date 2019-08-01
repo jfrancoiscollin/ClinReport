@@ -98,7 +98,7 @@ tab2=report.quali(data=data,y="y_logistic",
 
 tab=regroup(tab1,tab2)
 
-# Create formatted output for Microsoft Word
+# Create formatted output for Microsoft Word or R markdown documents
 
 doc=report.doc(tab,title="Table of classic descriptive statistics (qualitative and quantitative parameter)",
 		colspan.value="Treatment group", init.numbering =T )			

@@ -75,7 +75,7 @@ check(args ="--as-cran")
 
 #install()
 
-install(build_vignettes =F)
+install(build_vignettes =T)
 build(path = "C:\\Users\\jfcollin\\Google Drive\\R packages")
 
 
@@ -106,7 +106,25 @@ build(path = "C:\\Users\\jfcollin\\Google Drive\\R packages")
 
 
 # Build the site
+
 pkgdown::build_site()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

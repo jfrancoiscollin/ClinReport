@@ -60,7 +60,7 @@ gg
 
 ```
 
-# Put the results in a docx document  with officer  
+# Put the results in a Microsoft Word or a R markdown document  with officer  
 
 
 ```r

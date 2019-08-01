@@ -10,6 +10,16 @@
 #' @param infer A vector of one or two logical values. Passed to \code{summary.emmGrid} function.
 #' @param at.row Character. Passed to spacetable function. Used to space the results per levels of the mentioned variable
 #' @param round Numeric. Specify the number of digits to round the statistics
+#' @param x1 deprecated 
+#' @param x2 deprecated
+#' @param x3 deprecated
+#' @param x1.name deprecated
+#' @param x2.name deprecated
+#' @param x3.name deprecated
+#' @param data deprecated
+#' @param contrast deprecated
+#' @param contrast.name deprecated
+#' 
 #' 
 #' @description
 #' Creates a desc object for "LS Means" statistics reporting. 
@@ -77,8 +87,41 @@
 #' 
 #' @export 
 
-report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2)
+report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2.name,x3.name,data,
+		contrast,contrast.name)
 {
+	
+	
+	if (!missing("x1"))
+		warning("argument deprecated. There is no need anymore to specify any variable name")
+	
+	
+	if (!missing("x2"))
+		warning("argument deprecated. There is no need anymore to specify any variable name")
+	
+	if (!missing("x3"))
+		warning("argument deprecated. There is no need anymore to specify any variable name")
+	
+	
+	if (!missing("data"))
+		warning("argument deprecated. There is no need anymore to specify the name of the data frame")
+	
+	
+	if (!missing("contrast"))
+		warning("argument deprecated. There is no need anymore to specify if it's LS Means are contrast or not")
+	
+	if (!missing("contrast.name"))
+		warning("argument deprecated. There is no need anymore to specify if it's LS Means are contrast or not")
+	
+	if (!missing("x1.name"))
+		warning("argument deprecated. There is no need anymore to specify any variable name")
+	
+	if (!missing("x2.name"))
+		warning("argument deprecated. There is no need anymore to specify any variable name")
+	
+	if (!missing("x3.name"))
+		warning("argument deprecated. There is no need anymore to specify any variable name")
+	
 	
 	# Checks
 	

@@ -64,7 +64,7 @@ enables to add a specific quantitative statistic into an existing table of stati
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ClinReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.12</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13</span>
       </span>
     </div>
 
@@ -179,14 +179,22 @@ uses the <code><a href='regroup.html'>regroup</a></code> function to bind the tw
 <span class='no'>tab1.cv</span><span class='kw'>=</span><span class='fu'>add.stat</span>(<span class='no'>tab1</span>,<span class='no'>data</span>,<span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>cv</span>,<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"Coef. Var"</span>,
 <span class='kw'>pos</span><span class='kw'>=</span><span class='fl'>2</span>)
 
-<span class='no'>tab1.cv</span></div><div class='output co'>#&gt;    Statistics     A (N=30)     B (N=21)     C (N=17) Total (N=68)
+<span class='no'>tab1.cv</span></div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; 
+#&gt; ############################################
+#&gt; 
+#&gt;    Statistics     A (N=30)     B (N=21)     C (N=17) Total (N=68)
 #&gt; 6           N          180          120           96          396
 #&gt; 11  Coef. Var         1.03         0.64         0.65         0.86
 #&gt; 3   Mean (SD)   1.46(1.50)   3.15(2.00)   3.87(2.52)   2.56(2.20)
 #&gt; 4      Median         1.59         3.75         4.73         2.71
 #&gt; 2     [Q1;Q3]  [0.45;2.50]  [2.46;4.44]  [3.44;5.30]  [1.04;4.33]
 #&gt; 1   [Min;Max] [-2.34;4.36] [-2.44;6.19] [-2.99;7.96] [-2.99;7.96]
-#&gt; 5     Missing            4            4            2           10</div><div class='input'>
+#&gt; 5     Missing            4            4            2           10
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># Same with 2 explicative variables</span>
 
 <span class='no'>tab</span><span class='kw'>=</span><span class='fu'><a href='report.quanti.html'>report.quanti</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
@@ -195,7 +203,12 @@ uses the <code><a href='regroup.html'>regroup</a></code> function to bind the tw
 
 <span class='no'>tab</span><span class='kw'>=</span><span class='fu'>add.stat</span>(<span class='no'>tab</span>,<span class='no'>data</span>,<span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>cv</span>,<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"Coef. Var"</span>,
 <span class='kw'>pos</span><span class='kw'>=</span><span class='fl'>2</span>)
-<span class='no'>tab</span></div><div class='output co'>#&gt;    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)  Total (N=68)
+<span class='no'>tab</span></div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; 
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)  Total (N=68)
 #&gt; 1         D0          N            30            20            16            66
 #&gt; 2         D0  Coef. Var         -0.92         -1.62         -0.78         -1.04
 #&gt; 3         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)   -0.92(0.95)
@@ -242,7 +255,10 @@ uses the <code><a href='regroup.html'>regroup</a></code> function to bind the tw
 #&gt; 44        D5     Median          2.50          3.86          4.57          3.28
 #&gt; 45        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97] [ 2.42; 4.44]
 #&gt; 46        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]  [-1.19;6.54]
-#&gt; 47        D5    Missing             0             0             0             0</div><div class='input'>
+#&gt; 47        D5    Missing             0             0             0             0
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># And on position 5, we can add for example the mode</span>
 
 <span class='no'>mode</span><span class='kw'>=</span><span class='kw'>function</span>(<span class='no'>x</span>)
@@ -255,7 +271,12 @@ uses the <code><a href='regroup.html'>regroup</a></code> function to bind the tw
 
 <span class='no'>tab</span><span class='kw'>=</span><span class='fu'>add.stat</span>(<span class='no'>tab</span>,<span class='no'>data</span>,<span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>mode</span>,<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"Mode"</span>,
 <span class='kw'>pos</span><span class='kw'>=</span><span class='fl'>5</span>)
-<span class='no'>tab</span></div><div class='output co'>#&gt;    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)  Total (N=68)
+<span class='no'>tab</span></div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; 
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)  Total (N=68)
 #&gt; 1         D0          N            30            20            16            66
 #&gt; 2         D0  Coef. Var         -0.92         -1.62         -0.78         -1.04
 #&gt; 3         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)   -0.92(0.95)
@@ -308,7 +329,10 @@ uses the <code><a href='regroup.html'>regroup</a></code> function to bind the tw
 #&gt; 50        D5       Mode          1.87          3.89          2.95          1.87
 #&gt; 51        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97] [ 2.42; 4.44]
 #&gt; 52        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]  [-1.19;6.54]
-#&gt; 53        D5    Missing             0             0             0             0</div><div class='input'>
+#&gt; 53        D5    Missing             0             0             0             0
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 
 
 </div></pre>
