@@ -35,21 +35,30 @@
 #' 
 #' @details
 #' 
-#' This function creates a flextable object from a desc object
+#' This function creates a flextable object from a desc object.
 #' 
-#' For Microsoft Word documents:
+#' \strong{For Microsoft Word documents:}
 #' 
-#' The argument doc should be used so the flextable is added to a rdocx object.
+#' The argument \code{doc} should be used so the flextable is added to a rdocx object.
 #' 
-#' For R markdown documents:
+#' Like:
 #' 
-#' Just don't use the doc argument. Something like:
+#' \code{doc=read_docx()}
 #' 
-#' ```{r, include=TRUE}
-#' tab=report.quanti(data=data,y="y_numeric",x1="GROUP")
-#' doc=report.doc(tab,title="Example",colspan.value="Treatment group" )		
-#' doc	
-#' ```
+#' \code{tab=report.quanti(data=data,y="y_numeric",x1="GROUP")}
+#' 
+#' \code{doc=report.doc(tab,doc=doc)}
+#' 
+#' \strong{For R markdown documents:}
+#' 
+#' Just don't use the \code{doc} argument. Something like:
+#' 
+#' ```\{r, include=TRUE\} \cr
+#' \code{tab=report.quanti(data=data,y="y_numeric",x1="GROUP")} \cr
+#' \code{doc=report.doc(tab)} \cr
+#' \code{doc} \cr
+#' ``` \cr
+#'  
 #' 
 #' @return  
 #' A flextable object (if doc=NULL) or a rdocx object (if doc= an rdocx object).
@@ -407,7 +416,7 @@ report.doc <- function(table,...)
 #' @rdname report.doc
 #' @export 
 
-report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
+report.doc.desc=function(table,title=NULL,colspan.value=NULL,doc=NULL,
 		init.numbering=F,numbering=T,font.name="Times",page.break=T,font.size=10,...)
 {
 	
@@ -445,7 +454,14 @@ report.doc.desc=function(table,title,colspan.value=NULL,doc=NULL,
 	
 	if(numbering)
 	{
-		title= paste0("Table ",get("number",envir=.output),": ",c(title))
+		if(!is.null(title))
+		{
+			title= paste0("Table ",get("number",envir=.output),": ",c(title))
+		}else
+		{
+			title= paste0("Table ",get("number",envir=.output),": ",c(table$title))
+		}
+		
 	}
 	
 	

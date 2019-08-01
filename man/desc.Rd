@@ -51,7 +51,7 @@ Default = "Statistics"}
 
 \item{rbind.label}{Character. The name of the label in case several desc objects are regrouped}
 
-\item{Title}{Character. The title by default of the desc object}
+\item{title}{Character. The title by default of the desc object}
 }
 \value{
 A desc object

@@ -4,11 +4,11 @@
 \alias{report.doc}
 \alias{report.doc.desc}
 \alias{report.doc.anova}
-\title{Export a statistical table into 'Microsoft Word'}
+\title{Export a statistical table into a 'Microsoft Word' or R markdown document}
 \usage{
 report.doc(table, ...)
 
-\method{report.doc}{desc}(table, title, colspan.value = NULL,
+\method{report.doc}{desc}(table, title = NULL, colspan.value = NULL,
   doc = NULL, init.numbering = F, numbering = T,
   font.name = "Times", page.break = T, font.size = 10, ...)
 
@@ -47,12 +47,34 @@ A flextable object (if doc=NULL) or a rdocx object (if doc= an rdocx object).
 \description{
 \code{report.doc} 
 This function enables to export the table created with \code{\link{report.quali}} \code{\link{report.quanti}} or \code{\link{report.lsmeans}}
-to a Microsoft Word in a "clinical standard" format. 
+to a Microsoft Word or a R markdown document in standrad easy to read format. 
 
 It's also possible to use it to have a preview of the table in HTML format if the doc argument is NULL.
 }
 \details{
-It creates a flextable object from a desc object and can eventually add it directly into a rdocx object.
+This function creates a flextable object from a desc object.
+
+\strong{For Microsoft Word documents:}
+
+The argument \code{doc} should be used so the flextable is added to a rdocx object.
+
+Like:
+
+\code{doc=read_docx()}
+
+\code{tab=report.quanti(data=data,y="y_numeric",x1="GROUP")}
+
+\code{doc=report.doc(tab,doc=doc)}
+
+\strong{For R markdown documents:}
+
+Just don't use the \code{doc} argument. Something like:
+
+```\{r, include=TRUE\} \cr
+\code{tab=report.quanti(data=data,y="y_numeric",x1="GROUP")} \cr
+\code{doc=report.doc(tab)} \cr
+\code{doc} \cr
+``` \cr
 }
 \examples{
 \dontshow{

@@ -43,6 +43,10 @@ data(data)
 tab1=report.quanti(data=data,y="y_numeric",
         x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",subjid="SUBJID")
 tab1
+#> [1] "############################################"
+#> [1] "Quantitative descriptive statistics of: y_numeric"
+#> [1] "############################################"
+#> [1] ""
 #>    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)
 #> 1         D0          N            30            20            16
 #> 2         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)

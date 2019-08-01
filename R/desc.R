@@ -27,7 +27,7 @@
 #' Default = "Statistics"
 #' @param regrouped Logical. used to indicate if the desc object regroup several desc objects (see \code{\link{regroup.desc}} )
 #' @param rbind.label Character. The name of the label in case several desc objects are regrouped
-#' @param Title Character. The title by default of the desc object
+#' @param title Character. The title by default of the desc object
 #' 
 #' 
 #' @description
