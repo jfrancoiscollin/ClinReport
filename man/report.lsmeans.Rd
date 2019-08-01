@@ -4,8 +4,7 @@
 \alias{report.lsmeans}
 \title{'LS Means' statistics reporting}
 \usage{
-report.lsmeans(lsm, at.row = NULL, infer = c(T, T), type = "link",
-  round = 2)
+report.lsmeans(lsm, at.row = NULL, infer = c(T, T), round = 2)
 }
 \arguments{
 \item{lsm}{emmGrid object (result of a \code{emmeans} call)}
@@ -13,8 +12,6 @@ report.lsmeans(lsm, at.row = NULL, infer = c(T, T), type = "link",
 \item{at.row}{Character. Passed to spacetable function. Used to space the results per levels of the mentioned variable}
 
 \item{infer}{A vector of one or two logical values. Passed to \code{summary.emmGrid} function.}
-
-\item{type}{Character. Type of prediction desired. Passed to summary.emmGrid function. Can be "link" or "response"}
 
 \item{round}{Numeric. Specify the number of digits to round the statistics}
 }

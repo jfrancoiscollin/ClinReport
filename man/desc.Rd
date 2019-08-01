@@ -8,7 +8,8 @@ desc(output = NULL, total = NULL, nbcol = NULL, y = NULL,
   x1 = NULL, x2 = NULL, at.row = NULL, subjid = NULL,
   type.desc = NULL, type = NULL, y.label = NULL, type.mod = NULL,
   raw.output = NULL, contrast = NULL, contrast.name = NULL,
-  stat.name = NULL, regrouped = F, rbind.label = NULL)
+  stat.name = NULL, regrouped = F, rbind.label = NULL,
+  title = NULL)
 }
 \arguments{
 \item{output}{a data.frame object}
@@ -49,6 +50,8 @@ Default = "Statistics"}
 \item{regrouped}{Logical. used to indicate if the desc object regroup several desc objects (see \code{\link{regroup.desc}} )}
 
 \item{rbind.label}{Character. The name of the label in case several desc objects are regrouped}
+
+\item{Title}{Character. The title by default of the desc object}
 }
 \value{
 A desc object

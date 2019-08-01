@@ -350,15 +350,15 @@ if(!is.null(at.row))
 	}
 	
 	
-	
+	title=paste0("Qualitative descriptive statistics of : ",y.label)
 	
 	freq=ClinReport::desc(output=freq,total=total,nbcol=nbcol,y=y,x1=x1,x2=x2,
 			at.row=at.row,
 			subjid=subjid,type.desc="quali",type=NULL,y.label=y.label,
-			raw.output=raw.freq)
+			raw.output=raw.freq,title=title)
 	
 	
-	freq
+	return(freq)
 }
 
 

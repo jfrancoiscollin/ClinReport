@@ -139,7 +139,11 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2)
 	
 
 	call=as.character(lsm@model.info$call)[1]
+	response=all.vars(lsm@model.info$call)[1]
 	
+	title=paste0("LS-Means table of: ",response)
+	
+	if(lsm@misc$estType=="pairs") title=paste0("LS-Means comparisons of: ",response)
 	
 	nbcol=1:length(vars)
 	
@@ -225,13 +229,16 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2)
 	
 	
 	
+	
+	
+	
 	lsm=ClinReport::desc(output=d,x1=x1,x2=x2,total=F,nbcol=length(nbcol),
 			type.desc="lsmeans",type=type,y.label="",type.mod=type.mod,
 			raw.output=raw.output,contrast=contrast,
-			at.row=at.row)
+			at.row=at.row,title=title)
 	
 	
 	
-	lsm
+	return(lsm)
 	
 }

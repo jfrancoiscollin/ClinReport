@@ -545,9 +545,11 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	}
 	
 	
+	title=paste0("Quantitative descriptive statistics of: ",y.label)
+	
 	stat2=ClinReport::desc(output=stat2,total=total,nbcol=nbcol,y=y,x1=x1,x2=x2,at.row=at.row,
 			subjid=subjid,type.desc="quanti",type=NULL,y.label=y.label,
-			raw.output=raw.stat,stat.name=stat.name)
+			raw.output=raw.stat,stat.name=stat.name,title=title)
 	
 	
 	
