@@ -79,7 +79,9 @@
 #' 
 #' fit <- coxph(Surv(time, status) ~ Group, data = time_to_cure) 
 #' em=emmeans(fit,~Group,type="response")
-#' pairs=pairs(em,adjust="none",exclude="Sentinel group")
+#' pairs=pairs(em,adjust="none",exclude="Untreated")
+#' pairs
+#' 
 #' tab.pairs=report.lsmeans(pairs)
 #' 
 #' 
