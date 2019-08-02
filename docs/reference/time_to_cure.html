@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fake clinical data example — time_to_cure • ClinReport</title>
+<title>Fake survival data set — time_to_cure • ClinReport</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Fake clinical data example — time_to_cure" />
+<meta property="og:title" content="Fake survival data set — time_to_cure" />
 
-<meta property="og:description" content="Fictive data created only for the purpose of testing the package and showing examples." />
+<meta property="og:description" content="Simulated survival data created only for the purpose of testing the package and showing examples." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -97,14 +97,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fake clinical data example</h1>
+    <h1>Fake survival data set</h1>
     
     <div class="hidden name"><code>time_to_cure.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fictive data created only for the purpose of testing the package and showing examples.</p>
+    <p>Simulated survival data created only for the purpose of testing the package and showing examples.</p>
     
     </div>
 
@@ -114,27 +114,21 @@
 
     <p>A data frame</p>
     
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p>From pure imagination</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='data.html'>data</a></span>(<span class='no'>time_to_cure</span>)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>time_to_cure</span>)</div><div class='output co'>#&gt;   Animal time status block random_number Sex Weight_D0 Pen TCS   Group
-#&gt; 1   9056    2      1    10             1   F      18.2   1   1 Group A
-#&gt; 2   9057   24      1    11             2   F      17.8   1   3 Group B
-#&gt; 3   9058   24      1    13             2   F      20.0   1   3 Group B
-#&gt; 4   9059   72      0     6             1   M      18.8   1   4 Group A
-#&gt; 5   9060   24      1     2             1   M      18.6   1   2 Group A
-#&gt; 6   9061   24      1    12             3   F      18.8   2   3 Group C</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'><a href='data.html'>data</a></span>(<span class='no'>time_to_cure</span>)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>time_to_cure</span>)</div><div class='output co'>#&gt;   time status block random_number Sex Weight_D0 Pen TCS   Group Subjid
+#&gt; 1    4      1    10             1   F      18.2   1   1 Group A      1
+#&gt; 2   24      1    11             2   F      17.8   1   3 Group B      2
+#&gt; 3   24      1    13             2   F      20.0   1   3 Group B      3
+#&gt; 4   72      0     6             1   M      18.8   1   4 Group A      4
+#&gt; 5   24      1     2             1   M      18.6   1   2 Group A      5
+#&gt; 6   24      1    12             3   F      18.8   2   3 Group C      6</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
       <li><a href="#format">Format</a></li>
-
-      <li><a href="#source">Source</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

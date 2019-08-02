@@ -45,6 +45,16 @@ save(data, file = "C:\\Users\\jfcollin\\git\\data\\data.RData")
 
 
 
+time_to_cure$Subjid=time_to_cure$Animal
+time_to_cure$Animal=NULL
+time_to_cure$Subjid=1:length(time_to_cure$Subjid)
+time_to_cure$time[1]=4
+time_to_cure$time[22]=10
+time_to_cure$time[57]=2
+
+
+levels(time_to_cure$Group)[4]="Untreated"
+		
 #save(time_to_cure, file = "C:\\Users\\jfcollin\\git\\data\\time_to_cure.RData")
 #saveRDS(time_to_cure, file = "C:\\Users\\jfcollin\\git\\data\\time_to_cure.RData",version = 2)
 
