@@ -10,6 +10,7 @@
 #' @param infer A vector of one or two logical values. Passed to \code{summary.emmGrid} function.
 #' @param at.row Character. Passed to spacetable function. Used to space the results per levels of the mentioned variable
 #' @param round Numeric. Specify the number of digits to round the statistics
+#' @param transpose Logical. If TRUE Statistics will be reported in columns
 #' @param x1 deprecated 
 #' @param x2 deprecated
 #' @param x3 deprecated
@@ -50,17 +51,30 @@
 #' raw.lsm=emmeans(mod,~Species)
 #' report.lsmeans(raw.lsm)
 #' 
+#' # You can display the Statistics in columns
+#' 
+#' report.lsmeans(raw.lsm,transpose=TRUE)
+#' 
 #' # In case of just one intercept 
 #' 
 #' mod=glm(Species~1,data=iris,family=binomial)
 #' raw.lsm=emmeans(mod,~1)
 #' report.lsmeans(raw.lsm)
 #' 
+#' # Display statistics in columns
+#' 
+#' report.lsmeans(raw.lsm,transpose=TRUE)
+#' 
+#' 
 #' #Mixed model example using lme4
 #' 
 #' mod=lmer(y_numeric~GROUP+TIMEPOINT+GROUP*TIMEPOINT+(1|SUBJID),data=data) 
 #' raw.lsm=emmeans(mod,~GROUP|TIMEPOINT)
 #' report.lsmeans(lsm=raw.lsm,at="TIMEPOINT")
+#' 
+#' # Display statistics in columns
+#' 
+#' report.lsmeans(lsm=raw.lsm,at="TIMEPOINT",transpose=TRUE)
 #' 
 #' 
 #' # GLM model with specific contrast
@@ -69,6 +83,11 @@
 #' warp.emm <- emmeans(warp.lm, ~ tension | wool)
 #' contr=contrast(warp.emm, "trt.vs.ctrl", ref = "M")
 #' report.lsmeans(lsm=contr,at="wool")
+#' 
+#' 
+#' # Display statistics in columns
+#' 
+#' report.lsmeans(lsm=contr,at="wool",transpose=TRUE)
 #' 
 #' 
 #' # Cox model
@@ -82,15 +101,18 @@
 #' pairs=pairs(em,adjust="none",exclude="Untreated")
 #' pairs
 #' 
-#' tab.pairs=report.lsmeans(pairs)
+#' report.lsmeans(pairs)
 #' 
+#' # Display statistics in columns
+#' 
+#' report.lsmeans(pairs,transpose=TRUE)
 #' 
 #' @import reshape2 stats
 #' 
 #' @export 
 
 report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2.name,x3.name,data,
-		contrast,contrast.name,type)
+		contrast,contrast.name,type,transpose=FALSE)
 {
 	
 	
@@ -110,10 +132,10 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 	
 	
 	if (!missing("contrast"))
-		warning("argument deprecated. There is no need anymore to specify if it's LS Means are contrast or not")
+		warning("argument deprecated. There is no need anymore to specify if LS Means are contrast or not")
 	
 	if (!missing("contrast.name"))
-		warning("argument deprecated. There is no need anymore to specify if it's LS Means are contrast or not")
+		warning("argument deprecated. There is no need anymore to specify if LS Means are contrast or not")
 	
 	if (!missing("x1.name"))
 		warning("argument deprecated. There is no need anymore to specify any variable name")
@@ -243,6 +265,9 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 				variable.name=variable.name)
 		
 		form=paste(x2,"+",x3,"+",variable.name,"~",x1,sep="")	
+		
+		if(transpose) form=paste(x2,"+",x3,"+",x1,"~",variable.name,sep="")	
+		
 		form=as.formula(form)			
 		d=dcast(m,form)
 	}
@@ -254,6 +279,9 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 				variable.name=variable.name)
 		
 		form=paste(x2,"+",variable.name,"~",x1,sep="")
+		
+		if(transpose) form=paste(x2,"+",x1,"~",variable.name,sep="")
+		
 		form=as.formula(form)	
 		d=dcast(m,form)
 	}
@@ -265,6 +293,9 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 				variable.name=variable.name)
 		
 		form=paste(variable.name,"~",x1,sep="")
+		
+		if(transpose) form=paste(x1,"~",variable.name,sep="")
+		
 		form=as.formula(form)	
 		d=dcast(m,form)
 	}

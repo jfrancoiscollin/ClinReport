@@ -2,7 +2,7 @@
 # Author: jfcollin
 ###############################################################################
 
-#' Descriptive "quantitative" statistics (mean, SD, median...) reporting
+#' Descriptive "Quantitative" statistics (mean, SD, median...) reporting
 #' 
 #'
 #' @param data Data.frame object
@@ -543,6 +543,19 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	{
 		nbcol=2
 	}
+	
+	
+# To transpose,we should do something like:
+#
+#	if(transpose)
+#	{
+#		m=melt(stat2,measure.vars=colnames(stat2)[-nbcol],variable.name=x1)
+#		if(!is.null(at.row)) m=m[m$value!="",]
+#       if(!is.null(x2)) form=as.formula(paste0(x2,"+",x1,"~Statistics"))
+#       if(is.null(x2)) form=as.formula(paste0(x1,"~Statistics"))
+#		stat2=dcast(m,form)
+#       if(!is.null(at.row)) stat2=spacetable(stat2,at.row=at.row)
+#	}
 	
 	
 	title=paste0("Quantitative descriptive statistics of: ",y.label)
