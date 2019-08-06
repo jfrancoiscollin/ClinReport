@@ -104,7 +104,8 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 #	percent.col=T
 #	subjid=NULL
 	
-	
+	#TODO: rajouter l'option drop.x1 et drop.x2 drop.missing
+	# pour dégager un ou plusieurs niveaux du facteur x1, x2 et/ou missing
 	
 	#checks on y and data arguments
 	
@@ -349,6 +350,12 @@ if(!is.null(at.row))
 		freq=spacetable(freq,at.row=at.row)
 	}
 	
+	
+	if(is.null(at.row) & !is.null(x2))
+	{	
+		at.row=x2
+		freq=spacetable(freq,at.row=at.row)
+	}
 	
 	title=paste0("Qualitative descriptive statistics of : ",y.label)
 	

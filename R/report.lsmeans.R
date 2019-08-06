@@ -306,7 +306,11 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 		d=spacetable(d,at.row=at.row)
 	}
 	
-	
+	if(is.null(at.row) & !is.null(x2))
+	{
+		at.row=x2
+		d=spacetable(d,at.row=at.row)
+	}
 	
 	
 	

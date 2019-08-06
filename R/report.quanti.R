@@ -535,6 +535,14 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	}
 	
 	
+	if(is.null(at.row) & !is.null(x2))
+	{
+		at.row=x2
+		lev=levels(stat2[,stat.name])
+		stat2=spacetable(stat2,at.row=at.row)
+		stat2[,stat.name]=factor(stat2[,stat.name],levels=c(lev,""))
+	}
+	
 	# determination of the number of columns
 	if(is.null(x2) )
 	{
