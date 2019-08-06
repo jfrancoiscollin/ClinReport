@@ -22,7 +22,8 @@
 #' @param func.stat Function. If specified then default.stat=FALSE and only the specified statistic is reported
 #' @param func.stat.name Character. Used only if default.stat=FALSE.  Indicates the name of specific statistic you want to report
 #' @param stat.name Character. Indicates the name of the variable that report the statistics Default = "Statistics"
-#' 
+#' @param drop.x1 Character. Indicates one or several levels of the x1 factor that you want to drop in the result
+#' @param drop.x2 Character. Indicates one or several levels of the x2 factor that you want to drop in the result
 #' 
 #' @description
 #' \code{report.quanti} 
@@ -139,7 +140,8 @@
 report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		round=2,
 		total=F,scientific=F,digits=NULL,at.row=NULL,subjid=NULL,geomean=F,
-		add.mad=F,default.stat=T,func.stat=NULL,stat.name="Statistics",func.stat.name="")
+		add.mad=F,default.stat=T,func.stat=NULL,stat.name="Statistics",func.stat.name="",
+		drop.x1=NULL,drop.x2=NULL)
 {
 	
 	stat.name=make.names(stat.name)
@@ -183,6 +185,50 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		if(!is.function(func.stat)) stop("func.stat argument should be a function")
 		
 		default.stat=F
+		
+	}
+	
+	if(!is.null(drop.x2))
+	{
+		if(is.null(x2))
+		{
+		drop.x2=NULL
+		message("drop.x2 argument not used because x2 argument is missing")
+		}
+		
+		if(!is.null(x2))
+		{
+			check=any(!"%in%"(drop.x2,levels(data[,x2])))
+			if(!check)
+			{
+				data=droplevels(data[!"%in%"(data[,x2],drop.x2),])
+			}else
+			{
+				message("drop.x2 argument not used because it contains levels that are not in x2 factor")
+			}
+		}
+		
+	}
+	
+	if(!is.null(drop.x1))
+	{
+		if(is.null(x1))
+		{
+			drop.x1=NULL
+			message("drop.x1 argument not used because x1 argument is missing")
+		}
+		
+		if(!is.null(x1))
+		{
+			check=any(!"%in%"(drop.x1,levels(data[,x1])))
+			if(!check)
+			{
+				data=droplevels(data[!"%in%"(data[,x1],drop.x1),])
+			}else
+			{
+				message("drop.x1 argument not used because it contains levels that are not in x1 factor")
+			}
+		}
 		
 	}
 	
