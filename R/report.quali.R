@@ -5,10 +5,10 @@
 #' Descriptive "Qualitative" statistics (frequencies and percentages) reporting
 #'
 #' @param data a data.frame object
-#' @param y Character indicating a factor in the data
+#' @param y Character indicating a factor in the data (the response)
 #' @param x1 Character indicating a factor in the data (levels will be displayed in columns)
 #' @param x2 Character indicating a factor in the data (levels will be displayed in rows). Only possible if x1 is not NULL.
-#' @param y.label Character indicating the label for y parameter (only used when x1 and x2 are NULL)
+#' @param y.label Character indicating the label for y to be displayed in the title of the table
 #' @param y.levels.label Character. Indicates the label of the column in which the levels of y are displayed
 #' @param x2.label Character indicating the label for x2 parameter, only if x2 is not null
 #' @param total Logical Indicates if a column Total should be added or not

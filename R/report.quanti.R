@@ -14,7 +14,7 @@
 #' @param scientific Logical Indicates if statistics should be displayed in scientific notations or not
 #' @param digits Numeric (used if scientifc=TRUE) to indicate how many digits to use in scientific notation
 #' @param at.row Character Used to space the results (see examples)
-#' @param y.label Character Indicates the label for y parameter
+#' @param y.label Character Indicates the label for y parameter to be displayed in the title of the table
 #' @param subjid Character Indicates the column in which there is the subject Id to add the number of subjects in the column header if x1 and x2 are not null.
 #' @param geomean Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=TRUE))} fpr x>0
 #' @param add.mad Logical If yes the Median Absolute Deviance is added to the median statistics (see function \code{\link{mad}}) 
@@ -557,7 +557,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 #
 #	if(transpose)
 #	{
-#		m=melt(stat2,measure.vars=colnames(stat2)[-nbcol],variable.name=x1)
+#		m=melt(stat2,measure.vars=colnames(stat2)[-c(1:nbcol)],variable.name=x1)
 #		if(!is.null(at.row)) m=m[m$value!="",]
 #       if(!is.null(x2)) form=as.formula(paste0(x2,"+",x1,"~Statistics"))
 #       if(is.null(x2)) form=as.formula(paste0(x1,"~Statistics"))

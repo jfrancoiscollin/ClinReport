@@ -11,13 +11,13 @@ report.quali(data, y = NULL, x1 = NULL, x2 = NULL, y.label = y,
 \arguments{
 \item{data}{a data.frame object}
 
-\item{y}{Character indicating a factor in the data}
+\item{y}{Character indicating a factor in the data (the response)}
 
 \item{x1}{Character indicating a factor in the data (levels will be displayed in columns)}
 
 \item{x2}{Character indicating a factor in the data (levels will be displayed in rows). Only possible if x1 is not NULL.}
 
-\item{y.label}{Character indicating the label for y parameter (only used when x1 and x2 are NULL)}
+\item{y.label}{Character indicating the label for y to be displayed in the title of the table}
 
 \item{x2.label}{Character indicating the label for x2 parameter, only if x2 is not null}
 

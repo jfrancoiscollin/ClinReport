@@ -11,6 +11,7 @@
 #' @param at.row Character. Passed to spacetable function. Used to space the results per levels of the mentioned variable
 #' @param round Numeric. Specify the number of digits to round the statistics
 #' @param transpose Logical. If TRUE Statistics will be reported in columns
+#' @param y.label Character Indicates the label for y parameter to be displayed in the title of the table
 #' @param x1 deprecated 
 #' @param x2 deprecated
 #' @param x3 deprecated
@@ -112,7 +113,7 @@
 #' @export 
 
 report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2.name,x3.name,data,
-		contrast,contrast.name,type,transpose=FALSE)
+		contrast,contrast.name,type,transpose=FALSE,y.label=NULL)
 {
 	
 	
@@ -212,9 +213,10 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 	call=as.character(lsm@model.info$call)[1]
 	response=all.vars(lsm@model.info$call)[1]
 	
-	title=paste0("LS-Means table of: ",response)
+	if(is.null(y.label)) y.label=response
+	title=paste0("LS-Means table of: ",y.label)
 	
-	if(lsm@misc$estType=="pairs") title=paste0("LS-Means comparisons of: ",response)
+	if(lsm@misc$estType=="pairs") title=paste0("LS-Means comparisons of: ",y.label)
 	
 	nbcol=1:length(vars)
 	
@@ -317,7 +319,7 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 	
 	
 	lsm=ClinReport::desc(output=d,x1=x1,x2=x2,total=F,nbcol=length(nbcol),
-			type.desc="lsmeans",type=type,y.label="",type.mod=type.mod,
+			type.desc="lsmeans",type=type,y.label=y.label,type.mod=type.mod,
 			raw.output=raw.output,contrast=contrast,
 			at.row=at.row,title=title)
 	

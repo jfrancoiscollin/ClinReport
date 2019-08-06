@@ -19,7 +19,7 @@ report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = y,
 
 \item{x2}{Character indicating a factor in the data (levels will be displayed in lines)}
 
-\item{y.label}{Character Indicates the label for y parameter}
+\item{y.label}{Character Indicates the label for y parameter to be displayed in the title of the table}
 
 \item{round}{Numeric to indicate how to round statistics}
 
