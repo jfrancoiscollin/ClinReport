@@ -600,6 +600,7 @@ report.doc.desc=function(table,title=NULL,colspan.value=NULL,doc=NULL,
 }
 
 #' @param type.anova Passed to \code{Anova} function from car package (see its documentation).
+#' @param pretty.label Logical. Default to FALSE. If TRUE, use the function \code{make.label} with default option on the rownames of the anova table 
 #' 
 #' @importFrom xtable xtable
 #' @rdname report.doc
@@ -608,7 +609,7 @@ report.doc.desc=function(table,title=NULL,colspan.value=NULL,doc=NULL,
 
 
 report.doc.anova=function(table,title="Anova table",type.anova=3,doc=NULL,numbering=T,
-		init.numbering=F,font.name="Times",font.size=10,page.break=T,...)
+		init.numbering=F,font.name="Times",font.size=10,page.break=T,pretty.label=FALSE,...)
 {
 	
 	
@@ -636,6 +637,12 @@ report.doc.anova=function(table,title="Anova table",type.anova=3,doc=NULL,number
 	
 	ncol=ncol(as.data.frame(table))
 	
+	
+	if(pretty.label)
+	{
+		rownames(table)=make.label(rownames(table))
+	}
+	
 	xtab=xtable(table)
 	ft=xtable_to_flextable(xtab,NA.string = "-")
 	
@@ -660,8 +667,8 @@ report.doc.anova=function(table,title="Anova table",type.anova=3,doc=NULL,number
 	
 	# change font 
 	
-	ft=font(ft,fontname=font.name,part ="all")
-	ft=fontsize(ft,size=font.size,part ="all")
+	ft=flextable::font(ft,fontname=font.name,part ="all")
+	ft=flextable::fontsize(ft,size=font.size,part ="all")
 	
 	if(!is.null(doc))
 	{	
