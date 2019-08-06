@@ -5,7 +5,8 @@
 \title{'LS Means' statistics reporting}
 \usage{
 report.lsmeans(lsm, at.row = NULL, infer = c(T, T), round = 2, x1,
-  x2, x3, x1.name, x2.name, x3.name, data, contrast, contrast.name, type)
+  x2, x3, x1.name, x2.name, x3.name, data, contrast, contrast.name, type,
+  transpose = FALSE)
 }
 \arguments{
 \item{lsm}{emmGrid object (result of a \code{emmeans} call)}
@@ -35,6 +36,8 @@ report.lsmeans(lsm, at.row = NULL, infer = c(T, T), round = 2, x1,
 \item{contrast.name}{deprecated}
 
 \item{type}{deprecated}
+
+\item{transpose}{Logical. If TRUE Statistics will be reported in columns}
 }
 \value{
 A desc object that can be used by the \code{report.doc} function.
@@ -61,17 +64,30 @@ mod=lm(Petal.Width~Species,data=iris)
 raw.lsm=emmeans(mod,~Species)
 report.lsmeans(raw.lsm)
 
+# You can display the Statistics in columns
+
+report.lsmeans(raw.lsm,transpose=TRUE)
+
 # In case of just one intercept 
 
 mod=glm(Species~1,data=iris,family=binomial)
 raw.lsm=emmeans(mod,~1)
 report.lsmeans(raw.lsm)
 
+# Display statistics in columns
+
+report.lsmeans(raw.lsm,transpose=TRUE)
+
+
 #Mixed model example using lme4
 
 mod=lmer(y_numeric~GROUP+TIMEPOINT+GROUP*TIMEPOINT+(1|SUBJID),data=data) 
 raw.lsm=emmeans(mod,~GROUP|TIMEPOINT)
 report.lsmeans(lsm=raw.lsm,at="TIMEPOINT")
+
+# Display statistics in columns
+
+report.lsmeans(lsm=raw.lsm,at="TIMEPOINT",transpose=TRUE)
 
 
 # GLM model with specific contrast
@@ -82,6 +98,11 @@ contr=contrast(warp.emm, "trt.vs.ctrl", ref = "M")
 report.lsmeans(lsm=contr,at="wool")
 
 
+# Display statistics in columns
+
+report.lsmeans(lsm=contr,at="wool",transpose=TRUE)
+
+
 # Cox model
 
 library(survival)
@@ -90,9 +111,14 @@ data(time_to_cure)
 
 fit <- coxph(Surv(time, status) ~ Group, data = time_to_cure) 
 em=emmeans(fit,~Group,type="response")
-pairs=pairs(em,adjust="none",exclude="Sentinel group")
-tab.pairs=report.lsmeans(pairs)
+pairs=pairs(em,adjust="none",exclude="Untreated")
+pairs
 
+report.lsmeans(pairs)
+
+# Display statistics in columns
+
+report.lsmeans(pairs,transpose=TRUE)
 
 }
 \seealso{

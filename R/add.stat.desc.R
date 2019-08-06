@@ -106,6 +106,8 @@ add.stat.desc=function(tab,data,func.stat,func.stat.name,pos=NULL,...)
 	
 	lev2=levels(tab2$output[,tab2$stat.name])
 	lev3=levels(tab3$output[,tab3$stat.name])
+	lev2=lev2[lev2!=""]
+	lev3=lev3[lev3!=""]
 	lev3=lev3[lev3!=lev2]
 	pos.lev=lev3[pos]
 	

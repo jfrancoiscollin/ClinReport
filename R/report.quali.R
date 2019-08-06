@@ -103,9 +103,8 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 #	at.row=NULL
 #	percent.col=T
 #	subjid=NULL
-	
-	#TODO: rajouter l'option drop.x1 et drop.x2 drop.missing
-	# pour dégager un ou plusieurs niveaux du facteur x1, x2 et/ou missing
+#TODO: rajouter l'option drop.x1 et drop.x2 drop.missing
+# pour degager un ou plusieurs niveaux du facteur x1, x2 et/ou missing
 	
 	#checks on y and data arguments
 	
@@ -155,6 +154,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		freq$output=freq$output[,-1]
 		freq$x2=NULL
 		freq$nbcol=freq$nbcol-1
+		freq$at.row=NULL
 		
 		return(freq)
 		
