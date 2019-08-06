@@ -25,8 +25,6 @@
 #' 
 #' @seealso \code{\link{report.doc}}
 #' @examples
-#' \dontshow{
-#' 
 #' 
 #'library(officer)
 #'library(flextable)
@@ -41,11 +39,8 @@
 #' 
 #' report.modelinfo(mod)
 #' 
-#' 
-#' 
-#' 
-#' }
-
+#' @rdname report.modelinfo
+#' @export
 
 
 
@@ -62,7 +57,7 @@ report.modelinfo <- function(object,...)
 #' @rdname report.modelinfo
 #' @export 
 
-report.modelinfo.lme=function(object,doc=NULL,page.break=TRUE)
+report.modelinfo.lme=function(object,doc=NULL,page.break=TRUE,...)
 {
 	
 	rpack_func="R Package nlme , function lme"
@@ -110,7 +105,7 @@ report.modelinfo.lme=function(object,doc=NULL,page.break=TRUE)
 #' @export 
 
 
-report.modelinfo.glm=function(object,doc=NULL,page.break=TRUE)
+report.modelinfo.glm=function(object,doc=NULL,page.break=TRUE,...)
 {
 	
 	rpack_func="R Package stats , function glm"
@@ -152,7 +147,7 @@ report.modelinfo.glm=function(object,doc=NULL,page.break=TRUE)
 #' @rdname report.modelinfo
 #' @export 
 
-report.modelinfo.coxph=function(object,doc=NULL,page.break=TRUE)
+report.modelinfo.coxph=function(object,doc=NULL,page.break=TRUE,...)
 {
 	
 	rpack_func="R Package survival , function coxph"

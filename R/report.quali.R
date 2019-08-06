@@ -353,7 +353,9 @@ if(!is.null(at.row))
 	
 	if(is.null(at.row) & !is.null(x2))
 	{	
-		at.row=x2
+		if(is.null(x2.label)) at.row=x2
+		if(!is.null(x2.label)) at.row=x2.label
+		
 		freq=spacetable(freq,at.row=at.row)
 	}
 	

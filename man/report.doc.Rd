@@ -47,9 +47,9 @@ A flextable object (if doc=NULL) or a rdocx object (if doc= an rdocx object).
 \description{
 \code{report.doc} 
 This function enables to export the table created with \code{\link{report.quali}} \code{\link{report.quanti}} or \code{\link{report.lsmeans}}
-to a Microsoft Word or a R markdown document in standrad easy to read format. 
+to a Microsoft Word or a R markdown document. 
 
-It's also possible to use it to have a preview of the table in HTML format if the doc argument is NULL.
+It's also possible to use report.doc to have a preview of the table in HTML format if the \code{doc} argument is NULL.
 }
 \details{
 This function creates a flextable object from a desc object.
@@ -202,7 +202,7 @@ test1=emmeans(mod1,~GROUP|TIMEPOINT)
 
 anov1=Anova(mod1)
 
-tab.mod1=report.lsmeans(lsm=test1,at.row="TIMEPOINT")
+tab.mod1=report.lsmeans(lsm=test1)
 
 gg.mod1=plot(tab.mod1,title="LS-Means response evolution as a function of time\\n
 by treatment group (95\% CI)",
@@ -231,7 +231,7 @@ anov3=Anova(mod3,3)
 
 test3=emmeans(mod3,~GROUP|TIMEPOINT)
 
-tab.mod3=report.lsmeans(lsm=test3,at.row="TIMEPOINT")
+tab.mod3=report.lsmeans(lsm=test3)
 
 gg.mod3=plot(tab.mod3,title="LS-Means response evolution as a function of time\\n
 by treatment group (95\% CI Mixed model)",
@@ -241,15 +241,17 @@ by treatment group (95\% CI Mixed model)",
 
 contr=contrast(test3, "trt.vs.ctrl", ref = "A")
 
-tab.mod3.contr=report.lsmeans(lsm=contr,at="TIMEPOINT")
+tab.mod3.contr=report.lsmeans(lsm=contr)
 
 gg.mod3.contr=plot(tab.mod3.contr,title="LS-Means contrast versus reference A\\n
 			(95\% CI Mixed model)",
 	legend.label="Treatment groups",ylab="Y mean",add.ci=T,add.line=F)
 
 
-
+############################################################
 # Generalized Logistic Linear model (order 2 interaction):
+############################################################
+
 # Anova LS-Means and graph reporting ##########
 
 mod4=glm(y_logistic~baseline+GROUP+TIMEPOINT+GROUP*TIMEPOINT,
