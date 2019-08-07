@@ -34,7 +34,7 @@ No detail
  \dontshow{
 data(datafake)
 
-desc=report.quali(data=data,y="y_logistic",x1="GROUP",
+desc=report.quali(data=datafake,y="y_logistic",x1="GROUP",
 	x2="TIMEPOINT")
 
 gg=ClinReport:::gg_desc_quali(desc,
@@ -42,10 +42,10 @@ title="Qualitative desc object with 2 explicative variables",
 legend.label="Y levels")
 
 
-desc2=report.quali(data=data,y="y_logistic",x1="GROUP")
+desc2=report.quali(data=datafake,y="y_logistic",x1="GROUP")
 ClinReport:::gg_desc_quali(desc2,title="Qualitative desc object with 1 explicative variable")
 
-desc3=report.quali(data=data,y="y_logistic")
+desc3=report.quali(data=datafake,y="y_logistic")
 ClinReport:::gg_desc_quali(desc3,title="Qualitative desc object with 1 explicative variable")
 
 

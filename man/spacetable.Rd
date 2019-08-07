@@ -24,7 +24,7 @@ Used internally into \code{report.lsmeans}, \code{report.quanti} and \code{repor
 \examples{
 
 data(datafake)
-spacetable(report.quali(data=data,y="y_logistic",x1="GROUP",
+spacetable(report.quali(data=datafake,y="y_logistic",x1="GROUP",
 x2="TIMEPOINT")$output,at.row="TIMEPOINT")
 
 

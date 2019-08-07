@@ -26,7 +26,7 @@ for each element of x.
 }
 \examples{
 data(datafake)
-an=anova(lm(y_numeric~y_logistic+GROUP:TIMEPOINT,data=data))
+an=anova(lm(y_numeric~y_logistic+GROUP:TIMEPOINT,data=datafake))
 
 # Raw output:
 an

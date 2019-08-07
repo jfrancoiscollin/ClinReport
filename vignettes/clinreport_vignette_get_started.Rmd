@@ -45,7 +45,7 @@ For example a treatment group and a time variable corresponding to the visits of
 For that we use the `report.quanti()` function:
 
 ```{r, include=TRUE}
-tab1=report.quanti(data=data,y="y_numeric",
+tab1=report.quanti(data=datafake,y="y_numeric",
 		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",
 		subjid="SUBJID")
 
@@ -116,7 +116,7 @@ print(doc, target =file)
 An example of qualitative statistics with one explicative variable
 
 ```{r}
-tab=report.quali(data=data,y="y_logistic",
+tab=report.quali(data=datafake,y="y_logistic",
 		x1="VAR",total=T,subjid="SUBJID")
 		
 report.doc(tab,title="Qualitative table with two variables",
@@ -127,7 +127,7 @@ colspan.value="A variable")
 An example of qualitative statistics with two explicative variables
 
 ```{r}
-tab=report.quali(data=data,y="y_logistic",
+tab=report.quali(data=datafake,y="y_logistic",
 		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",
 		total=T,subjid="SUBJID")
 		
@@ -141,7 +141,7 @@ colspan.value="Treatment group")
 An example of quantitative statistics with one explicative variable
 
 ```{r}
-tab=report.quanti(data=data,y="y_numeric",
+tab=report.quanti(data=datafake,y="y_numeric",
 		x1="VAR",total=T,subjid="SUBJID")
 		
 report.doc(tab,title="Quantitative table with one explicative variable",
@@ -152,7 +152,7 @@ colspan.value="A variable")
 An example of quantitative statistics with two explicative variables
 
 ```{r}
-tab=report.quanti(data=data,y="y_numeric",
+tab=report.quanti(data=datafake,y="y_numeric",
 		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",
 		total=T,subjid="SUBJID")
 		
@@ -170,10 +170,10 @@ But it's only possible for 1 explicative variable,
 and it should be the same variable for both response:
 
 ```{r}
-tab1=report.quanti(data=data,y="y_numeric",
+tab1=report.quanti(data=datafake,y="y_numeric",
 		x1="GROUP",subjid="SUBJID",y.label="Y numeric")
 
-tab2=report.quali(data=data,y="y_logistic",
+tab2=report.quali(data=datafake,y="y_logistic",
 		x1="GROUP",subjid="SUBJID",y.label="Y logistic")
 
 tab3=regroup(tab1,tab2,rbind.label="The label of your choice")
@@ -196,7 +196,7 @@ and the header with the title.
 
 ```{r}
 # Removing baseline data for the model
-data.mod=droplevels(data[data$TIMEPOINT!="D0",])
+data.mod=droplevels(datafake[datafake$TIMEPOINT!="D0",])
 
 mod=lme(y_numeric~baseline+GROUP+TIMEPOINT+GROUP*TIMEPOINT,
 random=~1|SUBJID,data=data.mod,na.action=na.omit)

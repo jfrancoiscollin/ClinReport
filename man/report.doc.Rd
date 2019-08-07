@@ -92,20 +92,20 @@ library(nlme)
 
 data(datafake)
 
-tab=report.quanti(data=data,y="y_numeric",
+tab=report.quanti(data=datafake,y="y_numeric",
 	x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",subjid="SUBJID")
 
 mod=glm(y_logistic~GROUP+TIMEPOINT+GROUP*TIMEPOINT,
-family=binomial,data=data,na.action=na.omit)
+family=binomial,data=datafake,na.action=na.omit)
 
 test=emmeans(mod,~GROUP|TIMEPOINT)
 
-tab.mod=report.lsmeans(lsm=test,at.row="TIMEPOINT")
+tab.mod=report.lsmeans(lsm=test)
 
 
 doc=read_docx()
 
-doc=body_add_par(doc,"A beautiful reporting using ClinReport", style = "heading 1")
+doc=body_add_par(doc,"A statistical report using ClinReport", style = "heading 1")
 
 doc=report.doc(tab,title="Quantitative statistics",
 	colspan.value="Treatment group",doc=doc,init.numbering=TRUE)
@@ -138,11 +138,11 @@ library(xtable)
 #####################
 
 data(datafake) 
-head(data)
+head(datafake)
 
 # Removing baseline data for the model
 
-data.mod=droplevels(data[data$TIMEPOINT!="D0",])
+data.mod=droplevels(datafake[datafake$TIMEPOINT!="D0",])
 
 #####################
 # Create your stats tables and graphics
@@ -152,7 +152,7 @@ data.mod=droplevels(data[data$TIMEPOINT!="D0",])
 # since it's a big enough table, we don't want it to overlap 2 pasges
 # so we split it in two with split.desc function
 
-tab1=report.quanti(data=data,y="y_numeric",
+tab1=report.quanti(data=datafake,y="y_numeric",
 	x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",subjid="SUBJID")
 
 
@@ -167,7 +167,7 @@ legend.label="Treatment groups",ylab="Y mean")
 
 # Qualitative stats (2 explicative variables) ##################################
 
-tab2=report.quali(data=data,y="y_logistic",
+tab2=report.quali(data=datafake,y="y_logistic",
 	x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",total=TRUE,subjid="SUBJID")
 
 gg2=plot(tab2,title="Response distribution (\%) by day and treatment group",
@@ -175,22 +175,22 @@ legend.label="Y levels")
 
 # Qualitative stats (no explicative variable)  ###################################
 
-tab3=report.quali(data=data,y="VAR",y.label="Whatever")
+tab3=report.quali(data=datafake,y="VAR",y.label="Whatever")
 
 # Qualitative stats (no explicative variables ; add number of subjects in header)#
 
-tab4=report.quali(data=data,y="VAR",y.label="Whatever",
+tab4=report.quali(data=datafake,y="VAR",y.label="Whatever",
 	subjid="SUBJID")
 
 # Qualitative stats (1 explicative variable)#######################################
 
-tab5=report.quali(data=data,y="VAR",y.label="Whatever",x1="GROUP",
+tab5=report.quali(data=datafake,y="VAR",y.label="Whatever",x1="GROUP",
 	subjid="SUBJID")
 
 
 # Quantitative stats (1 explicative variable)#######################################
 
-tab6=report.quanti(data=data,y="y_numeric",y.label="Whatever 2",x1="GROUP",
+tab6=report.quanti(data=datafake,y="y_numeric",y.label="Whatever 2",x1="GROUP",
 	subjid="SUBJID")
 
 # Quali-Quanti table

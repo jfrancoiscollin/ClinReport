@@ -64,6 +64,8 @@ devtools::build_vignettes()
 ###############################################
 
 
+document()
+
 spell_check()
 
 check_rhub()

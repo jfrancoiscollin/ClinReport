@@ -1,7 +1,6 @@
 #' datafake
 #'
 #' Fictive data created only for the purpose of testing the package and showing examples.
-
 #' @format A data frame
 #' \describe{
 #'   \item{y_numeric}{Fake numerical response}
@@ -13,7 +12,7 @@
 #'   \item{TIMEPOINT}{A fake time factor}
 #'   \item{SUBJID}{A fake id factor}
 #' }
-#' @rdname datafake
+#' 
 "datafake"
 
 
@@ -36,5 +35,5 @@
 #' \item{Group}{Fake treatment group factor}
 #' \item{Subjid}{Fake subject Id}
 #' }
-#' @rdname time_to_cure
+#' 
 "time_to_cure"

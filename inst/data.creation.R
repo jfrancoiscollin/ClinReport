@@ -61,7 +61,7 @@ levels(time_to_cure$Group)[4]="Untreated"
 
 
 
-#save(data, file = "C:\\Users\\jfcollin\\git\\data\\datafake.rda")
+#save(datafake, file = "C:\\Users\\jfcollin\\git\\data\\datafake.rda")
 #save(time_to_cure, file = "C:\\Users\\jfcollin\\git\\data\\time_to_cure.rda")
 
 

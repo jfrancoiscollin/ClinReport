@@ -39,7 +39,7 @@ It's easier to use this last one.
  \dontshow{
 data(datafake)
 
-desc=report.quanti(data=data,y="y_numeric",x1="GROUP",
+desc=report.quanti(data=datafake,y="y_numeric",x1="GROUP",
 	x2="TIMEPOINT")
 
 ClinReport:::gg_desc_quanti(desc,title="My title",ylab="Hello dear",
@@ -51,9 +51,9 @@ ClinReport:::gg_desc_quanti(desc,title="My title",ylab="Hello dear",
 	ylim=c(-2,8),xlab="Great!",legend.label="Treatment group",add.sd=TRUE)
 
 
-desc2=report.quanti(data=data,y="y_numeric",x1="GROUP")
+desc2=report.quanti(data=datafake,y="y_numeric",x1="GROUP")
 
-desc3=report.quanti(data=data,y="y_numeric")
+desc3=report.quanti(data=datafake,y="y_numeric")
 
 
 

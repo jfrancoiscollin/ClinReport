@@ -32,7 +32,7 @@
 #'  
 #' data(datafake)
 #'
-#' desc=report.quali(data=data,y="y_logistic",x1="GROUP",
+#' desc=report.quali(data=datafake,y="y_logistic",x1="GROUP",
 #'		x2="TIMEPOINT")
 #' 
 #' plot(desc,
@@ -41,7 +41,7 @@
 #' 
 #' 
 #' 
-#' desc2=report.quanti(data=data,y="y_numeric",x1="GROUP",
+#' desc2=report.quanti(data=datafake,y="y_numeric",x1="GROUP",
 #'		x2="TIMEPOINT")
 #' 
 #' plot(desc2,
@@ -51,7 +51,7 @@
 #' 
 #' #Removing baseline data in the response, for the model
 #' 
-#'data.mod=droplevels(data[data$TIMEPOINT!="D0",]) 
+#'data.mod=droplevels(datafake[datafake$TIMEPOINT!="D0",]) 
 #' 
 #' library(nlme)
 #' library(emmeans)
