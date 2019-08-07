@@ -70,6 +70,8 @@ spell_check()
 
 check_rhub()
 
+check_win_devel()
+
 # to avoid the check of the docs directory
 # when check as cran
 #usethis::use_build_ignore("docs")

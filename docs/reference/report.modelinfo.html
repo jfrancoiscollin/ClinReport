@@ -167,9 +167,9 @@ the call etc...)</p>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>nlme</span>)
 
 
-<span class='fu'><a href='data.html'>data</a></span>(<span class='no'>data</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>datafake</span>)
 
-<span class='no'>mod</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/nlme/topics/lme'>lme</a></span>(<span class='no'>y_numeric</span>~<span class='no'>GROUP</span>+<span class='no'>TIMEPOINT</span>,<span class='kw'>random</span><span class='kw'>=</span>~<span class='fl'>1</span><span class='kw'>|</span><span class='no'>SUBJID</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>na.action</span><span class='kw'>=</span><span class='no'>na.omit</span>)
+<span class='no'>mod</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/nlme/topics/lme'>lme</a></span>(<span class='no'>y_numeric</span>~<span class='no'>GROUP</span>+<span class='no'>TIMEPOINT</span>,<span class='kw'>random</span><span class='kw'>=</span>~<span class='fl'>1</span><span class='kw'>|</span><span class='no'>SUBJID</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>na.action</span><span class='kw'>=</span><span class='no'>na.omit</span>)
 
 <span class='co'># Show in HTML (can be inserted in an R markdown or a MS Word document)</span>
 
@@ -184,12 +184,12 @@ the call etc...)</p>
 #&gt; 3        Model formula
 #&gt; 4 Method of adjustment
 #&gt; 5          NA handling
-#&gt;                                                                                                            Details
-#&gt; 1                                                                                    R Package nlme , function lme
-#&gt; 2                                                                                        Linear Mixed Effect Model
-#&gt; 3 lme.formula(fixed = y_numeric ~ GROUP + TIMEPOINT, data = data, \n    random = ~1 | SUBJID, na.action = na.omit)
-#&gt; 4                                                                                                             REML
-#&gt; 5                                                                                                             omit</div><div class='input'>
+#&gt;                                                                                                                Details
+#&gt; 1                                                                                        R Package nlme , function lme
+#&gt; 2                                                                                            Linear Mixed Effect Model
+#&gt; 3 lme.formula(fixed = y_numeric ~ GROUP + TIMEPOINT, data = datafake, \n    random = ~1 | SUBJID, na.action = na.omit)
+#&gt; 4                                                                                                                 REML
+#&gt; 5                                                                                                                 omit</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

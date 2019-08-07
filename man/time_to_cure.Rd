@@ -17,6 +17,9 @@
 \item{Group}{Fake treatment group factor}
 \item{Subjid}{Fake subject Id}
 }}
+\usage{
+data(time_to_cure)
+}
 \description{
 Simulated survival data created only for the purpose of testing the package and showing examples.
 }

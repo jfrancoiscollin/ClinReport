@@ -15,6 +15,9 @@
   \item{TIMEPOINT}{A fake time factor}
   \item{SUBJID}{A fake id factor}
 }}
+\usage{
+data(datafake)
+}
 \description{
 Fictive data created only for the purpose of testing the package and showing examples.
 }

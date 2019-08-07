@@ -36,7 +36,7 @@ Load your data.
 ```{r, include=TRUE}
 # We will use fake data
 data(datafake)
-print(head(data))
+print(head(datafake))
 ```
 
 Create a statistical output for a quantitative response and two explicative variables.

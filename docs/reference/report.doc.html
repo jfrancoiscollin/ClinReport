@@ -238,8 +238,8 @@ to a Microsoft Word or a R markdown document.</p>
 <span class='co'># Load data</span>
 <span class='co'>#####################</span>
 
-<span class='fu'><a href='data.html'>data</a></span>(<span class='no'>data</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>data</span>)</div><div class='output co'>#&gt;    y_numeric y_logistic y_poisson   baseline   VAR GROUP TIMEPOINT SUBJID
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>datafake</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>datafake</span>)</div><div class='output co'>#&gt;    y_numeric y_logistic y_poisson   baseline   VAR GROUP TIMEPOINT SUBJID
 #&gt; 1 -0.4203490          1         5 -0.4203490 Cat 1     A        D0 Subj 1
 #&gt; 2 -0.1570941          1         5 -0.1570941 Cat 2     A        D0 Subj 1
 #&gt; 3         NA          0         3 -2.0853720 Cat 2     A        D0 Subj 1
@@ -248,7 +248,7 @@ to a Microsoft Word or a R markdown document.</p>
 #&gt; 6 -1.5476907          1         3 -1.5476907 Cat 1     A        D0 Subj 1</div><div class='input'>
 <span class='co'># Removing baseline data for the model</span>
 
-<span class='no'>data.mod</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/droplevels'>droplevels</a></span>(<span class='no'>data</span>[<span class='no'>data</span>$<span class='no'>TIMEPOINT</span><span class='kw'>!=</span><span class='st'>"D0"</span>,])
+<span class='no'>data.mod</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/droplevels'>droplevels</a></span>(<span class='no'>datafake</span>[<span class='no'>datafake</span>$<span class='no'>TIMEPOINT</span><span class='kw'>!=</span><span class='st'>"D0"</span>,])
 
 <span class='co'>#####################</span>
 <span class='co'># Create your stats tables and graphics</span>
@@ -258,7 +258,7 @@ to a Microsoft Word or a R markdown document.</p>
 <span class='co'># since it's a big enough table, we don't want it to overlap 2 pasges</span>
 <span class='co'># so we split it in two with split.desc function</span>
 
-<span class='no'>tab1</span><span class='kw'>=</span><span class='fu'><a href='report.quanti.html'>report.quanti</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,
+<span class='no'>tab1</span><span class='kw'>=</span><span class='fu'><a href='report.quanti.html'>report.quanti</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,
         <span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>)
 
 
@@ -273,30 +273,30 @@ to a Microsoft Word or a R markdown document.</p>
 
 <span class='co'># Qualitative stats (2 explicative variables) ##################################</span>
 
-<span class='no'>tab2</span><span class='kw'>=</span><span class='fu'><a href='report.quali.html'>report.quali</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,
-        <span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='no'>T</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>)
+<span class='no'>tab2</span><span class='kw'>=</span><span class='fu'><a href='report.quali.html'>report.quali</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,
+        <span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>)
 
 <span class='no'>gg2</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>tab2</span>,<span class='kw'>title</span><span class='kw'>=</span><span class='st'>"Response distribution (%) by day and treatment group"</span>,
 <span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Y levels"</span>)
 
 <span class='co'># Qualitative stats (no explicative variable)  ###################################</span>
 
-<span class='no'>tab3</span><span class='kw'>=</span><span class='fu'><a href='report.quali.html'>report.quali</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"VAR"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Whatever"</span>)
+<span class='no'>tab3</span><span class='kw'>=</span><span class='fu'><a href='report.quali.html'>report.quali</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"VAR"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Whatever"</span>)
 
 <span class='co'># Qualitative stats (no explicative variables ; add number of subjects in header)#</span>
 
-<span class='no'>tab4</span><span class='kw'>=</span><span class='fu'><a href='report.quali.html'>report.quali</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"VAR"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Whatever"</span>,
+<span class='no'>tab4</span><span class='kw'>=</span><span class='fu'><a href='report.quali.html'>report.quali</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"VAR"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Whatever"</span>,
         <span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>)
 
 <span class='co'># Qualitative stats (1 explicative variable)#######################################</span>
 
-<span class='no'>tab5</span><span class='kw'>=</span><span class='fu'><a href='report.quali.html'>report.quali</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"VAR"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Whatever"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
+<span class='no'>tab5</span><span class='kw'>=</span><span class='fu'><a href='report.quali.html'>report.quali</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"VAR"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Whatever"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
         <span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>)
 
 
 <span class='co'># Quantitative stats (1 explicative variable)#######################################</span>
 
-<span class='no'>tab6</span><span class='kw'>=</span><span class='fu'><a href='report.quanti.html'>report.quanti</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Whatever 2"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
+<span class='no'>tab6</span><span class='kw'>=</span><span class='fu'><a href='report.quanti.html'>report.quanti</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Whatever 2"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
         <span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>)
 
 <span class='co'># Quali-Quanti table</span>
@@ -315,7 +315,7 @@ to a Microsoft Word or a R markdown document.</p>
 
 <span class='no'>gg.mod1</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>tab.mod1</span>,<span class='kw'>title</span><span class='kw'>=</span><span class='st'>"LS-Means response evolution as a function of time\n
 by treatment group (95% CI)"</span>,
-<span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Treatment groups"</span>,<span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Y mean"</span>,<span class='kw'>add.ci</span><span class='kw'>=</span><span class='no'>T</span>)
+<span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Treatment groups"</span>,<span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Y mean"</span>,<span class='kw'>add.ci</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 
 <span class='co'># Linear model (1 group only): Anova and LS-Means and graph reporting ################</span>
 
@@ -328,7 +328,7 @@ by treatment group (95% CI)"</span>,
 
 
 <span class='no'>gg.mod2</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>tab.mod2</span>,<span class='kw'>title</span><span class='kw'>=</span><span class='st'>"LS-Means response\nby treatment group (95% CI)"</span>,
-        <span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Treatment groups"</span>,<span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Y mean"</span>,<span class='kw'>add.ci</span><span class='kw'>=</span><span class='no'>T</span>)
+        <span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Treatment groups"</span>,<span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Y mean"</span>,<span class='kw'>add.ci</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 
 <span class='co'># Linear mixed model (order 2 interaction):</span>
 <span class='co'># Anova and LS-Means and graph reporting #################</span>
@@ -344,7 +344,7 @@ by treatment group (95% CI)"</span>,
 
 <span class='no'>gg.mod3</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>tab.mod3</span>,<span class='kw'>title</span><span class='kw'>=</span><span class='st'>"LS-Means response evolution as a function of time\n
 by treatment group (95% CI Mixed model)"</span>,
-        <span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Treatment groups"</span>,<span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Y mean"</span>,<span class='kw'>add.ci</span><span class='kw'>=</span><span class='no'>T</span>)
+        <span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Treatment groups"</span>,<span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Y mean"</span>,<span class='kw'>add.ci</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 
 <span class='co'># Contrast example</span>
 
@@ -354,7 +354,7 @@ by treatment group (95% CI Mixed model)"</span>,
 
 <span class='no'>gg.mod3.contr</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>tab.mod3.contr</span>,<span class='kw'>title</span><span class='kw'>=</span><span class='st'>"LS-Means contrast versus reference A\n
 			(95% CI Mixed model)"</span>,
-        <span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Treatment groups"</span>,<span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Y mean"</span>,<span class='kw'>add.ci</span><span class='kw'>=</span><span class='no'>T</span>,<span class='kw'>add.line</span><span class='kw'>=</span><span class='no'>F</span>)
+        <span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Treatment groups"</span>,<span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Y mean"</span>,<span class='kw'>add.ci</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>add.line</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
 
 
 <span class='co'>############################################################</span>
@@ -374,7 +374,7 @@ by treatment group (95% CI Mixed model)"</span>,
 
 <span class='no'>gg.mod4</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>tab.mod4</span>,<span class='kw'>title</span><span class='kw'>=</span><span class='st'>"LS-Means response evolution as a function of time\n
 by treatment group (95% CI Logistic model)"</span>,
-        <span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Treatment groups"</span>,<span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Y mean"</span>,<span class='kw'>add.ci</span><span class='kw'>=</span><span class='no'>T</span>)
+        <span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Treatment groups"</span>,<span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Y mean"</span>,<span class='kw'>add.ci</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 
 <span class='co'># Generalized Poisson Linear model (order 2 interaction):</span>
 <span class='co'># Anova LS-Means and graph reporting #'</span>
@@ -393,7 +393,7 @@ by treatment group (95% CI Logistic model)"</span>,
 
 <span class='no'>gg.mod5</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>tab.mod5</span>,<span class='kw'>title</span><span class='kw'>=</span><span class='st'>"LS-Means response evolution as a function of time\n
 by treatment group (95% CI Poisson model)"</span>,
-        <span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Treatment groups"</span>,<span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Y mean"</span>,<span class='kw'>add.ci</span><span class='kw'>=</span><span class='no'>T</span>)
+        <span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Treatment groups"</span>,<span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Y mean"</span>,<span class='kw'>add.ci</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 
 <span class='co'>#####################</span>
 <span class='co'># Create your report</span>
@@ -409,8 +409,8 @@ by treatment group (95% CI Poisson model)"</span>,
 <span class='no'>doc</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/officer/topics/body_add_par'>body_add_par</a></span>(<span class='no'>doc</span>,<span class='st'>"Descriptive statistics"</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"heading 2"</span>)
 
 <span class='no'>doc</span><span class='kw'>=</span><span class='fu'>report.doc</span>(<span class='no'>tab1.1</span>,<span class='kw'>title</span><span class='kw'>=</span><span class='st'>"Quantitative statistics (2 explicative variables) (Table 1/2)"</span>,
-        <span class='kw'>colspan.value</span><span class='kw'>=</span><span class='st'>"Treatment group"</span>,<span class='kw'>doc</span><span class='kw'>=</span><span class='no'>doc</span>,<span class='kw'>init.numbering</span><span class='kw'>=</span><span class='no'>T</span>,
-<span class='kw'>page.break</span><span class='kw'>=</span><span class='no'>F</span>)
+        <span class='kw'>colspan.value</span><span class='kw'>=</span><span class='st'>"Treatment group"</span>,<span class='kw'>doc</span><span class='kw'>=</span><span class='no'>doc</span>,<span class='kw'>init.numbering</span><span class='kw'>=</span><span class='fl'>TRUE</span>,
+<span class='kw'>page.break</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
 
 <span class='no'>doc</span><span class='kw'>=</span><span class='fu'>report.doc</span>(<span class='no'>tab1.2</span>,<span class='kw'>title</span><span class='kw'>=</span><span class='st'>"Quantitative statistics (2 explicative variables) (Table 2/2)"</span>,
         <span class='kw'>colspan.value</span><span class='kw'>=</span><span class='st'>"Treatment group"</span>,<span class='kw'>doc</span><span class='kw'>=</span><span class='no'>doc</span>)
@@ -519,7 +519,7 @@ statistics with the function regroup"</span>, <span class='kw'>style</span> <spa
 
 
 <span class='no'>file</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempfile</a></span>(),<span class='st'>".docx"</span>,<span class='kw'>sep</span><span class='kw'>=</span><span class='st'>""</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>doc</span>, <span class='kw'>target</span> <span class='kw'>=</span><span class='no'>file</span>)</div><div class='output co'>#&gt; [1] "C:/Users/jfcollin/AppData/Local/Temp/RtmpW2PZ3r/filee201ca0168f.docx"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/shell.exec'>shell.exec</a></span>(<span class='no'>file</span>)</div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>doc</span>, <span class='kw'>target</span> <span class='kw'>=</span><span class='no'>file</span>)</div><div class='output co'>#&gt; [1] "C:/Users/jfcollin/AppData/Local/Temp/RtmpWw7By6/file405874df1694.docx"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/shell.exec'>shell.exec</a></span>(<span class='no'>file</span>)</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

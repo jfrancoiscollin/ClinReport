@@ -100,8 +100,8 @@
 <span id="cb1-8"><a href="#cb1-8"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(car)</span></code></pre></div>
 <p>Load your data.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># We will use fake data</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="../reference/data.html">data</a></span>(data)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(data))</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(datafake)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(datafake))</span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt;    y_numeric y_logistic y_poisson   baseline   VAR GROUP TIMEPOINT SUBJID</span></span>
 <span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; 1 -0.4203490          1         5 -0.4203490 Cat 1     A        D0 Subj 1</span></span>
 <span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; 2 -0.1570941          1         5 -0.1570941 Cat 2     A        D0 Subj 1</span></span>
@@ -113,10 +113,10 @@
 <h3 class="hasAnchor">
 <a href="#mixed-quantitative-and-qualitative-tables-regroup-function" class="anchor"></a>Mixed Quantitative and Qualitative tables: <code><a href="../reference/regroup.html">regroup()</a></code> function</h3>
 <p>You can mix qualitative and quantitative outputs. It’s possible only if there is only 1 explicative variable, and it should be the same variable for both response:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>tab1=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_numeric"</span>,</span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>tab1=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_numeric"</span>,</span>
 <span id="cb3-2"><a href="#cb3-2"></a>        <span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">subjid=</span><span class="st">"SUBJID"</span>,<span class="dt">y.label=</span><span class="st">"Y numeric"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a>tab2=<span class="kw"><a href="../reference/report.quali.html">report.quali</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_logistic"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>tab2=<span class="kw"><a href="../reference/report.quali.html">report.quali</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_logistic"</span>,</span>
 <span id="cb3-5"><a href="#cb3-5"></a>        <span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">subjid=</span><span class="st">"SUBJID"</span>,<span class="dt">y.label=</span><span class="st">"Y logistic"</span>)</span>
 <span id="cb3-6"><a href="#cb3-6"></a></span>
 <span id="cb3-7"><a href="#cb3-7"></a>tab3=<span class="kw"><a href="../reference/regroup.html">regroup</a></span>(tab1,tab2,<span class="dt">rbind.label=</span><span class="st">"The label of your choice"</span>)</span>
@@ -226,7 +226,7 @@
 <p>You will have to specify the function corresponding to the statistics and use the <code>func.stat</code> argument</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>es=<span class="cf">function</span>(x) <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(x,<span class="dt">na.rm=</span>T)<span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/sd">sd</a></span>(x,<span class="dt">na.rm=</span>T) </span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a>tab=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_numeric"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3"></a>tab=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_numeric"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>,</span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="dt">total=</span><span class="ot">TRUE</span>,<span class="dt">subjid=</span><span class="st">"SUBJID"</span>,</span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="dt">func.stat=</span>es,</span>
 <span id="cb4-6"><a href="#cb4-6"></a><span class="dt">func.stat.name=</span><span class="st">"Effect size"</span>)</span>
@@ -263,7 +263,7 @@
 <h3 class="hasAnchor">
 <a href="#row-or-column-percentages-display-report-quali-function" class="anchor"></a>Row or column percentages display: <code><a href="../reference/report.quali.html">report.quali()</a></code> function</h3>
 <p>If you want to display the row percentages instead of column percentages in <code><a href="../reference/report.quali.html">report.quali()</a></code> function, you just have to set the argument <code>percent.col</code> to <code>FALSE</code>:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>tab=<span class="kw"><a href="../reference/report.quali.html">report.quali</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_logistic"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>,</span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>tab=<span class="kw"><a href="../reference/report.quali.html">report.quali</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_logistic"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>,</span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="dt">total=</span><span class="ot">TRUE</span>,<span class="dt">subjid=</span><span class="st">"SUBJID"</span>,<span class="dt">percent.col=</span><span class="ot">FALSE</span>)</span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
 <span id="cb5-4"><a href="#cb5-4"></a><span class="kw"><a href="../reference/report.doc.html">report.doc</a></span>(tab,<span class="dt">title=</span><span class="st">"Example of row percentage reporting"</span>,</span>
@@ -323,7 +323,7 @@
 <p>In this case, you can use the <code><a href="../reference/add.stat.html">add.stat()</a></code> function with the <code>pos</code> argument to choose where you want to add this statistic:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># The default statistics are given here:</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a> </span>
-<span id="cb6-3"><a href="#cb6-3"></a>tab1=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_numeric"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">total=</span><span class="ot">TRUE</span>,<span class="dt">subjid=</span><span class="st">"SUBJID"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>tab1=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_numeric"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">total=</span><span class="ot">TRUE</span>,<span class="dt">subjid=</span><span class="st">"SUBJID"</span>)</span>
 <span id="cb6-4"><a href="#cb6-4"></a></span>
 <span id="cb6-5"><a href="#cb6-5"></a> <span class="co"># Define the function corresponding to the coefficient of variation for example</span></span>
 <span id="cb6-6"><a href="#cb6-6"></a> </span>
@@ -331,7 +331,7 @@
 <span id="cb6-8"><a href="#cb6-8"></a> </span>
 <span id="cb6-9"><a href="#cb6-9"></a> <span class="co"># We use the add.stat function to add CV at the second row:</span></span>
 <span id="cb6-10"><a href="#cb6-10"></a> </span>
-<span id="cb6-11"><a href="#cb6-11"></a>tab1.cv=<span class="kw"><a href="../reference/add.stat.html">add.stat</a></span>(tab1,data,<span class="dt">func.stat=</span>cv,<span class="dt">func.stat.name=</span><span class="st">"Coef. Var"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11"></a>tab1.cv=<span class="kw"><a href="../reference/add.stat.html">add.stat</a></span>(tab1,datafake,<span class="dt">func.stat=</span>cv,<span class="dt">func.stat.name=</span><span class="st">"Coef. Var"</span>,</span>
 <span id="cb6-12"><a href="#cb6-12"></a> <span class="dt">pos=</span><span class="dv">2</span>)</span>
 <span id="cb6-13"><a href="#cb6-13"></a></span>
 <span id="cb6-14"><a href="#cb6-14"></a><span class="kw"><a href="../reference/report.doc.html">report.doc</a></span>(tab1.cv,<span class="dt">title=</span><span class="st">"Example of adding a coefficient of variation"</span>)</span></code></pre></div>
@@ -402,11 +402,11 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a></span>
 <span id="cb7-2"><a href="#cb7-2"></a> <span class="co"># Same with 2 explicative variables</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a> </span>
-<span id="cb7-4"><a href="#cb7-4"></a>tab=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_numeric"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4"></a>tab=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_numeric"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>,</span>
 <span id="cb7-5"><a href="#cb7-5"></a> <span class="dt">x2=</span><span class="st">"TIMEPOINT"</span>,<span class="dt">total=</span><span class="ot">TRUE</span>,<span class="dt">subjid=</span><span class="st">"SUBJID"</span>,</span>
 <span id="cb7-6"><a href="#cb7-6"></a>        <span class="dt">at.row=</span><span class="st">"TIMEPOINT"</span>)</span>
 <span id="cb7-7"><a href="#cb7-7"></a> </span>
-<span id="cb7-8"><a href="#cb7-8"></a> tab=<span class="kw"><a href="../reference/add.stat.html">add.stat</a></span>(tab,data,<span class="dt">func.stat=</span>cv,<span class="dt">func.stat.name=</span><span class="st">"Coef. Var"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8"></a> tab=<span class="kw"><a href="../reference/add.stat.html">add.stat</a></span>(tab,datafake,<span class="dt">func.stat=</span>cv,<span class="dt">func.stat.name=</span><span class="st">"Coef. Var"</span>,</span>
 <span id="cb7-9"><a href="#cb7-9"></a> <span class="dt">pos=</span><span class="dv">2</span>)</span>
 <span id="cb7-10"><a href="#cb7-10"></a></span>
 <span id="cb7-11"><a href="#cb7-11"></a> </span>
@@ -420,7 +420,7 @@
 <span id="cb7-19"><a href="#cb7-19"></a> }</span>
 <span id="cb7-20"><a href="#cb7-20"></a> </span>
 <span id="cb7-21"><a href="#cb7-21"></a> </span>
-<span id="cb7-22"><a href="#cb7-22"></a> tab=<span class="kw"><a href="../reference/add.stat.html">add.stat</a></span>(tab,data,<span class="dt">func.stat=</span>mode,<span class="dt">func.stat.name=</span><span class="st">"Mode"</span>,<span class="dt">pos=</span><span class="dv">5</span>)</span>
+<span id="cb7-22"><a href="#cb7-22"></a> tab=<span class="kw"><a href="../reference/add.stat.html">add.stat</a></span>(tab,datafake,<span class="dt">func.stat=</span>mode,<span class="dt">func.stat.name=</span><span class="st">"Mode"</span>,<span class="dt">pos=</span><span class="dv">5</span>)</span>
 <span id="cb7-23"><a href="#cb7-23"></a> </span>
 <span id="cb7-24"><a href="#cb7-24"></a> <span class="kw"><a href="../reference/report.doc.html">report.doc</a></span>(tab,<span class="dt">title=</span><span class="st">"Example of adding 2 more statistics in an existing table"</span>,</span>
 <span id="cb7-25"><a href="#cb7-25"></a> <span class="dt">colspan.value=</span><span class="st">"Treatment Group"</span>)</span></code></pre></div>

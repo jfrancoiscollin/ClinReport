@@ -1,6 +1,9 @@
 #' datafake
 #'
 #' Fictive data created only for the purpose of testing the package and showing examples.
+#' 
+#' @usage data(datafake)
+#' 
 #' @format A data frame
 #' \describe{
 #'   \item{y_numeric}{Fake numerical response}
@@ -21,6 +24,8 @@
 #' time_to_cure
 #'
 #' Simulated survival data created only for the purpose of testing the package and showing examples.
+#' 
+#' @usage data(time_to_cure)
 #'
 #' @format A data frame
 #' #' \describe{

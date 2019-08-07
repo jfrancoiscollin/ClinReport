@@ -125,7 +125,7 @@ enables to add a specific quantitative statistic into an existing table of stati
     </tr>
     <tr>
       <th>data</th>
-      <td><p>The data frame used to creat tab</p></td>
+      <td><p>The data frame used to create tab</p></td>
     </tr>
     <tr>
       <th>func.stat</th>
@@ -137,7 +137,7 @@ enables to add a specific quantitative statistic into an existing table of stati
     </tr>
     <tr>
       <th>pos</th>
-      <td><p>Numeric used to sepecify the position of the new statistics</p></td>
+      <td><p>Numeric used to specify the position of the new statistics</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -164,11 +164,11 @@ uses the <code><a href='regroup.html'>regroup</a></code> function to bind the tw
     <pre class="examples"><div class='input'>
 <span class='co'># Load the data</span>
 
-<span class='fu'><a href='data.html'>data</a></span>(<span class='no'>data</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>datafake</span>)
 
 <span class='co'># The default statistics are given here:</span>
 
-<span class='no'>tab1</span><span class='kw'>=</span><span class='fu'><a href='report.quanti.html'>report.quanti</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>)
+<span class='no'>tab1</span><span class='kw'>=</span><span class='fu'><a href='report.quanti.html'>report.quanti</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>)
 
 <span class='co'># Define the function corresponding to the coefficient of variation for example</span>
 
@@ -176,7 +176,7 @@ uses the <code><a href='regroup.html'>regroup</a></code> function to bind the tw
 
 <span class='co'># We use the add.stat function to add CV at the second row:</span>
 
-<span class='no'>tab1.cv</span><span class='kw'>=</span><span class='fu'>add.stat</span>(<span class='no'>tab1</span>,<span class='no'>data</span>,<span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>cv</span>,<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"Coef. Var"</span>,
+<span class='no'>tab1.cv</span><span class='kw'>=</span><span class='fu'>add.stat</span>(<span class='no'>tab1</span>,<span class='no'>datafake</span>,<span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>cv</span>,<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"Coef. Var"</span>,
 <span class='kw'>pos</span><span class='kw'>=</span><span class='fl'>2</span>)
 
 <span class='no'>tab1.cv</span></div><div class='output co'>#&gt; 
@@ -197,11 +197,11 @@ uses the <code><a href='regroup.html'>regroup</a></code> function to bind the tw
 #&gt; </div><div class='input'>
 <span class='co'># Same with 2 explicative variables</span>
 
-<span class='no'>tab</span><span class='kw'>=</span><span class='fu'><a href='report.quanti.html'>report.quanti</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
+<span class='no'>tab</span><span class='kw'>=</span><span class='fu'><a href='report.quanti.html'>report.quanti</a></span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,
         <span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)
 
-<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>add.stat</span>(<span class='no'>tab</span>,<span class='no'>data</span>,<span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>cv</span>,<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"Coef. Var"</span>,
+<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>add.stat</span>(<span class='no'>tab</span>,<span class='no'>datafake</span>,<span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>cv</span>,<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"Coef. Var"</span>,
 <span class='kw'>pos</span><span class='kw'>=</span><span class='fl'>2</span>)
 <span class='no'>tab</span></div><div class='output co'>#&gt; 
 #&gt; ############################################
@@ -269,7 +269,7 @@ uses the <code><a href='regroup.html'>regroup</a></code> function to bind the tw
 }
 
 
-<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>add.stat</span>(<span class='no'>tab</span>,<span class='no'>data</span>,<span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>mode</span>,<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"Mode"</span>,
+<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>add.stat</span>(<span class='no'>tab</span>,<span class='no'>datafake</span>,<span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>mode</span>,<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"Mode"</span>,
 <span class='kw'>pos</span><span class='kw'>=</span><span class='fl'>5</span>)
 <span class='no'>tab</span></div><div class='output co'>#&gt; 
 #&gt; ############################################
