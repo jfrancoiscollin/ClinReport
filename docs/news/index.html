@@ -60,7 +60,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ClinReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13.1</span>
       </span>
     </div>
 
@@ -247,6 +247,23 @@
 </ul>
 </div>
 </div>
+    <div id="clinreport-09114" class="section level1">
+<h1 class="page-header">
+<a href="#clinreport-09114" class="anchor"></a>ClinReport 0.9.1.14<small> Unreleased </small>
+</h1>
+<div id="enhancement-8" class="section level2">
+<h2 class="hasAnchor">
+<a href="#enhancement-8" class="anchor"></a>Enhancement</h2>
+<ul>
+<li>Add drop.y, drop.x1 and drop.x2 arguments in report.quanti and report.quali to drop levels from the results if needed</li>
+<li>Add the transpose argument in report.lsmeans function to show the statistics in columns or in rows</li>
+<li>Add the report.modelinfo function, to export in a table the information relative to a statistical model (the call to the model, the package name, the function name, the AIC, BIC, number of observation etc…)</li>
+<li>If x2 argument is not missing then at.row argument automatically will space the results by row, no need to fill this argument systematically anymore</li>
+<li>The title is automatically filled with y.label argument</li>
+<li>Add the remove.missing argument in report.quali to be able to compute the percentage on non missing values only if needed</li>
+</ul>
+</div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -261,6 +278,7 @@
         <li><a href="#clinreport-09111">0.9.1.11</a></li>
         <li><a href="#clinreport-09112">0.9.1.12</a></li>
         <li><a href="#clinreport-09113">0.9.1.13</a></li>
+        <li><a href="#clinreport-09114">0.9.1.14</a></li>
       </ul>
     </div>
   </div>

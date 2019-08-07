@@ -34,8 +34,8 @@
 
 <meta property="og:description" content="report.doc 
 This function enables to export the table created with report.quali report.quanti or report.lsmeans
-to a Microsoft Word or a R markdown document in standrad easy to read format.
-It's also possible to use it to have a preview of the table in HTML format if the doc argument is NULL." />
+to a Microsoft Word or a R markdown document.
+It's also possible to use report.doc to have a preview of the table in HTML format if the doc argument is NULL." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -66,7 +66,7 @@ It's also possible to use it to have a preview of the table in HTML format if th
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ClinReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13.1</span>
       </span>
     </div>
 
@@ -109,8 +109,8 @@ It's also possible to use it to have a preview of the table in HTML format if th
     
     <p><code>report.doc</code> 
 This function enables to export the table created with <code><a href='report.quali.html'>report.quali</a></code> <code><a href='report.quanti.html'>report.quanti</a></code> or <code><a href='report.lsmeans.html'>report.lsmeans</a></code>
-to a Microsoft Word or a R markdown document in standrad easy to read format.</p>
-<p>It's also possible to use it to have a preview of the table in HTML format if the doc argument is NULL.</p>
+to a Microsoft Word or a R markdown document.</p>
+<p>It's also possible to use report.doc to have a preview of the table in HTML format if the <code>doc</code> argument is NULL.</p>
     
     </div>
 
@@ -124,7 +124,8 @@ to a Microsoft Word or a R markdown document in standrad easy to read format.</p
 <span class='co'># S3 method for anova</span>
 <span class='fu'>report.doc</span>(<span class='no'>table</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Anova table"</span>,
   <span class='kw'>type.anova</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>doc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>numbering</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>init.numbering</span> <span class='kw'>=</span> <span class='no'>F</span>,
-  <span class='kw'>font.name</span> <span class='kw'>=</span> <span class='st'>"Times"</span>, <span class='kw'>font.size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>page.break</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='no'>...</span>)</pre>
+  <span class='kw'>font.name</span> <span class='kw'>=</span> <span class='st'>"Times"</span>, <span class='kw'>font.size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>page.break</span> <span class='kw'>=</span> <span class='no'>T</span>,
+  <span class='kw'>pretty.label</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -172,6 +173,10 @@ to a Microsoft Word or a R markdown document in standrad easy to read format.</p
     <tr>
       <th>type.anova</th>
       <td><p>Passed to <code>Anova</code> function from car package (see its documentation).</p></td>
+    </tr>
+    <tr>
+      <th>pretty.label</th>
+      <td><p>Logical. Default to FALSE. If TRUE, use the function <code>make.label</code> with default option on the rownames of the anova table</p></td>
     </tr>
     <tr>
       <th>anova</th>
@@ -306,7 +311,7 @@ to a Microsoft Word or a R markdown document in standrad easy to read format.</p
 
 <span class='no'>anov1</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/car/topics/Anova'>Anova</a></span>(<span class='no'>mod1</span>)
 
-<span class='no'>tab.mod1</span><span class='kw'>=</span><span class='fu'><a href='report.lsmeans.html'>report.lsmeans</a></span>(<span class='kw'>lsm</span><span class='kw'>=</span><span class='no'>test1</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)
+<span class='no'>tab.mod1</span><span class='kw'>=</span><span class='fu'><a href='report.lsmeans.html'>report.lsmeans</a></span>(<span class='kw'>lsm</span><span class='kw'>=</span><span class='no'>test1</span>)
 
 <span class='no'>gg.mod1</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>tab.mod1</span>,<span class='kw'>title</span><span class='kw'>=</span><span class='st'>"LS-Means response evolution as a function of time\n
 by treatment group (95% CI)"</span>,
@@ -335,7 +340,7 @@ by treatment group (95% CI)"</span>,
 
 <span class='no'>test3</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/emmeans/topics/emmeans'>emmeans</a></span>(<span class='no'>mod3</span>,~<span class='no'>GROUP</span><span class='kw'>|</span><span class='no'>TIMEPOINT</span>)
 
-<span class='no'>tab.mod3</span><span class='kw'>=</span><span class='fu'><a href='report.lsmeans.html'>report.lsmeans</a></span>(<span class='kw'>lsm</span><span class='kw'>=</span><span class='no'>test3</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)
+<span class='no'>tab.mod3</span><span class='kw'>=</span><span class='fu'><a href='report.lsmeans.html'>report.lsmeans</a></span>(<span class='kw'>lsm</span><span class='kw'>=</span><span class='no'>test3</span>)
 
 <span class='no'>gg.mod3</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>tab.mod3</span>,<span class='kw'>title</span><span class='kw'>=</span><span class='st'>"LS-Means response evolution as a function of time\n
 by treatment group (95% CI Mixed model)"</span>,
@@ -345,15 +350,17 @@ by treatment group (95% CI Mixed model)"</span>,
 
 <span class='no'>contr</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/emmeans/topics/contrast'>contrast</a></span>(<span class='no'>test3</span>, <span class='st'>"trt.vs.ctrl"</span>, <span class='kw'>ref</span> <span class='kw'>=</span> <span class='st'>"A"</span>)
 
-<span class='no'>tab.mod3.contr</span><span class='kw'>=</span><span class='fu'><a href='report.lsmeans.html'>report.lsmeans</a></span>(<span class='kw'>lsm</span><span class='kw'>=</span><span class='no'>contr</span>,<span class='kw'>at</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)
+<span class='no'>tab.mod3.contr</span><span class='kw'>=</span><span class='fu'><a href='report.lsmeans.html'>report.lsmeans</a></span>(<span class='kw'>lsm</span><span class='kw'>=</span><span class='no'>contr</span>)
 
 <span class='no'>gg.mod3.contr</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>tab.mod3.contr</span>,<span class='kw'>title</span><span class='kw'>=</span><span class='st'>"LS-Means contrast versus reference A\n
 			(95% CI Mixed model)"</span>,
         <span class='kw'>legend.label</span><span class='kw'>=</span><span class='st'>"Treatment groups"</span>,<span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Y mean"</span>,<span class='kw'>add.ci</span><span class='kw'>=</span><span class='no'>T</span>,<span class='kw'>add.line</span><span class='kw'>=</span><span class='no'>F</span>)
 
 
-
+<span class='co'>############################################################</span>
 <span class='co'># Generalized Logistic Linear model (order 2 interaction):</span>
+<span class='co'>############################################################</span>
+
 <span class='co'># Anova LS-Means and graph reporting ##########</span>
 
 <span class='no'>mod4</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></span>(<span class='no'>y_logistic</span>~<span class='no'>baseline</span>+<span class='no'>GROUP</span>+<span class='no'>TIMEPOINT</span>+<span class='no'>GROUP</span>*<span class='no'>TIMEPOINT</span>,
@@ -512,7 +519,7 @@ statistics with the function regroup"</span>, <span class='kw'>style</span> <spa
 
 
 <span class='no'>file</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tempfile'>tempfile</a></span>(),<span class='st'>".docx"</span>,<span class='kw'>sep</span><span class='kw'>=</span><span class='st'>""</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>doc</span>, <span class='kw'>target</span> <span class='kw'>=</span><span class='no'>file</span>)</div><div class='output co'>#&gt; [1] "C:/Users/jfcollin/AppData/Local/Temp/RtmpwvypGw/filec5422d43528.docx"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/shell.exec'>shell.exec</a></span>(<span class='no'>file</span>)</div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>doc</span>, <span class='kw'>target</span> <span class='kw'>=</span><span class='no'>file</span>)</div><div class='output co'>#&gt; [1] "C:/Users/jfcollin/AppData/Local/Temp/RtmpW2PZ3r/filee201ca0168f.docx"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/shell.exec'>shell.exec</a></span>(<span class='no'>file</span>)</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

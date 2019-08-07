@@ -6,7 +6,9 @@
 \usage{
 report.quali(data, y = NULL, x1 = NULL, x2 = NULL, y.label = y,
   x2.label = NULL, y.levels.label = "Levels", total = F, round = 2,
-  at.row = NULL, percent.col = T, subjid = NULL, remove.zero = F)
+  at.row = NULL, percent.col = T, subjid = NULL, remove.zero = F,
+  drop.y = NULL, drop.x1 = NULL, drop.x2 = NULL,
+  remove.missing = F)
 }
 \arguments{
 \item{data}{a data.frame object}
@@ -34,6 +36,16 @@ report.quali(data, y = NULL, x1 = NULL, x2 = NULL, y.label = y,
 \item{subjid}{Character Indicates in the data.frame the name of the column used to identify the Id of the subjects. If not null, it adds in the headers the number of unique subject per levels of x1 or y (if x1 is null).}
 
 \item{remove.zero}{Logical. Remove the levels in the contingency table for which there is no observation.}
+
+\item{drop.y}{Character. Indicates one or several levels of the y factor that you want to drop in the result}
+
+\item{drop.x1}{Character. Indicates one or several levels of the x1 factor that you want to drop in the result}
+
+\item{drop.x2}{Character. Indicates one or several levels of the x2 factor that you want to drop in the result}
+
+\item{remove.missing}{Logical. default to TRUE. If TRUE number of missing values are reported and percentages
+take into account the number of missing value in the calculation. If set to FALSE, the missing values regarding the response factor y are ignored
+and percentages are computed on non missing values only.}
 }
 \value{
 A desc object

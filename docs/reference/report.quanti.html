@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Descriptive "quantitative" statistics (mean, SD, median...) reporting — report.quanti • ClinReport</title>
+<title>Descriptive "Quantitative" statistics (mean, SD, median...) reporting — report.quanti • ClinReport</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Descriptive "quantitative" statistics (mean, SD, median...) reporting — report.quanti" />
+<meta property="og:title" content="Descriptive "Quantitative" statistics (mean, SD, median...) reporting — report.quanti" />
 
 <meta property="og:description" content="report.quanti 
 Returns quantitative descriptive statistics such as mean, median, standard deviation etc..." />
@@ -64,7 +64,7 @@ Returns quantitative descriptive statistics such as mean, median, standard devia
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ClinReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13.1</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@ Returns quantitative descriptive statistics such as mean, median, standard devia
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Descriptive "quantitative" statistics (mean, SD, median...) reporting</h1>
+    <h1>Descriptive "Quantitative" statistics (mean, SD, median...) reporting</h1>
     
     <div class="hidden name"><code>report.quanti.Rd</code></div>
     </div>
@@ -114,7 +114,7 @@ Returns quantitative descriptive statistics such as mean, median, standard devia
   <span class='kw'>round</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>total</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>scientific</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>at.row</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subjid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>geomean</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>add.mad</span> <span class='kw'>=</span> <span class='no'>F</span>,
   <span class='kw'>default.stat</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>func.stat</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>stat.name</span> <span class='kw'>=</span> <span class='st'>"Statistics"</span>,
-  <span class='kw'>func.stat.name</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
+  <span class='kw'>func.stat.name</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>drop.x1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>drop.x2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,7 +137,7 @@ Returns quantitative descriptive statistics such as mean, median, standard devia
     </tr>
     <tr>
       <th>y.label</th>
-      <td><p>Character Indicates the label for y parameter</p></td>
+      <td><p>Character Indicates the label for y parameter to be displayed in the title of the table</p></td>
     </tr>
     <tr>
       <th>round</th>
@@ -186,6 +186,14 @@ Returns quantitative descriptive statistics such as mean, median, standard devia
     <tr>
       <th>func.stat.name</th>
       <td><p>Character. Used only if default.stat=FALSE.  Indicates the name of specific statistic you want to report</p></td>
+    </tr>
+    <tr>
+      <th>drop.x1</th>
+      <td><p>Character. Indicates one or several levels of the x1 factor that you want to drop in the result</p></td>
+    </tr>
+    <tr>
+      <th>drop.x2</th>
+      <td><p>Character. Indicates one or several levels of the x2 factor that you want to drop in the result</p></td>
     </tr>
     </table>
     
@@ -292,41 +300,46 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; 
 #&gt;    TIMEPOINT Statistics             A             B             C
 #&gt; 1         D0          N            30            20            16
-#&gt; 3         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)
-#&gt; 6         D0     Median         -0.82         -0.69         -1.26
+#&gt; 2         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)
+#&gt; 3         D0     Median         -0.82         -0.69         -1.26
 #&gt; 4         D0    [Q1;Q3] [-1.59;-0.16] [-1.39;-0.06] [-1.62;-0.83]
 #&gt; 5         D0  [Min;Max]  [-2.34;0.36]  [-2.44;2.10]  [-2.99;0.66]
-#&gt; 2         D0    Missing             1             1             0
-#&gt; 7         D1          N            30            20            16
+#&gt; 6         D0    Missing             1             1             0
+#&gt; 7                                                                
+#&gt; 8         D1          N            30            20            16
 #&gt; 9         D1  Mean (SD)    1.83(1.04)    4.17(1.28)    4.98(0.69)
-#&gt; 12        D1     Median          1.78          4.19          5.08
-#&gt; 10        D1    [Q1;Q3] [ 0.94; 2.54] [ 3.23; 4.92] [ 4.58; 5.46]
-#&gt; 11        D1  [Min;Max]  [ 0.11;3.88]  [ 1.48;6.19]  [ 3.80;6.23]
-#&gt; 8         D1    Missing             1             0             0
-#&gt; 13        D2          N            30            20            16
-#&gt; 15        D2  Mean (SD)    1.97(1.17)    4.04(0.89)    4.90(1.36)
-#&gt; 18        D2     Median          1.66          4.19          5.06
-#&gt; 16        D2    [Q1;Q3] [ 1.23; 2.86] [ 3.62; 4.36] [ 4.34; 5.20]
-#&gt; 17        D2  [Min;Max]  [-0.18;4.36]  [ 2.03;5.63]  [ 2.39;7.96]
-#&gt; 14        D2    Missing             1             1             0
-#&gt; 19        D3          N            30            20            16
-#&gt; 21        D3  Mean (SD)    1.78(1.17)    3.81(0.94)    5.07(1.12)
+#&gt; 10        D1     Median          1.78          4.19          5.08
+#&gt; 11        D1    [Q1;Q3] [ 0.94; 2.54] [ 3.23; 4.92] [ 4.58; 5.46]
+#&gt; 12        D1  [Min;Max]  [ 0.11;3.88]  [ 1.48;6.19]  [ 3.80;6.23]
+#&gt; 13        D1    Missing             1             0             0
+#&gt; 14                                                               
+#&gt; 15        D2          N            30            20            16
+#&gt; 16        D2  Mean (SD)    1.97(1.17)    4.04(0.89)    4.90(1.36)
+#&gt; 17        D2     Median          1.66          4.19          5.06
+#&gt; 18        D2    [Q1;Q3] [ 1.23; 2.86] [ 3.62; 4.36] [ 4.34; 5.20]
+#&gt; 19        D2  [Min;Max]  [-0.18;4.36]  [ 2.03;5.63]  [ 2.39;7.96]
+#&gt; 20        D2    Missing             1             1             0
+#&gt; 21                                                               
+#&gt; 22        D3          N            30            20            16
+#&gt; 23        D3  Mean (SD)    1.78(1.17)    3.81(0.94)    5.07(1.12)
 #&gt; 24        D3     Median          1.78          3.63          5.22
-#&gt; 22        D3    [Q1;Q3] [ 0.93; 2.42] [ 3.13; 4.44] [ 4.11; 5.66]
-#&gt; 23        D3  [Min;Max]  [-0.16;3.90]  [ 2.46;6.01]  [ 3.16;7.37]
-#&gt; 20        D3    Missing             0             1             1
-#&gt; 25        D4          N            30            20            16
-#&gt; 27        D4  Mean (SD)    1.83(0.85)    3.80(0.95)    5.17(1.03)
-#&gt; 30        D4     Median          1.67          3.83          4.88
-#&gt; 28        D4    [Q1;Q3] [ 1.26; 2.32] [ 3.12; 4.42] [ 4.69; 5.50]
-#&gt; 29        D4  [Min;Max]  [ 0.38;3.97]  [ 2.31;5.41]  [ 3.24;6.96]
-#&gt; 26        D4    Missing             1             1             1
-#&gt; 31        D5          N            30            20            16
-#&gt; 33        D5  Mean (SD)    2.27(1.20)    3.64(1.19)    4.43(0.98)
-#&gt; 36        D5     Median          2.50          3.86          4.57
-#&gt; 34        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97]
-#&gt; 35        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]
-#&gt; 32        D5    Missing             0             0             0
+#&gt; 25        D3    [Q1;Q3] [ 0.93; 2.42] [ 3.13; 4.44] [ 4.11; 5.66]
+#&gt; 26        D3  [Min;Max]  [-0.16;3.90]  [ 2.46;6.01]  [ 3.16;7.37]
+#&gt; 27        D3    Missing             0             1             1
+#&gt; 28                                                               
+#&gt; 29        D4          N            30            20            16
+#&gt; 30        D4  Mean (SD)    1.83(0.85)    3.80(0.95)    5.17(1.03)
+#&gt; 31        D4     Median          1.67          3.83          4.88
+#&gt; 32        D4    [Q1;Q3] [ 1.26; 2.32] [ 3.12; 4.42] [ 4.69; 5.50]
+#&gt; 33        D4  [Min;Max]  [ 0.38;3.97]  [ 2.31;5.41]  [ 3.24;6.96]
+#&gt; 34        D4    Missing             1             1             1
+#&gt; 35                                                               
+#&gt; 36        D5          N            30            20            16
+#&gt; 37        D5  Mean (SD)    2.27(1.20)    3.64(1.19)    4.43(0.98)
+#&gt; 38        D5     Median          2.50          3.86          4.57
+#&gt; 39        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97]
+#&gt; 40        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]
+#&gt; 41        D5    Missing             0             0             0
 #&gt; 
 #&gt; ############################################
 #&gt; </div><div class='input'>
@@ -338,42 +351,47 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; ############################################
 #&gt; 
 #&gt;    TIMEPOINT Statistics             A             B             C         Total
-#&gt; 6         D0          N            30            20            16            66
-#&gt; 3         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)   -0.92(0.95)
-#&gt; 4         D0     Median         -0.82         -0.69         -1.26         -0.86
-#&gt; 2         D0    [Q1;Q3] [-1.59;-0.16] [-1.39;-0.06] [-1.62;-0.83] [-1.55;-0.16]
-#&gt; 1         D0  [Min;Max]  [-2.34;0.36]  [-2.44;2.10]  [-2.99;0.66]  [-2.99;2.10]
-#&gt; 5         D0    Missing             1             1             0             2
-#&gt; 12        D1          N            30            20            16            66
+#&gt; 1         D0          N            30            20            16            66
+#&gt; 2         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)   -0.92(0.95)
+#&gt; 3         D0     Median         -0.82         -0.69         -1.26         -0.86
+#&gt; 4         D0    [Q1;Q3] [-1.59;-0.16] [-1.39;-0.06] [-1.62;-0.83] [-1.55;-0.16]
+#&gt; 5         D0  [Min;Max]  [-2.34;0.36]  [-2.44;2.10]  [-2.99;0.66]  [-2.99;2.10]
+#&gt; 6         D0    Missing             1             1             0             2
+#&gt; 7                                                                              
+#&gt; 8         D1          N            30            20            16            66
 #&gt; 9         D1  Mean (SD)    1.83(1.04)    4.17(1.28)    4.98(0.69)    3.33(1.73)
 #&gt; 10        D1     Median          1.78          4.19          5.08          3.57
-#&gt; 8         D1    [Q1;Q3] [ 0.94; 2.54] [ 3.23; 4.92] [ 4.58; 5.46] [ 1.78; 4.91]
-#&gt; 7         D1  [Min;Max]  [ 0.11;3.88]  [ 1.48;6.19]  [ 3.80;6.23]  [ 0.11;6.23]
-#&gt; 11        D1    Missing             1             0             0             1
-#&gt; 18        D2          N            30            20            16            66
-#&gt; 15        D2  Mean (SD)    1.97(1.17)    4.04(0.89)    4.90(1.36)    3.32(1.70)
-#&gt; 16        D2     Median          1.66          4.19          5.06          3.57
-#&gt; 14        D2    [Q1;Q3] [ 1.23; 2.86] [ 3.62; 4.36] [ 4.34; 5.20] [ 1.89; 4.44]
-#&gt; 13        D2  [Min;Max]  [-0.18;4.36]  [ 2.03;5.63]  [ 2.39;7.96]  [-0.18;7.96]
-#&gt; 17        D2    Missing             1             1             0             2
-#&gt; 24        D3          N            30            20            16            66
-#&gt; 21        D3  Mean (SD)    1.78(1.17)    3.81(0.94)    5.07(1.12)    3.15(1.75)
-#&gt; 22        D3     Median          1.78          3.63          5.22          3.15
-#&gt; 20        D3    [Q1;Q3] [ 0.93; 2.42] [ 3.13; 4.44] [ 4.11; 5.66] [ 1.80; 4.39]
-#&gt; 19        D3  [Min;Max]  [-0.16;3.90]  [ 2.46;6.01]  [ 3.16;7.37]  [-0.16;7.37]
-#&gt; 23        D3    Missing             0             1             1             2
-#&gt; 30        D4          N            30            20            16            66
-#&gt; 27        D4  Mean (SD)    1.83(0.85)    3.80(0.95)    5.17(1.03)    3.22(1.66)
-#&gt; 28        D4     Median          1.67          3.83          4.88          3.16
-#&gt; 26        D4    [Q1;Q3] [ 1.26; 2.32] [ 3.12; 4.42] [ 4.69; 5.50] [ 1.69; 4.48]
-#&gt; 25        D4  [Min;Max]  [ 0.38;3.97]  [ 2.31;5.41]  [ 3.24;6.96]  [ 0.38;6.96]
-#&gt; 29        D4    Missing             1             1             1             3
+#&gt; 11        D1    [Q1;Q3] [ 0.94; 2.54] [ 3.23; 4.92] [ 4.58; 5.46] [ 1.78; 4.91]
+#&gt; 12        D1  [Min;Max]  [ 0.11;3.88]  [ 1.48;6.19]  [ 3.80;6.23]  [ 0.11;6.23]
+#&gt; 13        D1    Missing             1             0             0             1
+#&gt; 14                                                                             
+#&gt; 15        D2          N            30            20            16            66
+#&gt; 16        D2  Mean (SD)    1.97(1.17)    4.04(0.89)    4.90(1.36)    3.32(1.70)
+#&gt; 17        D2     Median          1.66          4.19          5.06          3.57
+#&gt; 18        D2    [Q1;Q3] [ 1.23; 2.86] [ 3.62; 4.36] [ 4.34; 5.20] [ 1.89; 4.44]
+#&gt; 19        D2  [Min;Max]  [-0.18;4.36]  [ 2.03;5.63]  [ 2.39;7.96]  [-0.18;7.96]
+#&gt; 20        D2    Missing             1             1             0             2
+#&gt; 21                                                                             
+#&gt; 22        D3          N            30            20            16            66
+#&gt; 23        D3  Mean (SD)    1.78(1.17)    3.81(0.94)    5.07(1.12)    3.15(1.75)
+#&gt; 24        D3     Median          1.78          3.63          5.22          3.15
+#&gt; 25        D3    [Q1;Q3] [ 0.93; 2.42] [ 3.13; 4.44] [ 4.11; 5.66] [ 1.80; 4.39]
+#&gt; 26        D3  [Min;Max]  [-0.16;3.90]  [ 2.46;6.01]  [ 3.16;7.37]  [-0.16;7.37]
+#&gt; 27        D3    Missing             0             1             1             2
+#&gt; 28                                                                             
+#&gt; 29        D4          N            30            20            16            66
+#&gt; 30        D4  Mean (SD)    1.83(0.85)    3.80(0.95)    5.17(1.03)    3.22(1.66)
+#&gt; 31        D4     Median          1.67          3.83          4.88          3.16
+#&gt; 32        D4    [Q1;Q3] [ 1.26; 2.32] [ 3.12; 4.42] [ 4.69; 5.50] [ 1.69; 4.48]
+#&gt; 33        D4  [Min;Max]  [ 0.38;3.97]  [ 2.31;5.41]  [ 3.24;6.96]  [ 0.38;6.96]
+#&gt; 34        D4    Missing             1             1             1             3
+#&gt; 35                                                                             
 #&gt; 36        D5          N            30            20            16            66
-#&gt; 33        D5  Mean (SD)    2.27(1.20)    3.64(1.19)    4.43(0.98)    3.21(1.45)
-#&gt; 34        D5     Median          2.50          3.86          4.57          3.28
-#&gt; 32        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97] [ 2.42; 4.44]
-#&gt; 31        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]  [-1.19;6.54]
-#&gt; 35        D5    Missing             0             0             0             0
+#&gt; 37        D5  Mean (SD)    2.27(1.20)    3.64(1.19)    4.43(0.98)    3.21(1.45)
+#&gt; 38        D5     Median          2.50          3.86          4.57          3.28
+#&gt; 39        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97] [ 2.42; 4.44]
+#&gt; 40        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]  [-1.19;6.54]
+#&gt; 41        D5    Missing             0             0             0             0
 #&gt; 
 #&gt; ############################################
 #&gt; </div><div class='input'>
@@ -385,79 +403,89 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; ############################################
 #&gt; 
 #&gt;    TIMEPOINT   Statistics             A             B             C
-#&gt; 6         D0            N            30            20            16
-#&gt; 3         D0    Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)
-#&gt; 4         D0 Median (MAD)   -0.82(1.00)   -0.69(0.97)   -1.26(0.59)
-#&gt; 2         D0      [Q1;Q3] [-1.59;-0.16] [-1.39;-0.06] [-1.62;-0.83]
-#&gt; 1         D0    [Min;Max]  [-2.34;0.36]  [-2.44;2.10]  [-2.99;0.66]
-#&gt; 5         D0      Missing             1             1             0
-#&gt; 12        D1            N            30            20            16
+#&gt; 1         D0            N            30            20            16
+#&gt; 2         D0    Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)
+#&gt; 3         D0 Median (MAD)   -0.82(1.00)   -0.69(0.97)   -1.26(0.59)
+#&gt; 4         D0      [Q1;Q3] [-1.59;-0.16] [-1.39;-0.06] [-1.62;-0.83]
+#&gt; 5         D0    [Min;Max]  [-2.34;0.36]  [-2.44;2.10]  [-2.99;0.66]
+#&gt; 6         D0      Missing             1             1             0
+#&gt; 7                                                                  
+#&gt; 8         D1            N            30            20            16
 #&gt; 9         D1    Mean (SD)    1.83(1.04)    4.17(1.28)    4.98(0.69)
 #&gt; 10        D1 Median (MAD)    1.78(1.12)    4.19(1.25)    5.08(0.66)
-#&gt; 8         D1      [Q1;Q3] [ 0.94; 2.54] [ 3.23; 4.92] [ 4.58; 5.46]
-#&gt; 7         D1    [Min;Max]  [ 0.11;3.88]  [ 1.48;6.19]  [ 3.80;6.23]
-#&gt; 11        D1      Missing             1             0             0
-#&gt; 18        D2            N            30            20            16
-#&gt; 15        D2    Mean (SD)    1.97(1.17)    4.04(0.89)    4.90(1.36)
-#&gt; 16        D2 Median (MAD)    1.66(1.08)    4.19(0.50)    5.06(0.67)
-#&gt; 14        D2      [Q1;Q3] [ 1.23; 2.86] [ 3.62; 4.36] [ 4.34; 5.20]
-#&gt; 13        D2    [Min;Max]  [-0.18;4.36]  [ 2.03;5.63]  [ 2.39;7.96]
-#&gt; 17        D2      Missing             1             1             0
-#&gt; 24        D3            N            30            20            16
-#&gt; 21        D3    Mean (SD)    1.78(1.17)    3.81(0.94)    5.07(1.12)
-#&gt; 22        D3 Median (MAD)    1.78(1.23)    3.63(1.20)    5.22(1.25)
-#&gt; 20        D3      [Q1;Q3] [ 0.93; 2.42] [ 3.13; 4.44] [ 4.11; 5.66]
-#&gt; 19        D3    [Min;Max]  [-0.16;3.90]  [ 2.46;6.01]  [ 3.16;7.37]
-#&gt; 23        D3      Missing             0             1             1
-#&gt; 30        D4            N            30            20            16
-#&gt; 27        D4    Mean (SD)    1.83(0.85)    3.80(0.95)    5.17(1.03)
-#&gt; 28        D4 Median (MAD)    1.67(0.62)    3.83(0.96)    4.88(0.82)
-#&gt; 26        D4      [Q1;Q3] [ 1.26; 2.32] [ 3.12; 4.42] [ 4.69; 5.50]
-#&gt; 25        D4    [Min;Max]  [ 0.38;3.97]  [ 2.31;5.41]  [ 3.24;6.96]
-#&gt; 29        D4      Missing             1             1             1
+#&gt; 11        D1      [Q1;Q3] [ 0.94; 2.54] [ 3.23; 4.92] [ 4.58; 5.46]
+#&gt; 12        D1    [Min;Max]  [ 0.11;3.88]  [ 1.48;6.19]  [ 3.80;6.23]
+#&gt; 13        D1      Missing             1             0             0
+#&gt; 14                                                                 
+#&gt; 15        D2            N            30            20            16
+#&gt; 16        D2    Mean (SD)    1.97(1.17)    4.04(0.89)    4.90(1.36)
+#&gt; 17        D2 Median (MAD)    1.66(1.08)    4.19(0.50)    5.06(0.67)
+#&gt; 18        D2      [Q1;Q3] [ 1.23; 2.86] [ 3.62; 4.36] [ 4.34; 5.20]
+#&gt; 19        D2    [Min;Max]  [-0.18;4.36]  [ 2.03;5.63]  [ 2.39;7.96]
+#&gt; 20        D2      Missing             1             1             0
+#&gt; 21                                                                 
+#&gt; 22        D3            N            30            20            16
+#&gt; 23        D3    Mean (SD)    1.78(1.17)    3.81(0.94)    5.07(1.12)
+#&gt; 24        D3 Median (MAD)    1.78(1.23)    3.63(1.20)    5.22(1.25)
+#&gt; 25        D3      [Q1;Q3] [ 0.93; 2.42] [ 3.13; 4.44] [ 4.11; 5.66]
+#&gt; 26        D3    [Min;Max]  [-0.16;3.90]  [ 2.46;6.01]  [ 3.16;7.37]
+#&gt; 27        D3      Missing             0             1             1
+#&gt; 28                                                                 
+#&gt; 29        D4            N            30            20            16
+#&gt; 30        D4    Mean (SD)    1.83(0.85)    3.80(0.95)    5.17(1.03)
+#&gt; 31        D4 Median (MAD)    1.67(0.62)    3.83(0.96)    4.88(0.82)
+#&gt; 32        D4      [Q1;Q3] [ 1.26; 2.32] [ 3.12; 4.42] [ 4.69; 5.50]
+#&gt; 33        D4    [Min;Max]  [ 0.38;3.97]  [ 2.31;5.41]  [ 3.24;6.96]
+#&gt; 34        D4      Missing             1             1             1
+#&gt; 35                                                                 
 #&gt; 36        D5            N            30            20            16
-#&gt; 33        D5    Mean (SD)    2.27(1.20)    3.64(1.19)    4.43(0.98)
-#&gt; 34        D5 Median (MAD)    2.50(1.09)    3.86(1.18)    4.57(0.95)
-#&gt; 32        D5      [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97]
-#&gt; 31        D5    [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]
-#&gt; 35        D5      Missing             0             0             0
+#&gt; 37        D5    Mean (SD)    2.27(1.20)    3.64(1.19)    4.43(0.98)
+#&gt; 38        D5 Median (MAD)    2.50(1.09)    3.86(1.18)    4.57(0.95)
+#&gt; 39        D5      [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97]
+#&gt; 40        D5    [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]
+#&gt; 41        D5      Missing             0             0             0
 #&gt;            Total
-#&gt; 6             66
-#&gt; 3    -0.92(0.95)
-#&gt; 4    -0.86(1.03)
-#&gt; 2  [-1.55;-0.16]
-#&gt; 1   [-2.99;2.10]
-#&gt; 5              2
-#&gt; 12            66
+#&gt; 1             66
+#&gt; 2    -0.92(0.95)
+#&gt; 3    -0.86(1.03)
+#&gt; 4  [-1.55;-0.16]
+#&gt; 5   [-2.99;2.10]
+#&gt; 6              2
+#&gt; 7               
+#&gt; 8             66
 #&gt; 9     3.33(1.73)
 #&gt; 10    3.57(2.14)
-#&gt; 8  [ 1.78; 4.91]
-#&gt; 7   [ 0.11;6.23]
-#&gt; 11             1
-#&gt; 18            66
-#&gt; 15    3.32(1.70)
-#&gt; 16    3.57(1.89)
-#&gt; 14 [ 1.89; 4.44]
-#&gt; 13  [-0.18;7.96]
-#&gt; 17             2
-#&gt; 24            66
-#&gt; 21    3.15(1.75)
-#&gt; 22    3.15(1.88)
-#&gt; 20 [ 1.80; 4.39]
-#&gt; 19  [-0.16;7.37]
-#&gt; 23             2
-#&gt; 30            66
-#&gt; 27    3.22(1.66)
-#&gt; 28    3.16(2.14)
-#&gt; 26 [ 1.69; 4.48]
-#&gt; 25  [ 0.38;6.96]
-#&gt; 29             3
+#&gt; 11 [ 1.78; 4.91]
+#&gt; 12  [ 0.11;6.23]
+#&gt; 13             1
+#&gt; 14              
+#&gt; 15            66
+#&gt; 16    3.32(1.70)
+#&gt; 17    3.57(1.89)
+#&gt; 18 [ 1.89; 4.44]
+#&gt; 19  [-0.18;7.96]
+#&gt; 20             2
+#&gt; 21              
+#&gt; 22            66
+#&gt; 23    3.15(1.75)
+#&gt; 24    3.15(1.88)
+#&gt; 25 [ 1.80; 4.39]
+#&gt; 26  [-0.16;7.37]
+#&gt; 27             2
+#&gt; 28              
+#&gt; 29            66
+#&gt; 30    3.22(1.66)
+#&gt; 31    3.16(2.14)
+#&gt; 32 [ 1.69; 4.48]
+#&gt; 33  [ 0.38;6.96]
+#&gt; 34             3
+#&gt; 35              
 #&gt; 36            66
-#&gt; 33    3.21(1.45)
-#&gt; 34    3.28(1.48)
-#&gt; 32 [ 2.42; 4.44]
-#&gt; 31  [-1.19;6.54]
-#&gt; 35             0
+#&gt; 37    3.21(1.45)
+#&gt; 38    3.28(1.48)
+#&gt; 39 [ 2.42; 4.44]
+#&gt; 40  [-1.19;6.54]
+#&gt; 41             0
 #&gt; 
 #&gt; ############################################
 #&gt; </div><div class='input'>

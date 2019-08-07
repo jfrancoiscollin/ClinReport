@@ -17,7 +17,7 @@
 #' the call etc...)
 #' 
 #' @details
-#' Compatible for now with GLM, LME and Cox models.
+#' Compatible only (for now) with GLM, LME and Cox models. For now those output are not numbered.
 #' 
 #' 
 #' @return  

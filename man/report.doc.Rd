@@ -14,7 +14,8 @@ report.doc(table, ...)
 
 \method{report.doc}{anova}(table, title = "Anova table",
   type.anova = 3, doc = NULL, numbering = T, init.numbering = F,
-  font.name = "Times", font.size = 10, page.break = T, ...)
+  font.name = "Times", font.size = 10, page.break = T,
+  pretty.label = FALSE, ...)
 }
 \arguments{
 \item{table}{A desc object that report statistics (the results of \code{report.quanti} or \code{report.quali})}
@@ -38,6 +39,8 @@ report.doc(table, ...)
 \item{font.size}{Numeric. Passed to \code{\link{fontsize}} function. Set the font size of the output in Word}
 
 \item{type.anova}{Passed to \code{Anova} function from car package (see its documentation).}
+
+\item{pretty.label}{Logical. Default to FALSE. If TRUE, use the function \code{make.label} with default option on the rownames of the anova table}
 
 \item{anova}{Logical. Used to specify if the table is an anova table. By default it's not}
 }

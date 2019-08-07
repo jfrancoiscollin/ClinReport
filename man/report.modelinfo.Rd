@@ -36,7 +36,7 @@ This function enables to export the information of the model (the package, the n
 the call etc...)
 }
 \details{
-Compatible for now with GLM, LME and Cox models.
+Compatible only (for now) with GLM, LME and Cox models. For now those output are not numbered.
 }
 \examples{
 

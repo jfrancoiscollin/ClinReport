@@ -16,7 +16,7 @@
 #' @details
 #' 
 #' Replace with \code{gsub} function each first element of \code{l[[i]]} by the second element of \code{l[[i]]} 
-#' for each element of x. I think it's pretty clear.
+#' for each element of x. 
 #'  
 #' 
 #' @return  
@@ -29,13 +29,18 @@
 #' # Raw output:
 #' an
 #' 
-#' rownames(an)=make.label(rownames(an),l=list(l1=c("_"," "),l2=c(":"," interaction with ")))
+#' rownames(an)=make.label(rownames(an),
+#' l=list(
+#' l1=c("y_logistic","A logistic variable"),
+#' l2=c(":"," interaction with "))
+#' )
 #' 
 #' # Gives:
 #' 
 #' an
 #'
-
+#' @rdname make.label
+#' @export 
 
 
 make.label=function(x,l=list(l1=c("_"," at "),l2=c(":"," interaction with "),l3=c("."," ")))

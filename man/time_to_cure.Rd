@@ -11,8 +11,4 @@ time_to_cure
 \description{
 Simulated survival data created only for the purpose of testing the package and showing examples.
 }
-\examples{
-data(time_to_cure)
-\donttest{head(time_to_cure)}
-}
 \keyword{datasets}
