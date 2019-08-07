@@ -76,17 +76,17 @@ library(ClinReport)
 library(officer)
 library(flextable)
 
-data(data)
+data(datafake)
 
 # Default quantitative stat desc
 
-tab1=report.quanti(data=data,y="y_numeric",
+tab1=report.quanti(data=datafake,y="y_numeric",
 		x1="GROUP",y.label="Quantitative response (units)",
 		subjid="SUBJID",total=T)
 		
 # Default qualitative stat desc
 
-tab2=report.quali(data=data,y="y_logistic",
+tab2=report.quali(data=datafake,y="y_logistic",
 		x1="GROUP",y.label="Qualitative response",
 		subjid="SUBJID",total=T)
 

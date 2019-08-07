@@ -45,9 +45,9 @@ library(flextable)
 library(nlme)
 
 
-data(data)
+data(datafake)
 
-mod=lme(y_numeric~GROUP+TIMEPOINT,random=~1|SUBJID,data=data,na.action=na.omit)
+mod=lme(y_numeric~GROUP+TIMEPOINT,random=~1|SUBJID,data=datafake,na.action=na.omit)
 
 # Show in HTML (can be inserted in an R markdown or a MS Word document)
 

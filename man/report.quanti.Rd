@@ -27,13 +27,13 @@ report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = y,
 
 \item{scientific}{Logical Indicates if statistics should be displayed in scientific notations or not}
 
-\item{digits}{Numeric (used if scientifc=TRUE) to indicate how many digits to use in scientific notation}
+\item{digits}{Numeric (used if scientific=TRUE) to indicate how many digits to use in scientific notation}
 
 \item{at.row}{Character Used to space the results (see examples)}
 
 \item{subjid}{Character Indicates the column in which there is the subject Id to add the number of subjects in the column header if x1 and x2 are not null.}
 
-\item{geomean}{Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=TRUE))} fpr x>0}
+\item{geomean}{Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=TRUE))} for x>0}
 
 \item{add.mad}{Logical If yes the Median Absolute Deviance is added to the median statistics (see function \code{\link{mad}})}
 
@@ -69,48 +69,48 @@ a message is printed  to indicate how many values were deleted to calculate the 
 
 \code{N} returns the number of observations (including NA values)
 
-stat.name is auomatically transformed using \code{\link{make.names}} function.
+stat.name is automatically transformed using \code{\link{make.names}} function.
 }
 \examples{
  
-data(data)
+data(datafake)
 
 # Quantitative statistics with no factor
 
-report.quanti(data=data,y="y_numeric",total=TRUE,y.label="Awesome results")
+report.quanti(data=datafake,y="y_numeric",total=TRUE,y.label="Awesome results")
 
 #' # Quantitative statistics with no factor with geometric mean (option geomean=TRUE)
 
-report.quanti(data=data,y="y_numeric",y.label="Awesome results",geomean=TRUE)
+report.quanti(data=datafake,y="y_numeric",y.label="Awesome results",geomean=TRUE)
 
 # Quantitative statistics with one factor
 
-report.quanti(data=data,y="y_numeric",x1="GROUP")
+report.quanti(data=datafake,y="y_numeric",x1="GROUP")
 
 # One factor with total column
 
-report.quanti(data=data,y="y_numeric",x1="GROUP",total=TRUE)
+report.quanti(data=datafake,y="y_numeric",x1="GROUP",total=TRUE)
 
 # Quantitative statistics with two factors
 
-report.quanti(data=data,y="y_numeric",x1="GROUP",x2="TIMEPOINT")
+report.quanti(data=datafake,y="y_numeric",x1="GROUP",x2="TIMEPOINT")
 
 # Quantitative statistics with two factors and a total column
 
-report.quanti(data=data,y="y_numeric",x1="GROUP",x2="TIMEPOINT",total=TRUE)
+report.quanti(data=datafake,y="y_numeric",x1="GROUP",x2="TIMEPOINT",total=TRUE)
 
 # Add median absolute deviance to the median statistics
 
-report.quanti(data=data,y="y_numeric",x1="GROUP",x2="TIMEPOINT",total=TRUE,add.mad=TRUE)
+report.quanti(data=datafake,y="y_numeric",x1="GROUP",x2="TIMEPOINT",total=TRUE,add.mad=TRUE)
 
 # Quantitative statistics with spacing rows (option at.row)
 
-report.quanti(data=data,y="y_numeric",x1="GROUP",
+report.quanti(data=datafake,y="y_numeric",x1="GROUP",
 x2="TIMEPOINT",total=TRUE,at.row="TIMEPOINT")
 
 # Add number of subjects in headers (option subjid)
 
-tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
+tab=report.quanti(data=datafake,y="y_numeric",x1="GROUP",
 x2="TIMEPOINT",total=TRUE,at.row="TIMEPOINT",subjid="SUBJID")
 
 # Print tab output
@@ -121,14 +121,14 @@ tab
 
 mystat=function(x) quantile(x,0.99,na.rm=TRUE)
 
-tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
+tab=report.quanti(data=datafake,y="y_numeric",x1="GROUP",
 x2="TIMEPOINT",total=TRUE,subjid="SUBJID",
 func.stat=mystat,func.stat.name="99\% quantile")
 tab
 
 mystat2=function(x) mean(x,na.rm=TRUE)/sd(x,na.rm=TRUE)
 
-tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
+tab=report.quanti(data=datafake,y="y_numeric",x1="GROUP",
 total=TRUE,subjid="SUBJID",func.stat=mystat2,
 func.stat.name="Coefficient of variation")
 tab
@@ -139,7 +139,7 @@ mode=function(x) {
   ux[which.max(tabulate(match(x, ux)))]
 }
 
-tab=report.quanti(data=data,y="y_numeric",
+tab=report.quanti(data=datafake,y="y_numeric",
 func.stat=mode,func.stat.name="Mode")
 
 

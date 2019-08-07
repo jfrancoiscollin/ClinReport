@@ -28,9 +28,9 @@ takes too much space in a page of a Word document (see the example below).
 }
 \examples{
 
-data(data)
+data(datafake)
 
-tab1=report.quanti(data=data,y="y_numeric",
+tab1=report.quanti(data=datafake,y="y_numeric",
 	x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",subjid="SUBJID")
 
 

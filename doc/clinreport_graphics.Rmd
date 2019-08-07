@@ -39,7 +39,7 @@ Load your data.
 
 ```{r, include=TRUE}
 # We will use fake data
-data(data)
+data(datafake)
 print(head(data))
 ```
 
@@ -78,7 +78,7 @@ ylim=c(-1,8))
 If there is also a second explicative variable. The corresponding plot will be a lineplot:
 
 The means will be connected according to this second variable to capture the evolution
-accross its different levels.
+across its different levels.
 
 
 ```{r fig.width = 8, fig.height = 6}

@@ -44,10 +44,10 @@ It's easier to use this last one.
 library(nlme)
 library(emmeans)
 
-data(data)
+data(datafake)
 #Removing baseline data in the response, for the model
 
-data.mod=droplevels(data[data$TIMEPOINT!="D0",]) 
+data.mod=droplevels(datafake[datafake$TIMEPOINT!="D0",]) 
 
 mod3=lme(y_numeric~baseline+GROUP+TIMEPOINT+GROUP*TIMEPOINT,
 random=~1|SUBJID,data=data.mod,na.action=na.omit)

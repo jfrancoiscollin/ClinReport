@@ -32,7 +32,7 @@ library(xtable)
 # Load data
 #####################
 
-data(data) 
+data(datafake) 
 head(data)
 
 # Removing baseline data for the model

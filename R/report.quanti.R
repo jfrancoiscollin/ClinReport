@@ -12,11 +12,11 @@
 #' @param round Numeric to indicate how to round statistics
 #' @param total Logical to indicate if a "Total" column should be added
 #' @param scientific Logical Indicates if statistics should be displayed in scientific notations or not
-#' @param digits Numeric (used if scientifc=TRUE) to indicate how many digits to use in scientific notation
+#' @param digits Numeric (used if scientific=TRUE) to indicate how many digits to use in scientific notation
 #' @param at.row Character Used to space the results (see examples)
 #' @param y.label Character Indicates the label for y parameter to be displayed in the title of the table
 #' @param subjid Character Indicates the column in which there is the subject Id to add the number of subjects in the column header if x1 and x2 are not null.
-#' @param geomean Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=TRUE))} fpr x>0
+#' @param geomean Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=TRUE))} for x>0
 #' @param add.mad Logical If yes the Median Absolute Deviance is added to the median statistics (see function \code{\link{mad}}) 
 #' @param default.stat Logical (default to TRUE). If FALSE you can specify your own example
 #' @param func.stat Function. If specified then default.stat=FALSE and only the specified statistic is reported
@@ -43,7 +43,7 @@
 #' 
 #' \code{N} returns the number of observations (including NA values)
 #' 
-#' stat.name is auomatically transformed using \code{\link{make.names}} function.
+#' stat.name is automatically transformed using \code{\link{make.names}} function.
 
 #' @return  
 #' A desc object.
@@ -52,44 +52,44 @@
 
 #' @examples
 #'  
-#' data(data)
+#' data(datafake)
 #' 
 #' # Quantitative statistics with no factor
 #' 
-#' report.quanti(data=data,y="y_numeric",total=TRUE,y.label="Awesome results")
+#' report.quanti(data=datafake,y="y_numeric",total=TRUE,y.label="Awesome results")
 #' 
 #' #' # Quantitative statistics with no factor with geometric mean (option geomean=TRUE)
 #' 
-#' report.quanti(data=data,y="y_numeric",y.label="Awesome results",geomean=TRUE)
+#' report.quanti(data=datafake,y="y_numeric",y.label="Awesome results",geomean=TRUE)
 #' 
 #' # Quantitative statistics with one factor
 #' 
-#' report.quanti(data=data,y="y_numeric",x1="GROUP")
+#' report.quanti(data=datafake,y="y_numeric",x1="GROUP")
 #' 
 #' # One factor with total column
 #' 
-#' report.quanti(data=data,y="y_numeric",x1="GROUP",total=TRUE)
+#' report.quanti(data=datafake,y="y_numeric",x1="GROUP",total=TRUE)
 #' 
 #' # Quantitative statistics with two factors
 #' 
-#' report.quanti(data=data,y="y_numeric",x1="GROUP",x2="TIMEPOINT")
+#' report.quanti(data=datafake,y="y_numeric",x1="GROUP",x2="TIMEPOINT")
 #' 
 #' # Quantitative statistics with two factors and a total column
 #' 
-#' report.quanti(data=data,y="y_numeric",x1="GROUP",x2="TIMEPOINT",total=TRUE)
+#' report.quanti(data=datafake,y="y_numeric",x1="GROUP",x2="TIMEPOINT",total=TRUE)
 #' 
 #' # Add median absolute deviance to the median statistics
 #' 
-#' report.quanti(data=data,y="y_numeric",x1="GROUP",x2="TIMEPOINT",total=TRUE,add.mad=TRUE)
+#' report.quanti(data=datafake,y="y_numeric",x1="GROUP",x2="TIMEPOINT",total=TRUE,add.mad=TRUE)
 #' 
 #' # Quantitative statistics with spacing rows (option at.row)
 #' 
-#' report.quanti(data=data,y="y_numeric",x1="GROUP",
+#' report.quanti(data=datafake,y="y_numeric",x1="GROUP",
 #' x2="TIMEPOINT",total=TRUE,at.row="TIMEPOINT")
 #' 
 #' # Add number of subjects in headers (option subjid)
 #' 
-#' tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
+#' tab=report.quanti(data=datafake,y="y_numeric",x1="GROUP",
 #' x2="TIMEPOINT",total=TRUE,at.row="TIMEPOINT",subjid="SUBJID")
 #' 
 #' # Print tab output
@@ -100,14 +100,14 @@
 #' 
 #' mystat=function(x) quantile(x,0.99,na.rm=TRUE)
 #' 
-#' tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
+#' tab=report.quanti(data=datafake,y="y_numeric",x1="GROUP",
 #' x2="TIMEPOINT",total=TRUE,subjid="SUBJID",
 #' func.stat=mystat,func.stat.name="99% quantile")
 #' tab
 #' 
 #' mystat2=function(x) mean(x,na.rm=TRUE)/sd(x,na.rm=TRUE)
 #' 
-#' tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
+#' tab=report.quanti(data=datafake,y="y_numeric",x1="GROUP",
 #' total=TRUE,subjid="SUBJID",func.stat=mystat2,
 #' func.stat.name="Coefficient of variation")
 #' tab
@@ -118,7 +118,7 @@
 #'   ux[which.max(tabulate(match(x, ux)))]
 #' }
 #' 
-#' tab=report.quanti(data=data,y="y_numeric",
+#' tab=report.quanti(data=datafake,y="y_numeric",
 #' func.stat=mode,func.stat.name="Mode")
 #' 
 #' 
@@ -598,18 +598,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		nbcol=2
 	}
 	
-	
-# To transpose,we should do something like:
-#
-#	if(transpose)
-#	{
-#		m=melt(stat2,measure.vars=colnames(stat2)[-c(1:nbcol)],variable.name=x1)
-#		if(!is.null(at.row)) m=m[m$value!="",]
-#       if(!is.null(x2)) form=as.formula(paste0(x2,"+",x1,"~Statistics"))
-#       if(is.null(x2)) form=as.formula(paste0(x1,"~Statistics"))
-#		stat2=dcast(m,form)
-#       if(!is.null(at.row)) stat2=spacetable(stat2,at.row=at.row)
-#	}
+
 	
 	
 	title=paste0("Quantitative descriptive statistics of: ",y.label)

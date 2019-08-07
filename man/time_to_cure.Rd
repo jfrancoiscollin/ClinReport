@@ -3,10 +3,22 @@
 \docType{data}
 \name{time_to_cure}
 \alias{time_to_cure}
-\title{Fake survival data set}
-\format{A data frame}
+\title{time_to_cure}
+\format{A data frame
+#' \describe{
+ \item{time}{Fake numerical time values}
+\item{status}{Fake status values, 1=cured 0=not cured}
+\item{block}{Fake factor}
+\item{random_number}{Fake factor}
+\item{Sex}{Fake sex factor}
+\item{Weight_D0}{Fake weight covariate}
+\item{Pen}{Fake factor}
+\item{TCS}{Fake covariate}
+\item{Group}{Fake treatment group factor}
+\item{Subjid}{Fake subject Id}
+}}
 \usage{
-time_to_cure
+data(time_to_cure)
 }
 \description{
 Simulated survival data created only for the purpose of testing the package and showing examples.

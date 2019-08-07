@@ -59,3 +59,19 @@ levels(time_to_cure$Group)[4]="Untreated"
 #saveRDS(time_to_cure, file = "C:\\Users\\jfcollin\\git\\data\\time_to_cure.RData",version = 2)
 
 
+
+
+#save(datafake, file = "C:\\Users\\jfcollin\\git\\data\\datafake.rda")
+#save(time_to_cure, file = "C:\\Users\\jfcollin\\git\\data\\time_to_cure.rda")
+
+
+
+
+
+
+
+
+
+
+
+

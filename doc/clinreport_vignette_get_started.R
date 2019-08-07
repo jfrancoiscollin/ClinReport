@@ -16,7 +16,7 @@ library(car)
 
 ## ---- include=TRUE-------------------------------------------------------
 # We will use fake data
-data(data)
+data(datafake)
 print(head(data))
 
 ## ---- include=TRUE-------------------------------------------------------

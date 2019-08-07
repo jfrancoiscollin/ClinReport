@@ -44,7 +44,7 @@
 #' library(emmeans)
 #' library(lme4)
 #' 
-#' data(data)
+#' data(datafake)
 #' 
 #' #Simple lm model
 #' 
@@ -69,7 +69,7 @@
 #' 
 #' #Mixed model example using lme4
 #' 
-#' mod=lmer(y_numeric~GROUP+TIMEPOINT+GROUP*TIMEPOINT+(1|SUBJID),data=data) 
+#' mod=lmer(y_numeric~GROUP+TIMEPOINT+GROUP*TIMEPOINT+(1|SUBJID),data=datafake) 
 #' raw.lsm=emmeans(mod,~GROUP|TIMEPOINT)
 #' report.lsmeans(lsm=raw.lsm,at="TIMEPOINT")
 #' 

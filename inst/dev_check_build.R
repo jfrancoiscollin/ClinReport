@@ -64,13 +64,21 @@ devtools::build_vignettes()
 ###############################################
 
 
+document()
 
+spell_check()
+
+check_rhub()
+
+check_win_devel()
 
 # to avoid the check of the docs directory
 # when check as cran
 #usethis::use_build_ignore("docs")
 
 check(args ="--as-cran")
+
+check(args ="--as-cran",run_dont_test=TRUE)
 
 
 #install()
@@ -79,6 +87,7 @@ install(build_vignettes =T)
 build(path = "C:\\Users\\jfcollin\\Google Drive\\R packages")
 
 
+release()
 
 
 ###############################################

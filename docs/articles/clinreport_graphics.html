@@ -92,8 +92,8 @@
 <span id="cb1-8"><a href="#cb1-8"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(car)</span></code></pre></div>
 <p>Load your data.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># We will use fake data</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="../reference/data.html">data</a></span>(data)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(data))</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(datafake)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(datafake))</span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="co">#&gt;    y_numeric y_logistic y_poisson   baseline   VAR GROUP TIMEPOINT SUBJID</span></span>
 <span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; 1 -0.4203490          1         5 -0.4203490 Cat 1     A        D0 Subj 1</span></span>
 <span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; 2 -0.1570941          1         5 -0.1570941 Cat 2     A        D0 Subj 1</span></span>
@@ -108,22 +108,22 @@
 <p>If there is no explicative variable, the corresponding graphic of the call to <code><a href="../reference/report.quanti.html">report.quanti()</a></code> is a barplot of the mean of the response value.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Only one numerical response</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>tab1=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_numeric"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>tab1=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_numeric"</span>)</span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tab1,<span class="dt">title=</span><span class="st">"Mean (+/-SD) of y"</span>,<span class="dt">add.sd=</span>T,<span class="dt">ylab=</span><span class="st">"Mean Response value"</span>,<span class="dt">xlab=</span><span class="st">""</span>)</span></code></pre></div>
 <p><img src="clinreport_graphics_files/figure-html/unnamed-chunk-3-1.png" width="768"></p>
 <p>If there is one explicative variable, the corresponding graphic will be a barplot per treatment group.</p>
 <p>You can personnalize the outputs using, the usual, <code>title</code> <code>xlab</code> <code>ylab</code> <code>ylim</code> etc.. options.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#  one numerical response ; one explicative variable</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a>tab2=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_numeric"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a>tab2=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_numeric"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>)</span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tab2,<span class="dt">title=</span><span class="st">"Mean (+/-SD) of y per treatment group"</span>,<span class="dt">add.sd=</span>T,<span class="dt">ylab=</span><span class="st">"Mean of y"</span>,<span class="dt">xlab=</span><span class="st">""</span>,</span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="dt">ylim=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">8</span>))</span></code></pre></div>
 <p><img src="clinreport_graphics_files/figure-html/unnamed-chunk-4-1.png" width="768"></p>
 <p>If there is also a second explicative variable. The corresponding plot will be a lineplot:</p>
-<p>The means will be connected according to this second variable to capture the evolution accross its different levels.</p>
+<p>The means will be connected according to this second variable to capture the evolution across its different levels.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">#  one numerical response ; two explicative variable</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a>tab3=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_numeric"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">x2=</span><span class="st">"TIMEPOINT"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>tab3=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_numeric"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">x2=</span><span class="st">"TIMEPOINT"</span>)</span>
 <span id="cb5-4"><a href="#cb5-4"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tab3,<span class="dt">title=</span><span class="st">"Mean (+/-SD) of y per treatment group"</span>,<span class="dt">add.sd=</span>T,<span class="dt">ylab=</span><span class="st">"Mean of y"</span>,<span class="dt">xlab=</span><span class="st">""</span>,</span>
 <span id="cb5-5"><a href="#cb5-5"></a><span class="dt">ylim=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">8</span>))</span>
 <span id="cb5-6"><a href="#cb5-6"></a><span class="co">#&gt; Warning: Removed 1 rows containing missing values (geom_point).</span></span>
@@ -138,20 +138,20 @@
 <p>If only the argument <code>y</code> is supplied, the corresponding graphic will looks like:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Only one categorical response</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a>tab1=<span class="kw"><a href="../reference/report.quali.html">report.quali</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_logistic"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>tab1=<span class="kw"><a href="../reference/report.quali.html">report.quali</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_logistic"</span>)</span>
 <span id="cb6-4"><a href="#cb6-4"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tab1,<span class="dt">title=</span><span class="st">"Distribution of y (%)"</span>,<span class="dt">ylab=</span><span class="st">"Percentages"</span>,<span class="dt">xlab=</span><span class="st">""</span>,<span class="dt">ylim=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">100</span>))</span></code></pre></div>
 <p><img src="clinreport_graphics_files/figure-html/unnamed-chunk-6-1.png" width="768"></p>
 <p>If there is one explicative variable, it will be split by color and split on the x-axis:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># one categorical response ; one categorical explicative variable</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a>tab1=<span class="kw"><a href="../reference/report.quali.html">report.quali</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_logistic"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>tab1=<span class="kw"><a href="../reference/report.quali.html">report.quali</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_logistic"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>)</span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tab1,<span class="dt">title=</span><span class="st">"Distribution of y per treatment group (%)"</span>,</span>
 <span id="cb7-5"><a href="#cb7-5"></a><span class="dt">ylab=</span><span class="st">"Percentages"</span>,<span class="dt">xlab=</span><span class="st">""</span>,<span class="dt">ylim=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">100</span>),<span class="dt">legend.label=</span><span class="st">"Levels of y"</span>)</span></code></pre></div>
 <p><img src="clinreport_graphics_files/figure-html/unnamed-chunk-7-1.png" width="768"></p>
 <p>If there is two explicative variables, it will be split by color, split on the x-axis and split by panels:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># one categorical response ; two categorical explicative variables</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a>tab1=<span class="kw"><a href="../reference/report.quali.html">report.quali</a></span>(<span class="dt">data=</span>data,<span class="dt">y=</span><span class="st">"y_logistic"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">x2=</span><span class="st">"VAR"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a>tab1=<span class="kw"><a href="../reference/report.quali.html">report.quali</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_logistic"</span>,<span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">x2=</span><span class="st">"VAR"</span>)</span>
 <span id="cb8-4"><a href="#cb8-4"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tab1,<span class="dt">title=</span><span class="st">"Distribution of y per treatment group</span><span class="ch">\n</span><span class="st">and by level of VAR (%)"</span>,</span>
 <span id="cb8-5"><a href="#cb8-5"></a><span class="dt">ylab=</span><span class="st">"Percentages"</span>,<span class="dt">xlab=</span><span class="st">""</span>,<span class="dt">ylim=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">100</span>),<span class="dt">legend.label=</span><span class="st">"Levels of y"</span>)</span></code></pre></div>
 <p><img src="clinreport_graphics_files/figure-html/unnamed-chunk-8-1.png" width="768"></p>
@@ -166,7 +166,7 @@
 <span id="cb9-2"><a href="#cb9-2"></a></span>
 <span id="cb9-3"><a href="#cb9-3"></a></span>
 <span id="cb9-4"><a href="#cb9-4"></a>mod=<span class="kw">lme</span>(y_numeric<span class="op">~</span>GROUP,</span>
-<span id="cb9-5"><a href="#cb9-5"></a><span class="dt">random=</span><span class="op">~</span><span class="dv">1</span><span class="op">|</span>SUBJID,<span class="dt">data=</span>data,<span class="dt">na.action=</span>na.omit)</span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="dt">random=</span><span class="op">~</span><span class="dv">1</span><span class="op">|</span>SUBJID,<span class="dt">data=</span>datafake,<span class="dt">na.action=</span>na.omit)</span>
 <span id="cb9-6"><a href="#cb9-6"></a> </span>
 <span id="cb9-7"><a href="#cb9-7"></a>test=<span class="kw">emmeans</span>(mod,<span class="op">~</span>GROUP)</span>
 <span id="cb9-8"><a href="#cb9-8"></a> </span>
@@ -180,11 +180,11 @@
 <span id="cb10-2"><a href="#cb10-2"></a><span class="co"># Only one categorical response</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a></span>
 <span id="cb10-4"><a href="#cb10-4"></a>mod=<span class="kw">lme</span>(y_numeric<span class="op">~</span>baseline<span class="op">+</span>GROUP<span class="op">+</span>TIMEPOINT<span class="op">+</span>GROUP<span class="op">*</span>TIMEPOINT,</span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="dt">random=</span><span class="op">~</span><span class="dv">1</span><span class="op">|</span>SUBJID,<span class="dt">data=</span>data,<span class="dt">na.action=</span>na.omit)</span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="dt">random=</span><span class="op">~</span><span class="dv">1</span><span class="op">|</span>SUBJID,<span class="dt">data=</span>datafake,<span class="dt">na.action=</span>na.omit)</span>
 <span id="cb10-6"><a href="#cb10-6"></a> </span>
 <span id="cb10-7"><a href="#cb10-7"></a>test=<span class="kw">emmeans</span>(mod,<span class="op">~</span>GROUP<span class="op">|</span>TIMEPOINT)</span>
 <span id="cb10-8"><a href="#cb10-8"></a> </span>
-<span id="cb10-9"><a href="#cb10-9"></a>tab.mod=<span class="kw"><a href="../reference/report.lsmeans.html">report.lsmeans</a></span>(<span class="dt">lsm=</span>test,<span class="dt">at.row=</span><span class="st">"TIMEPOINT"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9"></a>tab.mod=<span class="kw"><a href="../reference/report.lsmeans.html">report.lsmeans</a></span>(<span class="dt">lsm=</span>test)</span>
 <span id="cb10-10"><a href="#cb10-10"></a></span>
 <span id="cb10-11"><a href="#cb10-11"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tab.mod,<span class="dt">title=</span><span class="st">"LS-means evolution of y per treatment group</span><span class="ch">\n</span><span class="st">as a function of time"</span>,</span>
 <span id="cb10-12"><a href="#cb10-12"></a><span class="dt">ylab=</span><span class="st">"LS-Means"</span>,<span class="dt">xlab=</span><span class="st">""</span>,<span class="dt">add.ci=</span><span class="ot">TRUE</span>)</span></code></pre></div>

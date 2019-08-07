@@ -5,3 +5,4 @@
 ^Meta$
 ^doc$
 index\.Rmd$
+^CRAN-RELEASE$

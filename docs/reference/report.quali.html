@@ -211,10 +211,10 @@ performed overall levels of the explicative variables x1.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 
-<span class='fu'><a href='data.html'>data</a></span>(<span class='no'>data</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>datafake</span>)
 
 <span class='co'># No explicative variable changing y labels (option y.levels.label)</span>
-<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,
+<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,
 <span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Clinical cure"</span>,<span class='kw'>y.levels.label</span><span class='kw'>=</span><span class='st'>"Levels"</span>)</div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Qualitative descriptive statistics of : Clinical cure
@@ -228,7 +228,7 @@ performed overall levels of the explicative variables x1.</p>
 #&gt; ############################################
 #&gt; </div><div class='input'>
 <span class='co'># 1 explicative variable (option x1:  levels in columns)</span>
-<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>y.levels.label</span><span class='kw'>=</span><span class='st'>"Clinical cure"</span>)</div><div class='output co'>#&gt; 
+<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>y.levels.label</span><span class='kw'>=</span><span class='st'>"Clinical cure"</span>)</div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Qualitative descriptive statistics of : y_logistic
 #&gt; ############################################
@@ -242,7 +242,7 @@ performed overall levels of the explicative variables x1.</p>
 #&gt; </div><div class='input'>
 <span class='co'># 2 explicative variables (x1, levels in columns, option x2, levels in rows),</span>
 <span class='co'># spcacing the results (option at.row)</span>
-<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
+<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>y.levels.label</span><span class='kw'>=</span><span class='st'>"Clinical cure"</span>,<span class='kw'>x2.label</span><span class='kw'>=</span><span class='st'>"Days"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"Days"</span>)</div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Qualitative descriptive statistics of : y_logistic
@@ -276,7 +276,7 @@ performed overall levels of the explicative variables x1.</p>
 #&gt; ############################################
 #&gt; </div><div class='input'>
 <span class='co'># 2 explicative variables with row percentages (option percent.col=F)</span>
-<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
+<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>percent.col</span><span class='kw'>=</span><span class='fl'>FALSE</span>,<span class='kw'>x2.label</span><span class='kw'>=</span><span class='st'>"Days"</span>,<span class='kw'>y.levels.label</span><span class='kw'>=</span><span class='st'>"Clinical cure"</span>)</div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Qualitative descriptive statistics of : y_logistic
@@ -310,7 +310,7 @@ performed overall levels of the explicative variables x1.</p>
 #&gt; ############################################
 #&gt; </div><div class='input'>
 <span class='co'># Add Total number of subjects in headers (option subjid="SUBJID")</span>
-<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
+<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>)</div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Qualitative descriptive statistics of : y_logistic
@@ -344,7 +344,7 @@ performed overall levels of the explicative variables x1.</p>
 #&gt; ############################################
 #&gt; </div><div class='input'>
 <span class='co'># Round percentages to 1 digit (option round=1)</span>
-<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
+<span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_logistic"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,<span class='kw'>round</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Qualitative descriptive statistics of : y_logistic
@@ -379,7 +379,7 @@ performed overall levels of the explicative variables x1.</p>
 #&gt; </div><div class='input'>
 
 <span class='co'># Qualitative statistics with a response with more than one levels</span>
-<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_poisson"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
+<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quali</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_poisson"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,<span class='kw'>round</span><span class='kw'>=</span><span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='message'>data[,'y_poisson']has been transformed into a factor</span></div><div class='input'>
 <span class='co'># Print formatted results</span>
 <span class='no'>tab</span></div><div class='output co'>#&gt; 

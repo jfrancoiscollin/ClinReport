@@ -13,13 +13,13 @@ add.stat(tab, data, func.stat, func.stat.name, pos, ...)
 \arguments{
 \item{tab}{A desc object}
 
-\item{data}{The data frame used to creat tab}
+\item{data}{The data frame used to create tab}
 
 \item{func.stat}{Passed to \code{report.quanti} function}
 
 \item{func.stat.name}{Passed to \code{report.quanti} function}
 
-\item{pos}{Numeric used to sepecify the position of the new statistics}
+\item{pos}{Numeric used to specify the position of the new statistics}
 
 \item{...}{Other parameters}
 }
@@ -39,11 +39,11 @@ uses the \code{\link{regroup}} function to bind the two results.
 
 # Load the data
 
-data(data)
+data(datafake)
 
 # The default statistics are given here:
 
-tab1=report.quanti(data=data,y="y_numeric",x1="GROUP",total=TRUE,subjid="SUBJID")
+tab1=report.quanti(data=datafake,y="y_numeric",x1="GROUP",total=TRUE,subjid="SUBJID")
 
 # Define the function corresponding to the coefficient of variation for example
 
@@ -51,18 +51,18 @@ cv=function(y) sd(y,na.rm=TRUE)/mean(y,na.rm=TRUE)
 
 # We use the add.stat function to add CV at the second row:
 
-tab1.cv=add.stat(tab1,data,func.stat=cv,func.stat.name="Coef. Var",
+tab1.cv=add.stat(tab1,datafake,func.stat=cv,func.stat.name="Coef. Var",
 pos=2)
 
 tab1.cv
 
 # Same with 2 explicative variables
 
-tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
+tab=report.quanti(data=datafake,y="y_numeric",x1="GROUP",
 x2="TIMEPOINT",total=TRUE,subjid="SUBJID",
 	at.row="TIMEPOINT")
 
-tab=add.stat(tab,data,func.stat=cv,func.stat.name="Coef. Var",
+tab=add.stat(tab,datafake,func.stat=cv,func.stat.name="Coef. Var",
 pos=2)
 tab
 
@@ -76,7 +76,7 @@ mode=function(x)
 }
 
 
-tab=add.stat(tab,data,func.stat=mode,func.stat.name="Mode",
+tab=add.stat(tab,datafake,func.stat=mode,func.stat.name="Mode",
 pos=5)
 tab
 

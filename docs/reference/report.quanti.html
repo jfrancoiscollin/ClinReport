@@ -153,7 +153,7 @@ Returns quantitative descriptive statistics such as mean, median, standard devia
     </tr>
     <tr>
       <th>digits</th>
-      <td><p>Numeric (used if scientifc=TRUE) to indicate how many digits to use in scientific notation</p></td>
+      <td><p>Numeric (used if scientific=TRUE) to indicate how many digits to use in scientific notation</p></td>
     </tr>
     <tr>
       <th>at.row</th>
@@ -165,7 +165,7 @@ Returns quantitative descriptive statistics such as mean, median, standard devia
     </tr>
     <tr>
       <th>geomean</th>
-      <td><p>Logical If yes geometric mean is calculated  instead of arithmetic mean: <code><a href='https://www.rdocumentation.org/packages/base/topics/Log'>exp(mean(log(x),na.rm=TRUE))</a></code> fpr x&gt;0</p></td>
+      <td><p>Logical If yes geometric mean is calculated  instead of arithmetic mean: <code><a href='https://www.rdocumentation.org/packages/base/topics/Log'>exp(mean(log(x),na.rm=TRUE))</a></code> for x&gt;0</p></td>
     </tr>
     <tr>
       <th>add.mad</th>
@@ -212,7 +212,7 @@ some differences between SAS and R can appear on quantile values.</p>
 <p>"geomean" compute the geometric mean defined as exp(mean(log(y))). The values below or equal 0 are removed and
 a message is printed  to indicate how many values were deleted to calculate the geometric mean.</p>
 <p><code>N</code> returns the number of observations (including NA values)</p>
-<p>stat.name is auomatically transformed using <code><a href='https://www.rdocumentation.org/packages/base/topics/make.names'>make.names</a></code> function.</p>
+<p>stat.name is automatically transformed using <code><a href='https://www.rdocumentation.org/packages/base/topics/make.names'>make.names</a></code> function.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -221,11 +221,11 @@ a message is printed  to indicate how many values were deleted to calculate the 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='data.html'>data</a></span>(<span class='no'>data</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>datafake</span>)
 
 <span class='co'># Quantitative statistics with no factor</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Awesome results"</span>)</div><div class='output co'>#&gt; 
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Awesome results"</span>)</div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Quantitative descriptive statistics of: Awesome results
 #&gt; ############################################
@@ -242,7 +242,7 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; </div><div class='input'>
 <span class='co'>#' # Quantitative statistics with no factor with geometric mean (option geomean=TRUE)</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Awesome results"</span>,<span class='kw'>geomean</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>66 values were removed to calculate the Geometric mean</span></div><div class='output co'>#&gt; 
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>y.label</span><span class='kw'>=</span><span class='st'>"Awesome results"</span>,<span class='kw'>geomean</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>66 values were removed to calculate the Geometric mean</span></div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Quantitative descriptive statistics of: Awesome results
 #&gt; ############################################
@@ -259,7 +259,7 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; </div><div class='input'>
 <span class='co'># Quantitative statistics with one factor</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>)</div><div class='output co'>#&gt; 
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>)</div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Quantitative descriptive statistics of: y_numeric
 #&gt; ############################################
@@ -276,7 +276,7 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; </div><div class='input'>
 <span class='co'># One factor with total column</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Quantitative descriptive statistics of: y_numeric
 #&gt; ############################################
@@ -293,7 +293,7 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; </div><div class='input'>
 <span class='co'># Quantitative statistics with two factors</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)</div><div class='output co'>#&gt; 
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)</div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Quantitative descriptive statistics of: y_numeric
 #&gt; ############################################
@@ -345,7 +345,7 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; </div><div class='input'>
 <span class='co'># Quantitative statistics with two factors and a total column</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Quantitative descriptive statistics of: y_numeric
 #&gt; ############################################
@@ -397,7 +397,7 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; </div><div class='input'>
 <span class='co'># Add median absolute deviance to the median statistics</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>add.mad</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,<span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>add.mad</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Quantitative descriptive statistics of: y_numeric
 #&gt; ############################################
@@ -491,7 +491,7 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; </div><div class='input'>
 <span class='co'># Quantitative statistics with spacing rows (option at.row)</span>
 
-<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
+<span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>)</div><div class='output co'>#&gt; 
 #&gt; ############################################
 #&gt; Quantitative descriptive statistics of: y_numeric
@@ -544,7 +544,7 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; </div><div class='input'>
 <span class='co'># Add number of subjects in headers (option subjid)</span>
 
-<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
+<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>at.row</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>)
 
 <span class='co'># Print tab output</span>
@@ -603,7 +603,7 @@ a message is printed  to indicate how many values were deleted to calculate the 
 
 <span class='no'>mystat</span><span class='kw'>=</span><span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/quantile'>quantile</a></span>(<span class='no'>x</span>,<span class='fl'>0.99</span>,<span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 
-<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
+<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>x2</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,
 <span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>mystat</span>,<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"99% quantile"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in mystat(y_numeric): impossible de trouver la fonction "mystat"</span></div><div class='input'><span class='no'>tab</span></div><div class='output co'>#&gt; 
 #&gt; ############################################
@@ -657,7 +657,7 @@ a message is printed  to indicate how many values were deleted to calculate the 
 #&gt; </div><div class='input'>
 <span class='no'>mystat2</span><span class='kw'>=</span><span class='kw'>function</span>(<span class='no'>x</span>) <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/mean'>mean</a></span>(<span class='no'>x</span>,<span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>)/<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/sd'>sd</a></span>(<span class='no'>x</span>,<span class='kw'>na.rm</span><span class='kw'>=</span><span class='fl'>TRUE</span>)
 
-<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
+<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,<span class='kw'>x1</span><span class='kw'>=</span><span class='st'>"GROUP"</span>,
 <span class='kw'>total</span><span class='kw'>=</span><span class='fl'>TRUE</span>,<span class='kw'>subjid</span><span class='kw'>=</span><span class='st'>"SUBJID"</span>,<span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>mystat2</span>,
 <span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"Coefficient of variation"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in mystat2(y_numeric): impossible de trouver la fonction "mystat2"</span></div><div class='input'><span class='no'>tab</span></div><div class='output co'>#&gt; 
 #&gt; ############################################
@@ -715,7 +715,7 @@ a message is printed  to indicate how many values were deleted to calculate the 
   <span class='no'>ux</span>[<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/which.min'>which.max</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/tabulate'>tabulate</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/match'>match</a></span>(<span class='no'>x</span>, <span class='no'>ux</span>)))]
 }
 
-<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,
+<span class='no'>tab</span><span class='kw'>=</span><span class='fu'>report.quanti</span>(<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='st'>"y_numeric"</span>,
 <span class='kw'>func.stat</span><span class='kw'>=</span><span class='no'>mode</span>,<span class='kw'>func.stat.name</span><span class='kw'>=</span><span class='st'>"Mode"</span>)
 
 

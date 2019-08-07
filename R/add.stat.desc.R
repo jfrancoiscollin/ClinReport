@@ -6,10 +6,10 @@
 #' @title  Add a new statistic to an existing table
 #' 
 #' @param tab A desc object
-#' @param data The data frame used to creat tab
+#' @param data The data frame used to create tab
 #' @param func.stat Passed to \code{report.quanti} function
 #' @param func.stat.name Passed to \code{report.quanti} function
-#' @param pos Numeric used to sepecify the position of the new statistics
+#' @param pos Numeric used to specify the position of the new statistics
 #' @param ... Other parameters
 #' 
 #' 
@@ -32,11 +32,11 @@
 #' 
 #' # Load the data
 #' 
-#'data(data)
+#'data(datafake)
 #'
 #'# The default statistics are given here:
 #' 
-#'tab1=report.quanti(data=data,y="y_numeric",x1="GROUP",total=TRUE,subjid="SUBJID")
+#'tab1=report.quanti(data=datafake,y="y_numeric",x1="GROUP",total=TRUE,subjid="SUBJID")
 #'
 #' # Define the function corresponding to the coefficient of variation for example
 #' 
@@ -44,18 +44,18 @@
 #' 
 #' # We use the add.stat function to add CV at the second row:
 #' 
-#'tab1.cv=add.stat(tab1,data,func.stat=cv,func.stat.name="Coef. Var",
+#'tab1.cv=add.stat(tab1,datafake,func.stat=cv,func.stat.name="Coef. Var",
 #' pos=2)
 #'
 #'tab1.cv
 #' 
 #' # Same with 2 explicative variables
 #' 
-#'tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
+#'tab=report.quanti(data=datafake,y="y_numeric",x1="GROUP",
 #' x2="TIMEPOINT",total=TRUE,subjid="SUBJID",
 #'		at.row="TIMEPOINT")
 #' 
-#' tab=add.stat(tab,data,func.stat=cv,func.stat.name="Coef. Var",
+#' tab=add.stat(tab,datafake,func.stat=cv,func.stat.name="Coef. Var",
 #' pos=2)
 #' tab
 #' 
@@ -69,7 +69,7 @@
 #' }
 #' 
 #' 
-#' tab=add.stat(tab,data,func.stat=mode,func.stat.name="Mode",
+#' tab=add.stat(tab,datafake,func.stat=mode,func.stat.name="Mode",
 #' pos=5)
 #' tab
 #' 
