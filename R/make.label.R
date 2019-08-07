@@ -23,7 +23,7 @@
 #' A character
 #' 
 #' @examples
-#' data(data)
+#' data(datafake)
 #' an=anova(lm(y_numeric~y_logistic+GROUP:TIMEPOINT,data=data))
 #' 
 #' # Raw output:

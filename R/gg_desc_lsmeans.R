@@ -36,7 +36,7 @@
 #' library(nlme)
 #' library(emmeans)
 #' 
-#' data(data)
+#' data(datafake)
 #' #Removing baseline data in the response, for the model
 #' 
 #'data.mod=droplevels(data[data$TIMEPOINT!="D0",]) 

@@ -44,7 +44,7 @@
 #' library(emmeans)
 #' library(lme4)
 #' 
-#' data(data)
+#' data(datafake)
 #' 
 #' #Simple lm model
 #' 

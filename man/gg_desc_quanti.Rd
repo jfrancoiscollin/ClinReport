@@ -37,7 +37,7 @@ It's easier to use this last one.
 }
 \examples{
  \dontshow{
-data(data)
+data(datafake)
 
 desc=report.quanti(data=data,y="y_numeric",x1="GROUP",
 	x2="TIMEPOINT")

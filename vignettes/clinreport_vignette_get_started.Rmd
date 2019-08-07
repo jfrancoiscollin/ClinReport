@@ -35,7 +35,7 @@ Load your data.
 
 ```{r, include=TRUE}
 # We will use fake data
-data(data)
+data(datafake)
 print(head(data))
 ```
 
@@ -222,7 +222,7 @@ colspan.value="Treatment Group")
 ```
 
 
-### Pairs and Contrasts of LS-MEans
+### Pairs and Contrasts of LS-Means
 
 It's the same usage
 

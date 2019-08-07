@@ -13,13 +13,13 @@ add.stat(tab, data, func.stat, func.stat.name, pos, ...)
 \arguments{
 \item{tab}{A desc object}
 
-\item{data}{The data frame used to creat tab}
+\item{data}{The data frame used to create tab}
 
 \item{func.stat}{Passed to \code{report.quanti} function}
 
 \item{func.stat.name}{Passed to \code{report.quanti} function}
 
-\item{pos}{Numeric used to sepecify the position of the new statistics}
+\item{pos}{Numeric used to specify the position of the new statistics}
 
 \item{...}{Other parameters}
 }
@@ -39,7 +39,7 @@ uses the \code{\link{regroup}} function to bind the two results.
 
 # Load the data
 
-data(data)
+data(datafake)
 
 # The default statistics are given here:
 

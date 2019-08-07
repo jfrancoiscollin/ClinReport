@@ -16,7 +16,7 @@ Return a formated p-value vector with rounded numbers and <0.001 instead of 0.00
 }
 \description{
 \code{prettyp} 
-Return a formated version of pvalues with nice format.
+Return a formatted version of pvalues with nice format.
 }
 \details{
 It takes a p and return another one, but better.

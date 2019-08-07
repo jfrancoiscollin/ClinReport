@@ -32,7 +32,7 @@ Load your data.
 
 ```r
 # We will use fake data
-data(data)
+data(datafake)
 print(head(data))
 #>   y_numeric y_logistic y_poisson  baseline   VAR GROUP TIMEPOINT SUBJID
 #> 1 -1.397502          0         4 -1.397502 Cat 2     A        D0 Subj 1

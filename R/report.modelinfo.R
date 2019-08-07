@@ -31,7 +31,7 @@
 #'library(nlme)
 #' 
 #' 
-#' data(data)
+#' data(datafake)
 #' 
 #' mod=lme(y_numeric~GROUP+TIMEPOINT,random=~1|SUBJID,data=data,na.action=na.omit)
 #' 

@@ -36,7 +36,7 @@ library(flextable)
 
 # Load data
 
-data(data)
+data(datafake)
 
 # Descriptive statistics (Numerical response and 2 explicative variables):
 

@@ -12,11 +12,11 @@
 #' @param round Numeric to indicate how to round statistics
 #' @param total Logical to indicate if a "Total" column should be added
 #' @param scientific Logical Indicates if statistics should be displayed in scientific notations or not
-#' @param digits Numeric (used if scientifc=TRUE) to indicate how many digits to use in scientific notation
+#' @param digits Numeric (used if scientific=TRUE) to indicate how many digits to use in scientific notation
 #' @param at.row Character Used to space the results (see examples)
 #' @param y.label Character Indicates the label for y parameter to be displayed in the title of the table
 #' @param subjid Character Indicates the column in which there is the subject Id to add the number of subjects in the column header if x1 and x2 are not null.
-#' @param geomean Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=TRUE))} fpr x>0
+#' @param geomean Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=TRUE))} for x>0
 #' @param add.mad Logical If yes the Median Absolute Deviance is added to the median statistics (see function \code{\link{mad}}) 
 #' @param default.stat Logical (default to TRUE). If FALSE you can specify your own example
 #' @param func.stat Function. If specified then default.stat=FALSE and only the specified statistic is reported
@@ -43,7 +43,7 @@
 #' 
 #' \code{N} returns the number of observations (including NA values)
 #' 
-#' stat.name is auomatically transformed using \code{\link{make.names}} function.
+#' stat.name is automatically transformed using \code{\link{make.names}} function.
 
 #' @return  
 #' A desc object.
@@ -52,7 +52,7 @@
 
 #' @examples
 #'  
-#' data(data)
+#' data(datafake)
 #' 
 #' # Quantitative statistics with no factor
 #' 
@@ -598,18 +598,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		nbcol=2
 	}
 	
-	
-# To transpose,we should do something like:
-#
-#	if(transpose)
-#	{
-#		m=melt(stat2,measure.vars=colnames(stat2)[-c(1:nbcol)],variable.name=x1)
-#		if(!is.null(at.row)) m=m[m$value!="",]
-#       if(!is.null(x2)) form=as.formula(paste0(x2,"+",x1,"~Statistics"))
-#       if(is.null(x2)) form=as.formula(paste0(x1,"~Statistics"))
-#		stat2=dcast(m,form)
-#       if(!is.null(at.row)) stat2=spacetable(stat2,at.row=at.row)
-#	}
+
 	
 	
 	title=paste0("Quantitative descriptive statistics of: ",y.label)

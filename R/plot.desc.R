@@ -21,7 +21,7 @@
 #' 
 #' 
 #' @details 
-#' It's a wrapper function whiche uses  \code{\link{gg_desc_quanti}} 
+#' It's a wrapper function which uses  \code{\link{gg_desc_quanti}} 
 #'  \code{\link{gg_desc_quali}}  or  \code{\link{gg_desc_lsmeans}} depending if
 #' the desc object is of type "quali", "quanti" or "lsmeans"
 #'  (argument\code{type.desc} in \code{\link{desc}} object, see examples below). 
@@ -30,7 +30,7 @@
 #' 
 #' @examples
 #'  
-#' data(data)
+#' data(datafake)
 #'
 #' desc=report.quali(data=data,y="y_logistic",x1="GROUP",
 #'		x2="TIMEPOINT")

@@ -27,7 +27,7 @@
 
 #' @examples
 #'  \dontshow{
-#' data(data)
+#' data(datafake)
 #'
 #'desc=report.quali(data=data,y="y_logistic",x1="GROUP",
 #'		x2="TIMEPOINT")

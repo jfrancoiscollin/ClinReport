@@ -1,13 +1,8 @@
-# TODO: Add comment
-# 
-# Author: jfcollin
-###############################################################################
-
-
-#' Fake clinical data example
+#' datafake
 #'
 #' Fictive data created only for the purpose of testing the package and showing examples.
 #'
+#' 
 #' @format A data frame
 #' \describe{
 #'   \item{y_numeric}{Fake numerical response}
@@ -19,17 +14,26 @@
 #'   \item{TIMEPOINT}{A fake time factor}
 #'   \item{SUBJID}{A fake id factor}
 #' }
-#' 
-#' 
-"data"
+#' @rdname datafake
+"datafake"
 
 
-
-
-#' Fake survival data set
+#' time_to_cure
 #'
 #' Simulated survival data created only for the purpose of testing the package and showing examples.
 #'
 #' @format A data frame
-#' 
+#' #' \describe{
+#'  \item{time}{Fake numerical time values}
+#' \item{status}{Fake status values, 1=cured 0=not cured}
+#' \item{block}{Fake factor}
+#' \item{random_number}{Fake factor}
+#' \item{Sex}{Fake sex factor}
+#' \item{Weight_D0}{Fake weight covariate}
+#' \item{Pen}{Fake factor}
+#' \item{TCS}{Fake covariate}
+#' \item{Group}{Fake treatment group factor}
+#' \item{Subjid}{Fake subject Id}
+#' }
+#' @rdname time_to_cure
 "time_to_cure"

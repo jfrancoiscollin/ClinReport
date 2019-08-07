@@ -75,7 +75,7 @@
 #'library(lme4)
 #'library(nlme)
 #'
-#'data(data)
+#'data(datafake)
 #'
 #'tab=report.quanti(data=data,y="y_numeric",
 #'		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",subjid="SUBJID")
@@ -122,7 +122,7 @@
 #' # Load data
 #' #####################
 #' 
-#'data(data) 
+#'data(datafake) 
 #'head(data)
 #'
 #' # Removing baseline data for the model
@@ -153,7 +153,7 @@
 #' # Qualitative stats (2 explicative variables) ##################################
 #' 
 #'tab2=report.quali(data=data,y="y_logistic",
-#'		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",total=T,subjid="SUBJID")
+#'		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",total=TRUE,subjid="SUBJID")
 #'
 #' gg2=plot(tab2,title="Response distribution (%) by day and treatment group",
 #' legend.label="Y levels")
@@ -194,7 +194,7 @@
 #'
 #'gg.mod1=plot(tab.mod1,title="LS-Means response evolution as a function of time\n
 #' by treatment group (95% CI)",
-#' legend.label="Treatment groups",ylab="Y mean",add.ci=T)
+#' legend.label="Treatment groups",ylab="Y mean",add.ci=TRUE)
 #' 
 #' # Linear model (1 group only): Anova and LS-Means and graph reporting ################
 #' 
@@ -207,7 +207,7 @@
 #'
 #'
 #'gg.mod2=plot(tab.mod2,title="LS-Means response\nby treatment group (95% CI)",
-#'		legend.label="Treatment groups",ylab="Y mean",add.ci=T)
+#'		legend.label="Treatment groups",ylab="Y mean",add.ci=TRUE)
 #'
 #' # Linear mixed model (order 2 interaction):
 #' # Anova and LS-Means and graph reporting #################
@@ -223,7 +223,7 @@
 #'
 #'gg.mod3=plot(tab.mod3,title="LS-Means response evolution as a function of time\n
 #'by treatment group (95% CI Mixed model)",
-#'		legend.label="Treatment groups",ylab="Y mean",add.ci=T)
+#'		legend.label="Treatment groups",ylab="Y mean",add.ci=TRUE)
 #'
 #' # Contrast example
 #'
@@ -233,7 +233,7 @@
 #'
 #'gg.mod3.contr=plot(tab.mod3.contr,title="LS-Means contrast versus reference A\n
 #'				(95% CI Mixed model)",
-#'		legend.label="Treatment groups",ylab="Y mean",add.ci=T,add.line=F)
+#'		legend.label="Treatment groups",ylab="Y mean",add.ci=TRUE,add.line=FALSE)
 #'
 #'
 #' ############################################################
@@ -253,7 +253,7 @@
 #'
 #'gg.mod4=plot(tab.mod4,title="LS-Means response evolution as a function of time\n
 #'by treatment group (95% CI Logistic model)",
-#'		legend.label="Treatment groups",ylab="Y mean",add.ci=T)
+#'		legend.label="Treatment groups",ylab="Y mean",add.ci=TRUE)
 #'
 #' # Generalized Poisson Linear model (order 2 interaction):
 #' # Anova LS-Means and graph reporting #'
@@ -272,7 +272,7 @@
 #'
 #'gg.mod5=plot(tab.mod5,title="LS-Means response evolution as a function of time\n
 #'by treatment group (95% CI Poisson model)",
-#'		legend.label="Treatment groups",ylab="Y mean",add.ci=T)
+#'		legend.label="Treatment groups",ylab="Y mean",add.ci=TRUE)
 #' 
 #' #####################
 #' # Create your report
@@ -288,8 +288,8 @@
 #'doc=body_add_par(doc,"Descriptive statistics", style = "heading 2")
 #'
 #'doc=report.doc(tab1.1,title="Quantitative statistics (2 explicative variables) (Table 1/2)",
-#'		colspan.value="Treatment group",doc=doc,init.numbering=T,
-#' page.break=F)
+#'		colspan.value="Treatment group",doc=doc,init.numbering=TRUE,
+#' page.break=FALSE)
 #'
 #'doc=report.doc(tab1.2,title="Quantitative statistics (2 explicative variables) (Table 2/2)",
 #'		colspan.value="Treatment group",doc=doc)

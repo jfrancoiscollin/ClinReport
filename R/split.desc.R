@@ -20,7 +20,7 @@
 #' 
 #' @examples
 #' 
-#'data(data)
+#'data(datafake)
 #' 
 #'tab1=report.quanti(data=data,y="y_numeric",
 #'		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",subjid="SUBJID")

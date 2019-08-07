@@ -6,10 +6,10 @@
 #' @title  Add a new statistic to an existing table
 #' 
 #' @param tab A desc object
-#' @param data The data frame used to creat tab
+#' @param data The data frame used to create tab
 #' @param func.stat Passed to \code{report.quanti} function
 #' @param func.stat.name Passed to \code{report.quanti} function
-#' @param pos Numeric used to sepecify the position of the new statistics
+#' @param pos Numeric used to specify the position of the new statistics
 #' @param ... Other parameters
 #' 
 #' 
@@ -32,7 +32,7 @@
 #' 
 #' # Load the data
 #' 
-#'data(data)
+#'data(datafake)
 #'
 #'# The default statistics are given here:
 #' 

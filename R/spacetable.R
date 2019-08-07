@@ -25,7 +25,7 @@
 #' 
 #' @examples
 #' 
-#' data(data)
+#' data(datafake)
 #' spacetable(report.quali(data=data,y="y_logistic",x1="GROUP",
 #' x2="TIMEPOINT")$output,at.row="TIMEPOINT")
 #' 

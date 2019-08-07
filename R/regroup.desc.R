@@ -36,7 +36,7 @@
 #' 
 #' @examples
 #' 
-#' data(data)
+#' data(datafake)
 #' 
 #' # Example with a qualitative and a quantitative tables
 #' #The argument y.label is stored in the desc object and 

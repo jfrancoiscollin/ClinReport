@@ -11,7 +11,7 @@
 #' 
 #' @description
 #' \code{prettyp} 
-#' Return a formated version of pvalues with nice format.
+#' Return a formatted version of pvalues with nice format.
 #' 
 #' 
 #' @details

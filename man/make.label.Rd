@@ -25,7 +25,7 @@ Replace with \code{gsub} function each first element of \code{l[[i]]} by the sec
 for each element of x.
 }
 \examples{
-data(data)
+data(datafake)
 an=anova(lm(y_numeric~y_logistic+GROUP:TIMEPOINT,data=data))
 
 # Raw output:

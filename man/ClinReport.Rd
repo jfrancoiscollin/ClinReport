@@ -18,16 +18,16 @@ also available.
 The package works with officer and flextable packages to export the outputs
 into Microsoft Word documents.
 
-There are two main functions for descriptive reporting : \code{report.quanti} and \code{report.quali}
+There are two main functions for getting descriptive statistics : \code{report.quanti} and \code{report.quali}
 
-There is one unique function for LS means reporting: \code{report.lsmeans}
+There is one unique function for prettyfying LS means: \code{report.lsmeans}
  
-Each of those 3 functions creates a desc object that can be used with \code{report.doc} to export the result(s) 
-into a Word document. This is the unique function to export the output(s) into a Word document.
+Each of those 3 functions creates a desc object that can be used with \code{report.doc} to export the results.
+This is the unique function to export the outputs into a Word or an R markdown document.
 
 Future versions will improve the "standard" graphic reporting and specific statistics tables used for reporting Adverse Events.
     
-You can visit the website for more exmaples: \href{https://jfrancoiscollin.github.io/ClinReport}{ClinReport website}
+You can visit the website for more examples: \href{https://jfrancoiscollin.github.io/ClinReport}{ClinReport website}
 }
 \author{
 Jean-Francois Collin, \email{jfcollin@live.fr}

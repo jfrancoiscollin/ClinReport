@@ -27,13 +27,13 @@ report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = y,
 
 \item{scientific}{Logical Indicates if statistics should be displayed in scientific notations or not}
 
-\item{digits}{Numeric (used if scientifc=TRUE) to indicate how many digits to use in scientific notation}
+\item{digits}{Numeric (used if scientific=TRUE) to indicate how many digits to use in scientific notation}
 
 \item{at.row}{Character Used to space the results (see examples)}
 
 \item{subjid}{Character Indicates the column in which there is the subject Id to add the number of subjects in the column header if x1 and x2 are not null.}
 
-\item{geomean}{Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=TRUE))} fpr x>0}
+\item{geomean}{Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=TRUE))} for x>0}
 
 \item{add.mad}{Logical If yes the Median Absolute Deviance is added to the median statistics (see function \code{\link{mad}})}
 
@@ -69,11 +69,11 @@ a message is printed  to indicate how many values were deleted to calculate the 
 
 \code{N} returns the number of observations (including NA values)
 
-stat.name is auomatically transformed using \code{\link{make.names}} function.
+stat.name is automatically transformed using \code{\link{make.names}} function.
 }
 \examples{
  
-data(data)
+data(datafake)
 
 # Quantitative statistics with no factor
 

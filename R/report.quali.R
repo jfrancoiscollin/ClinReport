@@ -46,7 +46,7 @@
 #' @examples
 #' 
 #'  
-#' data(data)
+#' data(datafake)
 #' 
 #' # No explicative variable changing y labels (option y.levels.label)
 #' report.quali(data=data,y="y_logistic",

@@ -76,7 +76,7 @@ library(ClinReport)
 library(officer)
 library(flextable)
 
-data(data)
+data(datafake)
 
 # Default quantitative stat desc
 
