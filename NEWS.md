@@ -107,6 +107,18 @@ it adds more readibility to the doc
 
 
 
+# ClinReport 0.9.1.14
+
+## Enhancement
+
+* Add drop.y, drop.x1 and drop.x2 arguments in report.quanti and report.quali to drop levels from the results if needed
+* Add the transpose argument in report.lsmeans function to show the statistics in columns or in rows
+* Add the report.modelinfo function, to export in a table the information relative to a statistical model
+(the call to the model, the package name, the function name, the AIC, BIC, number of observation etc...)
+* If x2 argument is not missing then at.row argument automatically will space the results by row, no need to fill this
+argument systematically anymore
+* The title is automatically filled with y.label argument
+* Add the remove.missing argument in report.quali to be able to compute the percentage on non missing values only if needed
 
 
 

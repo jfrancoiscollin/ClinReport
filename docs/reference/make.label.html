@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return a rounded vector with equal number of digits — prettyround • ClinReport</title>
+<title>Make pretty labels from variable names — make.label • ClinReport</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,10 +30,10 @@
 
 
 
-<meta property="og:title" content="Return a rounded vector with equal number of digits — prettyround" />
+<meta property="og:title" content="Make pretty labels from variable names — make.label" />
 
-<meta property="og:description" content="prettyround 
-Return a formatted version of the numeric vector." />
+<meta property="og:description" content="make.label
+Mainly used to prettyfy the rownames of anova tables." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -98,45 +98,75 @@ Return a formatted version of the numeric vector." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return a rounded vector with equal number of digits</h1>
+    <h1>Make pretty labels from variable names</h1>
     
-    <div class="hidden name"><code>prettyround.Rd</code></div>
+    <div class="hidden name"><code>make.label.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p><code>prettyround</code> 
-Return a formatted version of the numeric vector.</p>
+    <p><code>make.label</code></p>
+<p>Mainly used to prettyfy the rownames of anova tables.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>prettyround</span>(<span class='no'>p</span>, <span class='kw'>r</span> <span class='kw'>=</span> <span class='fl'>3</span>)</pre>
+    <pre class="usage"><span class='fu'>make.label</span>(<span class='no'>x</span>, <span class='kw'>l</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>l1</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"_"</span>, <span class='st'>" at "</span>), <span class='kw'>l2</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>":"</span>,
+  <span class='st'>" interaction with "</span>), <span class='kw'>l3</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"."</span>, <span class='st'>" "</span>)))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>p</th>
-      <td><p>Vector of numerical values</p></td>
+      <th>x</th>
+      <td><p>Character</p></td>
     </tr>
     <tr>
-      <th>r</th>
-      <td><p>Integer indicates the number of digits to round to</p></td>
+      <th>l</th>
+      <td><p>List Each first element is gsubised by the second element of the list</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Return a formatted vector with rounded numbers</p>
+    <p>A character</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>No detail.</p>
+    <p>Replace with <code>gsub</code> function each first element of <code>l[[i]]</code> by the second element of <code>l[[i]]</code> 
+for each element of x.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'>prettyround</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>0.05</span>,<span class='fl'>0.001</span>,<span class='fl'>0.00001</span>),<span class='fl'>3</span>)</div><div class='output co'>#&gt; [1] "-0.050" " 0.001" " 0.000"</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'><a href='data.html'>data</a></span>(<span class='no'>data</span>)
+<span class='no'>an</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/anova'>anova</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='no'>y_numeric</span>~<span class='no'>y_logistic</span>+<span class='no'>GROUP</span>:<span class='no'>TIMEPOINT</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>))
+
+<span class='co'># Raw output:</span>
+<span class='no'>an</span></div><div class='output co'>#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: y_numeric
+#&gt;                  Df  Sum Sq Mean Sq F value Pr(&gt;F)    
+#&gt; y_logistic        1    2.96   2.962  2.6426 0.1049    
+#&gt; GROUP:TIMEPOINT  17 1398.30  82.253 73.3932 &lt;2e-16 ***
+#&gt; Residuals       358  401.22   1.121                   
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>rownames</a></span>(<span class='no'>an</span>)<span class='kw'>=</span><span class='fu'>make.label</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colnames'>rownames</a></span>(<span class='no'>an</span>),
+<span class='kw'>l</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
+<span class='kw'>l1</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"y_logistic"</span>,<span class='st'>"A logistic variable"</span>),
+<span class='kw'>l2</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>":"</span>,<span class='st'>" interaction with "</span>))
+)
+
+<span class='co'># Gives:</span>
+
+<span class='no'>an</span></div><div class='output co'>#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: y_numeric
+#&gt;                                   Df  Sum Sq Mean Sq F value Pr(&gt;F)    
+#&gt; A Logistic Variable                1    2.96   2.962  2.6426 0.1049    
+#&gt; GROUP Interaction With TIMEPOINT  17 1398.30  82.253 73.3932 &lt;2e-16 ***
+#&gt; Residuals                        358  401.22   1.121                   
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

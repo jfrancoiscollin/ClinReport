@@ -86,8 +86,7 @@ tab=report.quanti(data=data,y="y_numeric",x1="GROUP",
  }
  
  
- tab=add.stat(tab,data,func.stat=mode,func.stat.name="Mode",
- pos=5)
+ tab=add.stat(tab,data,func.stat=mode,func.stat.name="Mode",pos=5)
  
  report.doc(tab,title="Example of adding 2 more statistics in an existing table",
  colspan.value="Treatment Group")

@@ -21,13 +21,6 @@
 #' }
 #' 
 #' 
-#' @docType data
-#'
-#' @keywords datasets
-#' 
-#' @examples
-#' data(data)
-#' \donttest{head(data)}
 "data"
 
 
@@ -39,11 +32,4 @@
 #'
 #' @format A data frame
 #' 
-#' @docType data
-#' 
-#' @keywords datasets
-#' 
-#' @examples
-#' data(time_to_cure)
-#' \donttest{head(time_to_cure)}
 "time_to_cure"

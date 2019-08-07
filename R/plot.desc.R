@@ -61,7 +61,7 @@
 #' 
 #'test3=emmeans(mod3,~GROUP|TIMEPOINT)
 #' 
-#'tab.mod3=report.lsmeans(lsm=test3,at.row="TIMEPOINT")
+#'tab.mod3=report.lsmeans(lsm=test3)
 #' 
 #'gg=plot(tab.mod3,title="LS Means plot example")
 #' 

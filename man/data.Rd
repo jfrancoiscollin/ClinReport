@@ -21,8 +21,4 @@ data
 \description{
 Fictive data created only for the purpose of testing the package and showing examples.
 }
-\examples{
-data(data)
-\donttest{head(data)}
-}
 \keyword{datasets}

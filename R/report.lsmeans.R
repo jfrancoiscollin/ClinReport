@@ -10,6 +10,8 @@
 #' @param infer A vector of one or two logical values. Passed to \code{summary.emmGrid} function.
 #' @param at.row Character. Passed to spacetable function. Used to space the results per levels of the mentioned variable
 #' @param round Numeric. Specify the number of digits to round the statistics
+#' @param transpose Logical. If TRUE Statistics will be reported in columns
+#' @param y.label Character Indicates the label for y parameter to be displayed in the title of the table
 #' @param x1 deprecated 
 #' @param x2 deprecated
 #' @param x3 deprecated
@@ -50,17 +52,30 @@
 #' raw.lsm=emmeans(mod,~Species)
 #' report.lsmeans(raw.lsm)
 #' 
+#' # You can display the Statistics in columns
+#' 
+#' report.lsmeans(raw.lsm,transpose=TRUE)
+#' 
 #' # In case of just one intercept 
 #' 
 #' mod=glm(Species~1,data=iris,family=binomial)
 #' raw.lsm=emmeans(mod,~1)
 #' report.lsmeans(raw.lsm)
 #' 
+#' # Display statistics in columns
+#' 
+#' report.lsmeans(raw.lsm,transpose=TRUE)
+#' 
+#' 
 #' #Mixed model example using lme4
 #' 
 #' mod=lmer(y_numeric~GROUP+TIMEPOINT+GROUP*TIMEPOINT+(1|SUBJID),data=data) 
 #' raw.lsm=emmeans(mod,~GROUP|TIMEPOINT)
 #' report.lsmeans(lsm=raw.lsm,at="TIMEPOINT")
+#' 
+#' # Display statistics in columns
+#' 
+#' report.lsmeans(lsm=raw.lsm,at="TIMEPOINT",transpose=TRUE)
 #' 
 #' 
 #' # GLM model with specific contrast
@@ -71,6 +86,11 @@
 #' report.lsmeans(lsm=contr,at="wool")
 #' 
 #' 
+#' # Display statistics in columns
+#' 
+#' report.lsmeans(lsm=contr,at="wool",transpose=TRUE)
+#' 
+#' 
 #' # Cox model
 #' 
 #' library(survival)
@@ -79,16 +99,21 @@
 #' 
 #' fit <- coxph(Surv(time, status) ~ Group, data = time_to_cure) 
 #' em=emmeans(fit,~Group,type="response")
-#' pairs=pairs(em,adjust="none",exclude="Sentinel group")
-#' tab.pairs=report.lsmeans(pairs)
+#' pairs=pairs(em,adjust="none",exclude="Untreated")
+#' pairs
 #' 
+#' report.lsmeans(pairs)
+#' 
+#' # Display statistics in columns
+#' 
+#' report.lsmeans(pairs,transpose=TRUE)
 #' 
 #' @import reshape2 stats
 #' 
 #' @export 
 
 report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2.name,x3.name,data,
-		contrast,contrast.name,type)
+		contrast,contrast.name,type,transpose=FALSE,y.label=NULL)
 {
 	
 	
@@ -108,10 +133,10 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 	
 	
 	if (!missing("contrast"))
-		warning("argument deprecated. There is no need anymore to specify if it's LS Means are contrast or not")
+		warning("argument deprecated. There is no need anymore to specify if LS Means are contrast or not")
 	
 	if (!missing("contrast.name"))
-		warning("argument deprecated. There is no need anymore to specify if it's LS Means are contrast or not")
+		warning("argument deprecated. There is no need anymore to specify if LS Means are contrast or not")
 	
 	if (!missing("x1.name"))
 		warning("argument deprecated. There is no need anymore to specify any variable name")
@@ -188,9 +213,10 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 	call=as.character(lsm@model.info$call)[1]
 	response=all.vars(lsm@model.info$call)[1]
 	
-	title=paste0("LS-Means table of: ",response)
+	if(is.null(y.label)) y.label=response
+	title=paste0("LS-Means table of: ",y.label)
 	
-	if(lsm@misc$estType=="pairs") title=paste0("LS-Means comparisons of: ",response)
+	if(lsm@misc$estType=="pairs") title=paste0("LS-Means comparisons of: ",y.label)
 	
 	nbcol=1:length(vars)
 	
@@ -241,6 +267,9 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 				variable.name=variable.name)
 		
 		form=paste(x2,"+",x3,"+",variable.name,"~",x1,sep="")	
+		
+		if(transpose) form=paste(x2,"+",x3,"+",x1,"~",variable.name,sep="")	
+		
 		form=as.formula(form)			
 		d=dcast(m,form)
 	}
@@ -252,6 +281,9 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 				variable.name=variable.name)
 		
 		form=paste(x2,"+",variable.name,"~",x1,sep="")
+		
+		if(transpose) form=paste(x2,"+",x1,"~",variable.name,sep="")
+		
 		form=as.formula(form)	
 		d=dcast(m,form)
 	}
@@ -263,6 +295,9 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 				variable.name=variable.name)
 		
 		form=paste(variable.name,"~",x1,sep="")
+		
+		if(transpose) form=paste(x1,"~",variable.name,sep="")
+		
 		form=as.formula(form)	
 		d=dcast(m,form)
 	}
@@ -273,14 +308,18 @@ report.lsmeans=function(lsm,at.row=NULL,infer=c(T,T),round=2,x1,x2,x3,x1.name,x2
 		d=spacetable(d,at.row=at.row)
 	}
 	
-	
+	if(is.null(at.row) & !is.null(x2))
+	{
+		at.row=x2
+		d=spacetable(d,at.row=at.row)
+	}
 	
 	
 	
 	
 	
 	lsm=ClinReport::desc(output=d,x1=x1,x2=x2,total=F,nbcol=length(nbcol),
-			type.desc="lsmeans",type=type,y.label="",type.mod=type.mod,
+			type.desc="lsmeans",type=type,y.label=y.label,type.mod=type.mod,
 			raw.output=raw.output,contrast=contrast,
 			at.row=at.row,title=title)
 	

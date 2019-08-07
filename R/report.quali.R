@@ -2,13 +2,13 @@
 # Author: jfcollin
 ###############################################################################
 
-#' Descriptive "qualitative" statistics (frequencies and percentages) reporting
+#' Descriptive "Qualitative" statistics (frequencies and percentages) reporting
 #'
 #' @param data a data.frame object
-#' @param y Character indicating a factor in the data
+#' @param y Character indicating a factor in the data (the response)
 #' @param x1 Character indicating a factor in the data (levels will be displayed in columns)
 #' @param x2 Character indicating a factor in the data (levels will be displayed in rows). Only possible if x1 is not NULL.
-#' @param y.label Character indicating the label for y parameter (only used when x1 and x2 are NULL)
+#' @param y.label Character indicating the label for y to be displayed in the title of the table
 #' @param y.levels.label Character. Indicates the label of the column in which the levels of y are displayed
 #' @param x2.label Character indicating the label for x2 parameter, only if x2 is not null
 #' @param total Logical Indicates if a column Total should be added or not
@@ -17,6 +17,12 @@
 #' @param percent.col Logical By default it is set to T to indicate that column percentages should be reported. If set to False, row percentages are reported.
 #' @param subjid Character Indicates in the data.frame the name of the column used to identify the Id of the subjects. If not null, it adds in the headers the number of unique subject per levels of x1 or y (if x1 is null).
 #' @param remove.zero Logical. Remove the levels in the contingency table for which there is no observation.
+#' @param drop.y Character. Indicates one or several levels of the y factor that you want to drop in the result
+#' @param drop.x1 Character. Indicates one or several levels of the x1 factor that you want to drop in the result
+#' @param drop.x2 Character. Indicates one or several levels of the x2 factor that you want to drop in the result
+#'@param remove.missing Logical. default to TRUE. If TRUE number of missing values are reported and percentages
+#' take into account the number of missing value in the calculation. If set to FALSE, the missing values regarding the response factor y are ignored
+#' and percentages are computed on non missing values only.
 #' 
 #' @description
 #' Compute and report frequencies and percentages by levels of \code{y} (in rows) and by levels of \code{x1} (in columns)
@@ -85,7 +91,8 @@
 report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		x2.label=NULL,
 		y.levels.label="Levels",total=F,
-		round=2,at.row=NULL,percent.col=T,subjid=NULL,remove.zero=F)
+		round=2,at.row=NULL,percent.col=T,subjid=NULL,remove.zero=F,
+		drop.y=NULL,drop.x1=NULL,drop.x2=NULL,remove.missing=F)
 {
 	
 #   y="DEMEANOUR"
@@ -103,14 +110,14 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 #	at.row=NULL
 #	percent.col=T
 #	subjid=NULL
-	
-	
+#TODO: rajouter l'option drop.x1 et drop.x2 drop.missing
+# pour degager un ou plusieurs niveaux du facteur x1, x2 et/ou missing
 	
 	#checks on y and data arguments
 	
 	if(is.null(y)) stop("y argument cannot be NULL")
 	if(class(data)!="data.frame") stop("data argument should be a data.frame")
-	if(class(y)!="character") stop("Dear user. y argument should be a character")
+	if(class(y)!="character") stop("y argument should be a character")
 	
 	y=check.x(data,y)
 	
@@ -119,6 +126,64 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		if(is.null(x2.label)) x2.label=x2
 	}
 	
+	
+	
+	if(!is.null(drop.x2))
+	{
+		if(is.null(x2))
+		{
+			drop.x2=NULL
+			message("drop.x2 argument not used because x2 argument is missing")
+		}
+		
+		if(!is.null(x2))
+		{
+			check=any(!"%in%"(drop.x2,levels(data[,x2])))
+			if(!check)
+			{
+				data=droplevels(data[!"%in%"(data[,x2],drop.x2),])
+			}else
+			{
+				message("drop.x2 argument not used because it contains levels that are not in x2 factor")
+			}
+		}
+		
+	}
+	
+	if(!is.null(drop.x1))
+	{
+		if(is.null(x1))
+		{
+			drop.x1=NULL
+			message("drop.x1 argument not used because x1 argument is missing")
+		}
+		
+		if(!is.null(x1))
+		{
+			check=any(!"%in%"(drop.x1,levels(data[,x1])))
+			if(!check)
+			{
+				data=droplevels(data[!"%in%"(data[,x1],drop.x1),])
+			}else
+			{
+				message("drop.x1 argument not used because it contains levels that are not in x1 factor")
+			}
+		}
+		
+	}
+	
+	if(!is.null(drop.y))
+	{
+		check=any(!"%in%"(drop.y,levels(data[,y])))
+		if(!check)
+		{
+			data=droplevels(data[!"%in%"(data[,y],drop.y),])
+		}else
+		{
+			message("drop.y argument not used because it contains levels that are not in y factor")
+		}
+		
+	}
 	
 	
 	# Recursive call in case x1 and/or x2 are NULL
@@ -132,7 +197,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		
 		freq=report.quali(temp,y,x1="int",x2.label=x2.label,y.label=y.label,
 				x2="int",y.levels.label=y.levels.label,total=F,
-				,percent.col=percent.col,subjid=subjid,round=round)
+				,percent.col=percent.col,subjid=subjid,round=round,remove.missing=remove.missing)
 		
 		freq$output=freq$output[,-1]
 		freq$x1=NULL
@@ -149,11 +214,12 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		temp$int=as.factor(1)
 		freq=report.quali(temp,y,x1,x2="int",y.levels.label=y.levels.label,total=total,
 				y.label=y.label,
-				,percent.col=percent.col,subjid=subjid,round=round)
+				,percent.col=percent.col,subjid=subjid,round=round,remove.missing=remove.missing)
 		
 		freq$output=freq$output[,-1]
 		freq$x2=NULL
 		freq$nbcol=freq$nbcol-1
+		freq$at.row=NULL
 		
 		return(freq)
 		
@@ -184,11 +250,18 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	# add NA as category
 	# to count the number of missing values (if it's not already the case)
 	
-	if(!any(is.na(levels(data[,y]))))
+	if(!remove.missing)
 	{
-		data[,y]=addNA(data[,y])
+		if(!any(is.na(levels(data[,y]))))
+		{
+			data[,y]=addNA(data[,y])
+		}	
 	}
 	
+	if(remove.missing)
+	{
+		data=data[!is.na(data[,y]),]
+	}
 	
 	
 	# Compute frequency and total sample size for percentage
@@ -332,23 +405,31 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	
 	# Spacing results
 	
-     # check: si c'est mal renseigne on le met a null avec un message
-
-if(!is.null(at.row))
-{	
-	if(!any(colnames(freq)==at.row)) 
-	{
-		message("at.row argument was not found in the colnames of the statistic table produced (probably mispelled)\n
-        so it has been set to NULL")
-		at.row=NULL
-	}	
-}
-
+	# check: si c'est mal renseigne on le met a null avec un message
+	
+	if(!is.null(at.row))
+	{	
+		if(!any(colnames(freq)==at.row)) 
+		{
+			message("at.row argument was not found in the colnames of the statistic table produced (probably mispelled)\n
+							so it has been set to NULL")
+			at.row=NULL
+		}	
+	}
+	
 	if(!is.null(at.row))
 	{	
 		freq=spacetable(freq,at.row=at.row)
 	}
 	
+	
+	if(is.null(at.row) & !is.null(x2))
+	{	
+		if(is.null(x2.label)) at.row=x2
+		if(!is.null(x2.label)) at.row=x2.label
+		
+		freq=spacetable(freq,at.row=at.row)
+	}
 	
 	title=paste0("Qualitative descriptive statistics of : ",y.label)
 	

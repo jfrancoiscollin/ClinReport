@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ClinReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13.1</span>
       </span>
     </div>
 
@@ -109,7 +109,8 @@
     </div>
 
     <pre class="usage"><span class='fu'>report.lsmeans</span>(<span class='no'>lsm</span>, <span class='kw'>at.row</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>infer</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>T</span>, <span class='no'>T</span>), <span class='kw'>round</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='no'>x1</span>,
-  <span class='no'>x2</span>, <span class='no'>x3</span>, <span class='no'>x1.name</span>, <span class='no'>x2.name</span>, <span class='no'>x3.name</span>, <span class='no'>data</span>, <span class='no'>contrast</span>, <span class='no'>contrast.name</span>, <span class='no'>type</span>)</pre>
+  <span class='no'>x2</span>, <span class='no'>x3</span>, <span class='no'>x1.name</span>, <span class='no'>x2.name</span>, <span class='no'>x3.name</span>, <span class='no'>data</span>, <span class='no'>contrast</span>, <span class='no'>contrast.name</span>, <span class='no'>type</span>,
+  <span class='kw'>transpose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>y.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,6 +171,14 @@
       <th>type</th>
       <td><p>deprecated</p></td>
     </tr>
+    <tr>
+      <th>transpose</th>
+      <td><p>Logical. If TRUE Statistics will be reported in columns</p></td>
+    </tr>
+    <tr>
+      <th>y.label</th>
+      <td><p>Character Indicates the label for y parameter to be displayed in the title of the table</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -210,6 +219,20 @@ It doesn't work for quantitative covariates.</p>
 #&gt; 
 #&gt; ############################################
 #&gt; </div><div class='input'>
+<span class='co'># You can display the Statistics in columns</span>
+
+<span class='fu'>report.lsmeans</span>(<span class='no'>raw.lsm</span>,<span class='kw'>transpose</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; LS-Means table of: Petal.Width
+#&gt; ############################################
+#&gt; 
+#&gt;      Species Estimate (SE)      95% CI P-value
+#&gt; 1     setosa    0.25(0.03) [0.19;0.30]  &lt;0.001
+#&gt; 2 versicolor    1.33(0.03) [1.27;1.38]  &lt;0.001
+#&gt; 3  virginica    2.03(0.03) [1.97;2.08]  &lt;0.001
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 <span class='co'># In case of just one intercept </span>
 
 <span class='no'>mod</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/glm'>glm</a></span>(<span class='no'>Species</span>~<span class='fl'>1</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>iris</span>,<span class='kw'>family</span><span class='kw'>=</span><span class='no'>binomial</span>)
@@ -226,6 +249,19 @@ It doesn't work for quantitative covariates.</p>
 #&gt; 
 #&gt; ############################################
 #&gt; </div><div class='input'>
+<span class='co'># Display statistics in columns</span>
+
+<span class='fu'>report.lsmeans</span>(<span class='no'>raw.lsm</span>,<span class='kw'>transpose</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; LS-Means table of: Species
+#&gt; ############################################
+#&gt; 
+#&gt;   1 Estimate (SE)      95% CI P-value
+#&gt; 1 1    0.69(0.17) [0.35;1.03]  &lt;0.001
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
+
 <span class='co'>#Mixed model example using lme4</span>
 
 <span class='no'>mod</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/lme4/topics/lmer'>lmer</a></span>(<span class='no'>y_numeric</span>~<span class='no'>GROUP</span>+<span class='no'>TIMEPOINT</span>+<span class='no'>GROUP</span>*<span class='no'>TIMEPOINT</span>+(<span class='fl'>1</span><span class='kw'>|</span><span class='no'>SUBJID</span>),<span class='kw'>data</span><span class='kw'>=</span><span class='no'>data</span>)</div><div class='output co'>#&gt; <span class='message'>boundary (singular) fit: see ?isSingular</span></div><div class='input'><span class='no'>raw.lsm</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/emmeans/topics/emmeans'>emmeans</a></span>(<span class='no'>mod</span>,~<span class='no'>GROUP</span><span class='kw'>|</span><span class='no'>TIMEPOINT</span>)
@@ -261,6 +297,40 @@ It doesn't work for quantitative covariates.</p>
 #&gt; 
 #&gt; ############################################
 #&gt; </div><div class='input'>
+<span class='co'># Display statistics in columns</span>
+
+<span class='fu'>report.lsmeans</span>(<span class='kw'>lsm</span><span class='kw'>=</span><span class='no'>raw.lsm</span>,<span class='kw'>at</span><span class='kw'>=</span><span class='st'>"TIMEPOINT"</span>,<span class='kw'>transpose</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; LS-Means table of: y_numeric
+#&gt; ############################################
+#&gt; 
+#&gt;    TIMEPOINT GROUP Estimate (SE)        95% CI P-value
+#&gt; 1         D0     A   -0.93(0.20) [-1.32;-0.54]  &lt;0.001
+#&gt; 2         D0     B   -0.67(0.24) [-1.16;-0.19]   0.010
+#&gt; 3         D0     C   -1.19(0.26) [-1.72;-0.66]  &lt;0.001
+#&gt; 4                                                     
+#&gt; 5         D1     A    1.83(0.20)   [1.44;2.22]  &lt;0.001
+#&gt; 6         D1     B    4.17(0.24)   [3.70;4.63]  &lt;0.001
+#&gt; 7         D1     C    4.98(0.26)   [4.46;5.50]  &lt;0.001
+#&gt; 8                                                     
+#&gt; 9         D2     A    1.97(0.20)   [1.58;2.35]  &lt;0.001
+#&gt; 10        D2     B    4.04(0.24)   [3.56;4.52]  &lt;0.001
+#&gt; 11        D2     C    4.90(0.26)   [4.38;5.42]  &lt;0.001
+#&gt; 12                                                    
+#&gt; 13        D3     A    1.78(0.19)   [1.40;2.16]  &lt;0.001
+#&gt; 14        D3     B    3.81(0.24)   [3.33;4.29]  &lt;0.001
+#&gt; 15        D3     C    5.07(0.27)   [4.54;5.61]  &lt;0.001
+#&gt; 16                                                    
+#&gt; 17        D4     A    1.83(0.20)   [1.44;2.22]  &lt;0.001
+#&gt; 18        D4     B    3.80(0.24)   [3.32;4.28]  &lt;0.001
+#&gt; 19        D4     C    5.17(0.27)   [4.64;5.71]  &lt;0.001
+#&gt; 20                                                    
+#&gt; 21        D5     A    2.27(0.19)   [1.89;2.65]  &lt;0.001
+#&gt; 22        D5     B    3.64(0.24)   [3.18;4.11]  &lt;0.001
+#&gt; 23        D5     C    4.43(0.26)   [3.91;4.95]  &lt;0.001
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
 
 <span class='co'># GLM model with specific contrast</span>
 
@@ -284,6 +354,23 @@ It doesn't work for quantitative covariates.</p>
 #&gt; ############################################
 #&gt; </div><div class='input'>
 
+<span class='co'># Display statistics in columns</span>
+
+<span class='fu'>report.lsmeans</span>(<span class='kw'>lsm</span><span class='kw'>=</span><span class='no'>contr</span>,<span class='kw'>at</span><span class='kw'>=</span><span class='st'>"wool"</span>,<span class='kw'>transpose</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; LS-Means table of: breaks
+#&gt; ############################################
+#&gt; 
+#&gt;   wool contrast Estimate (SE)         95% CI P-value
+#&gt; 1    A    L - M   20.56(5.16)   [8.74;32.37]  &lt;0.001
+#&gt; 2    A    H - M    0.56(5.16) [-11.26;12.37]   0.990
+#&gt; 3                                                   
+#&gt; 4    B    L - M   -0.56(5.16) [-12.37;11.26]   0.990
+#&gt; 5    B    H - M  -10.00(5.16)  [-21.81;1.81]   0.110
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
+
 <span class='co'># Cox model</span>
 
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>survival</span>)
@@ -292,8 +379,40 @@ It doesn't work for quantitative covariates.</p>
 
 <span class='no'>fit</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/survival/topics/coxph'>coxph</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/survival/topics/Surv'>Surv</a></span>(<span class='no'>time</span>, <span class='no'>status</span>) ~ <span class='no'>Group</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>time_to_cure</span>)
 <span class='no'>em</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/emmeans/topics/emmeans'>emmeans</a></span>(<span class='no'>fit</span>,~<span class='no'>Group</span>,<span class='kw'>type</span><span class='kw'>=</span><span class='st'>"response"</span>)
-<span class='no'>pairs</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/pairs'>pairs</a></span>(<span class='no'>em</span>,<span class='kw'>adjust</span><span class='kw'>=</span><span class='st'>"none"</span>,<span class='kw'>exclude</span><span class='kw'>=</span><span class='st'>"Sentinel group"</span>)
-<span class='no'>tab.pairs</span><span class='kw'>=</span><span class='fu'>report.lsmeans</span>(<span class='no'>pairs</span>)</div></pre>
+<span class='no'>pairs</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/pairs'>pairs</a></span>(<span class='no'>em</span>,<span class='kw'>adjust</span><span class='kw'>=</span><span class='st'>"none"</span>,<span class='kw'>exclude</span><span class='kw'>=</span><span class='st'>"Untreated"</span>)
+<span class='no'>pairs</span></div><div class='output co'>#&gt;  contrast          ratio    SE df z.ratio p.value
+#&gt;  Group A / Group B 0.657 0.251 NA -1.098  0.2723 
+#&gt;  Group A / Group C 0.487 0.188 NA -1.866  0.0620 
+#&gt;  Group B / Group C 0.740 0.269 NA -0.829  0.4071 
+#&gt; 
+#&gt; Tests are performed on the log scale </div><div class='input'>
+<span class='fu'>report.lsmeans</span>(<span class='no'>pairs</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; LS-Means comparisons of: time
+#&gt; ############################################
+#&gt; 
+#&gt;      Statistics Group A / Group B Group A / Group C Group B / Group C
+#&gt; 1 Estimate (SE)        0.66(0.25)        0.49(0.19)        0.74(0.27)
+#&gt; 2        95% CI       [0.31;1.39]       [0.23;1.04]       [0.36;1.51]
+#&gt; 3       P-value             0.270             0.060             0.410
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
+<span class='co'># Display statistics in columns</span>
+
+<span class='fu'>report.lsmeans</span>(<span class='no'>pairs</span>,<span class='kw'>transpose</span><span class='kw'>=</span><span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; 
+#&gt; ############################################
+#&gt; LS-Means comparisons of: time
+#&gt; ############################################
+#&gt; 
+#&gt;            contrast Estimate (SE)      95% CI P-value
+#&gt; 1 Group A / Group B    0.66(0.25) [0.31;1.39]   0.270
+#&gt; 2 Group A / Group C    0.49(0.19) [0.23;1.04]   0.060
+#&gt; 3 Group B / Group C    0.74(0.27) [0.36;1.51]   0.410
+#&gt; 
+#&gt; ############################################
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

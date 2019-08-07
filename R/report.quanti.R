@@ -2,7 +2,7 @@
 # Author: jfcollin
 ###############################################################################
 
-#' Descriptive "quantitative" statistics (mean, SD, median...) reporting
+#' Descriptive "Quantitative" statistics (mean, SD, median...) reporting
 #' 
 #'
 #' @param data Data.frame object
@@ -14,7 +14,7 @@
 #' @param scientific Logical Indicates if statistics should be displayed in scientific notations or not
 #' @param digits Numeric (used if scientifc=TRUE) to indicate how many digits to use in scientific notation
 #' @param at.row Character Used to space the results (see examples)
-#' @param y.label Character Indicates the label for y parameter
+#' @param y.label Character Indicates the label for y parameter to be displayed in the title of the table
 #' @param subjid Character Indicates the column in which there is the subject Id to add the number of subjects in the column header if x1 and x2 are not null.
 #' @param geomean Logical If yes geometric mean is calculated  instead of arithmetic mean: \code{exp(mean(log(x),na.rm=TRUE))} fpr x>0
 #' @param add.mad Logical If yes the Median Absolute Deviance is added to the median statistics (see function \code{\link{mad}}) 
@@ -22,7 +22,8 @@
 #' @param func.stat Function. If specified then default.stat=FALSE and only the specified statistic is reported
 #' @param func.stat.name Character. Used only if default.stat=FALSE.  Indicates the name of specific statistic you want to report
 #' @param stat.name Character. Indicates the name of the variable that report the statistics Default = "Statistics"
-#' 
+#' @param drop.x1 Character. Indicates one or several levels of the x1 factor that you want to drop in the result
+#' @param drop.x2 Character. Indicates one or several levels of the x2 factor that you want to drop in the result
 #' 
 #' @description
 #' \code{report.quanti} 
@@ -139,7 +140,8 @@
 report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		round=2,
 		total=F,scientific=F,digits=NULL,at.row=NULL,subjid=NULL,geomean=F,
-		add.mad=F,default.stat=T,func.stat=NULL,stat.name="Statistics",func.stat.name="")
+		add.mad=F,default.stat=T,func.stat=NULL,stat.name="Statistics",func.stat.name="",
+		drop.x1=NULL,drop.x2=NULL)
 {
 	
 	stat.name=make.names(stat.name)
@@ -183,6 +185,50 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		if(!is.function(func.stat)) stop("func.stat argument should be a function")
 		
 		default.stat=F
+		
+	}
+	
+	if(!is.null(drop.x2))
+	{
+		if(is.null(x2))
+		{
+		drop.x2=NULL
+		message("drop.x2 argument not used because x2 argument is missing")
+		}
+		
+		if(!is.null(x2))
+		{
+			check=any(!"%in%"(drop.x2,levels(data[,x2])))
+			if(!check)
+			{
+				data=droplevels(data[!"%in%"(data[,x2],drop.x2),])
+			}else
+			{
+				message("drop.x2 argument not used because it contains levels that are not in x2 factor")
+			}
+		}
+		
+	}
+	
+	if(!is.null(drop.x1))
+	{
+		if(is.null(x1))
+		{
+			drop.x1=NULL
+			message("drop.x1 argument not used because x1 argument is missing")
+		}
+		
+		if(!is.null(x1))
+		{
+			check=any(!"%in%"(drop.x1,levels(data[,x1])))
+			if(!check)
+			{
+				data=droplevels(data[!"%in%"(data[,x1],drop.x1),])
+			}else
+			{
+				message("drop.x1 argument not used because it contains levels that are not in x1 factor")
+			}
+		}
 		
 	}
 	
@@ -535,6 +581,14 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	}
 	
 	
+	if(is.null(at.row) & !is.null(x2))
+	{
+		at.row=x2
+		lev=levels(stat2[,stat.name])
+		stat2=spacetable(stat2,at.row=at.row)
+		stat2[,stat.name]=factor(stat2[,stat.name],levels=c(lev,""))
+	}
+	
 	# determination of the number of columns
 	if(is.null(x2) )
 	{
@@ -543,6 +597,19 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	{
 		nbcol=2
 	}
+	
+	
+# To transpose,we should do something like:
+#
+#	if(transpose)
+#	{
+#		m=melt(stat2,measure.vars=colnames(stat2)[-c(1:nbcol)],variable.name=x1)
+#		if(!is.null(at.row)) m=m[m$value!="",]
+#       if(!is.null(x2)) form=as.formula(paste0(x2,"+",x1,"~Statistics"))
+#       if(is.null(x2)) form=as.formula(paste0(x1,"~Statistics"))
+#		stat2=dcast(m,form)
+#       if(!is.null(at.row)) stat2=spacetable(stat2,at.row=at.row)
+#	}
 	
 	
 	title=paste0("Quantitative descriptive statistics of: ",y.label)

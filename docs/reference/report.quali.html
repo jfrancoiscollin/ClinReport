@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Descriptive "qualitative" statistics (frequencies and percentages) reporting — report.quali • ClinReport</title>
+<title>Descriptive "Qualitative" statistics (frequencies and percentages) reporting — report.quali • ClinReport</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Descriptive "qualitative" statistics (frequencies and percentages) reporting — report.quali" />
+<meta property="og:title" content="Descriptive "Qualitative" statistics (frequencies and percentages) reporting — report.quali" />
 
 <meta property="og:description" content="Compute and report frequencies and percentages by levels of y (in rows) and by levels of x1 (in columns)
 and x2 in rows." />
@@ -64,7 +64,7 @@ and x2 in rows." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ClinReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13.1</span>
       </span>
     </div>
 
@@ -98,7 +98,7 @@ and x2 in rows." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Descriptive "qualitative" statistics (frequencies and percentages) reporting</h1>
+    <h1>Descriptive "Qualitative" statistics (frequencies and percentages) reporting</h1>
     
     <div class="hidden name"><code>report.quali.Rd</code></div>
     </div>
@@ -112,7 +112,9 @@ and <code>x2</code> in rows.</p>
 
     <pre class="usage"><span class='fu'>report.quali</span>(<span class='no'>data</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>x1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>x2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.label</span> <span class='kw'>=</span> <span class='no'>y</span>,
   <span class='kw'>x2.label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>y.levels.label</span> <span class='kw'>=</span> <span class='st'>"Levels"</span>, <span class='kw'>total</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='kw'>round</span> <span class='kw'>=</span> <span class='fl'>2</span>,
-  <span class='kw'>at.row</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>percent.col</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>subjid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>remove.zero</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
+  <span class='kw'>at.row</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>percent.col</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>subjid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>remove.zero</span> <span class='kw'>=</span> <span class='no'>F</span>,
+  <span class='kw'>drop.y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>drop.x1</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>drop.x2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>remove.missing</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,7 +125,7 @@ and <code>x2</code> in rows.</p>
     </tr>
     <tr>
       <th>y</th>
-      <td><p>Character indicating a factor in the data</p></td>
+      <td><p>Character indicating a factor in the data (the response)</p></td>
     </tr>
     <tr>
       <th>x1</th>
@@ -135,7 +137,7 @@ and <code>x2</code> in rows.</p>
     </tr>
     <tr>
       <th>y.label</th>
-      <td><p>Character indicating the label for y parameter (only used when x1 and x2 are NULL)</p></td>
+      <td><p>Character indicating the label for y to be displayed in the title of the table</p></td>
     </tr>
     <tr>
       <th>x2.label</th>
@@ -168,6 +170,24 @@ and <code>x2</code> in rows.</p>
     <tr>
       <th>remove.zero</th>
       <td><p>Logical. Remove the levels in the contingency table for which there is no observation.</p></td>
+    </tr>
+    <tr>
+      <th>drop.y</th>
+      <td><p>Character. Indicates one or several levels of the y factor that you want to drop in the result</p></td>
+    </tr>
+    <tr>
+      <th>drop.x1</th>
+      <td><p>Character. Indicates one or several levels of the x1 factor that you want to drop in the result</p></td>
+    </tr>
+    <tr>
+      <th>drop.x2</th>
+      <td><p>Character. Indicates one or several levels of the x2 factor that you want to drop in the result</p></td>
+    </tr>
+    <tr>
+      <th>remove.missing</th>
+      <td><p>Logical. default to TRUE. If TRUE number of missing values are reported and percentages
+take into account the number of missing value in the calculation. If set to FALSE, the missing values regarding the response factor y are ignored
+and percentages are computed on non missing values only.</p></td>
     </tr>
     </table>
     
@@ -266,21 +286,26 @@ performed overall levels of the explicative variables x1.</p>
 #&gt; 1    D0             0     n (row %) 11(37.93%) 11(37.93%)  7(24.14%)
 #&gt; 2    D0             1     n (row %) 18(54.55%)  8(24.24%)  7(21.21%)
 #&gt; 3    D0                Missing n(%)  1(25.00%)  1(25.00%)  2(50.00%)
-#&gt; 4    D1             0     n (row %)  7(25.00%) 13(46.43%)  8(28.57%)
-#&gt; 5    D1             1     n (row %) 21(60.00%)  7(20.00%)  7(20.00%)
-#&gt; 6    D1                Missing n(%)  2(66.67%)      0(0%)  1(33.33%)
-#&gt; 7    D2             0     n (row %) 18(50.00%)  7(19.44%) 11(30.56%)
-#&gt; 8    D2             1     n (row %) 12(40.00%) 13(43.33%)  5(16.67%)
-#&gt; 9    D2                Missing n(%)          0          0          0
-#&gt; 10   D3             0     n (row %) 11(39.29%) 10(35.71%)  7(25.00%)
-#&gt; 11   D3             1     n (row %) 19(50.00%) 10(26.32%)  9(23.68%)
-#&gt; 12   D3                Missing n(%)          0          0          0
-#&gt; 13   D4             0     n (row %) 18(50.00%) 12(33.33%)  6(16.67%)
-#&gt; 14   D4             1     n (row %) 12(42.86%)  8(28.57%)  8(28.57%)
-#&gt; 15   D4                Missing n(%)      0(0%)      0(0%) 2(100.00%)
-#&gt; 16   D5             0     n (row %) 14(48.28%)  7(24.14%)  8(27.59%)
-#&gt; 17   D5             1     n (row %) 15(41.67%) 13(36.11%)  8(22.22%)
-#&gt; 18   D5                Missing n(%) 1(100.00%)      0(0%)      0(0%)
+#&gt; 4                                                                   
+#&gt; 5    D1             0     n (row %)  7(25.00%) 13(46.43%)  8(28.57%)
+#&gt; 6    D1             1     n (row %) 21(60.00%)  7(20.00%)  7(20.00%)
+#&gt; 7    D1                Missing n(%)  2(66.67%)      0(0%)  1(33.33%)
+#&gt; 8                                                                   
+#&gt; 9    D2             0     n (row %) 18(50.00%)  7(19.44%) 11(30.56%)
+#&gt; 10   D2             1     n (row %) 12(40.00%) 13(43.33%)  5(16.67%)
+#&gt; 11   D2                Missing n(%)          0          0          0
+#&gt; 12                                                                  
+#&gt; 13   D3             0     n (row %) 11(39.29%) 10(35.71%)  7(25.00%)
+#&gt; 14   D3             1     n (row %) 19(50.00%) 10(26.32%)  9(23.68%)
+#&gt; 15   D3                Missing n(%)          0          0          0
+#&gt; 16                                                                  
+#&gt; 17   D4             0     n (row %) 18(50.00%) 12(33.33%)  6(16.67%)
+#&gt; 18   D4             1     n (row %) 12(42.86%)  8(28.57%)  8(28.57%)
+#&gt; 19   D4                Missing n(%)      0(0%)      0(0%) 2(100.00%)
+#&gt; 20                                                                  
+#&gt; 21   D5             0     n (row %) 14(48.28%)  7(24.14%)  8(27.59%)
+#&gt; 22   D5             1     n (row %) 15(41.67%) 13(36.11%)  8(22.22%)
+#&gt; 23   D5                Missing n(%) 1(100.00%)      0(0%)      0(0%)
 #&gt; 
 #&gt; ############################################
 #&gt; </div><div class='input'>
