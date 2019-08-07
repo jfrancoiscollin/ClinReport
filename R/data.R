@@ -1,8 +1,7 @@
 #' datafake
 #'
 #' Fictive data created only for the purpose of testing the package and showing examples.
-#'
-#' 
+
 #' @format A data frame
 #' \describe{
 #'   \item{y_numeric}{Fake numerical response}
@@ -16,6 +15,8 @@
 #' }
 #' @rdname datafake
 "datafake"
+
+
 
 
 #' time_to_cure
