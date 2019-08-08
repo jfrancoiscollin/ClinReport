@@ -1,5 +1,5 @@
 ---
-title: "ClinReport Vignette 1: Clinical Standards for Reporting Statistics"
+title: "ClinReport Vignette 1: Standards for Reporting Statistics"
 author: "Jean-Francois COLLIN"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -29,9 +29,9 @@ knitr::opts_chunk$set(
 *	Each table have a title (or can be titled at least)
 *	The number of digits are the same in all cells of the table
 *	Police Headers are bolded
-*	Use the *Times New Roman* police by default (can be changed if necessary)
+*	The *Times New Roman* police is used by default (can be changed if necessary)
 
-Those are usually used for any scientific publications, including the reporting of epidemiological or clinical statistics. 
+Those are standards that are frequently used in scientific publications, including the reporting of epidemiological or clinical statistics. 
 
 For quantitative statistics:
 
