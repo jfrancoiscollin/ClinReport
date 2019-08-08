@@ -9,6 +9,7 @@
 #'
 #' @param data Data.frame object
 #' @param x Character  
+#' @param substitute Character. The name of the data frame
 #' 
 #' @details
 #' Used internally by report.quanti and report.quali
@@ -21,9 +22,10 @@ check.x=function(data,x,substitute="data")
 	if(!is.factor(data[,x]))
 	{		
 		message(paste0(as.character(substitute),"[,'",x,"']","has been used as a factor"))
+		data[,x]=as.factor(data[,x]) # just for the condition after
 	}
 	
-	if(any(levels(data[,x])==""))
+	if(any(levels(data[,x])=="",na.rm=T))
 	{
 
 			stop(paste0("One on the levels of ",

@@ -4,7 +4,7 @@
 \alias{check.x}
 \title{Check if the variable argument supplied in report.quanti and report.quali is ok}
 \usage{
-check.x(data, x)
+check.x(data, x, substitute = "data")
 }
 \arguments{
 \item{data}{Data.frame object}
