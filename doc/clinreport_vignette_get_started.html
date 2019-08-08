@@ -239,7 +239,7 @@ library(car)
 
 <pre><code class="r"># We will use fake data
 data(datafake)
-print(head(data))
+print(head(datafake))
 #&gt;    y_numeric y_logistic y_poisson   baseline   VAR GROUP TIMEPOINT SUBJID
 #&gt; 1 -0.4203490          1         5 -0.4203490 Cat 1     A        D0 Subj 1
 #&gt; 2 -0.1570941          1         5 -0.1570941 Cat 2     A        D0 Subj 1
@@ -254,7 +254,7 @@ For example a treatment group and a time variable corresponding to the visits of
 
 <p>For that we use the <code>report.quanti()</code> function:</p>
 
-<pre><code class="r">tab1=report.quanti(data=data,y=&quot;y_numeric&quot;,
+<pre><code class="r">tab1=report.quanti(data=datafake,y=&quot;y_numeric&quot;,
         x1=&quot;GROUP&quot;,x2=&quot;TIMEPOINT&quot;,at.row=&quot;TIMEPOINT&quot;,
         subjid=&quot;SUBJID&quot;)
 
@@ -370,7 +370,7 @@ print(doc, target =file)
 
 <p>An example of qualitative statistics with one explicative variable</p>
 
-<pre><code class="r">tab=report.quali(data=data,y=&quot;y_logistic&quot;,
+<pre><code class="r">tab=report.quali(data=datafake,y=&quot;y_logistic&quot;,
         x1=&quot;VAR&quot;,total=T,subjid=&quot;SUBJID&quot;)
 
 report.doc(tab,title=&quot;Qualitative table with two variables&quot;,
@@ -381,7 +381,7 @@ colspan.value=&quot;A variable&quot;)
 
 <p>An example of qualitative statistics with two explicative variables</p>
 
-<pre><code class="r">tab=report.quali(data=data,y=&quot;y_logistic&quot;,
+<pre><code class="r">tab=report.quali(data=datafake,y=&quot;y_logistic&quot;,
         x1=&quot;GROUP&quot;,x2=&quot;TIMEPOINT&quot;,at.row=&quot;TIMEPOINT&quot;,
         total=T,subjid=&quot;SUBJID&quot;)
 
@@ -395,7 +395,7 @@ colspan.value=&quot;Treatment group&quot;)
 
 <p>An example of quantitative statistics with one explicative variable</p>
 
-<pre><code class="r">tab=report.quanti(data=data,y=&quot;y_numeric&quot;,
+<pre><code class="r">tab=report.quanti(data=datafake,y=&quot;y_numeric&quot;,
         x1=&quot;VAR&quot;,total=T,subjid=&quot;SUBJID&quot;)
 
 report.doc(tab,title=&quot;Quantitative table with one explicative variable&quot;,
@@ -406,7 +406,7 @@ colspan.value=&quot;A variable&quot;)
 
 <p>An example of quantitative statistics with two explicative variables</p>
 
-<pre><code class="r">tab=report.quanti(data=data,y=&quot;y_numeric&quot;,
+<pre><code class="r">tab=report.quanti(data=datafake,y=&quot;y_numeric&quot;,
         x1=&quot;GROUP&quot;,x2=&quot;TIMEPOINT&quot;,at.row=&quot;TIMEPOINT&quot;,
         total=T,subjid=&quot;SUBJID&quot;)
 
@@ -423,10 +423,10 @@ colspan.value=&quot;Treatment group&quot;)
 <p>But it&#39;s only possible for 1 explicative variable, 
 and it should be the same variable for both response:</p>
 
-<pre><code class="r">tab1=report.quanti(data=data,y=&quot;y_numeric&quot;,
+<pre><code class="r">tab1=report.quanti(data=datafake,y=&quot;y_numeric&quot;,
         x1=&quot;GROUP&quot;,subjid=&quot;SUBJID&quot;,y.label=&quot;Y numeric&quot;)
 
-tab2=report.quali(data=data,y=&quot;y_logistic&quot;,
+tab2=report.quali(data=datafake,y=&quot;y_logistic&quot;,
         x1=&quot;GROUP&quot;,subjid=&quot;SUBJID&quot;,y.label=&quot;Y logistic&quot;)
 
 tab3=regroup(tab1,tab2,rbind.label=&quot;The label of your choice&quot;)
@@ -448,7 +448,7 @@ to the function <code>xtable_to_flextable()</code>. The function
 and the header with the title.</p>
 
 <pre><code class="r"># Removing baseline data for the model
-data.mod=droplevels(data[data$TIMEPOINT!=&quot;D0&quot;,])
+data.mod=droplevels(datafake[datafake$TIMEPOINT!=&quot;D0&quot;,])
 
 mod=lme(y_numeric~baseline+GROUP+TIMEPOINT+GROUP*TIMEPOINT,
 random=~1|SUBJID,data=data.mod,na.action=na.omit)

@@ -252,7 +252,7 @@ library(car)
 
 <pre><code class="r"># We will use fake data
 data(datafake)
-print(head(data))
+print(head(datafake))
 #&gt;    y_numeric y_logistic y_poisson   baseline   VAR GROUP TIMEPOINT SUBJID
 #&gt; 1 -0.4203490          1         5 -0.4203490 Cat 1     A        D0 Subj 1
 #&gt; 2 -0.1570941          1         5 -0.1570941 Cat 2     A        D0 Subj 1
@@ -267,10 +267,10 @@ print(head(data))
 <p>You can mix qualitative and quantitative outputs. It&#39;s possible only if there is only 1 explicative variable, 
 and it should be the same variable for both response:</p>
 
-<pre><code class="r">tab1=report.quanti(data=data,y=&quot;y_numeric&quot;,
+<pre><code class="r">tab1=report.quanti(data=datafake,y=&quot;y_numeric&quot;,
         x1=&quot;GROUP&quot;,subjid=&quot;SUBJID&quot;,y.label=&quot;Y numeric&quot;)
 
-tab2=report.quali(data=data,y=&quot;y_logistic&quot;,
+tab2=report.quali(data=datafake,y=&quot;y_logistic&quot;,
         x1=&quot;GROUP&quot;,subjid=&quot;SUBJID&quot;,y.label=&quot;Y logistic&quot;)
 
 tab3=regroup(tab1,tab2,rbind.label=&quot;The label of your choice&quot;)
@@ -289,7 +289,7 @@ and use the <code>func.stat</code> argument</p>
 
 <pre><code class="r">es=function(x) mean(x,na.rm=T)/sd(x,na.rm=T) 
 
-tab=report.quanti(data=data,y=&quot;y_numeric&quot;,x1=&quot;GROUP&quot;,
+tab=report.quanti(data=datafake,y=&quot;y_numeric&quot;,x1=&quot;GROUP&quot;,
 total=TRUE,subjid=&quot;SUBJID&quot;,
 func.stat=es,
 func.stat.name=&quot;Effect size&quot;)
@@ -305,7 +305,7 @@ colspan.value=&quot;Treatment group&quot;)
 <p>If you want to display the row percentages instead of column percentages in
 <code>report.quali()</code> function, you just have to set the argument <code>percent.col</code> to <code>FALSE</code>: </p>
 
-<pre><code class="r">tab=report.quali(data=data,y=&quot;y_logistic&quot;,x1=&quot;GROUP&quot;,
+<pre><code class="r">tab=report.quali(data=datafake,y=&quot;y_logistic&quot;,x1=&quot;GROUP&quot;,
 total=TRUE,subjid=&quot;SUBJID&quot;,percent.col=FALSE)
 
 report.doc(tab,title=&quot;Example of row percentage reporting&quot;,
@@ -326,7 +326,7 @@ to choose where you want to add this statistic:</p>
 
 <pre><code class="r"># The default statistics are given here:
 
-tab1=report.quanti(data=data,y=&quot;y_numeric&quot;,x1=&quot;GROUP&quot;,total=TRUE,subjid=&quot;SUBJID&quot;)
+tab1=report.quanti(data=datafake,y=&quot;y_numeric&quot;,x1=&quot;GROUP&quot;,total=TRUE,subjid=&quot;SUBJID&quot;)
 
  # Define the function corresponding to the coefficient of variation for example
 
@@ -334,7 +334,7 @@ cv=function(y) sd(y,na.rm=TRUE)/mean(y,na.rm=TRUE)
 
  # We use the add.stat function to add CV at the second row:
 
-tab1.cv=add.stat(tab1,data,func.stat=cv,func.stat.name=&quot;Coef. Var&quot;,
+tab1.cv=add.stat(tab1,datafake,func.stat=cv,func.stat.name=&quot;Coef. Var&quot;,
  pos=2)
 
 report.doc(tab1.cv,title=&quot;Example of adding a coefficient of variation&quot;)
@@ -345,11 +345,11 @@ report.doc(tab1.cv,title=&quot;Example of adding a coefficient of variation&quot
 <pre><code class="r">
  # Same with 2 explicative variables
 
-tab=report.quanti(data=data,y=&quot;y_numeric&quot;,x1=&quot;GROUP&quot;,
+tab=report.quanti(data=datafake,y=&quot;y_numeric&quot;,x1=&quot;GROUP&quot;,
  x2=&quot;TIMEPOINT&quot;,total=TRUE,subjid=&quot;SUBJID&quot;,
         at.row=&quot;TIMEPOINT&quot;)
 
- tab=add.stat(tab,data,func.stat=cv,func.stat.name=&quot;Coef. Var&quot;,
+ tab=add.stat(tab,datafake,func.stat=cv,func.stat.name=&quot;Coef. Var&quot;,
  pos=2)
 
 
@@ -363,7 +363,7 @@ tab=report.quanti(data=data,y=&quot;y_numeric&quot;,x1=&quot;GROUP&quot;,
  }
 
 
- tab=add.stat(tab,data,func.stat=mode,func.stat.name=&quot;Mode&quot;,pos=5)
+ tab=add.stat(tab,datafake,func.stat=mode,func.stat.name=&quot;Mode&quot;,pos=5)
 
  report.doc(tab,title=&quot;Example of adding 2 more statistics in an existing table&quot;,
  colspan.value=&quot;Treatment Group&quot;)
