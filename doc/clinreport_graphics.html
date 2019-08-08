@@ -223,7 +223,7 @@ library(car)
 
 <pre><code class="r"># We will use fake data
 data(datafake)
-print(head(data))
+print(head(datafake))
 #&gt;    y_numeric y_logistic y_poisson   baseline   VAR GROUP TIMEPOINT SUBJID
 #&gt; 1 -0.4203490          1         5 -0.4203490 Cat 1     A        D0 Subj 1
 #&gt; 2 -0.1570941          1         5 -0.1570941 Cat 2     A        D0 Subj 1
@@ -243,7 +243,7 @@ is a barplot of the mean of the response value.</p>
 
 <pre><code class="r"># Only one numerical response
 
-tab1=report.quanti(data=data,y=&quot;y_numeric&quot;)
+tab1=report.quanti(data=datafake,y=&quot;y_numeric&quot;)
 plot(tab1,title=&quot;Mean (+/-SD) of y&quot;,add.sd=T,ylab=&quot;Mean Response value&quot;,xlab=&quot;&quot;)
 </code></pre>
 
@@ -256,7 +256,7 @@ barplot per treatment group.</p>
 
 <pre><code class="r">#  one numerical response ; one explicative variable
 
-tab2=report.quanti(data=data,y=&quot;y_numeric&quot;,x1=&quot;GROUP&quot;)
+tab2=report.quanti(data=datafake,y=&quot;y_numeric&quot;,x1=&quot;GROUP&quot;)
 plot(tab2,title=&quot;Mean (+/-SD) of y per treatment group&quot;,add.sd=T,ylab=&quot;Mean of y&quot;,xlab=&quot;&quot;,
 ylim=c(-1,8))
 </code></pre>
@@ -270,7 +270,7 @@ across its different levels.</p>
 
 <pre><code class="r">#  one numerical response ; two explicative variable
 
-tab3=report.quanti(data=data,y=&quot;y_numeric&quot;,x1=&quot;GROUP&quot;,x2=&quot;TIMEPOINT&quot;)
+tab3=report.quanti(data=datafake,y=&quot;y_numeric&quot;,x1=&quot;GROUP&quot;,x2=&quot;TIMEPOINT&quot;)
 plot(tab3,title=&quot;Mean (+/-SD) of y per treatment group&quot;,add.sd=T,ylab=&quot;Mean of y&quot;,xlab=&quot;&quot;,
 ylim=c(-1,8))
 #&gt; Warning: Removed 1 rows containing missing values (geom_point).
@@ -288,7 +288,7 @@ ylim=c(-1,8))
 
 <pre><code class="r"># Only one categorical response
 
-tab1=report.quali(data=data,y=&quot;y_logistic&quot;)
+tab1=report.quali(data=datafake,y=&quot;y_logistic&quot;)
 plot(tab1,title=&quot;Distribution of y (%)&quot;,ylab=&quot;Percentages&quot;,xlab=&quot;&quot;,ylim=c(0,100))
 </code></pre>
 
@@ -298,7 +298,7 @@ plot(tab1,title=&quot;Distribution of y (%)&quot;,ylab=&quot;Percentages&quot;,x
 
 <pre><code class="r"># one categorical response ; one categorical explicative variable
 
-tab1=report.quali(data=data,y=&quot;y_logistic&quot;,x1=&quot;GROUP&quot;)
+tab1=report.quali(data=datafake,y=&quot;y_logistic&quot;,x1=&quot;GROUP&quot;)
 plot(tab1,title=&quot;Distribution of y per treatment group (%)&quot;,
 ylab=&quot;Percentages&quot;,xlab=&quot;&quot;,ylim=c(0,100),legend.label=&quot;Levels of y&quot;)
 </code></pre>
@@ -309,7 +309,7 @@ ylab=&quot;Percentages&quot;,xlab=&quot;&quot;,ylim=c(0,100),legend.label=&quot;
 
 <pre><code class="r"># one categorical response ; two categorical explicative variables
 
-tab1=report.quali(data=data,y=&quot;y_logistic&quot;,x1=&quot;GROUP&quot;,x2=&quot;VAR&quot;)
+tab1=report.quali(data=datafake,y=&quot;y_logistic&quot;,x1=&quot;GROUP&quot;,x2=&quot;VAR&quot;)
 plot(tab1,title=&quot;Distribution of y per treatment group\nand by level of VAR (%)&quot;,
 ylab=&quot;Percentages&quot;,xlab=&quot;&quot;,ylim=c(0,100),legend.label=&quot;Levels of y&quot;)
 </code></pre>
@@ -329,7 +329,7 @@ of quantitative statistics.</p>
 
 
 mod=lme(y_numeric~GROUP,
-random=~1|SUBJID,data=data,na.action=na.omit)
+random=~1|SUBJID,data=datafake,na.action=na.omit)
 
 test=emmeans(mod,~GROUP)
 
@@ -347,11 +347,11 @@ ylab=&quot;LS-Means&quot;,xlab=&quot;&quot;,add.ci=TRUE)
 # Only one categorical response
 
 mod=lme(y_numeric~baseline+GROUP+TIMEPOINT+GROUP*TIMEPOINT,
-random=~1|SUBJID,data=data,na.action=na.omit)
+random=~1|SUBJID,data=datafake,na.action=na.omit)
 
 test=emmeans(mod,~GROUP|TIMEPOINT)
 
-tab.mod=report.lsmeans(lsm=test,at.row=&quot;TIMEPOINT&quot;)
+tab.mod=report.lsmeans(lsm=test)
 
 plot(tab.mod,title=&quot;LS-means evolution of y per treatment group\nas a function of time&quot;,
 ylab=&quot;LS-Means&quot;,xlab=&quot;&quot;,add.ci=TRUE)

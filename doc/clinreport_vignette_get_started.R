@@ -17,10 +17,10 @@ library(car)
 ## ---- include=TRUE-------------------------------------------------------
 # We will use fake data
 data(datafake)
-print(head(data))
+print(head(datafake))
 
 ## ---- include=TRUE-------------------------------------------------------
-tab1=report.quanti(data=data,y="y_numeric",
+tab1=report.quanti(data=datafake,y="y_numeric",
 		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",
 		subjid="SUBJID")
 
@@ -51,7 +51,7 @@ print(doc, target =file)
 #shell.exec(file)
 
 ## ------------------------------------------------------------------------
-tab=report.quali(data=data,y="y_logistic",
+tab=report.quali(data=datafake,y="y_logistic",
 		x1="VAR",total=T,subjid="SUBJID")
 		
 report.doc(tab,title="Qualitative table with two variables",
@@ -59,7 +59,7 @@ colspan.value="A variable")
 
 
 ## ------------------------------------------------------------------------
-tab=report.quali(data=data,y="y_logistic",
+tab=report.quali(data=datafake,y="y_logistic",
 		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",
 		total=T,subjid="SUBJID")
 		
@@ -68,7 +68,7 @@ colspan.value="Treatment group")
 
 
 ## ------------------------------------------------------------------------
-tab=report.quanti(data=data,y="y_numeric",
+tab=report.quanti(data=datafake,y="y_numeric",
 		x1="VAR",total=T,subjid="SUBJID")
 		
 report.doc(tab,title="Quantitative table with one explicative variable",
@@ -76,7 +76,7 @@ colspan.value="A variable")
 
 
 ## ------------------------------------------------------------------------
-tab=report.quanti(data=data,y="y_numeric",
+tab=report.quanti(data=datafake,y="y_numeric",
 		x1="GROUP",x2="TIMEPOINT",at.row="TIMEPOINT",
 		total=T,subjid="SUBJID")
 		
@@ -84,10 +84,10 @@ report.doc(tab,title="Quantitative table with two explicative variables",
 colspan.value="Treatment group")	
 
 ## ------------------------------------------------------------------------
-tab1=report.quanti(data=data,y="y_numeric",
+tab1=report.quanti(data=datafake,y="y_numeric",
 		x1="GROUP",subjid="SUBJID",y.label="Y numeric")
 
-tab2=report.quali(data=data,y="y_logistic",
+tab2=report.quali(data=datafake,y="y_logistic",
 		x1="GROUP",subjid="SUBJID",y.label="Y logistic")
 
 tab3=regroup(tab1,tab2,rbind.label="The label of your choice")
@@ -98,7 +98,7 @@ colspan.value="Treatment group")
 
 ## ------------------------------------------------------------------------
 # Removing baseline data for the model
-data.mod=droplevels(data[data$TIMEPOINT!="D0",])
+data.mod=droplevels(datafake[datafake$TIMEPOINT!="D0",])
 
 mod=lme(y_numeric~baseline+GROUP+TIMEPOINT+GROUP*TIMEPOINT,
 random=~1|SUBJID,data=data.mod,na.action=na.omit)
