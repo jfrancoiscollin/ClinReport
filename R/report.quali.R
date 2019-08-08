@@ -110,16 +110,14 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 #	at.row=NULL
 #	percent.col=T
 #	subjid=NULL
-#TODO: rajouter l'option drop.x1 et drop.x2 drop.missing
-# pour degager un ou plusieurs niveaux du facteur x1, x2 et/ou missing
-	
+
 	#checks on y and data arguments
 	
 	if(is.null(y)) stop("y argument cannot be NULL")
 	if(class(data)!="data.frame") stop("data argument should be a data.frame")
 	if(class(y)!="character") stop("y argument should be a character")
 	
-	y=check.x(data,y)
+	y=check.x(data,y,substitute=substitute(data))
 	
 	if(!is.null(x2))
 	{
@@ -241,8 +239,8 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	
 # check
 	
-	x1=check.x(data,x1)
-	x2=check.x(data,x2)
+	x1=check.x(data,x1,substitute=substitute(data))
+	x2=check.x(data,x2,substitute=substitute(data))
 	
 	
 	# check
