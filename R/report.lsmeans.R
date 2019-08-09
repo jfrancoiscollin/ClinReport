@@ -26,6 +26,7 @@
 #' @description
 #' Creates a desc object for "LS Means" statistics reporting. 
 #' 
+#' For more examples see the website: \href{https://jfrancoiscollin.github.io/ClinReport}{ClinReport website}
 #' 
 #' @details
 #' You can produce formatted Least Square Means table for up to 3 factors.

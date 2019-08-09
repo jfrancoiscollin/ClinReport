@@ -28,6 +28,7 @@
 #' Compute and report frequencies and percentages by levels of \code{y} (in rows) and by levels of \code{x1} (in columns)
 #' and \code{x2} in rows.
 #' 
+#' For more examples see the website: \href{https://jfrancoiscollin.github.io/ClinReport}{ClinReport website}
 #' 
 #' @details
 #' This function computes and reports qualitative statistics by level of \code{y} and by level of \code{x1} (if not null)
@@ -438,7 +439,8 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	freq=ClinReport::desc(output=freq,total=total,nbcol=nbcol,y=y,x1=x1,x2=x2,
 			at.row=at.row,
 			subjid=subjid,type.desc="quali",type=NULL,y.label=y.label,
-			raw.output=raw.freq,title=title)
+			raw.output=raw.freq,title=title	,y.levels.label=y.levels.label
+	)
 	
 	
 	return(freq)

@@ -53,6 +53,8 @@ This function enables to export the table created with \code{\link{report.quali}
 to a Microsoft Word or a R markdown document. 
 
 It's also possible to use report.doc to have a preview of the table in HTML format if the \code{doc} argument is NULL.
+
+For more examples see the website: \href{https://jfrancoiscollin.github.io/ClinReport}{ClinReport website}
 }
 \details{
 This function creates a flextable object from a desc object.

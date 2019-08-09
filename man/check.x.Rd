@@ -10,6 +10,8 @@ check.x(data, x, substitute = "data")
 \item{data}{Data.frame object}
 
 \item{x}{Character}
+
+\item{substitute}{Character. The name of the data frame}
 }
 \description{
 Check if the variable argument supplied in report.quanti and report.quali is ok
