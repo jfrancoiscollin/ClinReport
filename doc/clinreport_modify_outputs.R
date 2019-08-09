@@ -8,11 +8,7 @@ knitr::opts_chunk$set(
 library(ClinReport)
 library(officer)
 library(flextable)
-library(dplyr)
-library(reshape2)
-library(nlme)
 library(emmeans)
-library(car)
 
 ## ---- include=TRUE-------------------------------------------------------
 # We will use fake data
@@ -41,13 +37,6 @@ func.stat=es,
 func.stat.name="Effect size")
 
 report.doc(tab,title="Example of a specific statistic reporting",
-colspan.value="Treatment group")
-
-## ------------------------------------------------------------------------
-tab=report.quali(data=datafake,y="y_logistic",x1="GROUP",
-total=TRUE,subjid="SUBJID",percent.col=FALSE)
-
-report.doc(tab,title="Example of row percentage reporting",
 colspan.value="Treatment group")
 
 ## ------------------------------------------------------------------------
@@ -91,4 +80,34 @@ tab=report.quanti(data=datafake,y="y_numeric",x1="GROUP",
  report.doc(tab,title="Example of adding 2 more statistics in an existing table",
  colspan.value="Treatment Group")
 
+
+## ------------------------------------------------------------------------
+tab=report.quali(data=datafake,y="y_logistic",x1="GROUP",
+total=TRUE,subjid="SUBJID",percent.col=FALSE)
+
+report.doc(tab,title="Example of row percentage reporting",
+colspan.value="Treatment group")
+
+## ------------------------------------------------------------------------
+tab=report.quali(data=datafake,y="y_logistic",x1="GROUP",
+subjid="SUBJID",drop.x1=c("B","C"))
+
+report.doc(tab,title="Example of row percentage reporting",
+colspan.value="Treatment group")
+
+## ------------------------------------------------------------------------
+tab=report.quali(data=datafake,y="y_logistic",x1="GROUP",
+remove.missing=TRUE)
+
+report.doc(tab,title="Example of droping missing values",
+colspan.value="Treatment group")
+
+## ------------------------------------------------------------------------
+mod=lm(y_numeric~GROUP,data=datafake)
+pairs=pairs(emmeans(mod,~GROUP))
+
+tab=report.lsmeans(pairs,transpose=TRUE)
+
+report.doc(tab,title="Example of transposing LS-Means in column",
+colspan.value="Treatment group")
 

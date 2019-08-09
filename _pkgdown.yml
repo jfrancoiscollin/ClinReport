@@ -26,18 +26,19 @@ articles:
 reference:
 - title: "Create the main statistical outputs"
   desc: >
-    Functions used to create the main the statistical outputs.   
+    Functions used to create the main statistical outputs.   
   contents:
   - '`report.lsmeans`'
   - '`report.quali`'
   - '`report.quanti`'
-- title: "Modify the outputs"
+- title: "Modify the tables"
   desc: >
     Functions used to modify the statistical outputs.   
   contents:
   - '`add.stat`'
   - '`regroup`'
   - '`split.desc`'
+  - '`transpose`'
 - title: "Graphic outputs"
   desc: >
     Function used to create the corresponding graphics of the statistical outputs.   

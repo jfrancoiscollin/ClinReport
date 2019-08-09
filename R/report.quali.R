@@ -28,6 +28,7 @@
 #' Compute and report frequencies and percentages by levels of \code{y} (in rows) and by levels of \code{x1} (in columns)
 #' and \code{x2} in rows.
 #' 
+#' For more examples see the website: \href{https://jfrancoiscollin.github.io/ClinReport}{ClinReport website}
 #' 
 #' @details
 #' This function computes and reports qualitative statistics by level of \code{y} and by level of \code{x1} (if not null)
@@ -110,16 +111,14 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 #	at.row=NULL
 #	percent.col=T
 #	subjid=NULL
-#TODO: rajouter l'option drop.x1 et drop.x2 drop.missing
-# pour degager un ou plusieurs niveaux du facteur x1, x2 et/ou missing
-	
+
 	#checks on y and data arguments
 	
 	if(is.null(y)) stop("y argument cannot be NULL")
 	if(class(data)!="data.frame") stop("data argument should be a data.frame")
 	if(class(y)!="character") stop("y argument should be a character")
 	
-	y=check.x(data,y)
+	y=check.x(data,y,substitute=substitute(data))
 	
 	if(!is.null(x2))
 	{
@@ -241,8 +240,8 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	
 # check
 	
-	x1=check.x(data,x1)
-	x2=check.x(data,x2)
+	x1=check.x(data,x1,substitute=substitute(data))
+	x2=check.x(data,x2,substitute=substitute(data))
 	
 	
 	# check
@@ -440,7 +439,8 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	freq=ClinReport::desc(output=freq,total=total,nbcol=nbcol,y=y,x1=x1,x2=x2,
 			at.row=at.row,
 			subjid=subjid,type.desc="quali",type=NULL,y.label=y.label,
-			raw.output=raw.freq,title=title)
+			raw.output=raw.freq,title=title	,y.levels.label=y.levels.label
+	)
 	
 	
 	return(freq)

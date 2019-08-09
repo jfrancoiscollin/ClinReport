@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">ClinReport</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.13.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.1.14</span>
       </span>
     </div>
 
@@ -77,94 +77,96 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install the released version of ClinReport from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"ClinReport"</span>)</span></code></pre></div>
+<p>You can install the developpment version from gitHub with:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(devtools) ;  <span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"jfrancoiscollin/ClinReport"</span>)</span></code></pre></div>
 </div>
 <div id="basic-example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#basic-example" class="anchor"></a>Basic example</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ClinReport)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(officer)</span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(flextable)</span>
-<span id="cb2-5"><a href="#cb2-5"></a></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># Load data</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(datafake)</span>
-<span id="cb2-9"><a href="#cb2-9"></a></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co"># Descriptive statistics (Numerical response and 2 explicative variables):</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a></span>
-<span id="cb2-12"><a href="#cb2-12"></a>tab1=<span class="kw"><a href="reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_numeric"</span>,</span>
-<span id="cb2-13"><a href="#cb2-13"></a>        <span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">x2=</span><span class="st">"TIMEPOINT"</span>,<span class="dt">at.row=</span><span class="st">"TIMEPOINT"</span>,<span class="dt">subjid=</span><span class="st">"SUBJID"</span>)</span>
-<span id="cb2-14"><a href="#cb2-14"></a>tab1</span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt; </span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt; ############################################</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; Quantitative descriptive statistics of: y_numeric</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co">#&gt; ############################################</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="co">#&gt; </span></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="co">#&gt;    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="co">#&gt; 1         D0          N            30            20            16</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a><span class="co">#&gt; 2         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="co">#&gt; 3         D0     Median         -0.82         -0.69         -1.26</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="co">#&gt; 4         D0    [Q1;Q3] [-1.59;-0.16] [-1.39;-0.06] [-1.62;-0.83]</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a><span class="co">#&gt; 5         D0  [Min;Max]  [-2.34;0.36]  [-2.44;2.10]  [-2.99;0.66]</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="co">#&gt; 6         D0    Missing             1             1             0</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="co">#&gt; 7                                                                </span></span>
-<span id="cb2-28"><a href="#cb2-28"></a><span class="co">#&gt; 8         D1          N            30            20            16</span></span>
-<span id="cb2-29"><a href="#cb2-29"></a><span class="co">#&gt; 9         D1  Mean (SD)    1.83(1.04)    4.17(1.28)    4.98(0.69)</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a><span class="co">#&gt; 10        D1     Median          1.78          4.19          5.08</span></span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="co">#&gt; 11        D1    [Q1;Q3] [ 0.94; 2.54] [ 3.23; 4.92] [ 4.58; 5.46]</span></span>
-<span id="cb2-32"><a href="#cb2-32"></a><span class="co">#&gt; 12        D1  [Min;Max]  [ 0.11;3.88]  [ 1.48;6.19]  [ 3.80;6.23]</span></span>
-<span id="cb2-33"><a href="#cb2-33"></a><span class="co">#&gt; 13        D1    Missing             1             0             0</span></span>
-<span id="cb2-34"><a href="#cb2-34"></a><span class="co">#&gt; 14                                                               </span></span>
-<span id="cb2-35"><a href="#cb2-35"></a><span class="co">#&gt; 15        D2          N            30            20            16</span></span>
-<span id="cb2-36"><a href="#cb2-36"></a><span class="co">#&gt; 16        D2  Mean (SD)    1.97(1.17)    4.04(0.89)    4.90(1.36)</span></span>
-<span id="cb2-37"><a href="#cb2-37"></a><span class="co">#&gt; 17        D2     Median          1.66          4.19          5.06</span></span>
-<span id="cb2-38"><a href="#cb2-38"></a><span class="co">#&gt; 18        D2    [Q1;Q3] [ 1.23; 2.86] [ 3.62; 4.36] [ 4.34; 5.20]</span></span>
-<span id="cb2-39"><a href="#cb2-39"></a><span class="co">#&gt; 19        D2  [Min;Max]  [-0.18;4.36]  [ 2.03;5.63]  [ 2.39;7.96]</span></span>
-<span id="cb2-40"><a href="#cb2-40"></a><span class="co">#&gt; 20        D2    Missing             1             1             0</span></span>
-<span id="cb2-41"><a href="#cb2-41"></a><span class="co">#&gt; 21                                                               </span></span>
-<span id="cb2-42"><a href="#cb2-42"></a><span class="co">#&gt; 22        D3          N            30            20            16</span></span>
-<span id="cb2-43"><a href="#cb2-43"></a><span class="co">#&gt; 23        D3  Mean (SD)    1.78(1.17)    3.81(0.94)    5.07(1.12)</span></span>
-<span id="cb2-44"><a href="#cb2-44"></a><span class="co">#&gt; 24        D3     Median          1.78          3.63          5.22</span></span>
-<span id="cb2-45"><a href="#cb2-45"></a><span class="co">#&gt; 25        D3    [Q1;Q3] [ 0.93; 2.42] [ 3.13; 4.44] [ 4.11; 5.66]</span></span>
-<span id="cb2-46"><a href="#cb2-46"></a><span class="co">#&gt; 26        D3  [Min;Max]  [-0.16;3.90]  [ 2.46;6.01]  [ 3.16;7.37]</span></span>
-<span id="cb2-47"><a href="#cb2-47"></a><span class="co">#&gt; 27        D3    Missing             0             1             1</span></span>
-<span id="cb2-48"><a href="#cb2-48"></a><span class="co">#&gt; 28                                                               </span></span>
-<span id="cb2-49"><a href="#cb2-49"></a><span class="co">#&gt; 29        D4          N            30            20            16</span></span>
-<span id="cb2-50"><a href="#cb2-50"></a><span class="co">#&gt; 30        D4  Mean (SD)    1.83(0.85)    3.80(0.95)    5.17(1.03)</span></span>
-<span id="cb2-51"><a href="#cb2-51"></a><span class="co">#&gt; 31        D4     Median          1.67          3.83          4.88</span></span>
-<span id="cb2-52"><a href="#cb2-52"></a><span class="co">#&gt; 32        D4    [Q1;Q3] [ 1.26; 2.32] [ 3.12; 4.42] [ 4.69; 5.50]</span></span>
-<span id="cb2-53"><a href="#cb2-53"></a><span class="co">#&gt; 33        D4  [Min;Max]  [ 0.38;3.97]  [ 2.31;5.41]  [ 3.24;6.96]</span></span>
-<span id="cb2-54"><a href="#cb2-54"></a><span class="co">#&gt; 34        D4    Missing             1             1             1</span></span>
-<span id="cb2-55"><a href="#cb2-55"></a><span class="co">#&gt; 35                                                               </span></span>
-<span id="cb2-56"><a href="#cb2-56"></a><span class="co">#&gt; 36        D5          N            30            20            16</span></span>
-<span id="cb2-57"><a href="#cb2-57"></a><span class="co">#&gt; 37        D5  Mean (SD)    2.27(1.20)    3.64(1.19)    4.43(0.98)</span></span>
-<span id="cb2-58"><a href="#cb2-58"></a><span class="co">#&gt; 38        D5     Median          2.50          3.86          4.57</span></span>
-<span id="cb2-59"><a href="#cb2-59"></a><span class="co">#&gt; 39        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97]</span></span>
-<span id="cb2-60"><a href="#cb2-60"></a><span class="co">#&gt; 40        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]</span></span>
-<span id="cb2-61"><a href="#cb2-61"></a><span class="co">#&gt; 41        D5    Missing             0             0             0</span></span>
-<span id="cb2-62"><a href="#cb2-62"></a><span class="co">#&gt; </span></span>
-<span id="cb2-63"><a href="#cb2-63"></a><span class="co">#&gt; ############################################</span></span>
-<span id="cb2-64"><a href="#cb2-64"></a></span>
-<span id="cb2-65"><a href="#cb2-65"></a><span class="co"># You can have the corresponding graphic:</span></span>
-<span id="cb2-66"><a href="#cb2-66"></a></span>
-<span id="cb2-67"><a href="#cb2-67"></a>gg=<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tab1,<span class="dt">title=</span><span class="st">"Mean response evolution as a function of time by treatment group"</span>,</span>
-<span id="cb2-68"><a href="#cb2-68"></a> <span class="dt">legend.label=</span><span class="st">"Treatment groups"</span>,<span class="dt">ylab=</span><span class="st">"Y mean"</span>)</span>
-<span id="cb2-69"><a href="#cb2-69"></a>gg</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ClinReport)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(officer)</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(flextable)</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># Load data</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(datafake)</span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co"># Descriptive statistics (Numerical response and 2 explicative variables):</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a></span>
+<span id="cb3-12"><a href="#cb3-12"></a>tab1=<span class="kw"><a href="reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_numeric"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13"></a>        <span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">x2=</span><span class="st">"TIMEPOINT"</span>,<span class="dt">at.row=</span><span class="st">"TIMEPOINT"</span>,<span class="dt">subjid=</span><span class="st">"SUBJID"</span>)</span>
+<span id="cb3-14"><a href="#cb3-14"></a>tab1</span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; </span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; ############################################</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; Quantitative descriptive statistics of: y_numeric</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt; ############################################</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">#&gt; </span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt;    TIMEPOINT Statistics      A (N=30)      B (N=21)      C (N=17)</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; 1         D0          N            30            20            16</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt; 2         D0  Mean (SD)   -0.93(0.86)   -0.67(1.09)   -1.19(0.92)</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#&gt; 3         D0     Median         -0.82         -0.69         -1.26</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="co">#&gt; 4         D0    [Q1;Q3] [-1.59;-0.16] [-1.39;-0.06] [-1.62;-0.83]</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="co">#&gt; 5         D0  [Min;Max]  [-2.34;0.36]  [-2.44;2.10]  [-2.99;0.66]</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="co">#&gt; 6         D0    Missing             1             1             0</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="co">#&gt; 7                                                                </span></span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="co">#&gt; 8         D1          N            30            20            16</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="co">#&gt; 9         D1  Mean (SD)    1.83(1.04)    4.17(1.28)    4.98(0.69)</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="co">#&gt; 10        D1     Median          1.78          4.19          5.08</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a><span class="co">#&gt; 11        D1    [Q1;Q3] [ 0.94; 2.54] [ 3.23; 4.92] [ 4.58; 5.46]</span></span>
+<span id="cb3-32"><a href="#cb3-32"></a><span class="co">#&gt; 12        D1  [Min;Max]  [ 0.11;3.88]  [ 1.48;6.19]  [ 3.80;6.23]</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a><span class="co">#&gt; 13        D1    Missing             1             0             0</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a><span class="co">#&gt; 14                                                               </span></span>
+<span id="cb3-35"><a href="#cb3-35"></a><span class="co">#&gt; 15        D2          N            30            20            16</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a><span class="co">#&gt; 16        D2  Mean (SD)    1.97(1.17)    4.04(0.89)    4.90(1.36)</span></span>
+<span id="cb3-37"><a href="#cb3-37"></a><span class="co">#&gt; 17        D2     Median          1.66          4.19          5.06</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a><span class="co">#&gt; 18        D2    [Q1;Q3] [ 1.23; 2.86] [ 3.62; 4.36] [ 4.34; 5.20]</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a><span class="co">#&gt; 19        D2  [Min;Max]  [-0.18;4.36]  [ 2.03;5.63]  [ 2.39;7.96]</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a><span class="co">#&gt; 20        D2    Missing             1             1             0</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a><span class="co">#&gt; 21                                                               </span></span>
+<span id="cb3-42"><a href="#cb3-42"></a><span class="co">#&gt; 22        D3          N            30            20            16</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a><span class="co">#&gt; 23        D3  Mean (SD)    1.78(1.17)    3.81(0.94)    5.07(1.12)</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a><span class="co">#&gt; 24        D3     Median          1.78          3.63          5.22</span></span>
+<span id="cb3-45"><a href="#cb3-45"></a><span class="co">#&gt; 25        D3    [Q1;Q3] [ 0.93; 2.42] [ 3.13; 4.44] [ 4.11; 5.66]</span></span>
+<span id="cb3-46"><a href="#cb3-46"></a><span class="co">#&gt; 26        D3  [Min;Max]  [-0.16;3.90]  [ 2.46;6.01]  [ 3.16;7.37]</span></span>
+<span id="cb3-47"><a href="#cb3-47"></a><span class="co">#&gt; 27        D3    Missing             0             1             1</span></span>
+<span id="cb3-48"><a href="#cb3-48"></a><span class="co">#&gt; 28                                                               </span></span>
+<span id="cb3-49"><a href="#cb3-49"></a><span class="co">#&gt; 29        D4          N            30            20            16</span></span>
+<span id="cb3-50"><a href="#cb3-50"></a><span class="co">#&gt; 30        D4  Mean (SD)    1.83(0.85)    3.80(0.95)    5.17(1.03)</span></span>
+<span id="cb3-51"><a href="#cb3-51"></a><span class="co">#&gt; 31        D4     Median          1.67          3.83          4.88</span></span>
+<span id="cb3-52"><a href="#cb3-52"></a><span class="co">#&gt; 32        D4    [Q1;Q3] [ 1.26; 2.32] [ 3.12; 4.42] [ 4.69; 5.50]</span></span>
+<span id="cb3-53"><a href="#cb3-53"></a><span class="co">#&gt; 33        D4  [Min;Max]  [ 0.38;3.97]  [ 2.31;5.41]  [ 3.24;6.96]</span></span>
+<span id="cb3-54"><a href="#cb3-54"></a><span class="co">#&gt; 34        D4    Missing             1             1             1</span></span>
+<span id="cb3-55"><a href="#cb3-55"></a><span class="co">#&gt; 35                                                               </span></span>
+<span id="cb3-56"><a href="#cb3-56"></a><span class="co">#&gt; 36        D5          N            30            20            16</span></span>
+<span id="cb3-57"><a href="#cb3-57"></a><span class="co">#&gt; 37        D5  Mean (SD)    2.27(1.20)    3.64(1.19)    4.43(0.98)</span></span>
+<span id="cb3-58"><a href="#cb3-58"></a><span class="co">#&gt; 38        D5     Median          2.50          3.86          4.57</span></span>
+<span id="cb3-59"><a href="#cb3-59"></a><span class="co">#&gt; 39        D5    [Q1;Q3] [ 1.77; 3.21] [ 2.59; 4.60] [ 3.44; 4.97]</span></span>
+<span id="cb3-60"><a href="#cb3-60"></a><span class="co">#&gt; 40        D5  [Min;Max]  [-1.19;4.31]  [ 0.91;5.12]  [ 2.95;6.54]</span></span>
+<span id="cb3-61"><a href="#cb3-61"></a><span class="co">#&gt; 41        D5    Missing             0             0             0</span></span>
+<span id="cb3-62"><a href="#cb3-62"></a><span class="co">#&gt; </span></span>
+<span id="cb3-63"><a href="#cb3-63"></a><span class="co">#&gt; ############################################</span></span>
+<span id="cb3-64"><a href="#cb3-64"></a></span>
+<span id="cb3-65"><a href="#cb3-65"></a><span class="co"># You can have the corresponding graphic:</span></span>
+<span id="cb3-66"><a href="#cb3-66"></a></span>
+<span id="cb3-67"><a href="#cb3-67"></a>gg=<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tab1,<span class="dt">title=</span><span class="st">"Mean response evolution as a function of time by treatment group"</span>,</span>
+<span id="cb3-68"><a href="#cb3-68"></a> <span class="dt">legend.label=</span><span class="st">"Treatment groups"</span>,<span class="dt">ylab=</span><span class="st">"Y mean"</span>)</span>
+<span id="cb3-69"><a href="#cb3-69"></a>gg</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-1-1.png" width="90%"></p>
 </div>
 <div id="put-the-results-in-a-microsoft-word-or-a-r-markdown-document-with-officer" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#put-the-results-in-a-microsoft-word-or-a-r-markdown-document-with-officer" class="anchor"></a>Put the results in a Microsoft Word or a R markdown document with officer</h1></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2"></a>doc=<span class="kw">read_docx</span>()</span>
-<span id="cb3-3"><a href="#cb3-3"></a>doc=<span class="kw"><a href="reference/report.doc.html">report.doc</a></span>(tab1,<span class="dt">title=</span><span class="st">"Example of a quantitative descriptive table"</span>,<span class="dt">doc=</span>doc) </span>
-<span id="cb3-4"><a href="#cb3-4"></a></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co"># See the results</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a>file=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempfile</a></span>(),<span class="st">".docx"</span>,<span class="dt">sep=</span><span class="st">""</span>)</span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(doc, <span class="dt">target =</span>file)</span>
-<span id="cb3-9"><a href="#cb3-9"></a></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#shell.exec(file)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2"></a>doc=<span class="kw">read_docx</span>()</span>
+<span id="cb4-3"><a href="#cb4-3"></a>doc=<span class="kw"><a href="reference/report.doc.html">report.doc</a></span>(tab1,<span class="dt">title=</span><span class="st">"Example of a quantitative descriptive table"</span>,<span class="dt">doc=</span>doc) </span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># See the results</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a>file=<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/tempfile">tempfile</a></span>(),<span class="st">".docx"</span>,<span class="dt">sep=</span><span class="st">""</span>)</span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(doc, <span class="dt">target =</span>file)</span>
+<span id="cb4-9"><a href="#cb4-9"></a></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">#shell.exec(file)</span></span></code></pre></div>
 </div>
   </div>
 

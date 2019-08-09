@@ -26,6 +26,12 @@ You can install the released version of ClinReport from
 install.packages("ClinReport")
 ```
 
+You can install the developpment version from gitHub with:
+
+``` r
+ library(devtools) ;  install_github("jfrancoiscollin/ClinReport")
+```
+
 ## Basic example
 
 ``` r

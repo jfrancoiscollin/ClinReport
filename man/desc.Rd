@@ -9,7 +9,7 @@ desc(output = NULL, total = NULL, nbcol = NULL, y = NULL,
   type.desc = NULL, type = NULL, y.label = NULL, type.mod = NULL,
   raw.output = NULL, contrast = NULL, contrast.name = NULL,
   stat.name = NULL, regrouped = F, rbind.label = NULL,
-  title = NULL)
+  title = NULL, y.levels.label = NULL)
 }
 \arguments{
 \item{output}{a data.frame object}
@@ -52,6 +52,8 @@ Default = "Statistics"}
 \item{rbind.label}{Character. The name of the label in case several desc objects are regrouped}
 
 \item{title}{Character. The title of the desc object that will be printed and used in \code{\link{report.doc}}}
+
+\item{y.levels.label}{Character. The label to be displayed in the table which indicates the level of \code{y}}
 }
 \value{
 A desc object

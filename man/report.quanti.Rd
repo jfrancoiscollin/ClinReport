@@ -55,6 +55,8 @@ A desc object.
 \description{
 \code{report.quanti} 
 Returns quantitative descriptive statistics such as mean, median, standard deviation etc...
+
+For more examples see the website: \href{https://jfrancoiscollin.github.io/ClinReport}{ClinReport website}
 }
 \details{
 This function computes and reports quantitative statistics on \code{y}. And can gives the statistics by level of two factors (\code{x1}

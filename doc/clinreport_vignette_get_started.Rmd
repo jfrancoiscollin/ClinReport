@@ -1,5 +1,5 @@
 ---
-title: "ClinReport Vignette 2: The different type of statistical tables"
+title: "ClinReport Vignette 2: The Different Type of Statistical Sables"
 author: "Jean-Francois COLLIN"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette

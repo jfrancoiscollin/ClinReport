@@ -53,6 +53,8 @@ A desc object
 \description{
 Compute and report frequencies and percentages by levels of \code{y} (in rows) and by levels of \code{x1} (in columns)
 and \code{x2} in rows.
+
+For more examples see the website: \href{https://jfrancoiscollin.github.io/ClinReport}{ClinReport website}
 }
 \details{
 This function computes and reports qualitative statistics by level of \code{y} and by level of \code{x1} (if not null)
