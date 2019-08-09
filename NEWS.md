@@ -119,8 +119,11 @@ it adds more readibility to the doc
 argument systematically anymore
 * The title is automatically filled with y.label argument
 * Add the remove.missing argument in report.quali to be able to compute the percentage on non missing values only if needed
+* Add transpose function
 
 
+## Issues
+* Correction of a bug in report.quanti when x1 and x2 arguments weere NULL 
 
 
 
