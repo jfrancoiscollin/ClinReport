@@ -1,7 +1,7 @@
 #' Transpose the table of statistics (experimental)
 #'
 #' @param desc a desc object
-#' @param desc ... Not used
+#' @param ... Not used
 #' 
 #' @description
 #' Used to get the statistics in column for example.
@@ -62,6 +62,8 @@ transpose <- function(desc,...)
 }
 
 
+#' @rdname transpose
+#' 
 #' @export
 
 

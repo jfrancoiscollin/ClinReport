@@ -161,7 +161,7 @@ colspan.value="Treatment group")
 
 
 
-## Drop levels of a factor in the tables
+## Drop levels
 
 If you want to drop some levels in the table, you can use
 'drop.x1' drop.x2' or 'drop.y' if 'y' is a qualitative variable.

@@ -2,14 +2,17 @@
 % Please edit documentation in R/transpose.desc.R
 \name{transpose}
 \alias{transpose}
+\alias{transpose.desc}
 \title{Transpose the table of statistics (experimental)}
 \usage{
 transpose(desc, ...)
+
+\method{transpose}{desc}(desc, ...)
 }
 \arguments{
 \item{desc}{a desc object}
 
-\item{desc}{... Not used}
+\item{...}{Not used}
 }
 \value{
 A desc object
