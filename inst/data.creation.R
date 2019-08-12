@@ -48,7 +48,7 @@ data$AE_niv2=gsub("AE 3","AE 2 lower class",data$AE_niv2)
 data$AE_niv2=gsub("AE 4","AE 2 lower class",data$AE_niv2)
 data$AE_niv2=factor(gsub("AE 5","AE 3 lower class",data$AE_niv2))
 
-save(data, file = "C:\\Users\\jfcollin\\git\\data\\data.RData")
+save(data, file = "C:\\Users\\jfcollin\\git\\inst\\data.RData")
 
 
 

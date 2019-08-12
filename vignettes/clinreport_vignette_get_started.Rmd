@@ -216,6 +216,13 @@ and the header with the title.
 
 anov3=Anova(mod,3)
 
+# Make pretty names for the table
+
+rownames(anov3)=make.label(rownames(anov3),
+list(c("GROUP","Treatment"),
+c("TIMEPOINT","Visit"),
+c("Treatment:Visit","Interaction Treatment-Visit")))
+
 report.doc(anov3,title="Mixed Qualitative and Quantitative output")
 ```
 

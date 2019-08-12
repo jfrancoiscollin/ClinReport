@@ -17,9 +17,9 @@ Imports:
 	officer (>= 0.3.3), 
 	utils, 
 	flextable (>= 0.5.1), 
-	xtable
+	xtable,
+	lme4
 Suggests: 
-    lme4,
     nlme,
     car,
     magrittr,

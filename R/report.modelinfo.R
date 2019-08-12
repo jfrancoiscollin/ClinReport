@@ -47,6 +47,7 @@
 #' 
 #' report.modelinfo(mod)
 #' 
+#' @import lme4
 #' 
 #' @rdname report.modelinfo
 #' @export
@@ -125,16 +126,15 @@ report.modelinfo.lmerMod=function(object,doc=NULL,page.break=TRUE,...)
 	nbobs=nobs(object)
 	nbgrp=ngrps(object)
 	aic_bic=paste0("AIC =",round(AIC(object),3), "; BIC = ",round(BIC(object),3))
-	na.handling=attr(na.action(object),"class")
-	
+
 	names=c("R package / function","Type of model","Model formula",
-			"Method of adjustment","NA handling",
+			"Method of adjustment",
 			"Number of Observations",
 			"Number of Groups",
 			"Quality of adjustment")
 	
 	model.info=data.frame(Information=names,Details=c(rpack_func,label,object.formula,
-					method,na.handling,nbobs,nbgrp,aic_bic))
+					method,nbobs,nbgrp,aic_bic))
 	
 	ft=flextable(model.info)
 	ft=bg(ft, i = 1, bg = "#DCDCDC", part = "header")

@@ -334,7 +334,7 @@ It doesn't work for quantitative covariates.</p>
 #&gt; ############################################
 #&gt; </div><div class='input'>
 
-<span class='co'># GLM model with specific contrast</span>
+<span class='co'># LM model with specific contrast</span>
 
 <span class='no'>warp.lm</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/lm'>lm</a></span>(<span class='no'>breaks</span> ~ <span class='no'>wool</span>+<span class='no'>tension</span>+<span class='no'>wool</span>:<span class='no'>tension</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>warpbreaks</span>)
 <span class='no'>warp.emm</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/emmeans/topics/emmeans'>emmeans</a></span>(<span class='no'>warp.lm</span>, ~ <span class='no'>tension</span> <span class='kw'>|</span> <span class='no'>wool</span>)
