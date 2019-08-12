@@ -65,7 +65,7 @@
       <h1>ClinReport Vignette 1: Standards for Reporting Statistics</h1>
                         <h4 class="author">Jean-Francois COLLIN</h4>
             
-            <h4 class="date">2019-08-09</h4>
+            <h4 class="date">2019-08-12</h4>
       
       
       <div class="hidden name"><code>clinreport_vignette_standard.Rmd</code></div>
@@ -129,71 +129,77 @@
 <p>They are the default options so few lines of code are necessary.</p>
 <p>Example:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ClinReport)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#&gt; </span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#&gt; Attachement du package : 'ClinReport'</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#&gt; The following object is masked from 'package:dplyr':</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#&gt; </span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt;     desc</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(officer)</span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(flextable)</span>
-<span id="cb1-9"><a href="#cb1-9"></a></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(datafake)</span>
-<span id="cb1-11"><a href="#cb1-11"></a></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="co"># Default quantitative stat desc</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a></span>
-<span id="cb1-14"><a href="#cb1-14"></a>tab1=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_numeric"</span>,</span>
-<span id="cb1-15"><a href="#cb1-15"></a>        <span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">y.label=</span><span class="st">"Quantitative response (units)"</span>,</span>
-<span id="cb1-16"><a href="#cb1-16"></a>        <span class="dt">subjid=</span><span class="st">"SUBJID"</span>,<span class="dt">total=</span>T)</span>
-<span id="cb1-17"><a href="#cb1-17"></a>        </span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="co"># Default qualitative stat desc</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co">#&gt; Registered S3 methods overwritten by 'lme4':</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#&gt;   method                          from</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#&gt;   cooks.distance.influence.merMod car </span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#&gt;   influence.merMod                car </span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="co">#&gt;   dfbeta.influence.merMod         car </span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="co">#&gt;   dfbetas.influence.merMod        car</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co">#&gt; </span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co">#&gt; Attachement du package : 'ClinReport'</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co">#&gt; The following object is masked from 'package:dplyr':</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co">#&gt; </span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="co">#&gt;     desc</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(officer)</span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(flextable)</span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(datafake)</span>
+<span id="cb1-17"><a href="#cb1-17"></a></span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co"># Default quantitative stat desc</span></span>
 <span id="cb1-19"><a href="#cb1-19"></a></span>
-<span id="cb1-20"><a href="#cb1-20"></a>tab2=<span class="kw"><a href="../reference/report.quali.html">report.quali</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_logistic"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21"></a>        <span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">y.label=</span><span class="st">"Qualitative response"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20"></a>tab1=<span class="kw"><a href="../reference/report.quanti.html">report.quanti</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_numeric"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21"></a>        <span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">y.label=</span><span class="st">"Quantitative response (units)"</span>,</span>
 <span id="cb1-22"><a href="#cb1-22"></a>        <span class="dt">subjid=</span><span class="st">"SUBJID"</span>,<span class="dt">total=</span>T)</span>
-<span id="cb1-23"><a href="#cb1-23"></a></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="co"># Binding them into a single table</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>        </span>
+<span id="cb1-24"><a href="#cb1-24"></a><span class="co"># Default qualitative stat desc</span></span>
 <span id="cb1-25"><a href="#cb1-25"></a></span>
-<span id="cb1-26"><a href="#cb1-26"></a>tab=<span class="kw"><a href="../reference/regroup.html">regroup</a></span>(tab1,tab2)</span>
-<span id="cb1-27"><a href="#cb1-27"></a></span>
-<span id="cb1-28"><a href="#cb1-28"></a><span class="co"># In the R console, it looks like</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>tab2=<span class="kw"><a href="../reference/report.quali.html">report.quali</a></span>(<span class="dt">data=</span>datafake,<span class="dt">y=</span><span class="st">"y_logistic"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27"></a>        <span class="dt">x1=</span><span class="st">"GROUP"</span>,<span class="dt">y.label=</span><span class="st">"Qualitative response"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28"></a>        <span class="dt">subjid=</span><span class="st">"SUBJID"</span>,<span class="dt">total=</span>T)</span>
 <span id="cb1-29"><a href="#cb1-29"></a></span>
-<span id="cb1-30"><a href="#cb1-30"></a>tab</span>
-<span id="cb1-31"><a href="#cb1-31"></a><span class="co">#&gt; </span></span>
-<span id="cb1-32"><a href="#cb1-32"></a><span class="co">#&gt; ############################################</span></span>
-<span id="cb1-33"><a href="#cb1-33"></a><span class="co">#&gt; </span></span>
-<span id="cb1-34"><a href="#cb1-34"></a><span class="co">#&gt; ############################################</span></span>
-<span id="cb1-35"><a href="#cb1-35"></a><span class="co">#&gt; </span></span>
-<span id="cb1-36"><a href="#cb1-36"></a><span class="co">#&gt;                         Response Levels    Statistics     A (N=30)</span></span>
-<span id="cb1-37"><a href="#cb1-37"></a><span class="co">#&gt; 1  Quantitative response (units)                    N          180</span></span>
-<span id="cb1-38"><a href="#cb1-38"></a><span class="co">#&gt; 2  Quantitative response (units)            Mean (SD)   1.46(1.50)</span></span>
-<span id="cb1-39"><a href="#cb1-39"></a><span class="co">#&gt; 3  Quantitative response (units)               Median         1.59</span></span>
-<span id="cb1-40"><a href="#cb1-40"></a><span class="co">#&gt; 4  Quantitative response (units)              [Q1;Q3]  [0.45;2.50]</span></span>
-<span id="cb1-41"><a href="#cb1-41"></a><span class="co">#&gt; 5  Quantitative response (units)            [Min;Max] [-2.34;4.36]</span></span>
-<span id="cb1-42"><a href="#cb1-42"></a><span class="co">#&gt; 6  Quantitative response (units)              Missing            4</span></span>
-<span id="cb1-43"><a href="#cb1-43"></a><span class="co">#&gt; 7                                                                 </span></span>
-<span id="cb1-44"><a href="#cb1-44"></a><span class="co">#&gt; 8           Qualitative response      0  n (column %)   79(43.89%)</span></span>
-<span id="cb1-45"><a href="#cb1-45"></a><span class="co">#&gt; 9           Qualitative response      1  n (column %)   97(53.89%)</span></span>
-<span id="cb1-46"><a href="#cb1-46"></a><span class="co">#&gt; 10          Qualitative response         Missing n(%)     4(2.22%)</span></span>
-<span id="cb1-47"><a href="#cb1-47"></a><span class="co">#&gt;        B (N=21)     C (N=17) Total (N=68)</span></span>
-<span id="cb1-48"><a href="#cb1-48"></a><span class="co">#&gt; 1           120           96          396</span></span>
-<span id="cb1-49"><a href="#cb1-49"></a><span class="co">#&gt; 2    3.15(2.00)   3.87(2.52)   2.56(2.20)</span></span>
-<span id="cb1-50"><a href="#cb1-50"></a><span class="co">#&gt; 3          3.75         4.73         2.71</span></span>
-<span id="cb1-51"><a href="#cb1-51"></a><span class="co">#&gt; 4   [2.46;4.44]  [3.44;5.30]  [1.04;4.33]</span></span>
-<span id="cb1-52"><a href="#cb1-52"></a><span class="co">#&gt; 5  [-2.44;6.19] [-2.99;7.96] [-2.99;7.96]</span></span>
-<span id="cb1-53"><a href="#cb1-53"></a><span class="co">#&gt; 6             4            2           10</span></span>
-<span id="cb1-54"><a href="#cb1-54"></a><span class="co">#&gt; 7                                        </span></span>
-<span id="cb1-55"><a href="#cb1-55"></a><span class="co">#&gt; 8    60(50.00%)   47(48.96%)  186(46.97%)</span></span>
-<span id="cb1-56"><a href="#cb1-56"></a><span class="co">#&gt; 9    59(49.17%)   44(45.83%)  200(50.51%)</span></span>
-<span id="cb1-57"><a href="#cb1-57"></a><span class="co">#&gt; 10     1(0.83%)     5(5.21%)    10(2.53%)</span></span>
-<span id="cb1-58"><a href="#cb1-58"></a><span class="co">#&gt; </span></span>
-<span id="cb1-59"><a href="#cb1-59"></a><span class="co">#&gt; ############################################</span></span>
-<span id="cb1-60"><a href="#cb1-60"></a></span>
-<span id="cb1-61"><a href="#cb1-61"></a><span class="co"># Create formatted output for Microsoft Word or R markdown documents (like this one)</span></span>
-<span id="cb1-62"><a href="#cb1-62"></a></span>
-<span id="cb1-63"><a href="#cb1-63"></a>doc=<span class="kw"><a href="../reference/report.doc.html">report.doc</a></span>(tab,<span class="dt">title=</span><span class="st">"Table of classic descriptive statistics (qualitative and quantitative parameter)"</span>,</span>
-<span id="cb1-64"><a href="#cb1-64"></a>        <span class="dt">colspan.value=</span><span class="st">"Treatment group"</span>, <span class="dt">init.numbering =</span>T )            </span>
-<span id="cb1-65"><a href="#cb1-65"></a></span>
-<span id="cb1-66"><a href="#cb1-66"></a>doc</span></code></pre></div>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="co"># Binding them into a single table</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a></span>
+<span id="cb1-32"><a href="#cb1-32"></a>tab=<span class="kw"><a href="../reference/regroup.html">regroup</a></span>(tab1,tab2)</span>
+<span id="cb1-33"><a href="#cb1-33"></a></span>
+<span id="cb1-34"><a href="#cb1-34"></a><span class="co"># In the R console, it looks like</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a></span>
+<span id="cb1-36"><a href="#cb1-36"></a>tab</span>
+<span id="cb1-37"><a href="#cb1-37"></a><span class="co">#&gt; </span></span>
+<span id="cb1-38"><a href="#cb1-38"></a><span class="co">#&gt; ############################################</span></span>
+<span id="cb1-39"><a href="#cb1-39"></a><span class="co">#&gt; </span></span>
+<span id="cb1-40"><a href="#cb1-40"></a><span class="co">#&gt; ############################################</span></span>
+<span id="cb1-41"><a href="#cb1-41"></a><span class="co">#&gt; </span></span>
+<span id="cb1-42"><a href="#cb1-42"></a><span class="co">#&gt;                         Response Levels    Statistics     A (N=30)</span></span>
+<span id="cb1-43"><a href="#cb1-43"></a><span class="co">#&gt; 1  Quantitative response (units)                    N          180</span></span>
+<span id="cb1-44"><a href="#cb1-44"></a><span class="co">#&gt; 2  Quantitative response (units)            Mean (SD)   1.46(1.50)</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a><span class="co">#&gt; 3  Quantitative response (units)               Median         1.59</span></span>
+<span id="cb1-46"><a href="#cb1-46"></a><span class="co">#&gt; 4  Quantitative response (units)              [Q1;Q3]  [0.45;2.50]</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a><span class="co">#&gt; 5  Quantitative response (units)            [Min;Max] [-2.34;4.36]</span></span>
+<span id="cb1-48"><a href="#cb1-48"></a><span class="co">#&gt; 6  Quantitative response (units)              Missing            4</span></span>
+<span id="cb1-49"><a href="#cb1-49"></a><span class="co">#&gt; 7                                                                 </span></span>
+<span id="cb1-50"><a href="#cb1-50"></a><span class="co">#&gt; 8           Qualitative response      0  n (column %)   79(43.89%)</span></span>
+<span id="cb1-51"><a href="#cb1-51"></a><span class="co">#&gt; 9           Qualitative response      1  n (column %)   97(53.89%)</span></span>
+<span id="cb1-52"><a href="#cb1-52"></a><span class="co">#&gt; 10          Qualitative response         Missing n(%)     4(2.22%)</span></span>
+<span id="cb1-53"><a href="#cb1-53"></a><span class="co">#&gt;        B (N=21)     C (N=17) Total (N=68)</span></span>
+<span id="cb1-54"><a href="#cb1-54"></a><span class="co">#&gt; 1           120           96          396</span></span>
+<span id="cb1-55"><a href="#cb1-55"></a><span class="co">#&gt; 2    3.15(2.00)   3.87(2.52)   2.56(2.20)</span></span>
+<span id="cb1-56"><a href="#cb1-56"></a><span class="co">#&gt; 3          3.75         4.73         2.71</span></span>
+<span id="cb1-57"><a href="#cb1-57"></a><span class="co">#&gt; 4   [2.46;4.44]  [3.44;5.30]  [1.04;4.33]</span></span>
+<span id="cb1-58"><a href="#cb1-58"></a><span class="co">#&gt; 5  [-2.44;6.19] [-2.99;7.96] [-2.99;7.96]</span></span>
+<span id="cb1-59"><a href="#cb1-59"></a><span class="co">#&gt; 6             4            2           10</span></span>
+<span id="cb1-60"><a href="#cb1-60"></a><span class="co">#&gt; 7                                        </span></span>
+<span id="cb1-61"><a href="#cb1-61"></a><span class="co">#&gt; 8    60(50.00%)   47(48.96%)  186(46.97%)</span></span>
+<span id="cb1-62"><a href="#cb1-62"></a><span class="co">#&gt; 9    59(49.17%)   44(45.83%)  200(50.51%)</span></span>
+<span id="cb1-63"><a href="#cb1-63"></a><span class="co">#&gt; 10     1(0.83%)     5(5.21%)    10(2.53%)</span></span>
+<span id="cb1-64"><a href="#cb1-64"></a><span class="co">#&gt; </span></span>
+<span id="cb1-65"><a href="#cb1-65"></a><span class="co">#&gt; ############################################</span></span>
+<span id="cb1-66"><a href="#cb1-66"></a></span>
+<span id="cb1-67"><a href="#cb1-67"></a><span class="co"># Create formatted output for Microsoft Word or R markdown documents (like this one)</span></span>
+<span id="cb1-68"><a href="#cb1-68"></a></span>
+<span id="cb1-69"><a href="#cb1-69"></a>doc=<span class="kw"><a href="../reference/report.doc.html">report.doc</a></span>(tab,<span class="dt">title=</span><span class="st">"Table of classic descriptive statistics (qualitative and quantitative parameter)"</span>,</span>
+<span id="cb1-70"><a href="#cb1-70"></a>        <span class="dt">colspan.value=</span><span class="st">"Treatment group"</span>, <span class="dt">init.numbering =</span>T )            </span>
+<span id="cb1-71"><a href="#cb1-71"></a></span>
+<span id="cb1-72"><a href="#cb1-72"></a>doc</span></code></pre></div>
 <div class="tabwid"><table class="table">
 <thead>
 <tr><td colspan="7" style="width:70px;height:22px;background-clip: padding-box;background-color:rgba(220, 220, 220, 1.00);vertical-align: middle;transform: rotate(0deg);border-bottom: 2px solid rgba(0, 0, 0, 1.00);border-top: 2px solid rgba(0, 0, 0, 1.00);border-left: 1px solid rgba(255, 255, 255, 0.00);border-right: 1px solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;"><p style="margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:0;padding-top:0;padding-left:0;padding-right:0;background-color:transparent;"><span style="font-family:'Times';font-size:10px;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;">Table 1: Table of classic descriptive statistics (qualitative and quantitative parameter)</span></p></td></tr>

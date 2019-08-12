@@ -118,6 +118,10 @@ the call etc...)</p>
 <span class='fu'>report.modelinfo</span>(<span class='no'>object</span>, <span class='kw'>doc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>page.break</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>)
 
+<span class='co'># S3 method for lmerMod</span>
+<span class='fu'>report.modelinfo</span>(<span class='no'>object</span>, <span class='kw'>doc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>page.break</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+
 <span class='co'># S3 method for glm</span>
 <span class='fu'>report.modelinfo</span>(<span class='no'>object</span>, <span class='kw'>doc</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>page.break</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='no'>...</span>)
@@ -131,7 +135,7 @@ the call etc...)</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>A model (for now glm, lme and coxph models are availlable)</p></td>
+      <td><p>A model (for now glm, lme, lmer and coxph models are availlable)</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -165,9 +169,11 @@ the call etc...)</p>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>officer</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>flextable</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>nlme</span>)
-
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>lme4</span>)
 
 <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='no'>datafake</span>)
+
+<span class='co'>#Model info for lme model</span>
 
 <span class='no'>mod</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/nlme/topics/lme'>lme</a></span>(<span class='no'>y_numeric</span>~<span class='no'>GROUP</span>+<span class='no'>TIMEPOINT</span>,<span class='kw'>random</span><span class='kw'>=</span>~<span class='fl'>1</span><span class='kw'>|</span><span class='no'>SUBJID</span>,<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>na.action</span><span class='kw'>=</span><span class='no'>na.omit</span>)
 
@@ -190,6 +196,27 @@ the call etc...)</p>
 #&gt; 3 lme.formula(fixed = y_numeric ~ GROUP + TIMEPOINT, data = datafake, \n    random = ~1 | SUBJID, na.action = na.omit)
 #&gt; 4                                                                                                                 REML
 #&gt; 5                                                                                                                 omit</div><div class='input'>
+<span class='co'>#Model info for lmer model</span>
+
+<span class='no'>mod</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/lme4/topics/lmer'>lmer</a></span>(<span class='no'>y_numeric</span>~<span class='no'>GROUP</span>+<span class='no'>TIMEPOINT</span>+(<span class='fl'>1</span><span class='kw'>|</span><span class='no'>SUBJID</span>),<span class='kw'>data</span><span class='kw'>=</span><span class='no'>datafake</span>,<span class='kw'>na.action</span><span class='kw'>=</span><span class='no'>na.omit</span>)
+
+<span class='fu'>report.modelinfo</span>(<span class='no'>mod</span>)</div><div class='output co'>#&gt; a flextable object.
+#&gt; col_keys: `Information`, `Details` 
+#&gt; header has 1 row(s) 
+#&gt; body has 7 row(s) 
+#&gt; original dataset sample: 
+#&gt;              Information
+#&gt; 1   R package / function
+#&gt; 2          Type of model
+#&gt; 3          Model formula
+#&gt; 4   Method of adjustment
+#&gt; 5 Number of Observations
+#&gt;                                                                                                    Details
+#&gt; 1                                                                           R Package lme4 , function lmer
+#&gt; 2                                                                                Linear Mixed Effect Model
+#&gt; 3 lmer(formula = y_numeric ~ GROUP + TIMEPOINT + (1 | SUBJID), \n    data = datafake, na.action = na.omit)
+#&gt; 4                                                                                                     REML
+#&gt; 5                                                                                                      386</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -41,7 +41,14 @@ SUBJID=rep(paste0("Subj ", c(1:(length(GROUP)/6))),rep(6,length(paste0("Subj ", 
 data=data.frame(y_numeric,y_logistic,y_poisson,baseline,VAR,GROUP,TIMEPOINT,SUBJID)
 
 
-save(data, file = "C:\\Users\\jfcollin\\git\\data\\data.RData")
+data$AE_niv1=factor(sample(c("AE 1","AE 2","AE 3","AE 4","AE 5",NA,NA,NA,NA),nrow(data),replace=T))
+data$AE_niv2=gsub("AE 1","AE 1 lower class",data$AE_niv1)
+data$AE_niv2=gsub("AE 2","AE 1 lower class",data$AE_niv2)
+data$AE_niv2=gsub("AE 3","AE 2 lower class",data$AE_niv2)
+data$AE_niv2=gsub("AE 4","AE 2 lower class",data$AE_niv2)
+data$AE_niv2=factor(gsub("AE 5","AE 3 lower class",data$AE_niv2))
+
+save(data, file = "C:\\Users\\jfcollin\\git\\inst\\data.RData")
 
 
 

@@ -98,12 +98,25 @@ colspan.value="Treatment group")
 
 ## ------------------------------------------------------------------------
 # Removing baseline data for the model
+
 data.mod=droplevels(datafake[datafake$TIMEPOINT!="D0",])
 
 mod=lme(y_numeric~baseline+GROUP+TIMEPOINT+GROUP*TIMEPOINT,
 random=~1|SUBJID,data=data.mod,na.action=na.omit)
  
+report.modelinfo(mod)
+
+## ------------------------------------------------------------------------
+# Removing baseline data for the model
+
 anov3=Anova(mod,3)
+
+# Make pretty names for the table
+
+rownames(anov3)=make.label(rownames(anov3),
+list(c("GROUP","Treatment"),
+c("TIMEPOINT","Visit"),
+c("Treatment:Visit","Interaction Treatment-Visit")))
 
 report.doc(anov3,title="Mixed Qualitative and Quantitative output")
 

@@ -70,6 +70,8 @@ transpose <- function(desc,...)
 transpose.desc=function(desc,...)
 {
 	
+	
+
 	output=desc$output
 	at.row=desc$at.row
 	x1=desc$x1
@@ -78,6 +80,10 @@ transpose.desc=function(desc,...)
 	nbcol=desc$nbcol
 	type.desc= desc$type.desc
 	y.levels.label=desc$y.levels.label
+	
+	
+	if(type.desc=="lsmeans") stop("Not yet implemented. You can use the transpose argument inside the report.lsmeans function")
+	
 	
 	if(!is.null(x1))
 	{
@@ -88,6 +94,9 @@ transpose.desc=function(desc,...)
 	if(is.null(x1))
 	{
 		m=output
+		old.names=colnames(m)
+		colnames(m)=make.names(colnames(m))
+		y=colnames(m)[length(colnames(m))]
 	}
 	
 	if(!is.null(at.row)) m=m[m$value!="",]

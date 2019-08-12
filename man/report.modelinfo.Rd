@@ -3,6 +3,7 @@
 \name{report.modelinfo}
 \alias{report.modelinfo}
 \alias{report.modelinfo.lme}
+\alias{report.modelinfo.lmerMod}
 \alias{report.modelinfo.glm}
 \alias{report.modelinfo.coxph}
 \title{Export model information (still experimental)}
@@ -12,6 +13,9 @@ report.modelinfo(object, ...)
 \method{report.modelinfo}{lme}(object, doc = NULL, page.break = TRUE,
   ...)
 
+\method{report.modelinfo}{lmerMod}(object, doc = NULL,
+  page.break = TRUE, ...)
+
 \method{report.modelinfo}{glm}(object, doc = NULL, page.break = TRUE,
   ...)
 
@@ -19,7 +23,7 @@ report.modelinfo(object, ...)
   ...)
 }
 \arguments{
-\item{object}{A model (for now glm, lme and coxph models are availlable)}
+\item{object}{A model (for now glm, lme, lmer and coxph models are availlable)}
 
 \item{...}{Other arguments}
 
@@ -43,13 +47,21 @@ Compatible only (for now) with GLM, LME and Cox models. For now those output are
 library(officer)
 library(flextable)
 library(nlme)
-
+library(lme4)
 
 data(datafake)
+
+#Model info for lme model
 
 mod=lme(y_numeric~GROUP+TIMEPOINT,random=~1|SUBJID,data=datafake,na.action=na.omit)
 
 # Show in HTML (can be inserted in an R markdown or a MS Word document)
+
+report.modelinfo(mod)
+
+#Model info for lmer model
+
+mod=lmer(y_numeric~GROUP+TIMEPOINT+(1|SUBJID),data=datafake,na.action=na.omit)
 
 report.modelinfo(mod)
 

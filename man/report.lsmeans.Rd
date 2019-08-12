@@ -94,7 +94,7 @@ report.lsmeans(lsm=raw.lsm,at="TIMEPOINT")
 report.lsmeans(lsm=raw.lsm,at="TIMEPOINT",transpose=TRUE)
 
 
-# GLM model with specific contrast
+# LM model with specific contrast
 
 warp.lm <- lm(breaks ~ wool+tension+wool:tension, data = warpbreaks)
 warp.emm <- emmeans(warp.lm, ~ tension | wool)
