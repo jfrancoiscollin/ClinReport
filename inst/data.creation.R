@@ -74,7 +74,23 @@ levels(time_to_cure$Group)[4]="Untreated"
 
 
 
+data=read.csv2("C:\\Users\\jfcollin\\Google Drive\\ADAE.csv")
 
+data=droplevels(data[data$randtrt!="",])
+
+data$PTNAME[data$PTNAME==""]=NA
+data$SOCNAME[data$SOCNAME==""]=NA
+
+data=droplevels(data)
+
+
+data$SUBJID=gsub("B","ERFG",data$SUBJID)
+data$SUBJID=gsub("FVAE06","PJNE0589",data$SUBJID)
+
+data$randtrt=sample(data$randtrt,length(data$randtrt),replace=TRUE)
+
+
+#save(data, file = "C:\\Users\\jfcollin\\git\\data\\adverse_event.rda")
 
 
 
