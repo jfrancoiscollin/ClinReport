@@ -20,7 +20,7 @@
 #' @param drop.y Character. Indicates one or several levels of the y factor that you want to drop in the result
 #' @param drop.x1 Character. Indicates one or several levels of the x1 factor that you want to drop in the result
 #' @param drop.x2 Character. Indicates one or several levels of the x2 factor that you want to drop in the result
-#'@param remove.missing Logical. default to TRUE. If TRUE number of missing values are reported and percentages
+#' @param remove.missing Logical. default to TRUE. If TRUE number of missing values are reported and percentages
 #' take into account the number of missing value in the calculation. If set to FALSE, the missing values regarding the response factor y are ignored
 #' and percentages are computed on non missing values only.
 #' 

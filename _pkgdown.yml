@@ -31,6 +31,7 @@ reference:
   - '`report.lsmeans`'
   - '`report.quali`'
   - '`report.quanti`'
+  - '`report.quali.hlev`'
 - title: "Modify the tables"
   desc: >
     Functions used to modify the statistical outputs.   

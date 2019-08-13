@@ -10,7 +10,8 @@ report.doc(table, ...)
 
 \method{report.doc}{desc}(table, title = NULL, colspan.value = NULL,
   doc = NULL, init.numbering = F, numbering = T,
-  font.name = "Times", page.break = T, font.size = 10, ...)
+  font.name = "Times", page.break = T, font.size = 10, valign = F,
+  ...)
 
 \method{report.doc}{anova}(table, title = "Anova table",
   type.anova = 3, doc = NULL, numbering = T, init.numbering = F,
@@ -37,6 +38,8 @@ report.doc(table, ...)
 \item{page.break}{Logical. If TRUE it adds a page break after the output. Default to TRUE}
 
 \item{font.size}{Numeric. Passed to \code{\link{fontsize}} function. Set the font size of the output in Word}
+
+\item{valign}{Logical. If TRUE it aligns vertically the levels of the merged cells in the first column}
 
 \item{type.anova}{Passed to \code{Anova} function from car package (see its documentation).}
 

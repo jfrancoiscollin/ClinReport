@@ -42,3 +42,21 @@
 #' }
 #' 
 "time_to_cure"
+
+
+#' adverse_event
+#'
+#' Fake adverse event data example
+#' 
+#' @usage data(adverse_event)
+#'
+#' @format A data frame
+#' #' \describe{
+#' \item{SOCNAME}{Fake System Organ Class variable}
+#' \item{HLTNAME}{Fake factor}
+#' \item{PTNAME}{Fake Prefered Terms variable}
+#' \item{randtrt}{Fake treatment group factor}
+#' \item{SUBJID}{Fake subject Id}
+#' }
+#' 
+"adverse_event"
