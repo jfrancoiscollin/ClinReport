@@ -90,7 +90,7 @@ data$SUBJID=gsub("FVAE06","PJNE0589",data$SUBJID)
 data$randtrt=sample(data$randtrt,length(data$randtrt),replace=TRUE)
 
 
-#save(data, file = "C:\\Users\\jfcollin\\git\\data\\adverse_event.rda")
+#save(adverse_event, file = "C:\\Users\\jfcollin\\git\\data\\adverse_event.rda")
 
 
 

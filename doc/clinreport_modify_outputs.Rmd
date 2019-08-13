@@ -164,7 +164,7 @@ colspan.value="Treatment group")
 ## Drop levels
 
 If you want to drop some levels in the table, you can use
-'drop.x1' drop.x2' or 'drop.y' if 'y' is a qualitative variable.
+`drop.x1` `drop.x2` or `drop.y` if 'y' is a qualitative variable.
 
 For example. If we just want the statistics of group A:
 
@@ -180,16 +180,33 @@ colspan.value="Treatment group")
 
 Sometimes it can be useful to remove the missing values so that percentages are
 computed only on non missing observations.
-For that, just use the 'remove.missing' argument in 'report.quali':
+For that, just use the `remove.missing` argument in `report.quali`:
 
 ```{r}
 tab=report.quali(data=datafake,y="y_logistic",x1="GROUP",
 remove.missing=TRUE)
 
-report.doc(tab,title="Example of droping missing values",
+report.doc(tab,title="Example of dropping missing values",
 colspan.value="Treatment group")
 ```
 
+
+## Transpose Descriptive statistics (experimental)
+
+
+```{r}
+
+tab=report.quali(data=datafake,
+y="y_logistic",x1="GROUP",
+subjid="SUBJID",remove.missing=T)
+
+# The default output
+report.doc(tab)
+
+# The transposed output
+report.doc(transpose(tab))
+
+```
 
 
 ## Transpose LS-Means

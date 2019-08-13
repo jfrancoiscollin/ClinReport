@@ -1,6 +1,6 @@
 
 
-#' 'Hierarchichal Qualitative' statistics reporting (experimental)
+#' 'Hierarchical Qualitative' statistics reporting (experimental)
 #'
 #' @param data A data frame
 #' @param subjid A character
@@ -9,10 +9,11 @@
 #' @param var_lower A character. Indicates a factor in the data frame which corresponds to the factor with the lower number of levels (typically PT variable)
 #' @param lower.levels A character. The label to be displayed in the table for the lower terms
 #' @param upper.levels  A character. The label to be displayed in the table for the upper terms
+#' @param x1.label  A character. Not used for now
 #' 
 #' @description
 #' This function is mainly used to compute qualitative statistics when there are several events per
-#' observation. Typically adverse events, medical history or concomitant treatments.
+#' statistical unit. Often used for reporting adverse events, medical history or concomitant treatments.
 #' 
 #' It reports frequencies and percentages according to hierarchical levels of two factors.
 #' 
@@ -41,25 +42,30 @@
 #' 
 #' data(adverse_event)
 #' 
-#'test=report.quali.hlev(data=adverse_event,
-#'		subjid="SUBJID",
-#'		var_upper="PTNAME",
-#'		var_lower="SOCNAME",
-#'		lower.levels="SOC",
-#'		upper.levels="PT",
-#'		x1="randtrt")
+#'test=report.quali.hlev(data=adverse_event,subjid="SUBJID",var_upper="PTNAME",
+#'var_lower="SOCNAME",lower.levels="System Organ Class",upper.levels="Prefered Terms",x1="randtrt")
 #'
-#'
-#'test
+#' # show results in console
+#' test
+#' 
+#' # show formatted results in HTML
+#' ft=report.doc(test,valign=TRUE)
+#' ft
 #' 
 #' @export 
 
 report.quali.hlev=function(data,subjid=NULL,x1=NULL,var_upper,var_lower,
 		lower.levels="Lower.Levels",upper.levels=
-				"Upper.Levels")
+				"Upper.Levels",x1.label=NULL)
 {
 	
 	if(is.null(subjid)) stop("This function needs a subjid argument")
+	
+	if(!is.null(x1))
+	{
+		if(is.null(x1.label)) x1.label=x1
+	}
+	
 	
 	if(is.null(x1))
 	{
@@ -69,7 +75,7 @@ report.quali.hlev=function(data,subjid=NULL,x1=NULL,var_upper,var_lower,
 		lower.levels=make.names(lower.levels)
 		upper.levels=make.names(upper.levels)
 		
-		alo=ClinReport::at.least.one(data=data,subjid=subjid,var=var_upper)
+		alo=at.least.one(data=data,subjid=subjid,var=var_upper)
 		alo=data.frame(upper.levels=names(alo),n=alo)
 		colnames(alo)[colnames(alo)=="upper.levels"]=upper.levels
 		colnames(alo)[colnames(alo)=="n"]="At least one"
@@ -82,14 +88,14 @@ report.quali.hlev=function(data,subjid=NULL,x1=NULL,var_upper,var_lower,
 		
 		# calculate the total
 		
-		alo_tot=ClinReport::at.least.one(data=data,subjid=subjid,var=var_upper,total=TRUE,
+		alo_tot=at.least.one(data=data,subjid=subjid,var=var_upper,total=TRUE,
 				var.label=upper.levels)
 		
 		# add the total
 		
 		dat=rbind(alo_tot,dat)
 		
-		alo2=ClinReport::at.least.one(data=data,subjid=subjid,var=var_lower)
+		alo2=at.least.one(data=data,subjid=subjid,var=var_lower)
 		alo2=data.frame(lower.levels=names(alo2),n=alo2)
 		colnames(alo2)[colnames(alo2)=="lower.levels"]=lower.levels
 		colnames(alo2)[colnames(alo2)=="n"]="At least one"
@@ -104,7 +110,7 @@ report.quali.hlev=function(data,subjid=NULL,x1=NULL,var_upper,var_lower,
 		colnames(alo_tot)[1]=lower.levels
 		dat2=rbind(alo_tot,dat2)
 		
-		key=ClinReport::define.key(data,var_upper,var_lower,upper.levels=upper.levels,
+		key=define.key(data,var_upper,var_lower,upper.levels=upper.levels,
 				lower.levels=lower.levels)
 		
 		all=data.frame(upper.levels="ALL",lower.levels="ALL")
@@ -127,6 +133,12 @@ report.quali.hlev=function(data,subjid=NULL,x1=NULL,var_upper,var_lower,
 		
 		dat=spacetable(dat,lower.levels.asked)
 		
+		dat=ClinReport::desc(output=dat,total=FALSE,nbcol=6,y=NULL,x1=x1,x2=NULL,
+				at.row=x1,
+				subjid=subjid,type.desc="quali",type=NULL,y.label="",
+				raw.output=dat,title="Hierarchichal",y.levels.label="Levels")
+		
+		
 		return(dat)
 	}
 	
@@ -136,7 +148,7 @@ report.quali.hlev=function(data,subjid=NULL,x1=NULL,var_upper,var_lower,
 		
 		dat=report.quali.hlev(data=data,
 				subjid=subjid,x1=NULL,var_upper=var_upper,var_lower=var_lower,
-				lower.levels=lower.levels,upper.levels=upper.levels)
+				lower.levels=lower.levels,upper.levels=upper.levels)$output
 		
 		dat[,x1]=paste(levels(droplevels(data[,x1])),collapse="+")
 		
@@ -145,7 +157,7 @@ report.quali.hlev=function(data,subjid=NULL,x1=NULL,var_upper,var_lower,
 			
 			temp=report.quali.hlev(data=droplevels(data[data[,x1]==levels(data[,x1])[i],]),
 					subjid=subjid,x1=NULL,var_upper=var_upper,var_lower=var_lower,
-					lower.levels=lower.levels,upper.levels=upper.levels)
+					lower.levels=lower.levels,upper.levels=upper.levels)$output
 			
 			temp[,x1]=levels(data[,x1])[i]
 			
@@ -154,12 +166,19 @@ report.quali.hlev=function(data,subjid=NULL,x1=NULL,var_upper,var_lower,
 		
 		dat=spacetable(dat,x1)
 		
+		colnames(dat)[colnames(dat)==x1]=x1.label
+		
+		dat=ClinReport::desc(output=dat,total=FALSE,nbcol=6,y=NULL,x1=x1,x2=NULL,
+				at.row=x1,
+				subjid=subjid,type.desc="quali",type=NULL,y.label="",
+				raw.output=dat,title="Hierarchichal"	,y.levels.label="Levels")
+		
+		
 		return(dat)
 		
 	}
 	
-	
-	
+
 	
 }
 

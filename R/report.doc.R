@@ -23,6 +23,7 @@
 #' @param font.name Character. Passed to \code{\link{font}} function. Set the font of the output in Word
 #' @param font.size Numeric. Passed to \code{\link{fontsize}} function. Set the font size of the output in Word
 #' @param page.break Logical. If TRUE it adds a page break after the output. Default to TRUE
+#' @param valign Logical. If TRUE it aligns vertically the levels of the merged cells in the first column
 #' @param ... Other arguments
 #' 
 #' 
@@ -421,7 +422,8 @@ report.doc <- function(table,...)
 #' @export 
 
 report.doc.desc=function(table,title=NULL,colspan.value=NULL,doc=NULL,
-		init.numbering=F,numbering=T,font.name="Times",page.break=T,font.size=10,...)
+		init.numbering=F,numbering=T,font.name="Times",page.break=T,
+		font.size=10,valign=F,...)
 {
 	
 	
@@ -553,6 +555,7 @@ report.doc.desc=function(table,title=NULL,colspan.value=NULL,doc=NULL,
 	# merge first column in case there are repetitions
 	
 	ft=merge_v(ft,j=1)
+	if(valign) 	ft=valign(ft, j = 1, valign = "top", part = "body")
 	
 	# change font 
 	

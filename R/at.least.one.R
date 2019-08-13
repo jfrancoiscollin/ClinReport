@@ -15,8 +15,7 @@
 #' @description
 #' Used to calculate the 'at least one' statistics for several occurence of an event per statistical unit.
 #' 
-#' @details
-#' 
+#' @details 
 #' Used internally by report.quali.hlev
 
 

@@ -99,8 +99,21 @@ colspan.value="Treatment group")
 tab=report.quali(data=datafake,y="y_logistic",x1="GROUP",
 remove.missing=TRUE)
 
-report.doc(tab,title="Example of droping missing values",
+report.doc(tab,title="Example of dropping missing values",
 colspan.value="Treatment group")
+
+## ------------------------------------------------------------------------
+
+tab=report.quali(data=datafake,
+y="y_logistic",x1="GROUP",
+subjid="SUBJID",remove.missing=T)
+
+# The default output
+report.doc(tab)
+
+# The transposed output
+report.doc(transpose(tab))
+
 
 ## ------------------------------------------------------------------------
 mod=lm(y_numeric~GROUP,data=datafake)

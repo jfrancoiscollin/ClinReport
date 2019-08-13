@@ -97,6 +97,26 @@ report.doc(tab3,title="Mixed Qualitative and Quantitative outputs",
 colspan.value="Treatment group")
 
 ## ------------------------------------------------------------------------
+# We use a fake standard adverse event data set
+# In this data sets there are several observations per subject
+# and the factor PTNAME is a sub classification of the factor SOCNAME
+
+data(adverse_event)
+
+# In the report.quali.hlev we specify which factor has the more levels in the var_upper
+# argument. The var_lower argument indicates the classification with less levels.
+# The x1 argument is used to split the results according to the levels of another factor.
+
+test=report.quali.hlev(data=adverse_event,subjid="SUBJID",var_upper="PTNAME",
+var_lower="SOCNAME",lower.levels="System Organ Class",upper.levels="Prefered Terms",x1="randtrt")
+
+# Frequencies and Percentages for each level are shown in the 
+# formatted table in HTML, using the usual report.doc function
+
+ft=report.doc(test,valign=TRUE)
+ft
+
+## ------------------------------------------------------------------------
 # Removing baseline data for the model
 
 data.mod=droplevels(datafake[datafake$TIMEPOINT!="D0",])
