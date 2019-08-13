@@ -1,7 +1,3 @@
-# TODO: Add comment
-# 
-# Author: jfcollin
-###############################################################################
 
 
 #' 'Hierarchichal Qualitative' statistics reporting (experimental)
@@ -73,7 +69,7 @@ report.quali.hlev=function(data,subjid=NULL,x1=NULL,var_upper,var_lower,
 		lower.levels=make.names(lower.levels)
 		upper.levels=make.names(upper.levels)
 		
-		alo=at.least.one(data=data,subjid=subjid,var=var_upper)
+		alo=ClinReport::at.least.one(data=data,subjid=subjid,var=var_upper)
 		alo=data.frame(upper.levels=names(alo),n=alo)
 		colnames(alo)[colnames(alo)=="upper.levels"]=upper.levels
 		colnames(alo)[colnames(alo)=="n"]="At least one"
@@ -86,14 +82,14 @@ report.quali.hlev=function(data,subjid=NULL,x1=NULL,var_upper,var_lower,
 		
 		# calculate the total
 		
-		alo_tot=at.least.one(data=data,subjid=subjid,var=var_upper,total=TRUE,
+		alo_tot=ClinReport::at.least.one(data=data,subjid=subjid,var=var_upper,total=TRUE,
 				var.label=upper.levels)
 		
 		# add the total
 		
 		dat=rbind(alo_tot,dat)
 		
-		alo2=at.least.one(data=data,subjid=subjid,var=var_lower)
+		alo2=ClinReport::at.least.one(data=data,subjid=subjid,var=var_lower)
 		alo2=data.frame(lower.levels=names(alo2),n=alo2)
 		colnames(alo2)[colnames(alo2)=="lower.levels"]=lower.levels
 		colnames(alo2)[colnames(alo2)=="n"]="At least one"
@@ -108,7 +104,7 @@ report.quali.hlev=function(data,subjid=NULL,x1=NULL,var_upper,var_lower,
 		colnames(alo_tot)[1]=lower.levels
 		dat2=rbind(alo_tot,dat2)
 		
-		key=define.key(data,var_upper,var_lower,upper.levels=upper.levels,
+		key=ClinReport::define.key(data,var_upper,var_lower,upper.levels=upper.levels,
 				lower.levels=lower.levels)
 		
 		all=data.frame(upper.levels="ALL",lower.levels="ALL")

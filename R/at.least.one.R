@@ -3,30 +3,21 @@
 # Author: jfcollin
 ###############################################################################
 
-library(reshape2)
-library(ClinReport)
-library(sas7bdat)
 
-
-
-define.key=function(data,upper="AE_niv1",lower="AE_niv2",
-		upper.levels="Upper.Levels",
-		lower.levels="Lower.Levels")
-{
-	
-	relev=vector()
-	for(i in 1:length(levels(data[,upper])))
-	{
-		relev[i]=levels(droplevels(data[,lower][data[,upper]==levels(data[,upper])[i]]))
-	}
-	
-	
-	d=data.frame(Levels=levels(data[,upper]),lower.levels=relev)
-	colnames(d)[colnames(d)=="lower.levels"]=lower.levels
-	colnames(d)[colnames(d)=="Levels"]=upper.levels
-	d
-}
-
+#' Create a key from two hierarchical factors
+#'
+#' @param data A data frame
+#' @param subjid A character. Indicates the ID
+#' @param var A character. Indicates a factor in the data frame
+#' @param var.label A character. The label of var
+#' @param total  Logical. if TRUE the total number of events is calculated
+#' 
+#' @description
+#' Used to calculate the 'at least one' statistics for several occurence of an event per statistical unit.
+#' 
+#' @details
+#' 
+#' Used internally by report.quali.hlev
 
 
 at.least.one=function(data,subjid=NULL,var,total=FALSE,var.label="var")
