@@ -406,7 +406,7 @@
 #'
 #' }
 #' 
-#' @import  officer flextable
+#' @import officer flextable
 #' 
 #' @rdname report.doc
 #' @export

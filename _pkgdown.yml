@@ -33,6 +33,7 @@ reference:
   - '`report.quanti`'
   - '`report.quali.hlev`'
   - '`report.modelinfo`'
+  - '`report.sessionInfo`'
 - title: "Modify the tables"
   desc: >
     Functions used to modify the statistical outputs.   

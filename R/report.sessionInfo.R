@@ -27,8 +27,11 @@
 #' report.sessionInfo()
 #' 
 #' # Fro a Word document use the doc argument
+#' library(officer)
 #' doc=read_docx()
 #' doc=report.sessionInfo(doc)
+#' 
+#' @import utils officer flextable
 #' 
 #' @export
 
@@ -93,8 +96,6 @@ d=data.frame(Label=var,
 
 
 d=spacetable(d,"Label")
-
-library(flextable)
 
 ft=flextable(d)
 ft=merge_v(ft,1)

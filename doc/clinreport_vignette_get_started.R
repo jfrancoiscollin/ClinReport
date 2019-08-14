@@ -174,3 +174,6 @@ tab.pairs
 report.doc(tab.pairs,title="Hazard ratios of a Cox model")
 
 
+## ------------------------------------------------------------------------
+report.sessionInfo()
+
