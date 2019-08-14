@@ -32,6 +32,7 @@ reference:
   - '`report.quali`'
   - '`report.quanti`'
   - '`report.quali.hlev`'
+  - '`report.modelinfo`'
 - title: "Modify the tables"
   desc: >
     Functions used to modify the statistical outputs.   
@@ -45,8 +46,8 @@ reference:
     Function used to create the corresponding graphics of the statistical outputs.   
   contents:
   - '`plot.desc`'
-- title: "Export to word"
+- title: "Export to Word or R markdown documents"
   desc: >
-    Function used to export the outputs to Microsoft Word  
+    Function used to export the outputs to Microsoft Word or R markdown documents  
   contents:
   - '`report.doc`'
