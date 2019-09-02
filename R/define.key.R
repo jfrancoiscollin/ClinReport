@@ -16,7 +16,7 @@
 #' 
 #' @details
 #' 
-#' Used initernally by report.quali.hlev
+#' Used internally by report.quali.hlev
 
 
 

@@ -1,5 +1,5 @@
 ---
-title: "ClinReport Vignette 2: The Different Type of Statistical Sables"
+title: "ClinReport Vignette 2: The Different Type of Statistical Tables"
 author: "Jean-Francois COLLIN"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -318,9 +318,9 @@ report.doc(tab.pairs,title="Hazard ratios of a Cox model")
 ## The session information
 
 Finally, you can export the current information
-of your R session by using the `report.sessionInfo`
+of your R session by using the `report.sessionInfo()` function
 which will create a table containing the result of the call
-to `sessionInfo()`
+to `sessionInfo()`.
 
 
 
