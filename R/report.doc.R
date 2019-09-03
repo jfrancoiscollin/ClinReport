@@ -694,9 +694,13 @@ report.doc.anova=function(table,title="Anova table",type.anova=3,doc=NULL,number
 
 
 
+#' @importFrom xtable xtable
+#' @rdname report.doc
+#' 
+#' @export 
 
 
-
+report.doc.anova.lme=report.doc.anova
 
 
 

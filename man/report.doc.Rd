@@ -4,6 +4,7 @@
 \alias{report.doc}
 \alias{report.doc.desc}
 \alias{report.doc.anova}
+\alias{report.doc.anova.lme}
 \title{Export a statistical table into a 'Microsoft Word' or a R markdown document}
 \usage{
 report.doc(table, ...)
@@ -14,6 +15,11 @@ report.doc(table, ...)
   ...)
 
 \method{report.doc}{anova}(table, title = "Anova table",
+  type.anova = 3, doc = NULL, numbering = T, init.numbering = F,
+  font.name = "Times", font.size = 10, page.break = T,
+  pretty.label = FALSE, ...)
+
+\method{report.doc}{anova.lme}(table, title = "Anova table",
   type.anova = 3, doc = NULL, numbering = T, init.numbering = F,
   font.name = "Times", font.size = 10, page.break = T,
   pretty.label = FALSE, ...)

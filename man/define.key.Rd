@@ -22,5 +22,5 @@ define.key(data, upper = "", lower = "",
 Used to create a single key from two hierarchical factors.
 }
 \details{
-Used initernally by report.quali.hlev
+Used internally by report.quali.hlev
 }
