@@ -52,10 +52,6 @@ report.doc(table, ...)
 \item{pretty.label}{Logical. Default to FALSE. If TRUE, use the function \code{make.label} with default option on the rownames of the anova table}
 
 \item{anova}{Logical. Used to specify if the table is an anova table. By default it's not}
-
-\item{type.anova}{Passed to \code{Anova} function from car package (see its documentation).}
-
-\item{pretty.label}{Logical. Default to FALSE. If TRUE, use the function \code{make.label} with default option on the rownames of the anova table}
 }
 \value{
 A flextable object (if doc=NULL) or a rdocx object (if doc= an rdocx object).

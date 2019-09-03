@@ -72,6 +72,8 @@ check_rhub()
 
 check_win_devel()
 
+use_cran_comments()
+
 # to avoid the check of the docs directory
 # when check as cran
 #usethis::use_build_ignore("docs")

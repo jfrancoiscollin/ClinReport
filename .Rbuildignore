@@ -6,3 +6,4 @@
 ^doc$
 index\.Rmd$
 ^CRAN-RELEASE$
+^cran-comments\.md$

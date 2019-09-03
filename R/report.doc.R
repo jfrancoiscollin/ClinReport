@@ -694,9 +694,6 @@ report.doc.anova=function(table,title="Anova table",type.anova=3,doc=NULL,number
 
 
 
-#' @param type.anova Passed to \code{Anova} function from car package (see its documentation).
-#' @param pretty.label Logical. Default to FALSE. If TRUE, use the function \code{make.label} with default option on the rownames of the anova table 
-#' 
 #' @importFrom xtable xtable
 #' @rdname report.doc
 #' 
