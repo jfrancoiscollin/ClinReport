@@ -248,7 +248,11 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	if(any(levels(data[,x1])=="")) stop(paste0("One of the levels of ",x1," is equal to '' and this function doesn't like that. Can you please change this level?"))
 	if(any(levels(data[,x2])=="")) stop(paste0("One of the levels of ",x2," is equal to '' and this function doesn't like that. Can you please change this level?"))
 	
+	# Case where NaN are present, instead of NA
 	
+	data[,x1][is.na(data[,x1])]=NA
+	data[,x2][is.na(data[,x2])]=NA
+	data[,y][is.na(data[y])]=NA
 	
 	# add NA as category
 	# to count the number of missing values (if it's not already the case)
@@ -266,6 +270,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		data=data[!is.na(data[,y]),]
 	}
 	
+
 	
 	# Compute frequency and total sample size for percentage
 	
