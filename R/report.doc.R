@@ -544,8 +544,7 @@ report.doc.desc=function(table,title=NULL,colspan.value=NULL,doc=NULL,
 	if(is.null(table$at.row))
 	{
 		ft=vline(ft,j =1:nb.col,border = fp_border(width = 1),part = "body")
-	}
-	else
+	}else
 	{
 		i=space_vline(output,table$at.row)
 		ft=vline(ft, i=i,j =1:nb.col,border = fp_border(width = 1),part = "body")

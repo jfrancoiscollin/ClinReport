@@ -35,23 +35,28 @@ space_vline=function(tab,at.row)
 	
 	split=factor(split,levels=unique(split))
 	
-	
-	s=split(tab,split)
-	
-	
-	nb.elem=sapply(s,nrow)
-	
-	vect=vector()
-	
-	vect=1:nb.elem[1]
-	
-	for(i in 2:length(nb.elem))
+	if(length(levels(split))>1)
 	{
-		vect=c(vect,(vect[length(vect)]+2):(vect[length(vect)]+1+nb.elem[i]))
+		s=split(tab,split)
 		
+		
+		nb.elem=sapply(s,nrow)
+		
+		vect=vector()
+		
+		vect=1:nb.elem[1]
+		
+		for(i in 2:length(nb.elem))
+		{
+			vect=c(vect,(vect[length(vect)]+2):(vect[length(vect)]+1+nb.elem[i]))
+		}
+		
+		return(vect)
+	}else
+	{
+		vect=1
+		return(vect)
 	}
-	
-	
-	vect
+
 	
 }
