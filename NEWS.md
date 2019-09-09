@@ -129,6 +129,19 @@ argument systematically anymore
 
 
 
+# ClinReport 0.9.2
+
+## Enhancement
+
+* A Word template is integrated in the package and the function init.report enables to initialize
+the default parameters (Date, Author name, Title of the report etc...)
+* The package is now compatible with tibble object and is compatible with the haven package
+* The package can use SAS format to re-label the outputs automatically
+
+
+## Issues
+* Correction of a bug in report.quanti when using the func.stat argument
+
 
 
 

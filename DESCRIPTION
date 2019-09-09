@@ -1,7 +1,7 @@
 Package: ClinReport
 Type: Package
 Title: Statistical Reporting for Scientific Publications, Epidemiological Studies and Clinical Trials
-Version: 0.9.1.14
+Version: 0.9.2
 Date: 2019-09-03
 Author: Jean-Francois Collin
 Maintainer: Jean-Francois Collin <jfcollin@live.fr>

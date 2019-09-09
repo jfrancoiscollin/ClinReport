@@ -4,14 +4,14 @@
 \alias{report.quali}
 \title{Descriptive "Qualitative" statistics (frequencies and percentages) reporting}
 \usage{
-report.quali(data, y = NULL, x1 = NULL, x2 = NULL, y.label = y,
+report.quali(data, y = NULL, x1 = NULL, x2 = NULL, y.label = NULL,
   x2.label = NULL, y.levels.label = "Levels", total = F, round = 2,
   at.row = NULL, percent.col = T, subjid = NULL, remove.zero = F,
   drop.y = NULL, drop.x1 = NULL, drop.x2 = NULL,
   remove.missing = F)
 }
 \arguments{
-\item{data}{a data.frame object}
+\item{data}{a data.frame or a tibble object}
 
 \item{y}{Character indicating a factor in the data (the response)}
 
@@ -63,6 +63,8 @@ and \code{x2} (if not null).
 See examples to show the results. If \code{total=T}, the last column is the statistics
 performed overall levels of the explicative variables x1.
 
+If a tibble object is supplied instead of a data.frame, it is transformed into a data.frame via \code{data.frame()} function.
+
 Note that missing values are counted in the calculation of the percentages.
 }
 \examples{
@@ -105,6 +107,7 @@ tab
 
 #Getting raw output (unformatted) 
 tab$raw.output
+
 }
 \seealso{
 \code{\link{report.quanti}}  \code{\link{report.doc}} \code{\link{desc}}

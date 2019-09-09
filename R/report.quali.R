@@ -4,7 +4,7 @@
 
 #' Descriptive "Qualitative" statistics (frequencies and percentages) reporting
 #'
-#' @param data a data.frame object
+#' @param data a data.frame or a tibble object
 #' @param y Character indicating a factor in the data (the response)
 #' @param x1 Character indicating a factor in the data (levels will be displayed in columns)
 #' @param x2 Character indicating a factor in the data (levels will be displayed in rows). Only possible if x1 is not NULL.
@@ -36,6 +36,8 @@
 #' 
 #' See examples to show the results. If \code{total=T}, the last column is the statistics
 #' performed overall levels of the explicative variables x1.
+#' 
+#' If a tibble object is supplied instead of a data.frame, it is transformed into a data.frame via \code{data.frame()} function.
 #' 
 #' Note that missing values are counted in the calculation of the percentages.
 
@@ -84,12 +86,12 @@
 #' 
 #' #Getting raw output (unformatted) 
 #' tab$raw.output
-
-
+#' 
+#' @import haven tibble
 #' @export
 
 
-report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
+report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=NULL,
 		x2.label=NULL,
 		y.levels.label="Levels",total=F,
 		round=2,at.row=NULL,percent.col=T,subjid=NULL,remove.zero=F,
@@ -111,18 +113,69 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 #	at.row=NULL
 #	percent.col=T
 #	subjid=NULL
-
+	
 	#checks on y and data arguments
 	
+	substitute=substitute(data)
+	
 	if(is.null(y)) stop("y argument cannot be NULL")
-	if(class(data)!="data.frame") stop("data argument should be a data.frame")
+	if(inherits(data,"tbl_df"))
+	{
+		tibble=data
+		data=data.frame(data)
+		is.tibble=TRUE
+	}else
+	{
+		is.tibble=FALSE
+	}
+	
+	
+	
+	if(is.tibble)
+	{
+		if(is.null(y.label))
+		{
+			y.label=attributes(deframe(tibble[,y]))$label
+		}
+		
+	}
+	
+	if(!is.tibble)
+	{
+		if(is.null(y.label))
+		{
+			y.label=y
+		}
+		
+	}
+	
+	if(class(data)!="data.frame") stop("data argument should be a data.frame or a tibble object")
 	if(class(y)!="character") stop("y argument should be a character")
 	
-	y=check.x(data,y,substitute=substitute(data))
+	y=check.x(data,y,substitute=substitute)
 	
 	if(!is.null(x2))
 	{
-		if(is.null(x2.label)) x2.label=x2
+		
+		if(is.tibble)
+		{
+			if(is.null(x2.label))
+			{
+				x2.label=attributes(deframe(tibble[,x2]))$label
+			}
+			
+		}
+		
+		
+		if(!is.tibble)
+		{
+			if(is.null(x2.label))
+			{
+				x2.label=x2
+			}
+			
+		}
+		
 	}
 	
 	
@@ -191,13 +244,25 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	if(is.null(x1) & is.null(x2))
 	{
 		
-		temp=data
-		temp$int=as.factor(y.label)
+		if(is.tibble)
+		{
+			temp=tibble
+			temp$int=as.factor(y.label)
+			attributes(temp$int)$label="int"
+		}
 		
-		freq=report.quali(temp,y,x1="int",x2.label=x2.label,y.label=y.label,
-				x2="int",y.levels.label=y.levels.label,total=F,
-				,percent.col=percent.col,subjid=subjid,
-				round=round,remove.missing=remove.missing)
+		if(!is.tibble)
+		{
+			temp=data
+			temp$int=as.factor(y.label)
+		}
+		
+		
+		
+		freq=suppressMessages(report.quali(temp,y,x1="int",x2.label=x2.label,y.label=y.label,
+						x2="int",y.levels.label=y.levels.label,total=F,
+						,percent.col=percent.col,subjid=subjid,
+						round=round,remove.missing=remove.missing))
 		
 		freq$output=freq$output[,-1]
 		freq$x1=NULL
@@ -211,13 +276,27 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	if(!is.null(x1) & is.null(x2))
 	{
 		
-		temp=data
+		if(is.tibble)
+		{
+			temp=tibble
+			temp$int=as.factor(y.label)
+			attributes(temp$int)$label="int"
+			x2.label="int"
+		}
+		
+		if(!is.tibble)
+		{
+			temp=data
+			temp$int=as.factor(y.label)
+		}
+		
 		temp$int=as.factor(1)
-		freq=report.quali(temp,y,x1,x2="int",y.levels.label=y.levels.label,
-				total=total,
-				y.label=y.label,
-				,percent.col=percent.col,subjid=subjid,
-				round=round,remove.missing=remove.missing)
+		freq=suppressMessages(report.quali(temp,y,x1,x2="int",y.levels.label=y.levels.label,
+					    x2.label=x2.label,
+						total=total,
+						y.label=y.label,
+						,percent.col=percent.col,subjid=subjid,
+						round=round,remove.missing=remove.missing))
 		
 		freq$output=freq$output[,-1]
 		freq$x2=NULL
@@ -240,19 +319,72 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 	
 # check
 	
-	x1=check.x(data,x1,substitute=substitute(data))
-	x2=check.x(data,x2,substitute=substitute(data))
+	x1=check.x(data,x1,substitute=substitute)
+	x2=check.x(data,x2,substitute=substitute)
 	
 	
 	# check
 	if(any(levels(data[,x1])=="")) stop(paste0("One of the levels of ",x1," is equal to '' and this function doesn't like that. Can you please change this level?"))
 	if(any(levels(data[,x2])=="")) stop(paste0("One of the levels of ",x2," is equal to '' and this function doesn't like that. Can you please change this level?"))
 	
+	
+	
+	if(is.tibble)
+	{
+		
+		
+		if(!is.null(names(attributes(deframe(tibble[y]))$labels)))
+		{
+			
+			lab=attributes(deframe(tibble[,y]))$labels
+			names=names(lab)
+			fact=factor(deframe(tibble[,y]))
+			for(i in 1:length(lab))
+			{
+				levels(fact)[levels(fact)==lab[i]]=names[i]
+			}
+			
+			data[,y]=fact
+			
+		}
+		
+		if(!is.null(names(attributes(deframe(tibble[,x1]))$labels)))
+		{
+			
+			lab=attributes(deframe(tibble[,x1]))$labels
+			names=names(lab)
+			fact=factor(deframe(tibble[,x1]))
+			for(i in 1:length(lab))
+			{
+				levels(fact)[levels(fact)==lab[i]]=names[i]
+			}
+			
+			data[,x1]=fact
+		}
+		
+		
+		if(!is.null(names(attributes(deframe(tibble[,x2]))$labels)))
+		{
+			lab=attributes(deframe(tibble[,x2]))$labels
+			names=names(lab)
+			fact=factor(deframe(tibble[,x2]))
+			for(i in 1:length(lab))
+			{
+				levels(fact)[levels(fact)==lab[i]]=names[i]
+			}
+			
+			data[,x2]=fact
+			
+		}
+		
+	}
+	
+	
 	# Case where NaN are present, instead of NA
 	
 	data[,x1][is.na(data[,x1])]=NA
 	data[,x2][is.na(data[,x2])]=NA
-	data[,y][is.na(data[y])]=NA
+	data[,y][is.na(data[,y])]=NA
 	
 	# add NA as category
 	# to count the number of missing values (if it's not already the case)
@@ -270,7 +402,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=y,
 		data=data[!is.na(data[,y]),]
 	}
 	
-
+	
 	
 	# Compute frequency and total sample size for percentage
 	

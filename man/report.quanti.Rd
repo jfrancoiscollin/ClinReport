@@ -11,7 +11,7 @@ report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = y,
   func.stat.name = "", drop.x1 = NULL, drop.x2 = NULL)
 }
 \arguments{
-\item{data}{Data.frame object}
+\item{data}{a data.frame or a tibble object}
 
 \item{y}{Character indicating a numerical vector in the data frame passed to \code{data} argument}
 
@@ -65,6 +65,8 @@ See the example to show the results. If \code{total=TRUE}, the last column is th
 performed overall levels of \code{x1} for each levels of \code{x2}. 
 Quantiles are calculated using type 3 (SAS presumed definition) algorithms, but even though,
 some differences between SAS and R can appear on quantile values.
+
+If a tibble object is supplied instead of a data.frame, it is transformed into a data.frame via \code{data.frame()} function.
 
 "geomean" compute the geometric mean defined as exp(mean(log(y))). The values below or equal 0 are removed and
 a message is printed  to indicate how many values were deleted to calculate the geometric mean.

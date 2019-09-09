@@ -5,7 +5,7 @@
 #' Descriptive "Quantitative" statistics (mean, SD, median...) reporting
 #' 
 #'
-#' @param data Data.frame object
+#' @param data a data.frame or a tibble object
 #' @param y Character indicating a numerical vector in the data frame passed to \code{data} argument
 #' @param x1 Character indicating a factor in the data (levels will be displayed in columns)
 #' @param x2 Character indicating a factor in the data (levels will be displayed in lines)
@@ -38,6 +38,8 @@
 #' performed overall levels of \code{x1} for each levels of \code{x2}. 
 #' Quantiles are calculated using type 3 (SAS presumed definition) algorithms, but even though,
 #' some differences between SAS and R can appear on quantile values.
+#' 
+#' If a tibble object is supplied instead of a data.frame, it is transformed into a data.frame via \code{data.frame()} function.
 #' 
 #' "geomean" compute the geometric mean defined as exp(mean(log(y))). The values below or equal 0 are removed and
 #' a message is printed  to indicate how many values were deleted to calculate the geometric mean.
@@ -163,7 +165,8 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	################################
 	
 	if(is.null(y)) stop("y argument cannot be NULL")
-	if(class(data)!="data.frame") stop("data argument should be a data.frame")
+	if(inherits(data,"tbl_df")) data=data.frame(data)
+	if(class(data)!="data.frame") stop("data argument should be a data.frame or a tibble object")
 	
 	if(class(y)!="character") stop("Dear user. y argument should be a character")
 	if(!any(colnames(data)==y)) stop("y argument should be in data colnames")
@@ -343,7 +346,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	if(!default.stat)
 	{
-		stat=paste0(substitute(func.stat))
+		stat=paste0("func.stat")
 		stat_list=as.formula(paste0("~",stat,"(",y,")"))
 		
 		# compute statistics
