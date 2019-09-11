@@ -470,6 +470,8 @@ report.doc.desc=function(table,title=NULL,colspan.value=NULL,doc=NULL,
 		
 	}
 	
+	if(is.null(title)) title=table$title
+	
 	
 	# Increase numbering by one
 	

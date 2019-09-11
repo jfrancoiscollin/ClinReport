@@ -161,7 +161,16 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=NULL,
 		{
 			if(is.null(x2.label))
 			{
-				x2.label=attributes(deframe(tibble[,x2]))$label
+				if(!is.null(attributes(deframe(tibble[,x2]))$label))
+				{
+					x2.label=attributes(deframe(tibble[,x2]))$label
+				}else
+				{
+					x2.label=x2
+				}
+			}else
+			{
+				x2.label=x2
 			}
 			
 		}
@@ -190,7 +199,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=NULL,
 		
 		if(!is.null(x2))
 		{
-			check=any(!"%in%"(drop.x2,levels(data[,x2])))
+			check=any(!"%in%"(drop.x2,levels(as.factor(data[,x2]))))
 			if(!check)
 			{
 				data=droplevels(data[!"%in%"(data[,x2],drop.x2),])
@@ -212,7 +221,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=NULL,
 		
 		if(!is.null(x1))
 		{
-			check=any(!"%in%"(drop.x1,levels(data[,x1])))
+			check=any(!"%in%"(drop.x1,levels(as.factor(data[,x1]))))
 			if(!check)
 			{
 				data=droplevels(data[!"%in%"(data[,x1],drop.x1),])
@@ -292,7 +301,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=NULL,
 		
 		temp$int=as.factor(1)
 		freq=suppressMessages(report.quali(temp,y,x1,x2="int",y.levels.label=y.levels.label,
-					    x2.label=x2.label,
+						x2.label=x2.label,
 						total=total,
 						y.label=y.label,
 						,percent.col=percent.col,subjid=subjid,

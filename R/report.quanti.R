@@ -140,11 +140,14 @@
 
 
 
-report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
+report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 		round=2,
-		total=F,scientific=F,digits=NULL,at.row=NULL,subjid=NULL,geomean=F,
-		add.mad=F,default.stat=T,func.stat=NULL,stat.name="Statistics",func.stat.name="",
-		drop.x1=NULL,drop.x2=NULL)
+		total=F,scientific=F,digits=NULL,at.row=NULL,
+		subjid=NULL,geomean=F,
+		add.mad=F,default.stat=T,func.stat=NULL,
+		stat.name="Statistics",func.stat.name="",
+		drop.x1=NULL,drop.x2=NULL,
+		limit.detection=NULL)
 {
 	
 	stat.name=make.names(stat.name)
@@ -165,12 +168,12 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	################################
 	
 	if(is.null(y)) stop("y argument cannot be NULL")
-	if(inherits(data,"tbl_df")) data=data.frame(data)
-	if(class(data)!="data.frame") stop("data argument should be a data.frame or a tibble object")
+
+	if( !any(inherits(data,"data.frame") | inherits(data,"tbl_df"))) stop("data argument should be a data.frame or a tibble object")
 	
 	if(class(y)!="character") stop("Dear user. y argument should be a character")
 	if(!any(colnames(data)==y)) stop("y argument should be in data colnames")
-	if(!is.numeric(data[,y])) stop(paste0(as.character(substitute(data)),"[,'",y,"']","should be a numeric variable"))
+	if(!is.numeric(data.frame(data)[,y])) stop(paste0(as.character(substitute(data)),"[,'",y,"']","should be a numeric variable"))
 	
 	if(!is.logical(total))		stop("Argument total argument must be logical")
 	if(!is.numeric(digits) & !is.null(digits)) stop("Argument digits must be numeric")
@@ -181,6 +184,79 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	
 	if(is.null(x1) & !is.null(x2)) stop("If you have only one explicative variable, then use x1 and not x2 argument")
+	
+	
+	
+	
+	
+	if(inherits(data,"tbl_df"))
+	{
+		tibble=data
+		data=data.frame(data)
+		is.tibble=TRUE
+	}else
+	{
+		is.tibble=FALSE
+	}
+	
+	
+	if(is.tibble)
+	{
+		if(is.null(y.label))
+		{
+			y.label=attributes(deframe(tibble[,y]))$label
+		}
+		
+		
+		if(!is.null(x1))
+		{
+			if(!is.null(names(attributes(deframe(tibble[,x1]))$labels)))
+			{
+				
+				lab=attributes(deframe(tibble[,x1]))$labels
+				names=names(lab)
+				fact=factor(deframe(tibble[,x1]))
+				for(i in 1:length(lab))
+				{
+					levels(fact)[levels(fact)==lab[i]]=names[i]
+				}
+				
+				data[,x1]=fact
+			}
+			
+		}
+
+		
+		if(!is.null(x2))
+		{
+			if(!is.null(names(attributes(deframe(tibble[,x2]))$labels)))
+			{
+				
+				lab=attributes(deframe(tibble[,x2]))$labels
+				names=names(lab)
+				fact=factor(deframe(tibble[,x2]))
+				for(i in 1:length(lab))
+				{
+					levels(fact)[levels(fact)==lab[i]]=names[i]
+				}
+				
+				data[,x2]=fact
+			}
+			
+		}
+		
+	}
+	
+	if(!is.tibble)
+	{
+		if(is.null(y.label))
+		{
+			y.label=y
+		}
+		
+	}
+	
+	
 	
 	
 	if(!is.null(func.stat))
@@ -202,7 +278,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		
 		if(!is.null(x2))
 		{
-			check=any(!"%in%"(drop.x2,levels(data[,x2])))
+			check=any(!"%in%"(drop.x2,levels(as.factor(data[,x2]))))
 			if(!check)
 			{
 				data=droplevels(data[!"%in%"(data[,x2],drop.x2),])
@@ -224,7 +300,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		
 		if(!is.null(x1))
 		{
-			check=any(!"%in%"(drop.x1,levels(data[,x1])))
+			check=any(!"%in%"(drop.x1,levels(as.factor(data[,x1]))))
 			if(!check)
 			{
 				data=droplevels(data[!"%in%"(data[,x1],drop.x1),])
@@ -282,6 +358,27 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		max=as.formula(paste0("~","max(",y,",na.rm=T)"))
 		missing=as.formula(paste0("~","length(",y,"[is.na(",y,")])"))
 		
+		if(!is.null(limit.detection))
+		{
+			if(length(limit.detection)==1)
+			{
+				if(is.numeric(limit.detection))
+				{
+					below.ld=as.formula(paste0("~","length(",y,"[",y,"<=",limit.detection,"& !is.na(",y,")","])"))
+					check.ld=TRUE
+				}else
+				{
+					check.ld=FALSE
+				}
+			}else
+			{
+				check.ld=FALSE
+			}
+		}else
+		{
+			check.ld=FALSE
+		}
+		
 		geomean_func=function(x)
 		{
 			if(any(x<=0)) message(paste0(length(x[x<=0])," values were removed to calculate the Geometric mean"))
@@ -323,6 +420,11 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		if(add.mad)
 		{
 			stat_list=c(stat_list,"mad"=mad)
+		}
+		
+		if(check.ld)
+		{
+			stat_list=c(stat_list,"below.ld"=below.ld)
 		}
 		
 		
@@ -388,6 +490,8 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		stat$max=NULL
 		stat$q1=NULL
 		stat$q3=NULL
+		stat$q3=NULL
+
 	}
 	
 	
@@ -438,6 +542,11 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 		}
 		
 		
+		if(check.ld)
+		{
+			levels(stat2[,stat.name])[levels(stat2[,stat.name])=="below.ld"]="N Below LD"
+		}
+		
 		levels(stat2[,stat.name])[levels(stat2[,stat.name])=="min_max"]="[Min;Max]"
 		levels(stat2[,stat.name])[levels(stat2[,stat.name])=="missing"]="Missing"
 		levels(stat2[,stat.name])[levels(stat2[,stat.name])=="q1_q3"]="[Q1;Q3]"
@@ -464,7 +573,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 			temp=report.quanti(data=data,y=y,y.label="Total",add.mad=add.mad,
 					default.stat=default.stat,func.stat=func.stat,stat.name=stat.name,
 					func.stat.name=func.stat.name,round=round,digits=digits,
-					scientific=scientific)$output
+					scientific=scientific,limit.detection=limit.detection)$output
 			stat2=merge(stat2,temp,by=stat.name)
 		}
 		
@@ -473,7 +582,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 			temp=report.quanti(data=data,y=y,x1=x2,add.mad=add.mad,
 					default.stat=default.stat,func.stat=func.stat,stat.name=stat.name,
 					func.stat.name=func.stat.name,round=round,digits=digits,
-					scientific=scientific)$output
+					scientific=scientific,limit.detection=limit.detection)$output
 			temp=melt(temp,id.vars=stat.name,variable.name=x2,value.name = "Total")
 			stat2=merge(stat2,temp,by=c(x2,stat.name))
 		}
@@ -483,30 +592,60 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=y,
 	
 	if(default.stat)
 	{
-		if(add.mad)
+		if(!check.ld)
 		{
-			if(geomean)
+			if(add.mad)
 			{
-				stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Geo Mean (SD)","Median (MAD)",
-								"[Q1;Q3]","[Min;Max]","Missing"))
+				if(geomean)
+				{
+					stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Geo Mean (SD)","Median (MAD)",
+									"[Q1;Q3]","[Min;Max]","Missing"))
+				}else
+				{
+					stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Mean (SD)","Median (MAD)",
+									"[Q1;Q3]","[Min;Max]","Missing"))
+				}
+				
 			}else
 			{
-				stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Mean (SD)","Median (MAD)",
-								"[Q1;Q3]","[Min;Max]","Missing"))
+				if(geomean)
+				{
+					stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Geo Mean (SD)","Median",
+									"[Q1;Q3]","[Min;Max]","Missing"))
+				}else
+				{
+					stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Mean (SD)","Median",
+									"[Q1;Q3]","[Min;Max]","Missing"))
+				}
 			}
-			
 		}else
 		{
-			if(geomean)
+			if(add.mad)
 			{
-				stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Geo Mean (SD)","Median",
-								"[Q1;Q3]","[Min;Max]","Missing"))
+				if(geomean)
+				{
+					stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Geo Mean (SD)","Median (MAD)",
+									"[Q1;Q3]","[Min;Max]","N Below LD","Missing"))
+				}else
+				{
+					stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Mean (SD)","Median (MAD)",
+									"[Q1;Q3]","[Min;Max]","N Below LD","Missing"))
+				}
+				
 			}else
 			{
-				stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Mean (SD)","Median",
-								"[Q1;Q3]","[Min;Max]","Missing"))
+				if(geomean)
+				{
+					stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Geo Mean (SD)","Median",
+									"[Q1;Q3]","[Min;Max]","N Below LD","Missing"))
+				}else
+				{
+					stat2[,stat.name]=factor(stat2[,stat.name],levels=c("N","Mean (SD)","Median",
+									"[Q1;Q3]","[Min;Max]","N Below LD","Missing"))
+				}
 			}
 		}
+
 		
 		if(!is.null(x2)) stat2=stat2[order(stat2[,x2],stat2[,stat.name]),]
 		if(is.null(x2)) stat2=stat2[order(stat2[,stat.name]),]

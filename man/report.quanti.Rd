@@ -4,7 +4,7 @@
 \alias{report.quanti}
 \title{Descriptive "Quantitative" statistics (mean, SD, median...) reporting}
 \usage{
-report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = y,
+report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = NULL,
   round = 2, total = F, scientific = F, digits = NULL,
   at.row = NULL, subjid = NULL, geomean = F, add.mad = F,
   default.stat = T, func.stat = NULL, stat.name = "Statistics",
