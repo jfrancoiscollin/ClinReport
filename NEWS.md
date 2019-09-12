@@ -137,7 +137,7 @@ argument systematically anymore
 the default parameters (Date, Author name, Title of the report etc...)
 * The package is now compatible with tibble object and is compatible with the haven package
 * The package can use SAS format to re-label the outputs automatically
-
+* Add pvalue argument to report.doc.anova to have a pretty round format in the anova table 
 
 ## Issues
 * Correction of a bug in report.quanti when using the func.stat argument

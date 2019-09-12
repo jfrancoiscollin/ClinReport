@@ -168,7 +168,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 	################################
 	
 	if(is.null(y)) stop("y argument cannot be NULL")
-
+	
 	if( !any(inherits(data,"data.frame") | inherits(data,"tbl_df"))) stop("data argument should be a data.frame or a tibble object")
 	
 	if(class(y)!="character") stop("Dear user. y argument should be a character")
@@ -204,7 +204,14 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 	{
 		if(is.null(y.label))
 		{
-			y.label=attributes(deframe(tibble[,y]))$label
+			if(!is.null(attributes(deframe(tibble[,y]))$label))
+			{
+				y.label=attributes(deframe(tibble[,y]))$label
+			}else
+			{
+				y.label=y
+			}
+			
 		}
 		
 		
@@ -225,7 +232,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			}
 			
 		}
-
+		
 		
 		if(!is.null(x2))
 		{
@@ -272,8 +279,8 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 	{
 		if(is.null(x2))
 		{
-		drop.x2=NULL
-		message("drop.x2 argument not used because x2 argument is missing")
+			drop.x2=NULL
+			message("drop.x2 argument not used because x2 argument is missing")
 		}
 		
 		if(!is.null(x2))
@@ -491,7 +498,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 		stat$q1=NULL
 		stat$q3=NULL
 		stat$q3=NULL
-
+		
 	}
 	
 	
@@ -645,7 +652,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 				}
 			}
 		}
-
+		
 		
 		if(!is.null(x2)) stat2=stat2[order(stat2[,x2],stat2[,stat.name]),]
 		if(is.null(x2)) stat2=stat2[order(stat2[,stat.name]),]
@@ -741,7 +748,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 		nbcol=2
 	}
 	
-
+	
 	
 	
 	title=paste0("Quantitative descriptive statistics of: ",y.label)
