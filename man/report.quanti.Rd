@@ -8,7 +8,8 @@ report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = NULL,
   round = 2, total = F, scientific = F, digits = NULL,
   at.row = NULL, subjid = NULL, geomean = F, add.mad = F,
   default.stat = T, func.stat = NULL, stat.name = "Statistics",
-  func.stat.name = "", drop.x1 = NULL, drop.x2 = NULL)
+  func.stat.name = "", drop.x1 = NULL, drop.x2 = NULL,
+  limit.detection = NULL)
 }
 \arguments{
 \item{data}{a data.frame or a tibble object}
