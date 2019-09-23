@@ -280,7 +280,7 @@ regroup.desc=function(x,y,rbind.label="Response",y.label="",...)
 				}
 				
 				
-				nbcol=x$nbcol
+				nbcol=x$nbcol+1
 				
 				r=rbind(out.x,out.y)
 				
@@ -315,6 +315,64 @@ regroup.desc=function(x,y,rbind.label="Response",y.label="",...)
 						title=paste0("Qualitative descriptive statistics of ",y.label))
 				
 				return(r)
+				
+			}
+			
+			if(is.null(x$x1) & is.null(y$x1))
+			{
+				
+				
+				if(!is.null(x$subjid) & !is.null(y$subjid))
+				{
+					if(x$subjid!=y$subjid) stop("Different subjid argument: binding impossible")
+				}
+				
+				
+				nbcol=x$nbcol+1
+				
+				
+				colnames(out.x)[colnames(out.x)==x$y.label]=rbind.label
+				colnames(out.y)[colnames(out.y)==y$y.label]=rbind.label
+				
+				r=rbind(out.x,out.y)
+				
+				if(!x$regrouped &  !y$regrouped)
+				{
+					r$rbind="lab"
+					r$rbind[1:nrow(out.x)]=x$y.label
+					r$rbind[(nrow(out.x)+1):nrow(r)]=y$y.label
+					colnames(r)[colnames(r)=="rbind"]=rbind.label
+					
+					r=r[,c(ncol(r),1:(ncol(r)-1))]
+					
+					r=spacetable(r,rbind.label)
+					
+					
+				}else
+				{
+					r=droplevels(r[r[,rbind.label]!="",])	
+					r=spacetable(r,rbind.label)
+				}
+				
+				
+				
+				r=ClinReport::desc(output=r,
+						y=x$y,
+						total=x$total,x1=x$x1,x2=x$x2,
+						type.desc=x$type.desc,subjid=x$subjid,
+						nbcol=nbcol,
+						stat.name=x$stat.name,
+						at.row=x$at.row,
+						regrouped=T,
+						rbind.label=rbind.label,
+						y.label=y.label,
+						title=paste0("Qualitative descriptive statistics of ",y.label))
+				
+				return(r)
+				
+				
+				
+				
 				
 			}
 			
