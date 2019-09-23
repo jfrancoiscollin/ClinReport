@@ -106,6 +106,7 @@ ft <- bg(ft,i=1,bg="#DCDCDC", part = "header")
 
 ft=valign(ft, j = 1, valign = "top", part = "body")
 
+ft=autofit(ft)
 
 if(!is.null(doc))
 {	

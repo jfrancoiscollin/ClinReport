@@ -8,6 +8,7 @@
 #' @param x A desc object
 #' @param y A desc object
 #' @param rbind.label Character. The label for rbind column header 
+#' @param y.label Character. The label for the response (included in the title)
 #' @param ... Other parameters
 #' 
 #' 
@@ -77,7 +78,7 @@ regroup <- function(x,y,...)
 #' 
 #' @export 
 
-regroup.desc=function(x,y,rbind.label="Response",...)
+regroup.desc=function(x,y,rbind.label="Response",y.label="",...)
 {
 	
 	
@@ -88,6 +89,13 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 	if(x$regrouped==T & y$regrouped==F)
 	{
 		if(x$type.desc=="quali_quanti")
+		{
+			y$output$rbind.label=y$y.label
+			colnames(y$output)[colnames(y$output)=="rbind.label"]=x$rbind.label
+			rbind.label=x$rbind.label
+		}
+		
+		if(x$type.desc=="quali")
 		{
 			y$output$rbind.label=y$y.label
 			colnames(y$output)[colnames(y$output)=="rbind.label"]=x$rbind.label
@@ -177,7 +185,9 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 				subjid=x$subjid,
 				nbcol=nbcol,
 				regrouped=T,
-				rbind.label=rbind.label)
+				rbind.label=rbind.label,
+				y.label=y.label,
+				title=paste0("Descriptive statistics of ",y.label))
 		
 		return(r)
 		
@@ -247,7 +257,9 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 				stat.name=x$stat.name,
 				at.row=x$at.row,
 				regrouped=T,
-				rbind.label=rbind.label)
+				rbind.label=rbind.label,
+				y.label=y.label,
+				title=paste0("Quantitative descriptive statistics of ",y.label))
 		
 		return(r)
 		
@@ -256,7 +268,64 @@ regroup.desc=function(x,y,rbind.label="Response",...)
 	
 	if(x$type.desc=="quali" & y$type.desc=="quali")
 	{
-		message("The regroup function doesn't work yet with two 'quali' objects")
+		if(is.null(x$x2) & is.null(y$x2))
+		{
+			
+			if(!is.null(x$x1) & !is.null(y$x1))
+			{
+				
+				if(!is.null(x$subjid) & !is.null(y$subjid))
+				{
+					if(x$subjid!=y$subjid) stop("Different subjid argument: binding impossible")
+				}
+				
+				
+				nbcol=x$nbcol
+				
+				r=rbind(out.x,out.y)
+				
+				if(!x$regrouped &  !y$regrouped)
+				{
+					r$rbind="lab"
+					r$rbind[1:nrow(out.x)]=x$y.label
+					r$rbind[(nrow(out.x)+1):nrow(r)]=y$y.label
+					colnames(r)[colnames(r)=="rbind"]=rbind.label
+					
+					r=spacetable(r,rbind.label)
+					
+					r=r[,c(ncol(r),1:(ncol(r)-1))]
+				}else
+				{
+					r=droplevels(r[r[,rbind.label]!="",])	
+					r=spacetable(r,rbind.label)
+				}
+		
+				
+				
+				r=ClinReport::desc(output=r,
+						y=x$y,
+						total=x$total,x1=x$x1,x2=x$x2,
+						type.desc=x$type.desc,subjid=x$subjid,
+						nbcol=nbcol,
+						stat.name=x$stat.name,
+						at.row=x$at.row,
+						regrouped=T,
+						rbind.label=rbind.label,
+						y.label=y.label,
+						title=paste0("Qualitative descriptive statistics of ",y.label))
+				
+				return(r)
+				
+			}
+			
+			
+		}else
+		{
+			message("The regroup function doesn't work yet with two 'quali' objects with non null x2 arguments")
+		}
+		
+		
+		
 	}
 	
 	

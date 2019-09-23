@@ -7,7 +7,8 @@
 \usage{
 regroup(x, y, ...)
 
-\method{regroup}{desc}(x, y, rbind.label = "Response", ...)
+\method{regroup}{desc}(x, y, rbind.label = "Response", y.label = "",
+  ...)
 }
 \arguments{
 \item{x}{A desc object}
@@ -17,6 +18,8 @@ regroup(x, y, ...)
 \item{...}{Other parameters}
 
 \item{rbind.label}{Character. The label for rbind column header}
+
+\item{y.label}{Character. The label for the response (included in the title)}
 }
 \value{
 A desc object corresponding to a table of statistics.
