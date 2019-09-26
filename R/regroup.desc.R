@@ -172,7 +172,7 @@ regroup.desc=function(x,y,rbind.label="Response",y.label="",...)
 			nbcol=max(x$nbcol,y$nbcol)
 		}
 		
-		if(x$regrouped==F & y$regrouped==F)
+		if(x$regrouped==F | y$regrouped==F)
 		{
 			r=r[,c(ncol(r),1:(ncol(r)-1))]
 		}
