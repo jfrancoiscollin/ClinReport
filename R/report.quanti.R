@@ -668,7 +668,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			
 			if(!total)
 			{
-				N=tapply(data[,subjid],data[,x1],function(x)length(unique(x)))
+				N=tapply(data[,subjid],droplevels(data[,x1]),function(x)length(unique(x)))
 				colnames(stat2)[-c(1,2)]=paste0(colnames(stat2)[-c(1,2)]," (N=",N,")")
 				
 			}
@@ -676,7 +676,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			
 			if(total)
 			{
-				N=tapply(data[,subjid],data[,x1],function(x)length(unique(x)))
+				N=tapply(data[,subjid],droplevels(data[,x1]),function(x)length(unique(x)))
 				N=c(N,sum(N))
 				colnames(stat2)[-c(1,2)]=paste0(colnames(stat2)[-c(1,2)]," (N=",N,")")
 				
@@ -690,7 +690,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			
 			if(!total)
 			{
-				N=tapply(data[,subjid],data[,x1],function(x)length(unique(x)))
+				N=tapply(data[,subjid],droplevels(data[,x1]),function(x)length(unique(x)))
 				colnames(stat2)[-c(1)]=paste0(colnames(stat2)[-c(1)]," (N=",N,")")
 				
 			}
@@ -698,7 +698,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			
 			if(total)
 			{
-				N=tapply(data[,subjid],data[,x1],function(x)length(unique(x)))
+				N=tapply(data[,subjid],droplevels(data[,x1]),function(x)length(unique(x)))
 				N=c(N,sum(N))
 				colnames(stat2)[-c(1)]=paste0(colnames(stat2)[-c(1)]," (N=",N,")")
 				

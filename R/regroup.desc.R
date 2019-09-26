@@ -280,7 +280,7 @@ regroup.desc=function(x,y,rbind.label="Response",y.label="",...)
 				}
 				
 				
-				nbcol=x$nbcol+1
+				nbcol=x$nbcol
 				
 				r=rbind(out.x,out.y)
 				
@@ -328,7 +328,7 @@ regroup.desc=function(x,y,rbind.label="Response",y.label="",...)
 				}
 				
 				
-				nbcol=x$nbcol+1
+				nbcol=x$nbcol
 				
 				
 				colnames(out.x)[colnames(out.x)==x$y.label]=rbind.label
