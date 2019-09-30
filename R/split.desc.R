@@ -44,7 +44,7 @@ split.desc=function(x, f, drop, ...,variable,at)
 	x1=x
 	x2=x
 	
-	lev=levels(x1$raw.output[,variable])
+	lev=levels(as.factor(x1$raw.output[,variable]))
 	
 	lev.x1=lev[1:at]
 	lev.x2=lev[!"%in%"(lev,lev.x1)]

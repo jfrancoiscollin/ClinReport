@@ -21,7 +21,7 @@ check.x=function(data,x,substitute="data")
 	if(!any(colnames(data)==x)) stop("x argument should be in data colnames")
 	if(!is.factor(data[,x]))
 	{		
-		message(paste0(as.character(substitute),"[,'",x,"']","has been used as a factor"))
+#		message(paste0(as.character(substitute),"[,'",x,"']","has been used as a factor"))
 		data[,x]=as.factor(data[,x]) # just for the condition after
 	}
 	

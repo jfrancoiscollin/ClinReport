@@ -75,6 +75,7 @@ report.modelinfo.lme=function(object,doc=NULL,page.break=TRUE,...)
 	object.formula=paste0(deparse(object$call),collapse="\n")
 	method=object$method
 	na.handling=attr(object$na.action,"class")
+	if(is.null(na.handling)) na.handling="None"
 	dd <- object$dims
 	nbobs=paste0(dd[["N"]])
 	nbgrp=paste0(dd$ngrps[1:dd$Q])
@@ -169,6 +170,7 @@ report.modelinfo.glm=function(object,doc=NULL,page.break=TRUE,...)
 	object.formula=paste0(deparse(object$call),collapse="\n")
 	family=paste(paste0(object$family$family),";",paste0(object$family$link))
 	na.handling=attr(object$na.action,"class")
+	if(is.null(na.handling)) na.handling="None"
 	aic_bic=paste0("AIC =",round(AIC(object),3), "; BIC = ",round(BIC(object),3))
 	
 	
@@ -214,7 +216,7 @@ report.modelinfo.coxph=function(object,doc=NULL,page.break=TRUE,...)
 	aic_bic=paste0("AIC =",round(AIC(object),3), "; BIC = ",round(BIC(object),3))
 	
 	
-	names=c("R package / function","Type of model","objectel formula",
+	names=c("R package / function","Type of model","Model formula",
 			"Number of observations","Number of events",
 			"Quality of adjustment")
 	

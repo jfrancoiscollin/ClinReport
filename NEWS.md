@@ -129,6 +129,21 @@ argument systematically anymore
 
 
 
+# ClinReport 0.9.2
+
+## Enhancement
+
+* A Word template is integrated in the package and the function init.report enables to initialize
+the default parameters (Date, Author name, Title of the report etc...)
+* The package is now compatible with tibble object and is compatible with the haven package
+* The package can use SAS format to re-label the outputs automatically
+* Add pvalue argument to report.doc.anova to have a pretty round format in the anova table 
+* New apply.format function for tibble objects
+* Enable the row binding of two qualitative objects (regroup function)
+
+## Issues
+* Correction of a bug in report.quanti when using the func.stat argument
+
 
 
 

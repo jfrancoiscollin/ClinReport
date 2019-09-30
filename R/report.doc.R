@@ -470,6 +470,8 @@ report.doc.desc=function(table,title=NULL,colspan.value=NULL,doc=NULL,
 		
 	}
 	
+	if(is.null(title)) title=table$title
+	
 	
 	# Increase numbering by one
 	
@@ -544,8 +546,7 @@ report.doc.desc=function(table,title=NULL,colspan.value=NULL,doc=NULL,
 	if(is.null(table$at.row))
 	{
 		ft=vline(ft,j =1:nb.col,border = fp_border(width = 1),part = "body")
-	}
-	else
+	}else
 	{
 		i=space_vline(output,table$at.row)
 		ft=vline(ft, i=i,j =1:nb.col,border = fp_border(width = 1),part = "body")
@@ -606,6 +607,7 @@ report.doc.desc=function(table,title=NULL,colspan.value=NULL,doc=NULL,
 
 #' @param type.anova Passed to \code{Anova} function from car package (see its documentation).
 #' @param pretty.label Logical. Default to FALSE. If TRUE, use the function \code{make.label} with default option on the rownames of the anova table 
+#' @param pvalue Character. Used to prettify the pvalue
 #' 
 #' @importFrom xtable xtable
 #' @rdname report.doc
@@ -614,7 +616,8 @@ report.doc.desc=function(table,title=NULL,colspan.value=NULL,doc=NULL,
 
 
 report.doc.anova=function(table,title="Anova table",type.anova=3,doc=NULL,numbering=T,
-		init.numbering=F,font.name="Times",font.size=10,page.break=T,pretty.label=FALSE,...)
+		init.numbering=F,font.name="Times",font.size=10,page.break=T,pretty.label=FALSE,
+		pvalue=NULL,...)
 {
 	
 	
@@ -646,6 +649,28 @@ report.doc.anova=function(table,title="Anova table",type.anova=3,doc=NULL,number
 	if(pretty.label)
 	{
 		rownames(table)=make.label(rownames(table))
+	}
+	
+	colnames=colnames(table)
+	table=data.frame(table)
+	colnames(table)=colnames
+	
+	if(!is.null(pvalue))
+	{
+		if(is.character(pvalue))
+		{
+			if(any("%in%"(colnames,pvalue)))
+			{
+				table[,pvalue]=prettyp(table[,pvalue])
+			}else
+			{
+				stop("pvalue argument is not in table colnames")
+			}
+		}else
+		{
+			stop("pvalue argument should be a character")
+		}
+
 	}
 	
 	xtab=xtable(table)

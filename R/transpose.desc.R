@@ -141,7 +141,7 @@ transpose.desc=function(desc,...)
 								x
 							}))
 			
-			colnames(output)=gsub("column %",paste0("",x1,"%"),colnames(output))
+			colnames(output)=gsub("column %","%",colnames(output))
 			
 		}
 		
