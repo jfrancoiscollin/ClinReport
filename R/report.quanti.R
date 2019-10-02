@@ -192,7 +192,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 	if(inherits(data,"tbl_df"))
 	{
 		tibble=data
-		data=data.frame(data)
+		data=as.data.frame(data,make.names=FALSE)
 		is.tibble=TRUE
 	}else
 	{
@@ -204,7 +204,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 	{
 		if(is.null(y.label))
 		{
-			if(!is.null(attributes(deframe(tibble[,y]))$label))
+			if(any("%in%"(names(attributes(deframe(tibble[,y]))),"label")))
 			{
 				y.label=attributes(deframe(tibble[,y]))$label
 			}else
@@ -668,7 +668,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			
 			if(!total)
 			{
-				N=tapply(data[,subjid],droplevels(data[,x1]),function(x)length(unique(x)))
+				N=tapply(data[,subjid],droplevels(as.factor(data[,x1])),function(x)length(unique(x)))
 				colnames(stat2)[-c(1,2)]=paste0(colnames(stat2)[-c(1,2)]," (N=",N,")")
 				
 			}
@@ -676,7 +676,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			
 			if(total)
 			{
-				N=tapply(data[,subjid],droplevels(data[,x1]),function(x)length(unique(x)))
+				N=tapply(data[,subjid],droplevels(as.factor(data[,x1])),function(x)length(unique(x)))
 				N=c(N,sum(N))
 				colnames(stat2)[-c(1,2)]=paste0(colnames(stat2)[-c(1,2)]," (N=",N,")")
 				
@@ -690,7 +690,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			
 			if(!total)
 			{
-				N=tapply(data[,subjid],droplevels(data[,x1]),function(x)length(unique(x)))
+				N=tapply(data[,subjid],droplevels(as.factor(data[,x1])),function(x)length(unique(x)))
 				colnames(stat2)[-c(1)]=paste0(colnames(stat2)[-c(1)]," (N=",N,")")
 				
 			}
@@ -698,7 +698,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			
 			if(total)
 			{
-				N=tapply(data[,subjid],droplevels(data[,x1]),function(x)length(unique(x)))
+				N=tapply(data[,subjid],droplevels(as.factor(data[,x1])),function(x)length(unique(x)))
 				N=c(N,sum(N))
 				colnames(stat2)[-c(1)]=paste0(colnames(stat2)[-c(1)]," (N=",N,")")
 				
