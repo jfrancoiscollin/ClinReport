@@ -331,8 +331,8 @@ regroup.desc=function(x,y,rbind.label="Response",y.label="",...)
 				nbcol=x$nbcol
 				
 				
-				colnames(out.x)[colnames(out.x)==x$y.label]=rbind.label
-				colnames(out.y)[colnames(out.y)==y$y.label]=rbind.label
+				colnames(out.x)[colnames(out.x)==x$y.label]="Results"
+				colnames(out.y)[colnames(out.y)==y$y.label]="Results"
 				
 				r=rbind(out.x,out.y)
 				
