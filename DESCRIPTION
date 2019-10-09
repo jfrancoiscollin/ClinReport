@@ -19,7 +19,9 @@ Imports:
 	flextable (>= 0.5.1), 
 	xtable,
 	lme4,
-	car
+	car,
+	haven,
+	tibble
 Suggests: 
     nlme,
     magrittr,

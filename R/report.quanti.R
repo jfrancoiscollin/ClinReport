@@ -24,6 +24,7 @@
 #' @param stat.name Character. Indicates the name of the variable that report the statistics Default = "Statistics"
 #' @param drop.x1 Character. Indicates one or several levels of the x1 factor that you want to drop in the result
 #' @param drop.x2 Character. Indicates one or several levels of the x2 factor that you want to drop in the result
+#' @param  limit.detection Numeric. Indicates the threshold of the detection limit
 #' 
 #' @description
 #' \code{report.quanti} 

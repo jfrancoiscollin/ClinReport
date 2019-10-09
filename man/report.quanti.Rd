@@ -49,6 +49,8 @@ report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = NULL,
 \item{drop.x1}{Character. Indicates one or several levels of the x1 factor that you want to drop in the result}
 
 \item{drop.x2}{Character. Indicates one or several levels of the x2 factor that you want to drop in the result}
+
+\item{limit.detection}{Numeric. Indicates the threshold of the detection limit}
 }
 \value{
 A desc object.
