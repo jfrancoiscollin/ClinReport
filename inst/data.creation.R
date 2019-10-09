@@ -99,14 +99,19 @@ data$randtrt=sample(data$randtrt,length(data$randtrt),replace=TRUE)
 ###########################################
 
 
+source("C:\\Users\\jfcollin\\Google Drive\\Dev\\Clinical studies\\Chat D988 1903\\dm.R")
 
+# fake the data
 
+levels(co$Group)=c("Treat. 1","Treat. 2","Treat. 3","Treat. 4","pipo")
 
+co=droplevels(co[co$Group!="pipo",])
 
+co$Group2=sample(co$Group,length(co$Group))
 
+co$Group=co$Group2
 
+co$Group2=NULL
 
-
-
-
+write_sas(co,"C:\\Users\\jfcollin\\git\\data\\clinical_sas.sas7bdat")
 
