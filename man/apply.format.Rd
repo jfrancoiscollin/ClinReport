@@ -23,8 +23,11 @@ This function look for the attributes of the tibble object variable and
 apply labels and label to the corresponding variable.
 }
 \examples{
-path1 <- system.file("examples", "clinical_sas.sas7bdat.sas7bdat", package = "ClinReport")
-path2 <- system.file("examples", "format.sas7bcat.sas7bdat", package = "ClinReport")
+
+library(haven)
+
+path1 <- system.file("examples", "clinical_sas.sas7bdat", package = "ClinReport")
+path2 <- system.file("examples", "formats.sas7bcat", package = "ClinReport")
 data=read_sas(path1,path2)
 
 head(data)
