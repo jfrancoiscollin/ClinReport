@@ -94,6 +94,18 @@ data$randtrt=sample(data$randtrt,length(data$randtrt),replace=TRUE)
 
 
 
+###########################################
+# source local
+###########################################
+
+
+
+
+
+
+
+
+
 
 
 
