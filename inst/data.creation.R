@@ -105,7 +105,7 @@ source("C:\\Users\\jfcollin\\Google Drive\\Dev\\Clinical studies\\Chat D988 1903
 
 levels(co$Group)=c("Treat. 1","Treat. 2","Treat. 3","Treat. 4","pipo")
 
-co=droplevels(co[co$Group!="pipo",])
+co=filter(co, Group != "pipo")
 
 co$Group2=sample(co$Group,length(co$Group))
 
