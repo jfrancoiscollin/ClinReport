@@ -132,6 +132,19 @@
 #' #Getting a data.frame version of the output
 #' tab$output
 #' 
+#' 
+#' #If you want to use meta data in a tibble object 
+#' # Typically you've imported a SAS data base with some format
+#' # with the haven package
+#' # like:
+#' 
+#' library(haven)
+#' path1 <- system.file("examples", "clinical_sas.sas7bdat", package = "ClinReport")
+#' path2 <- system.file("examples", "formats.sas7bcat", package = "ClinReport")
+#' data=haven::read_sas(path1,path2)
+#' 
+#' report.quanti(data,"DSCORE","SEX")
+#' 
 #' @import reshape2
 #' 
 #' @importFrom dplyr %>% summarise_at group_by 
@@ -164,6 +177,8 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 #	at.row=NULL
 	
 	
+#TODO try as_factor(x, levels = "labels")	
+	
 	################################
 	# Check 
 	################################
@@ -185,9 +200,6 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 	
 	
 	if(is.null(x1) & !is.null(x2)) stop("If you have only one explicative variable, then use x1 and not x2 argument")
-	
-	
-	
 	
 	
 	if(inherits(data,"tbl_df"))

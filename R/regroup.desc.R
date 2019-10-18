@@ -102,6 +102,13 @@ regroup.desc=function(x,y,rbind.label="Response",y.label="",...)
 			rbind.label=x$rbind.label
 		}
 		
+		if(x$type.desc=="quanti")
+		{
+			y$output$rbind.label=y$y.label
+			colnames(y$output)[colnames(y$output)=="rbind.label"]=x$rbind.label
+			rbind.label=x$rbind.label
+		}
+		
 	}
 	
 	if(x$regrouped==F & y$regrouped==T)
@@ -217,16 +224,23 @@ regroup.desc=function(x,y,rbind.label="Response",y.label="",...)
 		
 		r=rbind(out.x,out.y)
 		
-		if(x$y!=y$y)
+		if(!x$regrouped &  !y$regrouped)
 		{
-			r$rbind="lab"
-			r$rbind[1:nrow(out.x)]=x$y.label
-			r$rbind[(nrow(out.x)+1):nrow(r)]=y$y.label
-			colnames(r)[colnames(r)=="rbind"]=rbind.label
-			
+			if(x$y!=y$y)
+			{
+				r$rbind="lab"
+				r$rbind[1:nrow(out.x)]=x$y.label
+				r$rbind[(nrow(out.x)+1):nrow(r)]=y$y.label
+				colnames(r)[colnames(r)=="rbind"]=rbind.label
+				
+				r=spacetable(r,rbind.label)
+				
+				r=r[,c(ncol(r),1:(ncol(r)-1))]
+			}
+		}else
+		{
+			r=droplevels(r[r[,rbind.label]!="",])	
 			r=spacetable(r,rbind.label)
-			
-			r=r[,c(ncol(r),1:(ncol(r)-1))]
 		}
 		
 		if(x$y==y$y)
@@ -299,7 +313,7 @@ regroup.desc=function(x,y,rbind.label="Response",y.label="",...)
 					r=droplevels(r[r[,rbind.label]!="",])	
 					r=spacetable(r,rbind.label)
 				}
-		
+				
 				
 				
 				r=ClinReport::desc(output=r,

@@ -106,6 +106,7 @@ source("C:\\Users\\jfcollin\\Google Drive\\Dev\\Clinical studies\\Chat D988 1903
 levels(co$Group)=c("Treat. 1","Treat. 2","Treat. 3","Treat. 4","pipo")
 
 co=filter(co, Group != "pipo")
+co=filter(co, !is.na(SEX))
 
 co$Group2=sample(co$Group,length(co$Group))
 
@@ -113,5 +114,15 @@ co$Group=co$Group2
 
 co$Group2=NULL
 
-write_sas(co,"C:\\Users\\jfcollin\\git\\data\\clinical_sas.sas7bdat")
+write_sas(co,"C:\\Users\\jfcollin\\git\\inst\\examples\\clinical_sas.sas7bdat")
+
+
+
+#data2=haven::read_sas("C:\\Users\\jfcollin\\git\\inst\\examples\\clinical_sas.sas7bdat","C:\\Users\\jfcollin\\git\\inst\\examples\\formats.sas7bcat")
+
+
+
+
+
+
 
