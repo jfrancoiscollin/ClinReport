@@ -143,7 +143,7 @@
 #' path2 <- system.file("examples", "formats.sas7bcat", package = "ClinReport")
 #' data=haven::read_sas(path1,path2)
 #' 
-#' report.quanti(data,"DSCORE","SEX")
+#' report.quanti(data,"TEMP","SEX")
 #' 
 #' @import reshape2
 #' 
@@ -330,6 +330,28 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			}
 		}
 		
+	}
+	
+	
+	# if x1 and/or x2 have missing values are filled
+	# we remove the corresponding lines in the data with a message
+	
+	if(!is.null(x1))
+	{
+		if(any(is.na(data[,x1])))
+		{
+			data=droplevels(data[!is.na(data[,x1]),])
+			message("x1 variable has missing values. The corresponding lines in the data frame are omitted")
+		}
+	}
+	
+	if(!is.null(x2))
+	{
+		if(any(is.na(data[,x2])))
+		{
+			data=droplevels(data[!is.na(data[,x2]),])
+			message("x2 variable has missing values. The corresponding lines in the data frame are omitted")
+		}
 	}
 	
 	################################

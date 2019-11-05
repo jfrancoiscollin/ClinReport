@@ -114,11 +114,14 @@ co$Group=co$Group2
 
 co$Group2=NULL
 
-write_sas(co,"C:\\Users\\jfcollin\\git\\inst\\examples\\clinical_sas.sas7bdat")
+sjlabelled:::write_sas(co,"C:\\Users\\jfcollin\\git\\inst\\examples\\clinical_sas.sas7bdat")
+haven:::write_sas(co,"C:\\Users\\jfcollin\\git\\inst\\examples\\clinical_sas.sas7bdat")
 
 
 
 #data2=haven::read_sas("C:\\Users\\jfcollin\\git\\inst\\examples\\clinical_sas.sas7bdat","C:\\Users\\jfcollin\\git\\inst\\examples\\formats.sas7bcat")
+
+#data2=sjlabelled::read_sas("C:\\Users\\jfcollin\\git\\inst\\examples\\clinical_sas.sas7bdat","C:\\Users\\jfcollin\\git\\inst\\examples\\formats.sas7bcat")
 
 
 

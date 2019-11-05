@@ -17,10 +17,16 @@ A matrix
 enables to see the match between the colnames of the tibble and their corresponding labels.
 }
 \details{
-No details
+Usefull function to check the corresponance between colnames and their labels in a tibble object.
 }
 \examples{
-# Not yet
+library(haven)
+
+path1 <- system.file("examples", "clinical_sas.sas7bdat", package = "ClinReport")
+path2 <- system.file("examples", "formats.sas7bcat", package = "ClinReport")
+data=read_sas(path1,path2)
+
+see.label(data)
 
 
 }

@@ -156,6 +156,19 @@ tab$raw.output
 #Getting a data.frame version of the output
 tab$output
 
+
+#If you want to use meta data in a tibble object 
+# Typically you've imported a SAS data base with some format
+# with the haven package
+# like:
+
+library(haven)
+path1 <- system.file("examples", "clinical_sas.sas7bdat", package = "ClinReport")
+path2 <- system.file("examples", "formats.sas7bcat", package = "ClinReport")
+data=haven::read_sas(path1,path2)
+
+report.quanti(data,"TEMP","SEX")
+
 }
 \seealso{
 \code{\link{report.quali}} \code{\link{report.doc}} \code{\link{desc}}

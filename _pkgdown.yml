@@ -42,6 +42,11 @@ reference:
   - '`regroup`'
   - '`split.desc`'
   - '`transpose`'
+  desc: >
+    Functions used to see and apply the formats (label(s)) of tibble objects   
+  contents:
+  - '`apply.format`'
+  - '`see.label`'
 - title: "Graphic outputs"
   desc: >
     Function used to create the corresponding graphics of the statistical outputs.   
