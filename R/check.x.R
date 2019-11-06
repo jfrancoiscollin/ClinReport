@@ -22,13 +22,13 @@ check.x=function(data,x,substitute="data")
 	if(!is.factor(data[,x]))
 	{		
 #		message(paste0(as.character(substitute),"[,'",x,"']","has been used as a factor"))
-		data[,x]=as.factor(data[,x]) # just for the condition after
+		data[,x]=as.factor(as.data.frame(data)[,x]) # just for the condition after
 	}
 	
 	if(any(levels(data[,x])=="",na.rm=T))
 	{
 
-			stop(paste0("One on the levels of ",
+			stop(paste0("One on the levels/values of ",
 							as.character(substitute),"[,'",x,"']"),
 					" is equal to ''. check that the corresponding values are not NA.")
 	}

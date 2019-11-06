@@ -4,11 +4,19 @@
 \alias{as.desc}
 \title{Converts a data frame or a tibble into a desc object}
 \usage{
-as.desc(output, nbcol = ncol(x), total = FALSE, y.label = "",
+as.desc(output, nbcol = ncol(output), total = FALSE, y.label = "",
   type.desc = "quanti", ...)
 }
 \arguments{
 \item{output}{A data frame or a tibble}
+
+\item{nbcol}{Numeric. Number of columns that are not statistics}
+
+\item{total}{Logical. If yes, indicates a column Total in the table}
+
+\item{y.label}{Character, the label of the response}
+
+\item{type.desc}{Character, can be "quanti", "quali" "lsmeans"}
 
 \item{...}{Not used}
 }

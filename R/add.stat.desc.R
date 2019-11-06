@@ -103,6 +103,7 @@ add.stat.desc=function(tab,data,func.stat,func.stat.name,pos=NULL,...)
 	
 	
 	tab3=regroup(x=tab,y=tab2)
+	tab3$regrouped=FALSE
 	
 	lev2=levels(tab2$output[,tab2$stat.name])
 	lev3=levels(tab3$output[,tab3$stat.name])

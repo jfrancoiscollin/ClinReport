@@ -115,6 +115,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=NULL,
 #	subjid=NULL
 	
 	#checks on y and data arguments
+	# TODO: check case where there is only NA
 	
 	substitute=substitute(data)
 	
@@ -122,7 +123,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=NULL,
 	if(inherits(data,"tbl_df"))
 	{
 		tibble=data
-		data=data.frame(data)
+		data=as.data.frame(data,make.names=FALSE)
 		is.tibble=TRUE
 	}else
 	{
@@ -135,7 +136,13 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=NULL,
 	{
 		if(is.null(y.label))
 		{
-			y.label=attributes(deframe(tibble[,y]))$label
+			if(any("%in%"(names(attributes(deframe(tibble[,y]))),"label")))
+			{
+				y.label=attributes(deframe(tibble[,y]))$label
+			}else
+			{
+				y.label=y
+			}
 		}
 		
 	}
@@ -161,7 +168,7 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=NULL,
 		{
 			if(is.null(x2.label))
 			{
-				if(!is.null(attributes(deframe(tibble[,x2]))$label))
+				if(any("%in%"(names(attributes(deframe(tibble[,x2]))),"label")))
 				{
 					x2.label=attributes(deframe(tibble[,x2]))$label
 				}else
@@ -577,7 +584,8 @@ report.quali=function(data,y=NULL,x1=NULL,x2=NULL,y.label=NULL,
 		if(is.null(x2.label)) at.row=x2
 		if(!is.null(x2.label)) at.row=x2.label
 		
-		freq=spacetable(freq,at.row=at.row)
+		if(any("%in%"(colnames(freq),at.row))) freq=spacetable(freq,at.row=at.row)
+		
 	}
 	
 	title=paste0("Qualitative descriptive statistics of : ",y.label)

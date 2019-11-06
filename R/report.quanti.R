@@ -24,6 +24,7 @@
 #' @param stat.name Character. Indicates the name of the variable that report the statistics Default = "Statistics"
 #' @param drop.x1 Character. Indicates one or several levels of the x1 factor that you want to drop in the result
 #' @param drop.x2 Character. Indicates one or several levels of the x2 factor that you want to drop in the result
+#' @param  limit.detection Numeric. Indicates the threshold of the detection limit
 #' 
 #' @description
 #' \code{report.quanti} 
@@ -131,6 +132,19 @@
 #' #Getting a data.frame version of the output
 #' tab$output
 #' 
+#' 
+#' #If you want to use meta data in a tibble object 
+#' # Typically you've imported a SAS data base with some format
+#' # with the haven package
+#' # like:
+#' 
+#' library(haven)
+#' path1 <- system.file("examples", "clinical_sas.sas7bdat", package = "ClinReport")
+#' path2 <- system.file("examples", "formats.sas7bcat", package = "ClinReport")
+#' data=haven::read_sas(path1,path2)
+#' 
+#' report.quanti(data,"TEMP","SEX")
+#' 
 #' @import reshape2
 #' 
 #' @importFrom dplyr %>% summarise_at group_by 
@@ -163,6 +177,8 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 #	at.row=NULL
 	
 	
+#TODO try as_factor(x, levels = "labels")	
+	
 	################################
 	# Check 
 	################################
@@ -186,13 +202,10 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 	if(is.null(x1) & !is.null(x2)) stop("If you have only one explicative variable, then use x1 and not x2 argument")
 	
 	
-	
-	
-	
 	if(inherits(data,"tbl_df"))
 	{
 		tibble=data
-		data=data.frame(data)
+		data=as.data.frame(data,make.names=FALSE)
 		is.tibble=TRUE
 	}else
 	{
@@ -204,7 +217,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 	{
 		if(is.null(y.label))
 		{
-			if(!is.null(attributes(deframe(tibble[,y]))$label))
+			if(any("%in%"(names(attributes(deframe(tibble[,y]))),"label")))
 			{
 				y.label=attributes(deframe(tibble[,y]))$label
 			}else
@@ -317,6 +330,28 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			}
 		}
 		
+	}
+	
+	
+	# if x1 and/or x2 have missing values are filled
+	# we remove the corresponding lines in the data with a message
+	
+	if(!is.null(x1))
+	{
+		if(any(is.na(data[,x1])))
+		{
+			data=droplevels(data[!is.na(data[,x1]),])
+			message("x1 variable has missing values. The corresponding lines in the data frame are omitted")
+		}
+	}
+	
+	if(!is.null(x2))
+	{
+		if(any(is.na(data[,x2])))
+		{
+			data=droplevels(data[!is.na(data[,x2]),])
+			message("x2 variable has missing values. The corresponding lines in the data frame are omitted")
+		}
 	}
 	
 	################################
@@ -668,7 +703,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			
 			if(!total)
 			{
-				N=tapply(data[,subjid],droplevels(data[,x1]),function(x)length(unique(x)))
+				N=tapply(data[,subjid],droplevels(as.factor(data[,x1])),function(x)length(unique(x)))
 				colnames(stat2)[-c(1,2)]=paste0(colnames(stat2)[-c(1,2)]," (N=",N,")")
 				
 			}
@@ -676,7 +711,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			
 			if(total)
 			{
-				N=tapply(data[,subjid],droplevels(data[,x1]),function(x)length(unique(x)))
+				N=tapply(data[,subjid],droplevels(as.factor(data[,x1])),function(x)length(unique(x)))
 				N=c(N,sum(N))
 				colnames(stat2)[-c(1,2)]=paste0(colnames(stat2)[-c(1,2)]," (N=",N,")")
 				
@@ -690,7 +725,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			
 			if(!total)
 			{
-				N=tapply(data[,subjid],droplevels(data[,x1]),function(x)length(unique(x)))
+				N=tapply(data[,subjid],droplevels(as.factor(data[,x1])),function(x)length(unique(x)))
 				colnames(stat2)[-c(1)]=paste0(colnames(stat2)[-c(1)]," (N=",N,")")
 				
 			}
@@ -698,7 +733,7 @@ report.quanti=function(data,y,x1=NULL,x2=NULL,y.label=NULL,
 			
 			if(total)
 			{
-				N=tapply(data[,subjid],droplevels(data[,x1]),function(x)length(unique(x)))
+				N=tapply(data[,subjid],droplevels(as.factor(data[,x1])),function(x)length(unique(x)))
 				N=c(N,sum(N))
 				colnames(stat2)[-c(1)]=paste0(colnames(stat2)[-c(1)]," (N=",N,")")
 				

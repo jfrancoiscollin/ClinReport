@@ -49,6 +49,8 @@ report.quanti(data, y, x1 = NULL, x2 = NULL, y.label = NULL,
 \item{drop.x1}{Character. Indicates one or several levels of the x1 factor that you want to drop in the result}
 
 \item{drop.x2}{Character. Indicates one or several levels of the x2 factor that you want to drop in the result}
+
+\item{limit.detection}{Numeric. Indicates the threshold of the detection limit}
 }
 \value{
 A desc object.
@@ -153,6 +155,19 @@ tab$raw.output
 
 #Getting a data.frame version of the output
 tab$output
+
+
+#If you want to use meta data in a tibble object 
+# Typically you've imported a SAS data base with some format
+# with the haven package
+# like:
+
+library(haven)
+path1 <- system.file("examples", "clinical_sas.sas7bdat", package = "ClinReport")
+path2 <- system.file("examples", "formats.sas7bcat", package = "ClinReport")
+data=haven::read_sas(path1,path2)
+
+report.quanti(data,"TEMP","SEX")
 
 }
 \seealso{
