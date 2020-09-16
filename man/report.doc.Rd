@@ -427,7 +427,7 @@ doc=body_add_gg(doc, value = gg.mod5, style = "centered" )
 
 file=paste(tempfile(),".docx",sep="")
 print(doc, target =file)
-shell.exec(file)
+#shell.exec(file)
 
 }
 

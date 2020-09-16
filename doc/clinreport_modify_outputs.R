@@ -1,21 +1,21 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ---- echo = TRUE, message=FALSE, warning=FALSE--------------------------
+## ---- echo = TRUE, message=FALSE, warning=FALSE-------------------------------
 library(ClinReport)
 library(officer)
 library(flextable)
 library(emmeans)
 
-## ---- include=TRUE-------------------------------------------------------
+## ---- include=TRUE------------------------------------------------------------
 # We will use fake data
 data(datafake)
 print(head(datafake))
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 tab1=report.quanti(data=datafake,y="y_numeric",
 		x1="GROUP",subjid="SUBJID",y.label="Y numeric")
 
@@ -28,7 +28,7 @@ tab3=regroup(tab1,tab2,rbind.label="The label of your choice")
 report.doc(tab3,title="Mixed Qualitative and Quantitative output",
 colspan.value="Treatment group")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 es=function(x) mean(x,na.rm=T)/sd(x,na.rm=T) 
 
 tab=report.quanti(data=datafake,y="y_numeric",x1="GROUP",
@@ -39,7 +39,7 @@ func.stat.name="Effect size")
 report.doc(tab,title="Example of a specific statistic reporting",
 colspan.value="Treatment group")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 # The default statistics are given here:
  
 tab1=report.quanti(data=datafake,y="y_numeric",x1="GROUP",total=TRUE,subjid="SUBJID")
@@ -81,28 +81,28 @@ tab=report.quanti(data=datafake,y="y_numeric",x1="GROUP",
  colspan.value="Treatment Group")
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 tab=report.quali(data=datafake,y="y_logistic",x1="GROUP",
 total=TRUE,subjid="SUBJID",percent.col=FALSE)
 
 report.doc(tab,title="Example of row percentage reporting",
 colspan.value="Treatment group")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 tab=report.quali(data=datafake,y="y_logistic",x1="GROUP",
 subjid="SUBJID",drop.x1=c("B","C"))
 
 report.doc(tab,title="Example of row percentage reporting",
 colspan.value="Treatment group")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 tab=report.quali(data=datafake,y="y_logistic",x1="GROUP",
 remove.missing=TRUE)
 
 report.doc(tab,title="Example of dropping missing values",
 colspan.value="Treatment group")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 
 tab=report.quali(data=datafake,
 y="y_logistic",x1="GROUP",
@@ -115,7 +115,7 @@ report.doc(tab)
 report.doc(transpose(tab))
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 mod=lm(y_numeric~GROUP,data=datafake)
 pairs=pairs(emmeans(mod,~GROUP))
 

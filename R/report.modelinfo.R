@@ -113,6 +113,49 @@ report.modelinfo.lme=function(object,doc=NULL,page.break=TRUE,...)
 }
 
 
+
+
+#' @rdname report.modelinfo
+#' @export 
+
+report.modelinfo.lm=function(object,doc=NULL,page.break=TRUE,...)
+{
+	
+	rpack_func="R Package stats , function lm"
+	label="Linear Model"	
+	object.formula=paste0(deparse(object$call),collapse="\n")
+	aic_bic=paste0("AIC =",round(AIC(object),3), "; BIC = ",round(BIC(object),3))
+	
+	
+	names=c("R package / function","Type of model","Model formula",
+			"Quality of adjustment")
+	
+	model.info=data.frame(Information=names,Details=c(rpack_func,label,
+					object.formula,aic_bic))
+	
+	ft=flextable(model.info)
+	ft=bg(ft, i = 1, bg = "#DCDCDC", part = "header")
+	
+	ft = width(ft, j=1,width = 2)
+	ft = width(ft, j=2,width = 6)
+	
+	if (!is.null(doc)) {
+		if (class(doc) != "rdocx") 
+			stop("doc must be a rdocx object")
+		doc <- body_add_par(doc, "", style = "Normal")
+		doc <- body_add_flextable(doc, value = ft)
+		if (page.break) 
+			doc = body_add_break(doc)
+		return(doc)
+	}
+	else {
+		return(ft)
+	}
+	
+}
+
+
+
 #' @rdname report.modelinfo
 #' @export 
 

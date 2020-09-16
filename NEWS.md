@@ -144,6 +144,15 @@ the default parameters (Date, Author name, Title of the report etc...)
 ## Issues
 * Correction of a bug in report.quanti when using the func.stat argument
 
+# ClinReport 0.9.3
+
+## Issues
+* shell.exec removed from examples
 
 
+# ClinReport 0.9.4
+
+## Enhancement
+
+* model info on linear models
 

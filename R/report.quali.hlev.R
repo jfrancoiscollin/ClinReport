@@ -93,6 +93,7 @@ report.quali.hlev=function(data,subjid=NULL,x1=NULL,var_upper,var_lower,
 		
 		# add the total
 		
+		colnames(dat)[-1]=colnames(alo_tot)[-1]
 		dat=rbind(alo_tot,dat)
 		
 		alo2=at.least.one(data=data,subjid=subjid,var=var_lower)
@@ -108,6 +109,7 @@ report.quali.hlev=function(data,subjid=NULL,x1=NULL,var_upper,var_lower,
 		# add the total
 		
 		colnames(alo_tot)[1]=lower.levels
+		colnames(dat2)[-1]=colnames(alo_tot)[-1]
 		dat2=rbind(alo_tot,dat2)
 		
 		key=define.key(data,var_upper,var_lower,upper.levels=upper.levels,
